@@ -1,0 +1,25 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "ca27f561-0948-4168-9240-5118c56d9f75",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "ca27f561-0948-4168-9240-5118c56d9f75" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "ca27f561-0948-4168-9240-5118c56d9f75" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "0598100D-36C0-4343-BCC4-63BA24CC25BE",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "ca27f561-0948-4168-9240-5118c56d9f75" : "HAODOUCAIPUAPP\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "HAODOUCAIPUAPP",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "HAODOUCAIPUAPP\/HAODOUCAIPUAPP.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/svnchina.com\/svn\/haodoucaipuapp",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "ca27f561-0948-4168-9240-5118c56d9f75"
+    }
+  ]
+}
