@@ -12,12 +12,6 @@
 
 @implementation YHSCookBookDishPictureViewController
 
-
-
-
-
-
-
 - (NSString *)getCookBookDishVedioRequestURLString
 {
     // 默认主页面内容，子类必须继承
@@ -33,14 +27,4 @@
     return params;
 }
 
-
-
-
-
-
 @end
-
-
-
-
-
