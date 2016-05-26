@@ -449,6 +449,18 @@
 
 
 
+#pragma mark - N027.视屏菜谱MP4
++ (NSString *)getCookBookDishVideoMP4RequestURLString
+{
+    return @"http://api.haodou.com/index.php?appid=2&appkey=9ef269eec4f7a9d07c73952d06b5413f&format=json&sessionid=1464242593898&vc=83&vn=6.1.0&loguid=9798666&deviceid=haodou864601020999058&uuid=72b9cf70da593de0478cbb90f6025bf7&channel=huawei_v610&method=Info.getVideoUrl&virtual=&signmethod=md5&v=2&timestamp=1464251853&nonce=0.370684750812453&appsign=22b6b8cf43861ec060f882c4744920ac";
+}
+#pragma mark - N027.视屏菜谱MP4
++ (NSMutableDictionary *)getCookBookDishVideoMP4RequestParams
+{
+    return @{@"rid":@"53026"}.mutableCopy;
+}
+
+
 
 
 @end

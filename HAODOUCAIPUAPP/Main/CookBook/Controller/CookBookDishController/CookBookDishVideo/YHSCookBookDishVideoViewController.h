@@ -7,11 +7,19 @@
 //
 
 #import "YHSBasicWithCollectShareBarItemViewController.h"
+#import "DLCustomSlideView.h"
+
+@class ZFPlayerView;
 
 @interface YHSCookBookDishVideoViewController : YHSBasicWithCollectShareBarItemViewController
+
+@property (nonatomic, strong) ZFPlayerView *videoZFPlayerView; // 视屏播放控件
 
 @property (nonatomic, strong) NSString *uid;
 @property (nonatomic, strong) NSString *return_request_id;
 @property (nonatomic, strong) NSString *rid; // 变动的值 recipeId
+
+
+@property (strong, nonatomic) DLCustomSlideView *slideView;
 
 @end

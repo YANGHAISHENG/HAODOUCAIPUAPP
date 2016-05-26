@@ -12,6 +12,8 @@
 @property (strong, nonatomic) NSMutableArray *viewControllers;
 @property (strong, nonatomic) NSMutableArray *tabTitles;
 @property (strong, nonatomic) UIColor *headerColor;
+@property (assign, nonatomic) CGFloat bottomLineHeight;
+@property (strong, nonatomic) UIColor *bottomLineColor;
 @property (strong, nonatomic) UIColor *tabBackgroundColor;
 @property (assign, nonatomic) CGFloat headerHeight;
 
@@ -169,6 +171,18 @@
         [self setTabBackgroundColor:[UIColor colorWithWhite:0.95f alpha:1.0f]];
     }
     
+    if ([[self dataSource] respondsToSelector:@selector(tabBottomLineHeight)]) {
+        [self setBottomLineHeight:[[self dataSource] tabBottomLineHeight]];
+    } else {
+        [self setBottomLineHeight:5.0f];
+    }
+    
+    if ([[self dataSource] respondsToSelector:@selector(tabBottomLineColor)]) {
+        [self setBottomLineColor:[[self dataSource] tabBottomLineColor]];
+    } else {
+        [self setBottomLineColor:[UIColor orangeColor]];
+    }
+    
     NSMutableArray *tabViews = [NSMutableArray array];
     if ([[self dataSource] respondsToSelector:@selector(viewForTabAtIndex:)]) {
         for (int i = 0; i < [[self viewControllers] count]; i++) {
@@ -206,7 +220,7 @@
             [tabViews addObject:label];
         }
     }
-    
+
     if ([self header]) {
         [[self header] removeFromSuperview];
     }
@@ -214,7 +228,7 @@
     CGRect frame = self.view.frame;
     frame.origin.y = 0;
     frame.size.height = [self headerHeight];
-    [self setHeader:[[YHSUITabScrollView alloc] initWithFrame:frame tabViews:tabViews tabBarHeight:[self headerHeight] tabColor:[self headerColor] backgroundColor:[self tabBackgroundColor] selectedTabIndex:self.selectedIndex]];
+    [self setHeader:[[YHSUITabScrollView alloc] initWithFrame:frame tabViews:tabViews tabBarHeight:[self headerHeight] tabColor:[self headerColor] bottomLineHeight:[self bottomLineHeight] bottomLineColor:[self bottomLineColor] backgroundColor:[self tabBackgroundColor] selectedTabIndex:self.selectedIndex]];
     [[self header] setTabScrollDelegate:self];
     
     [[self view] addSubview:[self header]];

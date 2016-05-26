@@ -26,6 +26,10 @@ pod "DZNEmptyDataSet"
 
 pod "LKDBHelper"
 
+pod "ZFPlayer"
+
+pod "KRVideoPlayer"
+
 target :HAODOUCAIPUAPP, :exclusive => true do
 # pod 'Kiwi'
 end

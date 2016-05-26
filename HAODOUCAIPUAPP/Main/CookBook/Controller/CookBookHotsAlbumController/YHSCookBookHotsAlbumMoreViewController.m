@@ -76,6 +76,11 @@
     return [UIColor colorWithRed:0.95 green:0.63 blue:0.15 alpha:1.00];
 }
 
+- (UIColor *)tabBottomLineColor
+{
+    return [UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1.00];
+}
+
 - (UIColor *)tabBackgroundColor {
     return [UIColor whiteColor];
 }

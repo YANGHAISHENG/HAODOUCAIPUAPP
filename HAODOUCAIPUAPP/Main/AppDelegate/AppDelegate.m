@@ -31,7 +31,6 @@
     // 设置网络服务
     [self startNetWorkingService];
     
-    
     return YES;
 }
 
@@ -80,9 +79,12 @@
 #pragma mark - 非全屏状态禁止横屏
 - (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
 {
+    _isFullScreen = YES; // 测试用，可以旋转屏幕
+    
     if (_isFullScreen) {
         return UIInterfaceOrientationMaskAll;
     }
+    
     return UIInterfaceOrientationMaskPortrait; // 禁止横屏
 }
 

@@ -13,6 +13,9 @@
 #import "YHSSquareMainViewController.h"
 #import "YHSMineMainViewController.h"
 
+#import "ZFPlayer.h"
+#import "YHSCookBookDishVideoViewController.h"
+
 @interface YHSRootViewController ()
 
 @end
@@ -67,5 +70,50 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+// 哪些页面支持自动转屏
+- (BOOL)shouldAutorotate
+{
+   if (self.viewControllers.count > self.selectedIndex) {
+       
+       UINavigationController *nav = self.viewControllers[self.selectedIndex];
+       
+       // YHSCookBookDishVideoViewController 控制器支持自动转屏
+       if ([nav.topViewController isKindOfClass:[YHSCookBookDishVideoViewController class]]) {
+           // 调用ZFPlayerSingleton单例记录播放状态是否锁定屏幕方向
+           return !ZFPlayerShared.isLockScreen;
+       }
+       
+    }
+
+    return NO;
+}
+
+// ViewController支持哪些转屏方向
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    if (self.viewControllers.count > self.selectedIndex) {
+        
+        UINavigationController *nav = self.viewControllers[self.selectedIndex];
+        if ([nav.topViewController isKindOfClass:[YHSCookBookDishVideoViewController class]]) {
+            // YHSCookBookDishVideoViewController 这个页面支持转屏方向
+            if (ZFPlayerShared.isAllowLandscape) {
+                return UIInterfaceOrientationMaskAllButUpsideDown;
+            } else {
+                return UIInterfaceOrientationMaskPortrait;
+            }
+        } else if ([nav.topViewController isKindOfClass:[YHSCookBookDishVideoViewController class]]) {
+            // YHSCookBookDishVideoViewController这个页面支持转屏方向
+            return UIInterfaceOrientationMaskAllButUpsideDown;
+        }
+        
+    }
+
+    // 其他页面
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+
 
 @end

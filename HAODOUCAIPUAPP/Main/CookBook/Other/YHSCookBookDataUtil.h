@@ -170,6 +170,15 @@
 + (NSMutableDictionary *)getCookBookShakeItOffDishPictureRequestParams;
 
 
+#pragma mark - N027.视屏菜谱MP4
++ (NSString *)getCookBookDishVideoMP4RequestURLString;
+#pragma mark - N027.视屏菜谱MP4
++ (NSMutableDictionary *)getCookBookDishVideoMP4RequestParams;
+
+
+
+
+
 @end
 
 

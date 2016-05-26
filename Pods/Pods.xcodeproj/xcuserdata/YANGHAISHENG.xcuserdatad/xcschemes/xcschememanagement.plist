@@ -24,6 +24,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>KRVideoPlayer-KRVideoPlayer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>KRVideoPlayer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>LKDBHelper.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -69,6 +79,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ZFPlayer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>pop.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -87,7 +102,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>3E37057B7FC89EF91FC1439FE1AE74D5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>50909B65064A3D13AF352E8EBA867AFA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5281B7B799AA740A87F7D6D3D42EBB77</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>53480ED0BE09FF49E34B1702D485CAAB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>64B9499EC3FA41965DD53F3E08EBA1FE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,7 +132,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7D35100B3CA2FFF9FAAC6B21681C497E</key>
+		<key>7DF7BD9F7CD81922DC3BEE5FFB1FE163</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8BEF0DFF860C02FDB264264226C116DD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -108,11 +148,6 @@
 			<true/>
 		</dict>
 		<key>8F74D9EA91F4C43190670066BAC37D44</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>91BF510EA8B8720A258EC6C2E9A01CD6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -132,17 +167,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AD74033F788B46628EA53E42909F9323</key>
+		<key>B831FA7E0A6E51525E0013B1D6035A9A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C6089824FD1B891EF079C9064364C154</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C8032562D707A7F14EEFF01CBDA5CA21</key>
+		<key>C2A71F8A4AD41F359CA16895C4A475C3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

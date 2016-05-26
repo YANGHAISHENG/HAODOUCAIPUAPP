@@ -19,6 +19,7 @@ PODS:
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
+  - KRVideoPlayer (1.0.1)
   - LKDBHelper (2.2.1):
     - FMDB
   - Masonry (1.0.0)
@@ -32,12 +33,15 @@ PODS:
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
   - UITableView+FDTemplateLayoutCell (1.4)
+  - ZFPlayer (1.1.4):
+    - Masonry
 
 DEPENDENCIES:
   - AFNetworking
   - DZNEmptyDataSet
   - FDFullscreenPopGesture
   - FMDB
+  - KRVideoPlayer
   - LKDBHelper
   - Masonry
   - MGSwipeTableCell
@@ -47,12 +51,14 @@ DEPENDENCIES:
   - SDCycleScrollView
   - SDWebImage
   - UITableView+FDTemplateLayoutCell
+  - ZFPlayer
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   DZNEmptyDataSet: d2351b2e8daefa40433ef292e246e21f6be31a7b
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  KRVideoPlayer: 08918da1b99cae35fd4c15b2ec2b49358d4c985f
   LKDBHelper: a8d2ac92cde1f462a3314ab5e2629a527eb0cc54
   Masonry: b529bb169217897b6354d4b56b1fada6d475b13d
   MGSwipeTableCell: bafeb5f351124544c9364ecbdf24c7b06a37d340
@@ -62,5 +68,6 @@ SPEC CHECKSUMS:
   SDCycleScrollView: 806fedb9342ab03b58b84442f985517b42c7cbb7
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
+  ZFPlayer: bcb2f6bab181195e9ef2eb037498bd2771b611b0
 
 COCOAPODS: 0.39.0

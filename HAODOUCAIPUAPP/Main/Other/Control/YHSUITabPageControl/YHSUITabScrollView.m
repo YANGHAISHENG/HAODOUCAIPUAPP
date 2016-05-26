@@ -18,8 +18,8 @@
 
 #pragma mark - Initialize Methods
 
-- (instancetype)initWithFrame:(CGRect)frame tabViews:(NSArray *)tabViews tabBarHeight:(CGFloat)height tabColor:(UIColor *)color backgroundColor:(UIColor *)backgroundColor selectedTabIndex:(NSInteger)index {
-    self = [self initWithFrame:frame tabViews:tabViews tabBarHeight:height tabColor:color backgroundColor:backgroundColor];
+- (instancetype)initWithFrame:(CGRect)frame tabViews:(NSArray *)tabViews tabBarHeight:(CGFloat)height tabColor:(UIColor *)color bottomLineHeight:(CGFloat)bottomLineHeight bottomLineColor:(UIColor *)bottomLinecolor backgroundColor:(UIColor *)backgroundColor selectedTabIndex:(NSInteger)index {
+    self = [self initWithFrame:frame tabViews:tabViews tabBarHeight:height tabColor:color bottomLineHeight:bottomLineHeight bottomLineColor:bottomLinecolor backgroundColor:backgroundColor];
     if (self) {
         NSInteger tabIndex = 0;
         if (index) {
@@ -30,7 +30,7 @@
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame tabViews:(NSArray *)tabViews tabBarHeight:(CGFloat)height tabColor:(UIColor *)color backgroundColor:(UIColor *)backgroundColor {
+- (instancetype)initWithFrame:(CGRect)frame tabViews:(NSArray *)tabViews tabBarHeight:(CGFloat)height tabColor:(UIColor *)color bottomLineHeight:(CGFloat)bottomLineHeight bottomLineColor:(UIColor *)bottomLinecolor backgroundColor:(UIColor *)backgroundColor {
     self = [super initWithFrame:frame];
     if (self) {
         [self setBounces:NO];
@@ -84,22 +84,23 @@
 
         // 底部横线
         UIView *bottomLine = [[UIView alloc] init];
-        [bottomLine setBackgroundColor:color];
+        [bottomLine setBackgroundColor:bottomLinecolor];
         [contentView addSubview:bottomLine];
         [bottomLine mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(contentView.mas_left);
             make.right.equalTo(contentView.mas_right);
-            make.top.equalTo(contentView.mas_top).offset(height-2.0f);
+            make.top.equalTo(contentView.mas_top).offset(height-bottomLineHeight);
             make.bottom.equalTo(contentView.mas_bottom);
         }];
         
         // 指示器
+        CGFloat tabIndicatorHeight = 3.0f; // 指示器高度为3
         UIView *tabIndicator = [UIView new];
         [contentView addSubview:tabIndicator];
         [tabIndicator setBackgroundColor:color];
         [tabIndicator mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(contentView.mas_top).offset(height-5.0f);
-            make.bottom.equalTo(contentView.mas_bottom);
+            make.top.equalTo(contentView.mas_top).offset(height-(bottomLineHeight+tabIndicatorHeight));
+            make.bottom.equalTo(contentView.mas_bottom).offset(-bottomLineHeight);
             make.left.equalTo(contentView.mas_left).offset(_tabMargin/2.0);
             make.width.equalTo(@([tabViews[0] frame].size.width + _tabMargin));
         }];

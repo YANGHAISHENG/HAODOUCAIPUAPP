@@ -34,4 +34,7 @@
 #define COLOR_NAVIGATION_BAR_SEARCH_TITLE_GRAY [UIColor colorWithRed:0.35 green:0.35 blue:0.36 alpha:1.00]
 
 
+#pragma mark 菜谱视屏或图片的高度
+#define HEADER_VIDEO_PICTURE_HEIGHT (SCREEN_WIDTH * 9.0 / 16.0);
+
 @end
