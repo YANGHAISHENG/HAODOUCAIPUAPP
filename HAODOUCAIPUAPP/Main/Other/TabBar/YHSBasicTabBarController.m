@@ -7,7 +7,6 @@
 //
 
 #import "YHSBasicTabBarController.h"
-#import "YHSSysConst.h"
 
 @interface YHSBasicTabBarController ()
 

@@ -7,7 +7,6 @@
 //
 
 #import "YHSCookBookBannnerDetailCollectViewController.h"
-#import "YHSCookBookDataUtil.h"
 
 
 @implementation YHSCookBookBannnerDetailCollectViewController

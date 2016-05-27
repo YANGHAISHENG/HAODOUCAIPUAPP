@@ -7,8 +7,6 @@
 //
 
 #import "YHSCookBookYourLoveDishPictureViewController.h"
-#import "YHSCookBookDataUtil.h"
-
 
 @implementation YHSCookBookYourLoveDishPictureViewController
 

@@ -8,10 +8,6 @@
 
 #import "YHSCookBookTableSectionHeaderView.h"
 #import "YHSBasicViewController.h"
-#import "Masonry.h"
-#import "UIImageView+WebCache.h"
-#import "YHSSysConst.h"
-#import "YHSSysMacro.h"
 
 @interface YHSCookBookTableSectionHeaderView ()
 

@@ -7,13 +7,8 @@
 //
 
 #import "YHSCookBookHotsAlbumTableViewCell.h"
-#import "Masonry.h"
-#import "UIView+MasonryAutoLayout.h"
-#import "UIImageView+WebCache.h"
-#import "YHSSysConst.h"
-#import "YHSSysMacro.h"
-#import "YHSUtilsMacro.h"
 #import "YHSCookBookHotsAlbumModel.h"
+
 
 NSString * const CELL_IDENTIFIER_HOTS_ALBUM = @"YHSCookBookHotsAlbumTableViewCellID";
 

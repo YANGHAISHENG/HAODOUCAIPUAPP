@@ -1,8 +1,6 @@
 
 
 #import "YHSCookBookDishVideoCommentInfoViewController.h"
-#import "YHSSysMacro.h"
-
 
 #import "YHSCookBookDishModel.h"
 

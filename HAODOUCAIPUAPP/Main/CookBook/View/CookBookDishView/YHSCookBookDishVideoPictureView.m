@@ -6,13 +6,8 @@
 //  Copyright © 2016年 YANGHAISHENG. All rights reserved.
 //
 
-#import "Masonry.h"
-#import "UIImageView+WebCache.h"
-
 #import "YHSCookBookDishVideoPictureView.h"
 #import "YHSCookBookDishModel.h"
-#import "YHSSysMacro.h"
-#import "YHSSysConst.h"
 
 
 @interface YHSCookBookDishVideoPictureView ()

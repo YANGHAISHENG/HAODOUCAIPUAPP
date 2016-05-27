@@ -21,5 +21,4 @@
 @property (strong, nonatomic) DLCustomSlideView *slideView; // 下方的滑动控件
 @property (nonatomic, strong) ZFPlayerView *videoZFPlayerView; // 视屏播放控件
 
-
 @end

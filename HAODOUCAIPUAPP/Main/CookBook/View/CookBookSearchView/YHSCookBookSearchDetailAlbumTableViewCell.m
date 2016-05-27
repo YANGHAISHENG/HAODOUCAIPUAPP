@@ -6,18 +6,12 @@
 //  Copyright © 2016年 YANGHAISHENG. All rights reserved.
 //
 
-#import "Masonry.h"
-#import "UIImageView+WebCache.h"
 
 #import "YHSCookBookSearchDetailAlbumTableViewCell.h"
 #import "YHSCookBookSearchDetailAlbumModel.h"
-#import "YHSSysConst.h"
-#import "YHSSysMacro.h"
-#import "YHSUtilsMacro.h"
 
 
 NSString * const CELL_IDENTIFIER_COOKBOOK_SEARCH_DETAIL_ALBUM = @"YHSCookBookSearchDetailAlbumTableViewCellID";
-
 
 @interface YHSCookBookSearchDetailAlbumTableViewCell ()
 

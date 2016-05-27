@@ -6,17 +6,11 @@
 //  Copyright © 2016年 YANGHAISHENG. All rights reserved.
 //
 
-#import "Masonry.h"
-#import "UIImageView+WebCache.h"
-
 #import "YHSCookBookMenuTableViewCell.h"
 #import "YHSCookBookHotsAlbumMoreModel.h"
-#import "YHSSysConst.h"
-#import "YHSSysMacro.h"
 
 
 @implementation YHSCookBookMenuTableViewCell
-
 
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {

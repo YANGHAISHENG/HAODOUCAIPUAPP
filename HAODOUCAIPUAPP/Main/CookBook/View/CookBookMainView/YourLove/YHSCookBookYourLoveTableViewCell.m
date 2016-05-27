@@ -8,22 +8,13 @@
 
 #import "YHSCookBookYourLoveTableViewCell.h"
 #import "YHSCookBookYourLoveModel.h"
-#import "iCarousel.h"
-#import "Masonry.h"
-#import "UIView+MasonryAutoLayout.h"
-#import "UIImageView+WebCache.h"
-#import "YHSSysConst.h"
-#import "YHSSysMacro.h"
-#import "YHSUtilsMacro.h"
 
 
 NSString * const CELL_IDENTIFIER_YOUR_LOVE = @"YHSCookBookYourLoveTableViewCellID";
 
-
 static CGFloat YOUR_LOVE_CAROUSEL_VIEW_HEIGHT = 160; // 动画视图高度
 static CGFloat YOUR_LOVE_CAROUSEL_VIEW_MARGIN = 0; // 左右两边的距离
 static CGFloat YOUR_LOVE_SCROLL_TABBAR_VIEW_HEIGHT = 30; // Tab标签栏
-
 
 @interface YHSCookBookYourLoveTableViewCell () <iCarouselDataSource, iCarouselDelegate>
 

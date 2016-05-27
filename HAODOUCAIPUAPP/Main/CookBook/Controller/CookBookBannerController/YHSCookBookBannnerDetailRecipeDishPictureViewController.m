@@ -7,7 +7,6 @@
 //
 
 #import "YHSCookBookBannnerDetailRecipeDishPictureViewController.h"
-#import "YHSCookBookDataUtil.h"
 
 
 @implementation YHSCookBookBannnerDetailRecipeDishPictureViewController

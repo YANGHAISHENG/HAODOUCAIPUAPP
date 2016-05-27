@@ -6,15 +6,7 @@
 //  Copyright © 2016年 YANGHAISHENG. All rights reserved.
 //
 
-#import "Masonry.h"
-#import "UIImageView+WebCache.h"
-
 #import "YHSCookBookHotsAlbumDetailElemTableViewCell.h"
-#import "YHSSysConst.h"
-#import "YHSSysMacro.h"
-#import "YHSUtilsMacro.h"
-#import "UIView+MasonryAutoLayout.h"
-
 #import "YHSCookBookHotsAlbumDetailElemModel.h"
 
 

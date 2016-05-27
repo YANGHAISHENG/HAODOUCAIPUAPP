@@ -8,15 +8,9 @@
 
 #import "YHSCookBookQualityReadTableViewCell.h"
 #import "YHSCookBookQualityReadModel.h"
-#import "Masonry.h"
-#import "UIView+MasonryAutoLayout.h"
-#import "UIImageView+WebCache.h"
-#import "YHSSysConst.h"
-#import "YHSSysMacro.h"
-#import "YHSUtilsMacro.h"
+
 
 NSString * const CELL_IDENTIFIER_QUALITY_READ = @"YHSCookBookQualityReadTableViewCellID";
-
 
 @interface YHSCookBookQualityReadTableViewCell ()
 

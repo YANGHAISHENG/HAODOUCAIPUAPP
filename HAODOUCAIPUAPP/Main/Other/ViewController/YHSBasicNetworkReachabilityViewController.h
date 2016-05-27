@@ -7,7 +7,6 @@
 //
 
 #import "YHSBasicViewController.h"
-#import "YHSNetworkingManager.h"
 #import "YHSBasicViewController+EmptyDataSet.h"
 
 @interface YHSBasicNetworkReachabilityViewController : YHSBasicViewController

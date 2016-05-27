@@ -7,10 +7,6 @@
 //
 
 #import "YHSBasicViewController.h"
-#import "UIScrollView+EmptyDataSet.h"
-#import "YHSSysMacro.h"
-#import "YHSSysConst.h"
-#import "YHSUtilsMacro.h"
 
 
 @interface YHSBasicViewController (EmptyDataSet) <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>

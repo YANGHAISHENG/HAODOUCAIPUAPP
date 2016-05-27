@@ -7,14 +7,8 @@
 //
 
 #import "YHSCookBookBannerTableViewCell.h"
-#import "SDCycleScrollView.h"
-#import "Masonry.h"
-#import "UIView+MasonryAutoLayout.h"
-#import "UIImageView+WebCache.h"
-#import "YHSSysConst.h"
-#import "YHSSysMacro.h"
-#import "NSString+ContainString.h"
 #import "YHSCookBookBannerModel.h"
+
 
 CGFloat const SCROLL_BANNER_HEIGHT = 220.0;
 

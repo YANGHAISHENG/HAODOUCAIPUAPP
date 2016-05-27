@@ -8,6 +8,7 @@
 
 #import <AudioToolbox/AudioToolbox.h>
 #import "YHSBasicWithBackBarItemViewController.h"
+
 @class YHSCookBookShakeItOffModel;
 
 @interface YHSCookBookShakeItOffViewController : YHSBasicWithBackBarItemViewController

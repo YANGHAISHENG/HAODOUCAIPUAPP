@@ -6,10 +6,8 @@
 //  Copyright © 2016年 YANGHAISHENG. All rights reserved.
 //
 
-#import "DLFixedTabbarView.h"
-
 #import "YHSCookBookDishPictureViewController.h"
-#import "YHSCookBookDataUtil.h"
+
 
 @implementation YHSCookBookDishPictureViewController
 

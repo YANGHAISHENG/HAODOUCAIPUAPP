@@ -7,7 +7,6 @@
 //
 
 #import "YHSCookBookSearchDetailDishPictureViewController.h"
-#import "YHSCookBookDataUtil.h"
 
 
 @implementation YHSCookBookSearchDetailDishPictureViewController

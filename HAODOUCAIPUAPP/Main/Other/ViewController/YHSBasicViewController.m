@@ -7,7 +7,6 @@
 //
 
 #import "YHSBasicViewController.h"
-#import "YHSSysConst.h"
 
 
 @interface YHSBasicViewController ()

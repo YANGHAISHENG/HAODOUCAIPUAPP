@@ -6,27 +6,11 @@
 //  Copyright © 2016年 YANGHAISHENG. All rights reserved.
 //
 
-#import "Masonry.h"
-#import "MJRefresh.h"
-#import "MJExtension.h"
-#import "AFNetworking.h"
-#import "UIScrollView+EmptyDataSet.h"
-#import "UITableView+FDTemplateLayoutCell.h"
-
 #import "YHSCookBookSearchVIPViewController.h"
-#import "YHSSysMacro.h"
-#import "YHSSysConst.h"
-#import "YHSUtilsMacro.h"
-#import "UIColor+Hex.h"
-#import "UIImage+Scale.h"
-#import "YHSNetworkingManager.h"
-#import "YHSNetworkingService.h"
-#import "YHSCookBookDataUtil.h"
-#import "YHSNavigationBarTitleView.h"
-#import "YHSHandWritingLoadingView.h"
 
 #import "YHSCookBookSearchVIPModel.h"
 #import "YHSCookBookSearchVIPTableViewCell.h"
+
 
 @interface YHSCookBookSearchVIPViewController () <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, YHSCookBookSearchVIPTableViewCellDelegate>
 

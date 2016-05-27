@@ -7,10 +7,6 @@
 //
 
 #import "YHSBasicNetworkReachabilityViewController.h"
-#import "YHSNetworkingManager.h"
-#import "YHSSysConst.h"
-#import "YHSSysMacro.h"
-#import "Masonry.h"
 
 
 @interface YHSBasicNetworkReachabilityViewController ()

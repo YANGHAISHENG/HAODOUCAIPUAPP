@@ -7,7 +7,6 @@
 //
 
 #import "YHSCookBookHotsAlbumMainDetailViewController.h"
-#import "YHSCookBookDataUtil.h"
 
 
 @implementation YHSCookBookHotsAlbumMainDetailViewController

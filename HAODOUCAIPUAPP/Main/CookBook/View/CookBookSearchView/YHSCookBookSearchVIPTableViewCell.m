@@ -6,18 +6,11 @@
 //  Copyright © 2016年 YANGHAISHENG. All rights reserved.
 //
 
-#import "Masonry.h"
-#import "UIImageView+WebCache.h"
-
 #import "YHSCookBookSearchVIPTableViewCell.h"
 #import "YHSCookBookSearchVIPModel.h"
-#import "YHSSysConst.h"
-#import "YHSSysMacro.h"
-#import "YHSUtilsMacro.h"
 
 
 NSString * const CELL_IDENTIFIER_COOKBOOK_SEARCH_VIP = @"YHSCookBookSearchVIPTableViewCellID";
-
 
 @interface YHSCookBookSearchVIPTableViewCell ()
 

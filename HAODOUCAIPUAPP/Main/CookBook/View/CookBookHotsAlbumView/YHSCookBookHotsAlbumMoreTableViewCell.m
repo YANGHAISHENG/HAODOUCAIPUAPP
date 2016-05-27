@@ -6,16 +6,11 @@
 //  Copyright © 2016年 YANGHAISHENG. All rights reserved.
 //
 
-#import "Masonry.h"
-#import "UIImageView+WebCache.h"
-
 #import "YHSCookBookHotsAlbumMoreTableViewCell.h"
 #import "YHSCookBookHotsAlbumMoreModel.h"
-#import "YHSSysConst.h"
 
 
 NSString * const CELL_IDENTIFIER_COOKBOOK_HOTS_ALBUM_MORE = @"YHSCookBookHotsAlbumMoreTableViewCellID";
-
 
 @implementation YHSCookBookHotsAlbumMoreTableViewCell
 

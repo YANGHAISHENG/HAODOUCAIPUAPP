@@ -6,14 +6,7 @@
 //  Copyright © 2016年 YANGHAISHENG. All rights reserved.
 //
 
-#import "Masonry.h"
-
 #import "YHSBasicWithSearchBarItemViewController.h"
-#import "YHSSysMacro.h"
-#import "YHSSysConst.h"
-#import "YHSUtilsMacro.h"
-#import "UIImage+Scale.h"
-#import "YHSNavigationBarTitleView.h"
 #import "YHSBasicSearchViewController.h"
 
 

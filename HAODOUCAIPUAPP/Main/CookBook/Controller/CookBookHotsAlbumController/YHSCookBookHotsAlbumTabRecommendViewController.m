@@ -7,7 +7,6 @@
 //
 
 #import "YHSCookBookHotsAlbumTabRecommendViewController.h"
-#import "YHSCookBookDataUtil.h"
 
 
 @implementation YHSCookBookHotsAlbumTabRecommendViewController

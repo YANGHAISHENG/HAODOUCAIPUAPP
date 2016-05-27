@@ -94,6 +94,7 @@
 		7D070A9F1CF7EB27003E0920 /* ZFSessionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D070A981CF7EB27003E0920 /* ZFSessionModel.m */; };
 		7D070AA01CF7EB27003E0920 /* ZFPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D070A9A1CF7EB27003E0920 /* ZFPlayerView.m */; };
 		7D070AA21CF7F411003E0920 /* loading_bgView.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7D070AA11CF7F411003E0920 /* loading_bgView.jpg */; };
+		7D070AA61CF82C89003E0920 /* YHSCookBookDishDetailHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D070AA51CF82C89003E0920 /* YHSCookBookDishDetailHeadTableViewCell.m */; };
 		7D08276A1CE5C10B008D77AD /* ico_auxiliary_master.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0827661CE5C10B008D77AD /* ico_auxiliary_master.png */; };
 		7D08276B1CE5C10B008D77AD /* ico_auxiliary_more_grayc.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0827671CE5C10B008D77AD /* ico_auxiliary_more_grayc.png */; };
 		7D08276C1CE5C10B008D77AD /* ico_auxiliary_more.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0827681CE5C10B008D77AD /* ico_auxiliary_more.png */; };
@@ -358,6 +359,9 @@
 		7D070A991CF7EB27003E0920 /* ZFPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFPlayerView.h; sourceTree = "<group>"; };
 		7D070A9A1CF7EB27003E0920 /* ZFPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFPlayerView.m; sourceTree = "<group>"; };
 		7D070AA11CF7F411003E0920 /* loading_bgView.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = loading_bgView.jpg; sourceTree = "<group>"; };
+		7D070AA31CF82694003E0920 /* HAODOUCAIPUAPPHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HAODOUCAIPUAPPHeader.pch; sourceTree = "<group>"; };
+		7D070AA41CF82C89003E0920 /* YHSCookBookDishDetailHeadTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookDishDetailHeadTableViewCell.h; sourceTree = "<group>"; };
+		7D070AA51CF82C89003E0920 /* YHSCookBookDishDetailHeadTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookDishDetailHeadTableViewCell.m; sourceTree = "<group>"; };
 		7D0827661CE5C10B008D77AD /* ico_auxiliary_master.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_auxiliary_master.png; sourceTree = "<group>"; };
 		7D0827671CE5C10B008D77AD /* ico_auxiliary_more_grayc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_auxiliary_more_grayc.png; sourceTree = "<group>"; };
 		7D0827681CE5C10B008D77AD /* ico_auxiliary_more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_auxiliary_more.png; sourceTree = "<group>"; };
@@ -990,6 +994,8 @@
 				7D03357B1CF5FFB700B273E8 /* YHSCookBookDishVideoPictureView.m */,
 				7D00F5321CF721CB001495D0 /* YHSCookBookDishVideoStepTableViewCell.h */,
 				7D00F5331CF721CB001495D0 /* YHSCookBookDishVideoStepTableViewCell.m */,
+				7D070AA41CF82C89003E0920 /* YHSCookBookDishDetailHeadTableViewCell.h */,
+				7D070AA51CF82C89003E0920 /* YHSCookBookDishDetailHeadTableViewCell.m */,
 			);
 			path = CookBookDishView;
 			sourceTree = "<group>";
@@ -1320,6 +1326,7 @@
 				7DFE1CE81CE2063B005A061B /* Info.plist */,
 				7DFE1CE01CE2063B005A061B /* Main.storyboard */,
 				7DFE1CE51CE2063B005A061B /* LaunchScreen.storyboard */,
+				7D070AA31CF82694003E0920 /* HAODOUCAIPUAPPHeader.pch */,
 				7DFE1CD81CE2063B005A061B /* main.m */,
 			);
 			name = "Supporting Files";
@@ -1949,6 +1956,7 @@
 				7D051B751CEF3F0C00B97699 /* YHSCookBookSearchDetailAlbumTableViewCell.m in Sources */,
 				7D063F741CF09EC500152563 /* YHSUITabScrollView.m in Sources */,
 				7D0E20A61CF5B107007941F4 /* DLLRUCache.m in Sources */,
+				7D070AA61CF82C89003E0920 /* YHSCookBookDishDetailHeadTableViewCell.m in Sources */,
 				7D051B6F1CEF2E1000B97699 /* YHSCookBookSearchDetailViewController.m in Sources */,
 				7D0335591CF5F0FD00B273E8 /* YHSCookBookDishVideoDetailInfoViewController.m in Sources */,
 				7D8975271CEAF892002CF981 /* YHSCookBookYourLoveTableViewCell.m in Sources */,
@@ -2126,6 +2134,8 @@
 			baseConfigurationReference = 2FA9C7DDB41AEE627F87AE11 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/HAODOUCAIPUAPP/HAODOUCAIPUAPPHeader.pch";
 				INFOPLIST_FILE = HAODOUCAIPUAPP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2140,6 +2150,8 @@
 			baseConfigurationReference = 3EAA7D74C4026D95A572CDC9 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/HAODOUCAIPUAPP/HAODOUCAIPUAPPHeader.pch";
 				INFOPLIST_FILE = HAODOUCAIPUAPP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

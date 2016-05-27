@@ -8,11 +8,7 @@
 
 #import "YHSCookBookToolsTableViewCell.h"
 #import "YHSCookBookToolsModel.h"
-#import "Masonry.h"
-#import "UIView+MasonryAutoLayout.h"
-#import "UIImageView+WebCache.h"
-#import "YHSSysConst.h"
-#import "YHSSysMacro.h"
+
 
 NSString * const CELL_IDENTIFIER_TOOLS = @"YHSCookBookToolsTableViewCellID";
 

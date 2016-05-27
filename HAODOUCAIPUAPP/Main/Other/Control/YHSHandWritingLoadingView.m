@@ -9,7 +9,6 @@
 #import "YHSHandWritingLoadingView.h"
 
 
-
 @interface YHSHandWritingLoadingView ()
 {
     // Target, method, object and block

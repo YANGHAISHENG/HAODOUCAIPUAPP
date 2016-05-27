@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MGSwipeTableCell/MGSwipeTableCell.h>
 
 @class YHSCookBookSearchModel;
 

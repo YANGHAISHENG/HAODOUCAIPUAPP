@@ -7,7 +7,6 @@
 //
 
 #import "YHSCookBookShakeItOffDetailDishPictureViewController.h"
-#import "YHSCookBookDataUtil.h"
 
 
 @implementation YHSCookBookShakeItOffDetailDishPictureViewController

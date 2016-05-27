@@ -6,16 +6,10 @@
 //  Copyright © 2016年 YANGHAISHENG. All rights reserved.
 //
 
-#import "Masonry.h"
-#import "UIImageView+WebCache.h"
-
 #import "YHSCookBookShakeItOffTableViewCell.h"
 #import "YHSCookBookShakeItOffModel.h"
-#import "YHSSysConst.h"
-#import "YHSSysMacro.h"
 
 NSString * const CELL_IDENTIFIER_COOKBOOK_SHAKE_IT_OFF = @"YHSCookBookShakeItOffTableViewCellID";
-
 
 @implementation YHSCookBookShakeItOffTableViewCell
 
