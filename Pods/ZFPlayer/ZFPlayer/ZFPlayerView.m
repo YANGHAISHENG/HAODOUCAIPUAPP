@@ -1526,7 +1526,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     // 总时间
     NSString *durationTime    = [self durationStringWithTime:(int)totalMovieDuration];
     // 给label赋值
-    self.controlView.horizontalLabel.text = @"1";//[NSString stringWithFormat:@"%@ %@ / %@",style, nowTime, durationTime];
+    self.controlView.horizontalLabel.text = [NSString stringWithFormat:@"%@ %@ / %@",style, nowTime, durationTime];
     
     // 监听播放进度
     if (self.delegate && [self.delegate respondsToSelector:@selector(videoSliderValueChange:currMin:currSec:durMin:durSec:)]) {
@@ -1536,7 +1536,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
         NSInteger *durSec = (int)totalMovieDuration % 60;
         [self.delegate videoSliderValueChange:self.sumTime currMin:proMin currSec:proSec durMin:durMin durSec:durSec];
     }
-    
+
 }
 
 /**
