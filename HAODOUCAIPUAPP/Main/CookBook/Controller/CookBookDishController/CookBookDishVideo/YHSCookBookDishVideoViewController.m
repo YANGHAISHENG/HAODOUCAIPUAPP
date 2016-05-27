@@ -10,14 +10,9 @@
 #import "MJRefresh.h"
 #import "MJExtension.h"
 #import "AFNetworking.h"
-
+#import "ZFPlayer.h"
 #import "DLScrollTabbarView.h"
 #import "DLLRUCache.h"
-
-#import <AVFoundation/AVFoundation.h>
-#import <MediaPlayer/MediaPlayer.h>
-#import <Masonry/Masonry.h>
-#import "ZFPlayer.h"
 
 #import "YHSCookBookDishVideoViewController.h"
 #import "YHSCookBookDishVideoDetailInfoViewController.h"
@@ -33,24 +28,38 @@
 
 
 @interface YHSCookBookDishVideoViewController () <DLCustomSlideViewDelegate, YHSCookBookDishVideoPictureViewDelegate, YHSCookBookDishVideoStepInfoViewControllerDelegate>
-
 @property (nonatomic, strong) YHSCookBookDishModel *infoModel;
-
-@property (nonatomic, strong) YHSCookBookDishVideoPictureView *videoPictureView; //视屏封面
-
-@property (nonatomic, strong) YHSCookBookDishVideoStepInfoViewController *videoViewSetpController; // 视屏步骤详解
-
+@property (nonatomic, strong) YHSCookBookDishVideoPictureView *videoPictureView; // 未点击播放按钮前时视屏区的图片
+@property (nonatomic, strong) YHSCookBookDishVideoStepInfoViewController *videoViewSetpController; // 视屏步骤详解控件器
 @end
 
 
 @implementation YHSCookBookDishVideoViewController
+
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [self.videoZFPlayerView resetPlayer];
+    [self.videoZFPlayerView removeFromSuperview];
+    self.videoZFPlayerView = nil;
+}
+
+
+- (void)dealloc
+{
+    YHSLogLight(@"%s", __FUNCTION__);
+    [self.videoZFPlayerView cancelAutoFadeOutControlBar];
+}
+
 
 #pragma mark -监听网络变化后执行
 - (void)viewDidLoadWithNetworkingStatus
 {
     WEAKSELF(weakSelf);
     
-    // 请求网络数据（如果没有请求过数据，则进行数据加载）
+    // 请求网络数据
     [self loadDataThen:^(BOOL success, NSUInteger count){
         
         // 配置TableView界面
@@ -59,6 +68,9 @@
     } andWritingLoading:YES];
  
 }
+
+
+#pragma mark - 创建UI界面
 
 // 创建主界面区域
 - (void)createMainUI
@@ -108,6 +120,7 @@
     }
 }
 
+
 // 创建视屏播放控件
 - (void)createVideoZFPlayerView:(void(^)(void))then
 {
@@ -144,15 +157,8 @@
     
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    
-    [self.videoZFPlayerView resetPlayer];
-    [self.videoZFPlayerView removeFromSuperview];
-    self.videoZFPlayerView = nil;
-}
 
+// 屏幕旋转
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     WEAKSELF(weakSelf);
@@ -170,13 +176,7 @@
             make.top.equalTo(weakSelf.view).offset(0);
         }];
     }
-}
-
-
-- (void)dealloc
-{
-    YHSLogLight(@"%s", __FUNCTION__);
-    [self.videoZFPlayerView cancelAutoFadeOutControlBar];
+    
 }
 
 
@@ -214,9 +214,10 @@
             viewController.infoModel = self.infoModel;
             return viewController;
         }
-            
-        default:
+        default: {
             return nil;
+        }
+            
     }
 }
 
@@ -344,6 +345,7 @@
 
 #pragma mark - 触发操作事件
 
+// 触发播放按钮
 - (void)didClickDishVideoStartWithInfoModel:(YHSCookBookDishModel *)model
 {
     // 创建视屏播放控件
@@ -355,20 +357,21 @@
             self.videoZFPlayerView.videoURL = [NSURL URLWithString:_videoViewSetpController.videoStepModel.Url];
         }
         
-        // 选中步骤页面
+        // 跳转到步骤详情控制器页面
         [self.slideView setSelectedIndex:1];
 
     }];
     
 }
 
+// 触发点赞按钮
 - (void)didClickDishLikeCountWithInfoModel:(YHSCookBookDishModel *)model
 {
     [self alertPromptMessage:@""];
 }
 
 
-#pragma mark - 如果视屏播放控件不存在，则创建后跳转到指定XX秒
+// 点击步骤表格中的行数据（如果视屏播放控件不存在，则创建后跳转到指定XX秒）
 - (void)didClickElementOfCellWithDishVideofModel:(YHSCookBookVideoStepModel *)model
 {
     // 创建头部视屏控件
@@ -376,8 +379,8 @@
     
     // 跳转到指定XX秒
     NSInteger seekTime = model.Point/1000.0;
-    [_videoZFPlayerView setSeekTime:seekTime];
-    [_videoZFPlayerView setHasRepeatBtn:NO];
+    [_videoZFPlayerView setSeekTime:seekTime]; // 跳转到指定的XX秒播放
+    [_videoZFPlayerView setHasRepeatBtn:NO]; // 如果是在播放完成后点击的步骤行，则隐藏重播按钮
 }
 
 @end

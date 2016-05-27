@@ -22,7 +22,10 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 
+@property (nonatomic, assign) NSInteger currentSelectedRowIndex; // 当前自动跳转到的行下标
+
 @end
+
 
 @implementation YHSCookBookDishVideoStepInfoViewController
 
@@ -32,49 +35,47 @@
 
     WEAKSELF(weakSelf);
     
-    // 请求网络数据（如果没有请求过数据，则进行数据加载）
-    [self loadDataThen:^(BOOL success, NSUInteger count){
-        
-        self.videoZFPlayerView.videoURL = [NSURL URLWithString:self.videoStepModel.Url];
+    // 请求网络数据
+    [self loadDataThen:^(BOOL success, NSUInteger count) {
         
         // 配置TableView界面
         [weakSelf createMainUI];
         
+        // 设置视屏地址（步骤表格可以已经存在，但用户没有点击播放按钮，视屏显示控件可能为空）
+        if (self.videoZFPlayerView) {
+            self.videoZFPlayerView.videoURL = [NSURL URLWithString:self.videoStepModel.Url];
+        }
+
     } andWritingLoading:YES];
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+#pragma mark - 创建UI界面
 
 // 创建主界面区域
 - (void)createMainUI
 {
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    
-    // 数据模型
+    // 数据模型，自定义加上步骤序号
     [self.videoStepModel.Steps enumerateObjectsUsingBlock:^(YHSCookBookVideoStepModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.num = [NSString stringWithFormat:@"%ld", 1+idx];
         obj.selected = NO;
     }];
-
-    // 创建表格
+    
+    // 创建步骤表格
     [self createUITable];
 }
 
-#pragma mark - 创建界面
+// 创建步骤表格
 - (void)createUITable
 {
-    [self setAutomaticallyAdjustsScrollViewInsets:NO];
-    
     // 表格已经存在或无数据源则无需创建，直接返回
     if (self.tableView) {
         return;
     }
     
     WEAKSELF(weakSelf);
+    
+    [self setAutomaticallyAdjustsScrollViewInsets:NO];
     
     // 创建表格
     {
@@ -110,6 +111,9 @@
         
         // 必须被注册到 UITableView 中
         [self.tableView registerClass:[YHSCookBookDishVideoStepTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_DISH_VIDEO_STEP_INFO];
+        
+        // 默认选中行
+        self.currentSelectedRowIndex = -1;
     }
     
 }
@@ -189,8 +193,6 @@
 }
 
 
-
-
 #pragma mark - TableView data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -224,6 +226,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // 记录当前选中的行下标
+    self.currentSelectedRowIndex = indexPath.row;
+    
     // 1.首先全部不选中，处理自动跳转过程中又手动点击情况
     {
        [self reloadUnSelectTableView];
@@ -286,16 +291,14 @@
 {
     NSInteger selectIndex = [self findIndexPathRowBySliderValue:currMin*60+currSec];
     
-    if (-1 < selectIndex) {
+    // 按播放进度选中表格行，并改变背景色
+    if (-1 < selectIndex && selectIndex != self.currentSelectedRowIndex) {
         
+        // 记录当前选中的行下标
+        self.currentSelectedRowIndex = selectIndex;
+        
+        // 设置所有的行为未选中状态（用户可能会点击表格行，这里无法确定是那一行，所以全部设置为未选中状态，并刷新表格）
         [self reloadUnSelectTableView];
-        
-        // 未选中的行
-        NSInteger deselecteIndex = (selectIndex - 1 < 0) ? 0 : selectIndex - 1;
-        NSIndexPath *deselectIndexPath = [NSIndexPath indexPathForRow:deselecteIndex inSection:0];
-        YHSCookBookDishVideoStepTableViewCell *cell = [self.tableView cellForRowAtIndexPath:deselectIndexPath];
-        cell.selected = NO;
-        [self tableView:self.tableView didDeselectRowAtIndexPath:deselectIndexPath];
         
         // 选中的行
         {
@@ -305,7 +308,6 @@
             // 改变Cell背影色
             NSIndexPath *selectIndexPath = [NSIndexPath indexPathForRow:selectIndex inSection:0];
             YHSCookBookDishVideoStepTableViewCell *cell = [self.tableView cellForRowAtIndexPath:selectIndexPath];
-            cell.selected = YES;
             [cell didSelectPublicContainerView:YES];
             
             // 自动滚动到某行
@@ -316,6 +318,8 @@
     }
     
 }
+
+#pragma mark - Private function
 
 // 根据当前毫秒数据确定步骤下标
 - (NSInteger)findIndexPathRowBySliderValue:(NSInteger)currSec
