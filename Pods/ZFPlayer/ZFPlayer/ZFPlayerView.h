@@ -22,6 +22,7 @@
 // THE SOFTWARE.
 
 #import <UIKit/UIKit.h>
+
 // 返回按钮的block
 typedef void(^ZFPlayerGoBackBlock)(void);
 // playerLayer的填充模式（默认：等比例填充，直到一个维度到达区域边界）
@@ -30,6 +31,26 @@ typedef NS_ENUM(NSInteger, ZFPlayerLayerGravity) {
      ZFPlayerLayerGravityResizeAspect,     // 等比例填充，直到一个维度到达区域边界
      ZFPlayerLayerGravityResizeAspectFill  // 等比例填充，直到填充满整个视图区域，其中一个维度的部分区域会被裁剪
 };
+
+@protocol ZFPlayerViewDelegate <NSObject>
+@optional
+/** 监听播放进度
+ * float value 进度条的值
+ * NSInteger currMin 当前播放时间：分
+ * NSInteger currSec 当前播放时间：秒
+ * NSInteger durMin 总的播放时间：分
+ * NSInteger durSec 总的播放时间：秒
+ **/
+- (void)videoSliderValueChange:(float)value currMin:(NSInteger)currMin currSec:(NSInteger)currSec durMin:(NSInteger)durMin durSec:(NSInteger)durSec;
+
+/**
+ * 重播按钮
+ */
+- (void)repeatPlayAction;
+
+
+@end
+
 
 @interface ZFPlayerView : UIView
 
@@ -43,10 +64,19 @@ typedef NS_ENUM(NSInteger, ZFPlayerLayerGravity) {
 @property (nonatomic, assign) ZFPlayerLayerGravity playerLayerGravity;
 /** 是否有下载功能(默认是关闭) */
 @property (nonatomic, assign) BOOL                 hasDownload;
+/** 是否有返回按钮(默认是显示) */
+@property (nonatomic, assign) BOOL                 hasBackBtn;
+/** 是否有重播按钮(默认是显示) */
+@property (nonatomic, assign) BOOL                 hasRepeatBtn;
+/** 是否有有进度提示信息(默认是显示) */
+@property (nonatomic, assign) BOOL                 hasHorizontalLabel;
 /** 切换分辨率传的字典(key:分辨率名称，value：分辨率url) */
 @property (nonatomic, strong) NSDictionary         *resolutionDic;
 /** 从xx秒开始播放视频跳转 */
 @property (nonatomic, assign) NSInteger            seekTime;
+
+// 代理，监听播放进度
+@property (nonatomic, strong) id<ZFPlayerViewDelegate> delegate;
 
 /**
  *  取消延时隐藏controlView的方法,在ViewController的delloc方法中调用
@@ -101,5 +131,12 @@ typedef NS_ENUM(NSInteger, ZFPlayerLayerGravity) {
         AtIndexPath:(NSIndexPath *)indexPath
    withImageViewTag:(NSInteger)tag;
 
+
+/**
+ *  从xx秒开始播放视频跳转
+ *
+ *  @param dragedSeconds 视频跳转的秒数
+ */
+- (void)seekToTime:(NSInteger)dragedSeconds completionHandler:(void (^)(BOOL finished))completionHandler;
 
 @end

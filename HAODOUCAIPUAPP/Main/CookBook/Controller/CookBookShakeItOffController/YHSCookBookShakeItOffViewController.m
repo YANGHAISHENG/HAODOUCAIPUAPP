@@ -394,6 +394,15 @@
     
 }
 
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [self.tableView fd_heightForCellWithIdentifier:CELL_IDENTIFIER_COOKBOOK_SHAKE_IT_OFF cacheByIndexPath:indexPath configuration:^(YHSCookBookShakeItOffTableViewCell *cell) {
+        // 配置 cell 的数据源，和 "cellForRow" 干的事一致
+        cell.model = self.tableData[indexPath.section][indexPath.row];
+    }];
+}
+
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     CGFloat height = 30.0;

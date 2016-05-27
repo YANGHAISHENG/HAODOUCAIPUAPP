@@ -190,7 +190,7 @@ static ZFDownloadManager *_downloadManager;
     [task setValue:@(taskIdentifier) forKeyPath:@"taskIdentifier"];
     // 保存任务
     [self.tasks setValue:task forKey:ZFFileName(url)];
-    
+
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:ZFFileFullpath(url)]) {
         ZFSessionModel *sessionModel = [[ZFSessionModel alloc] init];
@@ -343,7 +343,7 @@ static ZFDownloadManager *_downloadManager;
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if ([fileManager fileExistsAtPath:ZFCachesDirectory]) {
-        
+
         // 删除沙盒中所有资源
         [fileManager removeItemAtPath:ZFCachesDirectory error:nil];
         // 删除任务
@@ -417,7 +417,7 @@ static ZFDownloadManager *_downloadManager;
     if (![self.downloadingArray containsObject:sessionModel]) {
         [self.downloadingArray addObject:sessionModel];
     }
-    
+
     // 接收这个请求，允许接收服务器的数据
     completionHandler(NSURLSessionResponseAllow);
 }
@@ -458,8 +458,8 @@ static ZFDownloadManager *_downloadManager;
     if(seconds>0) {[remainingTimeStr appendFormat:@"%d 秒",seconds];}
     
     NSString *writtenSize = [NSString stringWithFormat:@"%.2f %@",
-                             [sessionModel calculateFileSizeInUnit:(unsigned long long)receivedSize],
-                             [sessionModel calculateUnit:(unsigned long long)receivedSize]];
+                                 [sessionModel calculateFileSizeInUnit:(unsigned long long)receivedSize],
+                                 [sessionModel calculateUnit:(unsigned long long)receivedSize]];
     
     if (sessionModel.stateBlock) {
         sessionModel.stateBlock(DownloadStateStart);
@@ -498,18 +498,8 @@ static ZFDownloadManager *_downloadManager;
     [self.sessionModels removeObjectForKey:@(task.taskIdentifier).stringValue];
     
     [self.downloadingArray removeObject:sessionModel];
+    [self.downloadedArray addObject:sessionModel];
     
-    // 清除任务
-    [self.tasks removeObjectForKey:ZFFileName(sessionModel.url)];
-    [self.sessionModels removeObjectForKey:@(task.taskIdentifier).stringValue];
-    
-    [self.downloadingArray removeObject:sessionModel];
-    
-    if (error.code == -999)    return;   // cancel
-    
-    if (![self.downloadedArray containsObject:sessionModel]) {
-        [self.downloadedArray addObject:sessionModel];
-    }
 }
 
 @end

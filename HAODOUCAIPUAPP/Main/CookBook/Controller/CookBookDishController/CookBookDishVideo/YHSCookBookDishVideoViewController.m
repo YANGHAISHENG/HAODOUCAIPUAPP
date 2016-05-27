@@ -29,12 +29,16 @@
 
 #import "YHSCookBookDishModel.h"
 #import "YHSCookBookDishVideoPictureView.h"
+#import "YHSCookBookVideoModel.h"
 
-@interface YHSCookBookDishVideoViewController () <DLCustomSlideViewDelegate, YHSCookBookDishVideoPictureViewDelegate>
+
+@interface YHSCookBookDishVideoViewController () <DLCustomSlideViewDelegate, YHSCookBookDishVideoPictureViewDelegate, YHSCookBookDishVideoStepInfoViewControllerDelegate>
 
 @property (nonatomic, strong) YHSCookBookDishModel *infoModel;
 
 @property (nonatomic, strong) YHSCookBookDishVideoPictureView *videoPictureView; //视屏封面
+
+@property (nonatomic, strong) YHSCookBookDishVideoStepInfoViewController *videoViewSetpController; // 视屏步骤详解
 
 @end
 
@@ -105,7 +109,7 @@
 }
 
 // 创建视屏播放控件
-- (void)createVideoZFPlayerView
+- (void)createVideoZFPlayerView:(void(^)(void))then
 {
     WEAKSELF(weakSelf);
     
@@ -113,7 +117,8 @@
     [self.videoPictureView removeFromSuperview];
     
     // 创建视屏控件
-    self.videoZFPlayerView = [ZFPlayerView new];
+    self.videoZFPlayerView = [ZFPlayerView sharedPlayerView];
+    self.videoZFPlayerView.delegate = self.videoViewSetpController;
     [self.view addSubview:self.videoZFPlayerView];
     [self.videoZFPlayerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(weakSelf.view).offset(HEIGHT_NAVIGATION_STATUS+HEIGHT_NAVIGATION_BAR);
@@ -121,15 +126,20 @@
         // 注意此处，宽高比16：9优先级比1000低就行，在因为iPhone 4S宽高比不是16：9
         make.height.equalTo(self.videoZFPlayerView.mas_width).multipliedBy(9.0f/16.0f).with.priority(750);
     }];
-    
-    self.videoZFPlayerView.videoURL = [NSURL URLWithString:@"http://v.hoto.cn/09/1b/858889.mp4?v=5"];
-
 
     // 设置视频的填充模式，内部设置默认（ZFPlayerLayerGravityResizeAspect：等比例填充，直到一个维度到达区域边界）
+    self.videoZFPlayerView.hasBackBtn = NO;
+    self.videoZFPlayerView.hasDownload = NO;
+    self.videoZFPlayerView.hasHorizontalLabel = YES;
     self.videoZFPlayerView.playerLayerGravity = ZFPlayerLayerGravityResizeAspect;
     self.videoZFPlayerView.goBackBlock = ^{
         [weakSelf.navigationController popViewControllerAnimated:YES];
     };
+    
+    // 创建完成后，处理
+    if (then) {
+        then();
+    }
     
 }
 
@@ -147,11 +157,13 @@
     WEAKSELF(weakSelf);
     
     if (toInterfaceOrientation == UIInterfaceOrientationPortrait) {
+        [self.videoZFPlayerView setHasBackBtn:NO];
         [self.navigationController setNavigationBarHidden:NO];
         [self.videoZFPlayerView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(weakSelf.view).offset(HEIGHT_NAVIGATION_BAR+HEIGHT_NAVIGATION_STATUS);
         }];
     } else if (toInterfaceOrientation == UIInterfaceOrientationLandscapeRight || toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft) {
+        [self.videoZFPlayerView setHasBackBtn:YES];
         [self.navigationController setNavigationBarHidden:YES];
         [self.videoZFPlayerView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(weakSelf.view).offset(0);
@@ -185,9 +197,15 @@
         }
         case 1:
         {
-            YHSCookBookDishVideoStepInfoViewController *viewController = [[YHSCookBookDishVideoStepInfoViewController alloc] init];
-            viewController.infoModel = self.infoModel;
-            return viewController;
+            if (!_videoViewSetpController) {
+                _videoViewSetpController = [[YHSCookBookDishVideoStepInfoViewController alloc] init];
+                _videoViewSetpController.delegate = self;
+                _videoViewSetpController.infoModel = self.infoModel;
+                _videoViewSetpController.videoZFPlayerView = self.videoZFPlayerView;
+                //
+                self.videoZFPlayerView.delegate = self.videoViewSetpController;
+            }
+            return _videoViewSetpController;
         }
         case 2:
         {
@@ -327,11 +345,20 @@
 
 - (void)didClickDishVideoStartWithInfoModel:(YHSCookBookDishModel *)model
 {
-    // 选中步骤页面
-    [self.slideView setSelectedIndex:1];
-    
     // 创建视屏播放控件
-    [self createVideoZFPlayerView];
+    [self createVideoZFPlayerView:^{
+        
+        // 如果步骤页面已经创建，则直接请求视屏资源
+        if (_videoViewSetpController) {
+            _videoViewSetpController.videoZFPlayerView = self.videoZFPlayerView;
+            self.videoZFPlayerView.videoURL = [NSURL URLWithString:_videoViewSetpController.videoStepModel.Url];
+        }
+        
+        // 选中步骤页面
+        [self.slideView setSelectedIndex:1];
+
+    }];
+    
 }
 
 - (void)didClickDishLikeCountWithInfoModel:(YHSCookBookDishModel *)model
@@ -340,6 +367,17 @@
 }
 
 
+#pragma mark - 如果视屏播放控件不存在，则创建后跳转到指定XX秒
+- (void)didClickElementOfCellWithDishVideofModel:(YHSCookBookVideoStepModel *)model
+{
+    // 创建头部视屏控件
+    [self didClickDishVideoStartWithInfoModel:self.infoModel];
+    
+    // 跳转到指定XX秒
+    NSInteger seekTime = model.Point/1000.0;
+    [_videoZFPlayerView setSeekTime:seekTime];
+    [_videoZFPlayerView setHasRepeatBtn:NO];
+}
 
 @end
 

@@ -234,7 +234,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     // cell上播放视频的话，该返回按钮为×
     if (self.isCellVideo) {
         [self.controlView.backBtn setImage:[UIImage imageNamed:ZFPlayerSrcName(@"ZFPlayer_close")] forState:UIControlStateNormal];
-    }else {
+    } else {
         [self.controlView.backBtn setImage:[UIImage imageNamed:ZFPlayerSrcName(@"ZFPlayer_back_full")] forState:UIControlStateNormal];
     }
     // 返回按钮点击事件
@@ -988,6 +988,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     ZFPlayerShared.isLockScreen       = NO;
     self.controlView.lockBtn.selected = NO;
     self.isLocked = NO;
+    self.hasHorizontalLabel = YES;
     [self interfaceOrientation:UIInterfaceOrientationPortrait];
 }
 
@@ -1042,7 +1043,8 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
 - (void)playerTimerAction
 {
     if (_playerItem.duration.timescale != 0) {
-        self.controlView.videoSlider.value     = CMTimeGetSeconds([_playerItem currentTime]) / (_playerItem.duration.value / _playerItem.duration.timescale);//当前进度
+        float currentValue                     = CMTimeGetSeconds([_playerItem currentTime]) / (_playerItem.duration.value / _playerItem.duration.timescale);//当前进度
+        self.controlView.videoSlider.value     = currentValue;
 
         //当前时长进度progress
         NSInteger proMin                       = (NSInteger)CMTimeGetSeconds([_player currentTime]) / 60;//当前秒
@@ -1055,6 +1057,10 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
         self.controlView.currentTimeLabel.text = [NSString stringWithFormat:@"%02zd:%02zd", proMin, proSec];
         self.controlView.totalTimeLabel.text   = [NSString stringWithFormat:@"%02zd:%02zd", durMin, durSec];
         
+        // 监听播放进度
+        if (self.delegate && [self.delegate respondsToSelector:@selector(videoSliderValueChange:currMin:currSec:durMin:durSec:)]) {
+            [self.delegate videoSliderValueChange:currentValue currMin:proMin currSec:proSec durMin:durMin durSec:durSec];
+        }
         
     }
 }
@@ -1184,6 +1190,11 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     // 重置控制层View
     [self.controlView resetControlView];
     [self seekToTime:0 completionHandler:nil];
+    
+    // 监听重播按钮事件
+    if (self.delegate && [self.delegate respondsToSelector:@selector(repeatPlayAction)]) {
+        [self.delegate repeatPlayAction];
+    }
 }
 
 - (void)downloadVideo:(UIButton *)sender
@@ -1304,14 +1315,19 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
         if (total > 0) {
             // 当总时长 > 0时候才能拖动slider
             self.controlView.currentTimeLabel.text  = currentTime;
-            self.controlView.horizontalLabel.hidden = NO;
+            self.controlView.horizontalLabel.hidden = self.hasHorizontalLabel ? NO : YES;
             self.controlView.horizontalLabel.text   = [NSString stringWithFormat:@"%@ %@ / %@",style, currentTime, totalTime];
-        }else {
+        } else {
             // 此时设置slider值为0
             slider.value = 0;
         }
         
-    }else { // player状态加载失败
+        // 监听播放进度
+        if (self.delegate && [self.delegate respondsToSelector:@selector(videoSliderValueChange:currMin:currSec:durMin:durSec:)]) {
+            [self.delegate videoSliderValueChange:dragedSeconds currMin:proMin currSec:proSec durMin:durMin durSec:durSec];
+        }
+        
+    } else { // player状态加载失败
         // 此时设置slider值为0
         slider.value = 0;
     }
@@ -1397,7 +1413,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
             CGFloat y = fabs(veloctyPoint.y);
             if (x > y) { // 水平移动
                 // 取消隐藏
-                self.controlView.horizontalLabel.hidden = YES;
+                self.controlView.horizontalLabel.hidden = self.hasHorizontalLabel ? NO : YES;
                 self.panDirection = PanDirectionHorizontalMoved;
                 // 给sumTime初值
                 CMTime time       = self.player.currentTime;
@@ -1510,7 +1526,17 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     // 总时间
     NSString *durationTime    = [self durationStringWithTime:(int)totalMovieDuration];
     // 给label赋值
-    self.controlView.horizontalLabel.text = [NSString stringWithFormat:@"%@ %@ / %@",style, nowTime, durationTime];
+    self.controlView.horizontalLabel.text = @"1";//[NSString stringWithFormat:@"%@ %@ / %@",style, nowTime, durationTime];
+    
+    // 监听播放进度
+    if (self.delegate && [self.delegate respondsToSelector:@selector(videoSliderValueChange:currMin:currSec:durMin:durSec:)]) {
+        NSInteger *proMin = (int)self.sumTime / 60;
+        NSInteger *proSec = (int)self.sumTime % 60;
+        NSInteger *durMin = (int)totalMovieDuration / 60;
+        NSInteger *durSec = (int)totalMovieDuration % 60;
+        [self.delegate videoSliderValueChange:self.sumTime currMin:proMin currSec:proSec durMin:durMin durSec:durSec];
+    }
+    
 }
 
 /**
@@ -1661,6 +1687,24 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
 {
     _hasDownload = hasDownload;
     self.controlView.downLoadBtn.hidden = !hasDownload;
+}
+
+/**
+ *  是否有返回按钮功能
+ */
+- (void)setHasBackBtn:(BOOL)hasBackBtn
+{
+    _hasBackBtn = hasBackBtn;
+    self.controlView.backBtn.hidden = !hasBackBtn;
+}
+
+/**
+ *  是否有显示重播按钮
+ */
+- (void)setHasRepeatBtn:(BOOL)hasRepeatBtn
+{
+    _hasRepeatBtn = hasRepeatBtn;
+    self.controlView.repeatBtn.hidden = !hasRepeatBtn;
 }
 
 - (void)setResolutionDic:(NSDictionary *)resolutionDic

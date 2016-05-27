@@ -51,10 +51,10 @@ typedef void(^ZFDownloadStateBlock)(DownloadState state);
 @property (nonatomic, assign) NSInteger totalLength;
 
 /** 下载进度 */
-@property (atomic, copy) ZFDownloadProgressBlock progressBlock;
+@property (nonatomic, copy) ZFDownloadProgressBlock progressBlock;
 
 /** 下载状态 */
-@property (atomic, copy) ZFDownloadStateBlock stateBlock;
+@property (nonatomic, copy) ZFDownloadStateBlock stateBlock;
 
 - (float)calculateFileSizeInUnit:(unsigned long long)contentLength;
 
