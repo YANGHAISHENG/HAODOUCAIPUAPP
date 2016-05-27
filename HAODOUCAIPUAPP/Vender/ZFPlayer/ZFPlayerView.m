@@ -1528,11 +1528,11 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
 
     // 监听播放进度
     if (self.delegate && [self.delegate respondsToSelector:@selector(videoSliderValueChange:currMin:currSec:durMin:durSec:)]) {
-        NSInteger *proMin = (int)self.sumTime / 60;
-        NSInteger *proSec = (int)self.sumTime % 60;
-        NSInteger *durMin = (int)totalMovieDuration / 60;
-        NSInteger *durSec = (int)totalMovieDuration % 60;
-        [self.delegate videoSliderValueChange:self.sumTime currMin:proMin currSec:proSec durMin:durMin durSec:durSec];
+        NSInteger proMin = (int)self.sumTime / 60;
+        NSInteger proSec = (int)self.sumTime % 60;
+        NSInteger durMin = (int)totalMovieDuration / 60;
+        NSInteger durSec = (int)totalMovieDuration % 60;
+        [self.delegate videoSliderValueChange:(float)self.sumTime currMin:proMin currSec:proSec durMin:durMin durSec:durSec];
     }
 
 }

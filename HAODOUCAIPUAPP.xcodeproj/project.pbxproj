@@ -950,15 +950,15 @@
 		7D070A8D1CF7EB27003E0920 /* ZFPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				7D070A8E1CF7EB27003E0920 /* ZFBrightnessView.h */,
-				7D070A8F1CF7EB27003E0920 /* ZFBrightnessView.m */,
+				7D070A941CF7EB27003E0920 /* ZFPlayerDownload */,
 				7D070A901CF7EB27003E0920 /* ZFPlayer.bundle */,
 				7D070A911CF7EB27003E0920 /* ZFPlayer.h */,
-				7D070A921CF7EB27003E0920 /* ZFPlayerControlView.h */,
-				7D070A931CF7EB27003E0920 /* ZFPlayerControlView.m */,
-				7D070A941CF7EB27003E0920 /* ZFPlayerDownload */,
 				7D070A991CF7EB27003E0920 /* ZFPlayerView.h */,
 				7D070A9A1CF7EB27003E0920 /* ZFPlayerView.m */,
+				7D070A921CF7EB27003E0920 /* ZFPlayerControlView.h */,
+				7D070A931CF7EB27003E0920 /* ZFPlayerControlView.m */,
+				7D070A8E1CF7EB27003E0920 /* ZFBrightnessView.h */,
+				7D070A8F1CF7EB27003E0920 /* ZFBrightnessView.m */,
 			);
 			path = ZFPlayer;
 			sourceTree = "<group>";
@@ -2131,6 +2131,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = YANGHAISHENGID.HAODOUCAIPUAPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = "-Wno-deprecated-declarations";
 			};
 			name = Debug;
 		};
@@ -2144,6 +2145,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = YANGHAISHENGID.HAODOUCAIPUAPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = "-Wno-deprecated-declarations";
 			};
 			name = Release;
 		};
