@@ -130,8 +130,9 @@
     // 设置视频的填充模式，内部设置默认（ZFPlayerLayerGravityResizeAspect：等比例填充，直到一个维度到达区域边界）
     self.videoZFPlayerView.hasBackBtn = NO;
     self.videoZFPlayerView.hasDownload = NO;
-    self.videoZFPlayerView.hasHorizontalLabel = NO;
+    self.videoZFPlayerView.hasHorizontalLabel = YES;
     self.videoZFPlayerView.playerLayerGravity = ZFPlayerLayerGravityResizeAspect;
+    self.videoZFPlayerView.loadingBgImage = [UIImage imageNamed:@"loading_bgView.jpg"];
     self.videoZFPlayerView.goBackBlock = ^{
         [weakSelf.navigationController popViewControllerAnimated:YES];
     };

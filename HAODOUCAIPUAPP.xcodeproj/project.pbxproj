@@ -87,6 +87,13 @@
 		7D06521F1CE2C45B003D9BEC /* YHSVenderMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D06521D1CE2C45B003D9BEC /* YHSVenderMacro.m */; };
 		7D0652221CE2C47D003D9BEC /* YHSSysConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0652211CE2C47D003D9BEC /* YHSSysConst.m */; };
 		7D0652251CE2C49A003D9BEC /* YHSSysMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0652241CE2C49A003D9BEC /* YHSSysMacro.m */; };
+		7D070A9B1CF7EB27003E0920 /* ZFBrightnessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D070A8F1CF7EB27003E0920 /* ZFBrightnessView.m */; };
+		7D070A9C1CF7EB27003E0920 /* ZFPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7D070A901CF7EB27003E0920 /* ZFPlayer.bundle */; };
+		7D070A9D1CF7EB27003E0920 /* ZFPlayerControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D070A931CF7EB27003E0920 /* ZFPlayerControlView.m */; };
+		7D070A9E1CF7EB27003E0920 /* ZFDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D070A961CF7EB27003E0920 /* ZFDownloadManager.m */; };
+		7D070A9F1CF7EB27003E0920 /* ZFSessionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D070A981CF7EB27003E0920 /* ZFSessionModel.m */; };
+		7D070AA01CF7EB27003E0920 /* ZFPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D070A9A1CF7EB27003E0920 /* ZFPlayerView.m */; };
+		7D070AA21CF7F411003E0920 /* loading_bgView.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7D070AA11CF7F411003E0920 /* loading_bgView.jpg */; };
 		7D08276A1CE5C10B008D77AD /* ico_auxiliary_master.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0827661CE5C10B008D77AD /* ico_auxiliary_master.png */; };
 		7D08276B1CE5C10B008D77AD /* ico_auxiliary_more_grayc.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0827671CE5C10B008D77AD /* ico_auxiliary_more_grayc.png */; };
 		7D08276C1CE5C10B008D77AD /* ico_auxiliary_more.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0827681CE5C10B008D77AD /* ico_auxiliary_more.png */; };
@@ -338,6 +345,19 @@
 		7D0652211CE2C47D003D9BEC /* YHSSysConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSSysConst.m; sourceTree = "<group>"; };
 		7D0652231CE2C49A003D9BEC /* YHSSysMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSSysMacro.h; sourceTree = "<group>"; };
 		7D0652241CE2C49A003D9BEC /* YHSSysMacro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSSysMacro.m; sourceTree = "<group>"; };
+		7D070A8E1CF7EB27003E0920 /* ZFBrightnessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFBrightnessView.h; sourceTree = "<group>"; };
+		7D070A8F1CF7EB27003E0920 /* ZFBrightnessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFBrightnessView.m; sourceTree = "<group>"; };
+		7D070A901CF7EB27003E0920 /* ZFPlayer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZFPlayer.bundle; sourceTree = "<group>"; };
+		7D070A911CF7EB27003E0920 /* ZFPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFPlayer.h; sourceTree = "<group>"; };
+		7D070A921CF7EB27003E0920 /* ZFPlayerControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFPlayerControlView.h; sourceTree = "<group>"; };
+		7D070A931CF7EB27003E0920 /* ZFPlayerControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFPlayerControlView.m; sourceTree = "<group>"; };
+		7D070A951CF7EB27003E0920 /* ZFDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFDownloadManager.h; sourceTree = "<group>"; };
+		7D070A961CF7EB27003E0920 /* ZFDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFDownloadManager.m; sourceTree = "<group>"; };
+		7D070A971CF7EB27003E0920 /* ZFSessionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFSessionModel.h; sourceTree = "<group>"; };
+		7D070A981CF7EB27003E0920 /* ZFSessionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFSessionModel.m; sourceTree = "<group>"; };
+		7D070A991CF7EB27003E0920 /* ZFPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFPlayerView.h; sourceTree = "<group>"; };
+		7D070A9A1CF7EB27003E0920 /* ZFPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFPlayerView.m; sourceTree = "<group>"; };
+		7D070AA11CF7F411003E0920 /* loading_bgView.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = loading_bgView.jpg; sourceTree = "<group>"; };
 		7D0827661CE5C10B008D77AD /* ico_auxiliary_master.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_auxiliary_master.png; sourceTree = "<group>"; };
 		7D0827671CE5C10B008D77AD /* ico_auxiliary_more_grayc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_auxiliary_more_grayc.png; sourceTree = "<group>"; };
 		7D0827681CE5C10B008D77AD /* ico_auxiliary_more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_auxiliary_more.png; sourceTree = "<group>"; };
@@ -927,6 +947,33 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		7D070A8D1CF7EB27003E0920 /* ZFPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				7D070A8E1CF7EB27003E0920 /* ZFBrightnessView.h */,
+				7D070A8F1CF7EB27003E0920 /* ZFBrightnessView.m */,
+				7D070A901CF7EB27003E0920 /* ZFPlayer.bundle */,
+				7D070A911CF7EB27003E0920 /* ZFPlayer.h */,
+				7D070A921CF7EB27003E0920 /* ZFPlayerControlView.h */,
+				7D070A931CF7EB27003E0920 /* ZFPlayerControlView.m */,
+				7D070A941CF7EB27003E0920 /* ZFPlayerDownload */,
+				7D070A991CF7EB27003E0920 /* ZFPlayerView.h */,
+				7D070A9A1CF7EB27003E0920 /* ZFPlayerView.m */,
+			);
+			path = ZFPlayer;
+			sourceTree = "<group>";
+		};
+		7D070A941CF7EB27003E0920 /* ZFPlayerDownload */ = {
+			isa = PBXGroup;
+			children = (
+				7D070A951CF7EB27003E0920 /* ZFDownloadManager.h */,
+				7D070A961CF7EB27003E0920 /* ZFDownloadManager.m */,
+				7D070A971CF7EB27003E0920 /* ZFSessionModel.h */,
+				7D070A981CF7EB27003E0920 /* ZFSessionModel.m */,
+			);
+			path = ZFPlayerDownload;
+			sourceTree = "<group>";
+		};
 		7D08276E1CE5D047008D77AD /* iCarousel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1306,6 +1353,7 @@
 		7DFE1D661CE2195A005A061B /* Vender[三方] */ = {
 			isa = PBXGroup;
 			children = (
+				7D070A8D1CF7EB27003E0920 /* ZFPlayer */,
 				7D08276E1CE5D047008D77AD /* iCarousel */,
 				7D0E20931CF5B107007941F4 /* DLSlideView */,
 				7DD3ADB61CE350F600F9D3F1 /* MBProgressHUD */,
@@ -1572,6 +1620,7 @@
 		7DFE1D8F1CE21FDA005A061B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				7D070AA11CF7F411003E0920 /* loading_bgView.jpg */,
 				7D0335601CF5FEEC00B273E8 /* video_fullscreen_on.png */,
 				7D0335611CF5FEEC00B273E8 /* video_fullscreen.png */,
 				7D0335621CF5FEEC00B273E8 /* video_pause_on.png */,
@@ -1759,11 +1808,13 @@
 				7D063F4B1CF085D000152563 /* myhome_followed_normal.png in Resources */,
 				7DA6BF8C1CF1EBC100BF297C /* btn_auxiliary_good_on.png in Resources */,
 				7D03356D1CF5FEEC00B273E8 /* video_fullscreen_on.png in Resources */,
+				7D070A9C1CF7EB27003E0920 /* ZFPlayer.bundle in Resources */,
 				7DFE1DB71CE21FDA005A061B /* bar_category_foreground.png in Resources */,
 				7D03356E1CF5FEEC00B273E8 /* video_fullscreen.png in Resources */,
 				7DFE1DBB1CE21FDA005A061B /* btn_header_back_white.png in Resources */,
 				7DFE1DAD1CE21FDA005A061B /* abc_ic_clear_mtrl_alpha.png in Resources */,
 				7D0335701CF5FEEC00B273E8 /* video_pause.png in Resources */,
+				7D070AA21CF7F411003E0920 /* loading_bgView.jpg in Resources */,
 				7DFE1DBD1CE21FDA005A061B /* logo_daojia.png in Resources */,
 				7DFE1DB91CE21FDA005A061B /* btn_header_back.png in Resources */,
 				7D0335711CF5FEEC00B273E8 /* video_play_on.png in Resources */,
@@ -1834,6 +1885,7 @@
 			files = (
 				7D051B611CEF2B2500B97699 /* YHSCookBookHaoDouVIPModel.m in Sources */,
 				7DAA89981CF310860046CCC0 /* YHSCategorySearchDishVideoViewController.m in Sources */,
+				7D070A9F1CF7EB27003E0920 /* ZFSessionModel.m in Sources */,
 				7DFC47101CED50DD00A29464 /* YHSCategorySearchResultViewController.m in Sources */,
 				7D0651F01CE2BC1E003D9BEC /* YHSRootViewController.m in Sources */,
 				7D8975321CEB0E0B002CF981 /* UIImage+Scale.m in Sources */,
@@ -1889,6 +1941,7 @@
 				7D063F611CF09A4E00152563 /* YHSCookBookYourLoveMoreTableViewCell.m in Sources */,
 				7D051B621CEF2B2500B97699 /* YHSCookBookHotsActivityModel.m in Sources */,
 				7DB84FC11CF1AD5200633D55 /* YHSCookBookHotsAlbumMoreModel.m in Sources */,
+				7D070A9D1CF7EB27003E0920 /* ZFPlayerControlView.m in Sources */,
 				7DD3ADAF1CE34D8200F9D3F1 /* YHSCookBookDataUtil.m in Sources */,
 				7D0E20A81CF5B107007941F4 /* DLSlideView.m in Sources */,
 				7D06521F1CE2C45B003D9BEC /* YHSVenderMacro.m in Sources */,
@@ -1910,8 +1963,10 @@
 				7D012E241CF14A94002FD903 /* YHSCookBookHotsAlbumDetailElemModel.m in Sources */,
 				7D0652221CE2C47D003D9BEC /* YHSSysConst.m in Sources */,
 				7D012E2D1CF14BF8002FD903 /* YHSCookBookHotsAlbumDetailInfoTableViewCell.m in Sources */,
+				7D070A9E1CF7EB27003E0920 /* ZFDownloadManager.m in Sources */,
 				7DFE1D831CE219B8005A061B /* AppDelegate.m in Sources */,
 				7DB84FD71CF1B65A00633D55 /* YHSBasicWithSearchBarItemViewController.m in Sources */,
+				7D070A9B1CF7EB27003E0920 /* ZFBrightnessView.m in Sources */,
 				7DAA898A1CF2EA280046CCC0 /* YHSCookBookShakeItOffDetailViewController.m in Sources */,
 				7D05A3231CF29F6E00F3CF60 /* YHSCookBookShakeItOffViewController.m in Sources */,
 				7DC87CC21CF31EA500C435C6 /* YHSCookBookYourLoveDishPictureViewController.m in Sources */,
@@ -1953,6 +2008,7 @@
 				7D06520A1CE2BDD4003D9BEC /* YHSSquareMainViewController.m in Sources */,
 				7D012E2A1CF14BB3002FD903 /* YHSCookBookHotsAlbumDetailShareModel.m in Sources */,
 				7D051B641CEF2B2500B97699 /* YHSCookBookPublishModel.m in Sources */,
+				7D070AA01CF7EB27003E0920 /* ZFPlayerView.m in Sources */,
 				7D0103D11CF0012300B89D07 /* YHSDBObject.m in Sources */,
 				7DA6BF841CF1CB4C00BF297C /* YHSCookBookHotsAlbumDetailViewController.m in Sources */,
 				7D0235541CF0680F00DE6EC0 /* YHSCookBookSearchVIPModel.m in Sources */,

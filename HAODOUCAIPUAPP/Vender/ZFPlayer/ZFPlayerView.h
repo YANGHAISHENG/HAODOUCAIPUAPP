@@ -1,28 +1,6 @@
-//
-//  ZFPlayerView.h
-//
-// Copyright (c) 2016年 任子丰 ( http://github.com/renzifeng )
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
+
 
 #import <UIKit/UIKit.h>
-
 // 返回按钮的block
 typedef void(^ZFPlayerGoBackBlock)(void);
 // playerLayer的填充模式（默认：等比例填充，直到一个维度到达区域边界）
@@ -31,6 +9,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerLayerGravity) {
      ZFPlayerLayerGravityResizeAspect,     // 等比例填充，直到一个维度到达区域边界
      ZFPlayerLayerGravityResizeAspectFill  // 等比例填充，直到填充满整个视图区域，其中一个维度的部分区域会被裁剪
 };
+
 
 @protocol ZFPlayerViewDelegate <NSObject>
 @optional
@@ -47,7 +26,6 @@ typedef NS_ENUM(NSInteger, ZFPlayerLayerGravity) {
  * 重播按钮
  */
 - (void)repeatPlayAction;
-
 
 @end
 
@@ -72,11 +50,13 @@ typedef NS_ENUM(NSInteger, ZFPlayerLayerGravity) {
 @property (nonatomic, assign) BOOL                 hasHorizontalLabel;
 /** 切换分辨率传的字典(key:分辨率名称，value：分辨率url) */
 @property (nonatomic, strong) NSDictionary         *resolutionDic;
+/** 播放开始之前（加载中）设置占位图 **/
+@property (nonatomic, strong) UIImage              *loadingBgImage;
 /** 从xx秒开始播放视频跳转 */
 @property (nonatomic, assign) NSInteger            seekTime;
-
-// 代理，监听播放进度
+/** 代理 **/
 @property (nonatomic, strong) id<ZFPlayerViewDelegate> delegate;
+
 
 /**
  *  取消延时隐藏controlView的方法,在ViewController的delloc方法中调用
@@ -130,7 +110,6 @@ typedef NS_ENUM(NSInteger, ZFPlayerLayerGravity) {
       withTableView:(UITableView *)tableView
         AtIndexPath:(NSIndexPath *)indexPath
    withImageViewTag:(NSInteger)tag;
-
 
 /**
  *  从xx秒开始播放视频跳转
