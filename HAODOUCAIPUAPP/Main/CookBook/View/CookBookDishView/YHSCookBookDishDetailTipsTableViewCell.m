@@ -102,7 +102,7 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_TIPS = @"YHSCookBookDishDetailTip
     
     // 约束的完整性
     [self.publicContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(weakSelf.tipsLabel.mas_bottom).offset(margin);
+        make.bottom.equalTo(weakSelf.tipsLabel.mas_bottom).offset(0.0);
     }];
     
 }

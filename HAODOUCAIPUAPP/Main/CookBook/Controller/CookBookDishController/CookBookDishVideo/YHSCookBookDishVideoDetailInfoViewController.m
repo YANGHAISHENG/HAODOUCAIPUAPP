@@ -2,15 +2,15 @@
 
 #import "YHSCookBookDishVideoDetailInfoViewController.h"
 #import "YHSCookBookDishDetailTableSectionHeaderFooterView.h"
-#import "YHSCookBookDishDetailHeadTableViewCell.h"
 #import "YHSCookBookDishModel.h"
-#import "YHSCookBookDishDetailFoodMaterialTableViewCell.h"
 #import "YHSCookBookDishFoodMaterialModel.h"
+#import "YHSCookBookDishDetailHeadTableViewCell.h"
+#import "YHSCookBookDishDetailFoodMaterialTableViewCell.h"
 #import "YHSCookBookDishDetailTipsTableViewCell.h"
+#import "YHSCookBookDishDetailProductTableViewCell.h"
 
 
-
-@interface YHSCookBookDishVideoDetailInfoViewController () <UITableViewDelegate, UITableViewDataSource, YHSCookBookDishDetailTableSectionHeaderFooterViewDelegate, YHSCookBookDishDetailHeadTableViewCellDelegate, YHSCookBookDishDetailFoodMaterialTableViewCellDelegate>
+@interface YHSCookBookDishVideoDetailInfoViewController () <UITableViewDelegate, UITableViewDataSource, YHSCookBookDishDetailTableSectionHeaderFooterViewDelegate, YHSCookBookDishDetailHeadTableViewCellDelegate, YHSCookBookDishDetailFoodMaterialTableViewCellDelegate, YHSCookBookDishDetailProductTableViewCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *tableData;
@@ -81,8 +81,7 @@
         [self.tableView registerClass:[YHSCookBookDishDetailHeadTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER];
         [self.tableView registerClass:[YHSCookBookDishDetailFoodMaterialTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_COOKBOOK_DISH_FOOD_MATERIAL];
         [self.tableView registerClass:[YHSCookBookDishDetailTipsTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_COOKBOOK_DISH_TIPS];
-        
-
+        [self.tableView registerClass:[YHSCookBookDishDetailProductTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_PRODUCT];
         
     }
     
@@ -126,11 +125,17 @@
     // 3.注意提示
     [self.tableData addObject:@[self.infoModel.Tips].mutableCopy];
     
+    // 4.作品展示
+    [self.tableData addObject:@[self.infoModel].mutableCopy];
     
+    // 5.点赞列表
+    [self.tableData addObject:@[self.infoModel].mutableCopy];
     
+    // 6.打赏列表
+    [self.tableData addObject:@[self.infoModel].mutableCopy];
     
-    
-    
+    // 7.相关标签
+    [self.tableData addObject:@[self.infoModel].mutableCopy];
     
     // 刷新界面
     !then ?: then(YES);
@@ -151,7 +156,9 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.tableData.count;
+    //return self.tableData.count;
+    
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -170,6 +177,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.section) {
+        // 详情头部
         case YHSCookBookDishVideoDetailInfoTableSectionHead:{
             YHSCookBookDishDetailHeadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER];
             if (!cell) {
@@ -180,6 +188,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
+        // 食材详情
         case YHSCookBookDishVideoDetailInfoTableSectionFoodMaterial:{
             YHSCookBookDishDetailFoodMaterialTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_COOKBOOK_DISH_FOOD_MATERIAL];
             if (!cell) {
@@ -190,11 +199,23 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
+        // 注意提示
         case YHSCookBookDishVideoDetailInfoTableSectionTips:{
             YHSCookBookDishDetailTipsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_COOKBOOK_DISH_TIPS];
             if (!cell) {
                 cell = [[YHSCookBookDishDetailTipsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_IDENTIFIER_COOKBOOK_DISH_TIPS];
             }
+            cell.model = self.tableData[indexPath.section][indexPath.row];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        }
+        // 作品展示
+        case YHSCookBookDishVideoDetailInfoTableSectionPhotoShow:{
+            YHSCookBookDishDetailProductTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_PRODUCT];
+            if (!cell) {
+                cell = [[YHSCookBookDishDetailProductTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_PRODUCT];
+            }
+            cell.delegate = self;
             cell.model = self.tableData[indexPath.section][indexPath.row];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
@@ -209,20 +230,30 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
+        // 详情头部
         case YHSCookBookDishVideoDetailInfoTableSectionHead:{
             return [self.tableView fd_heightForCellWithIdentifier:CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER cacheByIndexPath:indexPath configuration:^(YHSCookBookDishDetailHeadTableViewCell *cell) {
                 // 配置 cell 的数据源，和 "cellForRow" 干的事一致
                 cell.model = self.tableData[indexPath.section][indexPath.row];
             }];
         }
+        // 食材详情
         case YHSCookBookDishVideoDetailInfoTableSectionFoodMaterial:{
             return [self.tableView fd_heightForCellWithIdentifier:CELL_IDENTIFIER_COOKBOOK_DISH_FOOD_MATERIAL cacheByIndexPath:indexPath configuration:^(YHSCookBookDishDetailFoodMaterialTableViewCell *cell) {
                 // 配置 cell 的数据源，和 "cellForRow" 干的事一致
                 cell.model = self.tableData[indexPath.section][indexPath.row];
             }];
         }
+        // 注意提示
         case YHSCookBookDishVideoDetailInfoTableSectionTips:{
             return [self.tableView fd_heightForCellWithIdentifier:CELL_IDENTIFIER_COOKBOOK_DISH_TIPS cacheByIndexPath:indexPath configuration:^(YHSCookBookDishDetailTipsTableViewCell *cell) {
+                // 配置 cell 的数据源，和 "cellForRow" 干的事一致
+                cell.model = self.tableData[indexPath.section][indexPath.row];
+            }];
+        }
+        // 作品展示
+        case YHSCookBookDishVideoDetailInfoTableSectionPhotoShow:{
+            return [self.tableView fd_heightForCellWithIdentifier:CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_PRODUCT cacheByIndexPath:indexPath configuration:^(YHSCookBookDishDetailProductTableViewCell *cell) {
                 // 配置 cell 的数据源，和 "cellForRow" 干的事一致
                 cell.model = self.tableData[indexPath.section][indexPath.row];
             }];
@@ -412,6 +443,20 @@
 {
     [self alertPromptMessage:@"食材详情页面"];
 }
+
+
+#pragma mark - 触发点击作品展示事件
+- (void)didClickElementOfCellWithDishDetailProductModel:(YHSCookBookDishProductModel *)model
+{
+    [self alertPromptMessage:@"作品详情页面"];
+}
+
+- (void)didClickElementOfCellWithAllProductModel:(YHSCookBookDishModel *)model
+{
+    [self alertPromptMessage:@"查看全部作品"];
+}
+
+
 
 
 #pragma mark - 提示信息
