@@ -14,6 +14,7 @@
 #import "YHSCookBookDishVideoPictureView.h"
 #import "YHSCookBookDishModel.h"
 #import "YHSCookBookVideoModel.h"
+#import "UINavigationController+FDFullscreenPopGesture.h"
 
 
 @interface YHSCookBookDishVideoViewController () <DLCustomSlideViewDelegate, YHSCookBookDishVideoPictureViewDelegate, YHSCookBookDishVideoStepInfoViewControllerDelegate>
@@ -25,7 +26,6 @@
 
 @implementation YHSCookBookDishVideoViewController
 
-
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
@@ -33,6 +33,7 @@
     [self.videoZFPlayerView resetPlayer];
     [self.videoZFPlayerView removeFromSuperview];
     self.videoZFPlayerView = nil;
+    
 }
 
 
@@ -100,13 +101,15 @@
                                 [DLScrollTabbarItem itemWithTitle:@"步骤" width:tabbarItemWidth],
                                 [DLScrollTabbarItem itemWithTitle:@"评论" width:tabbarItemWidth]];
         self.slideView.tabbar = tabbar;
-        self.slideView.tabbarBottomSpacing = 0;
         self.slideView.baseViewController = self;
+        self.slideView.tabbarBottomSpacing = 1.0;
+        self.slideView.backgroundColor = [UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1.00];
         self.slideView.cache = [[DLLRUCache alloc] initWithCount:3];
         [self.slideView setup];
         
         self.slideView.selectedIndex = 0;
     }
+    
 }
 
 
@@ -123,7 +126,11 @@
     self.videoZFPlayerView.delegate = self.videoViewSetpController;
     [self.view addSubview:self.videoZFPlayerView];
     [self.videoZFPlayerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf.view).offset(HEIGHT_NAVIGATION_STATUS+HEIGHT_NAVIGATION_BAR);
+        if (self.interfaceOrientation == UIInterfaceOrientationLandscapeRight || self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft) {
+             make.top.equalTo(weakSelf.view).offset(0.0);
+        } else {
+             make.top.equalTo(weakSelf.view).offset(HEIGHT_NAVIGATION_STATUS+HEIGHT_NAVIGATION_BAR);
+        }
         make.left.right.equalTo(weakSelf.view).offset(0.0);
         // 注意此处，宽高比16：9优先级比1000低就行，在因为iPhone 4S宽高比不是16：9
         make.height.equalTo(self.videoZFPlayerView.mas_width).multipliedBy(9.0f/16.0f).with.priority(750);
@@ -153,17 +160,35 @@
     WEAKSELF(weakSelf);
     
     if (toInterfaceOrientation == UIInterfaceOrientationPortrait) {
+        
         [self.videoZFPlayerView setHasBackBtn:NO];
         [self.navigationController setNavigationBarHidden:NO];
         [self.videoZFPlayerView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(weakSelf.view).offset(HEIGHT_NAVIGATION_BAR+HEIGHT_NAVIGATION_STATUS);
         }];
+        
+        // 开启全屏返回手势
+        {
+            // self.fd_interactivePopDisabled = NO;
+            // 或
+            self.navigationController.fd_fullscreenPopGestureRecognizer.enabled = YES;
+        }
+        
     } else if (toInterfaceOrientation == UIInterfaceOrientationLandscapeRight || toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft) {
+
         [self.videoZFPlayerView setHasBackBtn:YES];
         [self.navigationController setNavigationBarHidden:YES];
         [self.videoZFPlayerView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(weakSelf.view).offset(0);
         }];
+        
+        // 禁用全屏返回手势
+        {
+            // self.fd_interactivePopDisabled = YES;
+            // 或
+            self.navigationController.fd_fullscreenPopGestureRecognizer.enabled = NO;
+        }
+        
     }
     
 }

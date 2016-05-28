@@ -18,6 +18,8 @@ pod "SDCycleScrollView"
 
 pod "UITableView+FDTemplateLayoutCell"
 
+pod "FDFullscreenPopGesture"
+
 pod "MGSwipeTableCell"
 
 pod "DZNEmptyDataSet"

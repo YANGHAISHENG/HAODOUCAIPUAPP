@@ -35,7 +35,7 @@
             self.videoZFPlayerView.videoURL = [NSURL URLWithString:self.videoStepModel.Url];
         }
 
-    } andWritingLoading:YES];
+    }];
     
 }
 
@@ -109,7 +109,7 @@
 
 
 #pragma mark - 请求网络数据
-- (void)loadDataThen:(void (^)(BOOL success, NSUInteger count))then andWritingLoading:(BOOL)showWritingLoading {
+- (void)loadDataThen:(void (^)(BOOL success, NSUInteger count))then {
     
     // 弱引用self
     WEAKSELF(weakSelf);

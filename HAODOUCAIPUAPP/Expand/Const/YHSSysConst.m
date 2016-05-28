@@ -23,7 +23,7 @@ CGFloat const FONT_SIZE_NAVIGATION = 18.0;
 CGFloat const FONT_SIZE_TABBAR = 10.0;
 
 #pragma mark 占位图片
-NSString * const PICTURE_PLACEHOLDER = @"placeholder.png";
+NSString * const PICTURE_PLACEHOLDER = @"default_big.png";
 
 #pragma mark 网络状态监听的广播频段
 NSString * const NOTIFICATION_NETWORKING_STATUS_FREQUENCY  = @"ReachabilityNetWorkingStatusFrequency";

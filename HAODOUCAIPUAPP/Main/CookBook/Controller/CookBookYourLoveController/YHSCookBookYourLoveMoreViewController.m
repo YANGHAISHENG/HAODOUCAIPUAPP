@@ -515,6 +515,12 @@
 }
 
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [self.tableView fd_heightForCellWithIdentifier:CELL_IDENTIFIER_YOUR_LOVE_MORE cacheByIndexPath:indexPath configuration:^(YHSCookBookYourLoveMoreTableViewCell *cell) {
+        // 配置 cell 的数据源，和 "cellForRow" 干的事一致
+        cell.model = self.tableData[indexPath.row];
+    }];
+}
 
 
 

@@ -14,6 +14,7 @@ UIKIT_EXTERN NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER;
 @protocol YHSCookBookDishDetailHeadTableViewCellDelegate <NSObject>
 @optional
 - (void)didClickElementOfCellWithCookBookDishModel:(YHSCookBookDishModel *)model;
+- (void)pressRelationImageViewArea:(YHSCookBookDishModel *)model;
 @end
 
 

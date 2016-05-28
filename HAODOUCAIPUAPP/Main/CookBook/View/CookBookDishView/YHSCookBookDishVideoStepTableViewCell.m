@@ -93,7 +93,7 @@ NSString * const CELL_IDENTIFIER_DISH_VIDEO_STEP_INFO = @"YHSCookBookDishVideoSt
     self.contentLabel = [UILabel new];
     [self.contentLabel setNumberOfLines:0];
     [self.contentLabel setTextColor:[UIColor blackColor]];
-    [self.contentLabel setFont:[UIFont systemFontOfSize:18]];
+    [self.contentLabel setFont:[UIFont systemFontOfSize:16]];
     [self.contentLabel setTextAlignment:NSTextAlignmentLeft];
     [self.publicContainerView addSubview:self.contentLabel];
 
