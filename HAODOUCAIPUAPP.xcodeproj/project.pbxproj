@@ -175,6 +175,8 @@
 		7DD3ADDB1CE38A0E00F9D3F1 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD3ADD81CE38A0E00F9D3F1 /* UIView+Frame.m */; };
 		7DD3ADDC1CE38A0E00F9D3F1 /* UIView+MasonryAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD3ADDA1CE38A0E00F9D3F1 /* UIView+MasonryAutoLayout.m */; };
 		7DF8937F1CFA9D71003BB2FC /* YHSCookBookDishDetailRelatedTagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF8937E1CFA9D71003BB2FC /* YHSCookBookDishDetailRelatedTagTableViewCell.m */; };
+		7DF893821CFAC84D003BB2FC /* YHSCookBookDishPictureDetailCoverPhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF893811CFAC84D003BB2FC /* YHSCookBookDishPictureDetailCoverPhotoTableViewCell.m */; };
+		7DF893851CFADB1B003BB2FC /* YHSCookBookDishPictureDetailStepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF893841CFADB1B003BB2FC /* YHSCookBookDishPictureDetailStepTableViewCell.m */; };
 		7DFC470A1CED4E7C00A29464 /* YHSCategorySearchResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC47091CED4E7C00A29464 /* YHSCategorySearchResultModel.m */; };
 		7DFC470D1CED4F2F00A29464 /* YHSCategorySearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC470C1CED4F2F00A29464 /* YHSCategorySearchResultTableViewCell.m */; };
 		7DFC47101CED50DD00A29464 /* YHSCategorySearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC470F1CED50DD00A29464 /* YHSCategorySearchResultViewController.m */; };
@@ -534,6 +536,10 @@
 		7DD3ADDA1CE38A0E00F9D3F1 /* UIView+MasonryAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MasonryAutoLayout.m"; sourceTree = "<group>"; };
 		7DF8937D1CFA9D71003BB2FC /* YHSCookBookDishDetailRelatedTagTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookDishDetailRelatedTagTableViewCell.h; sourceTree = "<group>"; };
 		7DF8937E1CFA9D71003BB2FC /* YHSCookBookDishDetailRelatedTagTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookDishDetailRelatedTagTableViewCell.m; sourceTree = "<group>"; };
+		7DF893801CFAC84D003BB2FC /* YHSCookBookDishPictureDetailCoverPhotoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookDishPictureDetailCoverPhotoTableViewCell.h; sourceTree = "<group>"; };
+		7DF893811CFAC84D003BB2FC /* YHSCookBookDishPictureDetailCoverPhotoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookDishPictureDetailCoverPhotoTableViewCell.m; sourceTree = "<group>"; };
+		7DF893831CFADB1B003BB2FC /* YHSCookBookDishPictureDetailStepTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookDishPictureDetailStepTableViewCell.h; sourceTree = "<group>"; };
+		7DF893841CFADB1B003BB2FC /* YHSCookBookDishPictureDetailStepTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookDishPictureDetailStepTableViewCell.m; sourceTree = "<group>"; };
 		7DFC47081CED4E7C00A29464 /* YHSCategorySearchResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCategorySearchResultModel.h; sourceTree = "<group>"; };
 		7DFC47091CED4E7C00A29464 /* YHSCategorySearchResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCategorySearchResultModel.m; sourceTree = "<group>"; };
 		7DFC470B1CED4F2F00A29464 /* YHSCategorySearchResultTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCategorySearchResultTableViewCell.h; sourceTree = "<group>"; };
@@ -1068,6 +1074,10 @@
 				7D24BD2B1CF97AEA0029F515 /* YHSCookBookDishDetailProductTableViewCell.m */,
 				7DF8937D1CFA9D71003BB2FC /* YHSCookBookDishDetailRelatedTagTableViewCell.h */,
 				7DF8937E1CFA9D71003BB2FC /* YHSCookBookDishDetailRelatedTagTableViewCell.m */,
+				7DF893801CFAC84D003BB2FC /* YHSCookBookDishPictureDetailCoverPhotoTableViewCell.h */,
+				7DF893811CFAC84D003BB2FC /* YHSCookBookDishPictureDetailCoverPhotoTableViewCell.m */,
+				7DF893831CFADB1B003BB2FC /* YHSCookBookDishPictureDetailStepTableViewCell.h */,
+				7DF893841CFADB1B003BB2FC /* YHSCookBookDishPictureDetailStepTableViewCell.m */,
 			);
 			path = CookBookDishView;
 			sourceTree = "<group>";
@@ -2071,6 +2081,7 @@
 				7D00F5341CF721CB001495D0 /* YHSCookBookDishVideoStepTableViewCell.m in Sources */,
 				7D063F611CF09A4E00152563 /* YHSCookBookYourLoveMoreTableViewCell.m in Sources */,
 				7D051B621CEF2B2500B97699 /* YHSCookBookHotsActivityModel.m in Sources */,
+				7DF893821CFAC84D003BB2FC /* YHSCookBookDishPictureDetailCoverPhotoTableViewCell.m in Sources */,
 				7DB84FC11CF1AD5200633D55 /* YHSCookBookHotsAlbumMoreModel.m in Sources */,
 				7D070A9D1CF7EB27003E0920 /* ZFPlayerControlView.m in Sources */,
 				7DD3ADAF1CE34D8200F9D3F1 /* YHSCookBookDataUtil.m in Sources */,
@@ -2150,6 +2161,7 @@
 				7D0235541CF0680F00DE6EC0 /* YHSCookBookSearchVIPModel.m in Sources */,
 				7DB84FD41CF1B65A00633D55 /* YHSBasicViewController.m in Sources */,
 				7D012E331CF14C2A002FD903 /* YHSCookBookHotsAlbumDetailElemTableViewCell.m in Sources */,
+				7DF893851CFADB1B003BB2FC /* YHSCookBookDishPictureDetailStepTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

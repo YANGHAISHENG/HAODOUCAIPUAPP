@@ -242,7 +242,7 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER = @"YHSCookBookDish
         
         // 标题
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(weakSelf.topContainerView.mas_top).offset(margin*1.5);
+            make.top.equalTo(weakSelf.topContainerView.mas_top).offset(margin);
             make.left.equalTo(weakSelf.topContainerView.mas_left).offset(margin);
             make.right.equalTo(weakSelf.topContainerView.mas_right).offset(-margin);
         }];
@@ -390,7 +390,7 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER = @"YHSCookBookDish
 
     // 约束的完整性
     [self.publicContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(weakSelf.bottomContainerView.mas_bottom).offset(0.0);
+        make.bottom.equalTo(weakSelf.bottomContainerView.mas_bottom).offset(margin);
     }];
     
 }

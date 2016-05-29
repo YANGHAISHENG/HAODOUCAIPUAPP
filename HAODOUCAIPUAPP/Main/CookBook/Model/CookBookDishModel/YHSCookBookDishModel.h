@@ -277,6 +277,8 @@
 
 @interface YHSCookBookDishStepsModel : NSObject
 
+@property (nonatomic, copy) NSString *num;
+
 @property (nonatomic, copy) NSString *Intro;
 
 @property (nonatomic, copy) NSString *StepPhoto;

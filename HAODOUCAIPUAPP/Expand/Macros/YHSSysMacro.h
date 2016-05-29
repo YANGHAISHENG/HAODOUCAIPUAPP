@@ -35,6 +35,6 @@
 
 
 #pragma mark 菜谱视屏或图片的高度
-#define HEADER_VIDEO_PICTURE_HEIGHT (SCREEN_WIDTH * 9.0 / 16.0);
+#define HEADER_VIDEO_PICTURE_HEIGHT (SCREEN_WIDTH * 9.0 / 16.0)
 
 @end

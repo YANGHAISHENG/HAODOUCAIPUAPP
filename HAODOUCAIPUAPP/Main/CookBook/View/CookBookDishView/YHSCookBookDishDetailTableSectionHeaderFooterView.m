@@ -54,7 +54,6 @@
     
     // 根容器组件
     self.rootContainerView = [[UIView alloc] init];
-    [self.rootContainerView setBackgroundColor:[UIColor whiteColor]];
     [self addSubview:self.rootContainerView];
     
     // 标题
@@ -89,6 +88,11 @@
         make.top.equalTo(weakSelf.mas_top).with.offset(0.0);
         make.left.equalTo(weakSelf.mas_left).with.offset(margin);
         make.height.equalTo(@(_sectionHeight));
+    }];
+    
+    // 约束完整性
+    [self.rootContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(weakSelf.contentLabel.mas_bottom).offset(0.0);
     }];
     
     // 右边按钮
@@ -154,10 +158,8 @@
         
     }
     
-    // 约束完整性
-    [self.rootContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(weakSelf.contentLabel.mas_bottom).offset(0.0);
-    }];
+
+    
 }
 
 

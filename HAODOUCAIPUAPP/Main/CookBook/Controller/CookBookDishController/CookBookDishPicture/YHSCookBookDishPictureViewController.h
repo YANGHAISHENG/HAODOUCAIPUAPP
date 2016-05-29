@@ -8,6 +8,18 @@
 
 #import "YHSBasicWithCollectShareBarItemViewController.h"
 
+
+typedef NS_ENUM(NSInteger, YHSCookBookDishPictureDetailInfoTableSection) {
+    YHSCookBookDishPictureDetailInfoTableSectionCoverPhoto,   // 头部图片
+    YHSCookBookDishPictureDetailInfoTableSectionHead,         // 详情头部
+    YHSCookBookDishPictureDetailInfoTableSectionFoodMaterial, // 食材详情
+    YHSCookBookDishPictureDetailInfoTableSectionStep,         // 制作步骤
+    YHSCookBookDishPictureDetailInfoTableSectionTips,         // 注意提示
+    YHSCookBookDishPictureDetailInfoTableSectionPhotoShow,    // 作品展示
+    YHSCookBookDishPictureDetailInfoTableSectionRelatedTag,   // 相关标签
+};
+
+
 @interface YHSCookBookDishPictureViewController : YHSBasicWithCollectShareBarItemViewController
 
 @property (nonatomic, strong) NSString *uid;

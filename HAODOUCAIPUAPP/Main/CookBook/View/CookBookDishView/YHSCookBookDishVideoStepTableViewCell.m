@@ -128,7 +128,7 @@ NSString * const CELL_IDENTIFIER_DISH_VIDEO_STEP_INFO = @"YHSCookBookDishVideoSt
         make.bottom.equalTo(weakSelf.rootContainerView.mas_bottom).offset(0);
     }];
     
-    // 标题
+    // 序号
     [self.numLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(weakSelf.publicContainerView).offset(margin);
         make.left.equalTo(weakSelf.publicContainerView.mas_left).offset(margin);
