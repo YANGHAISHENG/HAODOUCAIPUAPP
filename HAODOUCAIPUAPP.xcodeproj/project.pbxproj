@@ -174,6 +174,7 @@
 		7DD3ADB91CE350F600F9D3F1 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD3ADB81CE350F600F9D3F1 /* MBProgressHUD.m */; };
 		7DD3ADDB1CE38A0E00F9D3F1 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD3ADD81CE38A0E00F9D3F1 /* UIView+Frame.m */; };
 		7DD3ADDC1CE38A0E00F9D3F1 /* UIView+MasonryAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD3ADDA1CE38A0E00F9D3F1 /* UIView+MasonryAutoLayout.m */; };
+		7DF8937F1CFA9D71003BB2FC /* YHSCookBookDishDetailRelatedTagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF8937E1CFA9D71003BB2FC /* YHSCookBookDishDetailRelatedTagTableViewCell.m */; };
 		7DFC470A1CED4E7C00A29464 /* YHSCategorySearchResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC47091CED4E7C00A29464 /* YHSCategorySearchResultModel.m */; };
 		7DFC470D1CED4F2F00A29464 /* YHSCategorySearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC470C1CED4F2F00A29464 /* YHSCategorySearchResultTableViewCell.m */; };
 		7DFC47101CED50DD00A29464 /* YHSCategorySearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC470F1CED50DD00A29464 /* YHSCategorySearchResultViewController.m */; };
@@ -531,6 +532,8 @@
 		7DD3ADD81CE38A0E00F9D3F1 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		7DD3ADD91CE38A0E00F9D3F1 /* UIView+MasonryAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MasonryAutoLayout.h"; sourceTree = "<group>"; };
 		7DD3ADDA1CE38A0E00F9D3F1 /* UIView+MasonryAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MasonryAutoLayout.m"; sourceTree = "<group>"; };
+		7DF8937D1CFA9D71003BB2FC /* YHSCookBookDishDetailRelatedTagTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookDishDetailRelatedTagTableViewCell.h; sourceTree = "<group>"; };
+		7DF8937E1CFA9D71003BB2FC /* YHSCookBookDishDetailRelatedTagTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookDishDetailRelatedTagTableViewCell.m; sourceTree = "<group>"; };
 		7DFC47081CED4E7C00A29464 /* YHSCategorySearchResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCategorySearchResultModel.h; sourceTree = "<group>"; };
 		7DFC47091CED4E7C00A29464 /* YHSCategorySearchResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCategorySearchResultModel.m; sourceTree = "<group>"; };
 		7DFC470B1CED4F2F00A29464 /* YHSCategorySearchResultTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCategorySearchResultTableViewCell.h; sourceTree = "<group>"; };
@@ -1063,6 +1066,8 @@
 				7D0497D51CF873B2005E3F74 /* YHSCookBookDishDetailTipsTableViewCell.m */,
 				7D24BD2A1CF97AEA0029F515 /* YHSCookBookDishDetailProductTableViewCell.h */,
 				7D24BD2B1CF97AEA0029F515 /* YHSCookBookDishDetailProductTableViewCell.m */,
+				7DF8937D1CFA9D71003BB2FC /* YHSCookBookDishDetailRelatedTagTableViewCell.h */,
+				7DF8937E1CFA9D71003BB2FC /* YHSCookBookDishDetailRelatedTagTableViewCell.m */,
 			);
 			path = CookBookDishView;
 			sourceTree = "<group>";
@@ -2096,6 +2101,7 @@
 				7DFE1D831CE219B8005A061B /* AppDelegate.m in Sources */,
 				7DB84FD71CF1B65A00633D55 /* YHSBasicWithSearchBarItemViewController.m in Sources */,
 				7D070A9B1CF7EB27003E0920 /* ZFBrightnessView.m in Sources */,
+				7DF8937F1CFA9D71003BB2FC /* YHSCookBookDishDetailRelatedTagTableViewCell.m in Sources */,
 				7DAA898A1CF2EA280046CCC0 /* YHSCookBookShakeItOffDetailViewController.m in Sources */,
 				7D05A3231CF29F6E00F3CF60 /* YHSCookBookShakeItOffViewController.m in Sources */,
 				7DC87CC21CF31EA500C435C6 /* YHSCookBookYourLoveDishPictureViewController.m in Sources */,

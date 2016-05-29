@@ -31,7 +31,7 @@ static CGFloat PRODUCT_CAROUSEL_VIEW_HEIGHT = 110; // 动画视图高度
  */
 @property (nonatomic, strong) iCarousel *productiCarouselView;
 @property (nonatomic, strong) NSArray<YHSCookBookDishProductModel *> *iCarouselData;
-
+@property (nonatomic, strong) UIPageControl *productPageIndicator;
 /**
  * 查看全部作品
  */
@@ -62,8 +62,6 @@ static CGFloat PRODUCT_CAROUSEL_VIEW_HEIGHT = 110; // 动画视图高度
     
     // 公共容器组件
     self.publicContainerView =[[UIView alloc] init];
-    [self.publicContainerView.layer setMasksToBounds:YES];
-    [self.publicContainerView.layer setMasksToBounds:YES];
     [self.rootContainerView addSubview:self.publicContainerView];
 
 }
@@ -123,7 +121,7 @@ static CGFloat PRODUCT_CAROUSEL_VIEW_HEIGHT = 110; // 动画视图高度
             [label setFont:[UIFont boldSystemFontOfSize:13.0]];
 
             [label mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(weakSelf.publicContainerView.mas_top).offset(margin);
+                make.top.equalTo(weakSelf.publicContainerView.mas_top).offset(0.0);
                 make.centerX.equalTo(weakSelf.publicContainerView.mas_centerX);
             }];
             
@@ -161,6 +159,26 @@ static CGFloat PRODUCT_CAROUSEL_VIEW_HEIGHT = 110; // 动画视图高度
             self.productiCarouselView = productiCarouselView;
             
             
+            // 作品指示器
+            UIPageControl *productPageIndicator = ({
+                UIPageControl *pageControl = [[UIPageControl alloc] init];
+                [pageControl setNumberOfPages:self.iCarouselData.count];
+                [pageControl setCurrentPage:0];
+                [pageControl setPageIndicatorTintColor:[UIColor lightGrayColor]];
+                [pageControl setCurrentPageIndicatorTintColor:[UIColor colorWithRed:0.49 green:0.71 blue:0.27 alpha:1.00]];
+                [self.publicContainerView addSubview:pageControl];
+                
+                [pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.equalTo(weakSelf.productiCarouselView.mas_bottom).offset(margin);
+                    make.centerX.equalTo(weakSelf.publicContainerView.mas_centerX);
+                    make.height.equalTo(@10);
+                }];
+                
+                pageControl;
+            });
+            self.productPageIndicator = productPageIndicator;
+            
+            
             // 查看全部作品
             UILabel *allProductLabel = ({
                 UILabel *label = [[UILabel alloc] init];
@@ -169,7 +187,7 @@ static CGFloat PRODUCT_CAROUSEL_VIEW_HEIGHT = 110; // 动画视图高度
                 [label setUserInteractionEnabled:YES];
                 [label setTextColor:[UIColor colorWithRed:0.35 green:0.35 blue:0.36 alpha:1.00]];
                 [label setTextAlignment:NSTextAlignmentCenter];
-                [label setFont:[UIFont boldSystemFontOfSize:13.0]];
+                [label setFont:[UIFont boldSystemFontOfSize:15.0]];
                 
                 UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pressAllProductViewArea:)];
                 tapGesture.numberOfTapsRequired = 1; // 设置点按次数，默认为1
@@ -177,7 +195,7 @@ static CGFloat PRODUCT_CAROUSEL_VIEW_HEIGHT = 110; // 动画视图高度
                 [label addGestureRecognizer:tapGesture];
                 
                 [label mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.top.equalTo(weakSelf.productiCarouselView.mas_bottom).offset(margin);
+                    make.top.equalTo(weakSelf.productPageIndicator.mas_bottom).offset(margin);
                     make.centerX.equalTo(weakSelf.publicContainerView.mas_centerX);
                 }];
                 
@@ -309,13 +327,13 @@ static CGFloat PRODUCT_CAROUSEL_VIEW_HEIGHT = 110; // 动画视图高度
 
 - (void)carouselCurrentItemIndexDidChange:(__unused iCarousel *)carousel
 {
-
+    [self.productPageIndicator setCurrentPage:self.productiCarouselView.currentItemIndex];
 }
 
 
 - (void)carouselDidEndScrollingAnimation:(iCarousel *)carousel
 {
-
+    [self.productPageIndicator setCurrentPage:self.productiCarouselView.currentItemIndex];
 }
 
 
@@ -335,6 +353,7 @@ static CGFloat PRODUCT_CAROUSEL_VIEW_HEIGHT = 110; // 动画视图高度
         [self.delegate didClickElementOfCellWithAllProductModel:self.model];
     }
 }
+
 
 
 @end

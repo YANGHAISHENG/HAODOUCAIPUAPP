@@ -26,6 +26,16 @@
 
 @implementation YHSCookBookDishVideoViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (!self.videoPictureView && !self.videoZFPlayerView) {
+        // 视屏或照片区域
+        [self createVideoPictureView];
+    }
+    
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
@@ -33,7 +43,8 @@
     [self.videoZFPlayerView resetPlayer];
     [self.videoZFPlayerView removeFromSuperview];
     self.videoZFPlayerView = nil;
-    
+    self.videoViewSetpController.videoZFPlayerView = nil;
+
 }
 
 
@@ -64,23 +75,11 @@
 
 // 创建主界面区域
 - (void)createMainUI
-{
-    WEAKSELF(weakSelf);
-    
+{    
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     // 视屏或照片区域
-    {
-        self.videoPictureView = [[YHSCookBookDishVideoPictureView alloc] initWithFrame:CGRectZero andInfoModel:self.infoModel];
-        self.videoPictureView.delegate = self;
-        [self.view addSubview:self.videoPictureView];
-        [self.videoPictureView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(weakSelf.mas_topLayoutGuide).offset(0.0);
-            make.left.right.equalTo(weakSelf.view).offset(0.0);
-            // 注意此处，宽高比16：9优先级比1000低就行，在因为iPhone 4S宽高比不是16：9
-            make.height.equalTo(self.videoPictureView.mas_width).multipliedBy(9.0f/16.0f).with.priority(750);
-        }];
-    }
+    [self createVideoPictureView];
     
     // 滑动视图区域
     {
@@ -112,6 +111,21 @@
     
 }
 
+// 创建视屏首页照片区域
+- (void)createVideoPictureView
+{
+    WEAKSELF(weakSelf);
+    
+    self.videoPictureView = [[YHSCookBookDishVideoPictureView alloc] initWithFrame:CGRectZero andInfoModel:self.infoModel];
+    self.videoPictureView.delegate = self;
+    [self.view addSubview:self.videoPictureView];
+    [self.videoPictureView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weakSelf.mas_topLayoutGuide).offset(0.0);
+        make.left.right.equalTo(weakSelf.view).offset(0.0);
+        // 注意此处，宽高比16：9优先级比1000低就行，在因为iPhone 4S宽高比不是16：9
+        make.height.equalTo(self.videoPictureView.mas_width).multipliedBy(9.0f/16.0f).with.priority(750);
+    }];
+}
 
 // 创建视屏播放控件
 - (void)createVideoZFPlayerView:(void(^)(void))then
@@ -120,6 +134,7 @@
     
     // 移除封面图片
     [self.videoPictureView removeFromSuperview];
+    self.videoPictureView = nil;
     
     // 创建视屏控件
     self.videoZFPlayerView = [ZFPlayerView sharedPlayerView];

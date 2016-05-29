@@ -8,9 +8,12 @@
 #import "YHSCookBookDishDetailFoodMaterialTableViewCell.h"
 #import "YHSCookBookDishDetailTipsTableViewCell.h"
 #import "YHSCookBookDishDetailProductTableViewCell.h"
+#import "YHSCookBookDishDetailRelatedTagTableViewCell.h"
+
+#import "YHSCategorySearchResultViewController.h"
 
 
-@interface YHSCookBookDishVideoDetailInfoViewController () <UITableViewDelegate, UITableViewDataSource, YHSCookBookDishDetailTableSectionHeaderFooterViewDelegate, YHSCookBookDishDetailHeadTableViewCellDelegate, YHSCookBookDishDetailFoodMaterialTableViewCellDelegate, YHSCookBookDishDetailProductTableViewCellDelegate>
+@interface YHSCookBookDishVideoDetailInfoViewController () <UITableViewDelegate, UITableViewDataSource, YHSCookBookDishDetailTableSectionHeaderFooterViewDelegate, YHSCookBookDishDetailHeadTableViewCellDelegate, YHSCookBookDishDetailFoodMaterialTableViewCellDelegate, YHSCookBookDishDetailProductTableViewCellDelegate, YHSCookBookDishDetailRelatedTagTableViewCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *tableData;
@@ -43,6 +46,10 @@
 {    
     WEAKSELF(weakSelf);
     
+    if (self.tableView) {
+        return;
+    }
+    
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
     
     // 创建表格
@@ -59,9 +66,9 @@
         // 添加约束
         [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(weakSelf.view.mas_top).with.offset(0.0);
-            make.left.equalTo(weakSelf.view.mas_left).with.offset(0);
-            make.bottom.equalTo(weakSelf.view.mas_bottom).with.offset(0);
-            make.right.equalTo(weakSelf.view.mas_right).with.offset(0);
+            make.left.equalTo(weakSelf.view.mas_left).with.offset(0.0);
+            make.bottom.equalTo(weakSelf.view.mas_bottom).with.offset(0.0);
+            make.right.equalTo(weakSelf.view.mas_right).with.offset(0.0);
         }];
         
         // 自动算高 UITableView+FDTemplateLayoutCell
@@ -82,7 +89,7 @@
         [self.tableView registerClass:[YHSCookBookDishDetailFoodMaterialTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_COOKBOOK_DISH_FOOD_MATERIAL];
         [self.tableView registerClass:[YHSCookBookDishDetailTipsTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_COOKBOOK_DISH_TIPS];
         [self.tableView registerClass:[YHSCookBookDishDetailProductTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_PRODUCT];
-        
+        [self.tableView registerClass:[YHSCookBookDishDetailRelatedTagTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_RELATED_TAG];
     }
     
 }
@@ -121,21 +128,14 @@
     }];
     [self.tableData addObject:foodMaterials];
     
-    
     // 3.注意提示
-    [self.tableData addObject:@[self.infoModel.Tips].mutableCopy];
+    [self.tableData addObject:@[self.infoModel.Tips]];
     
     // 4.作品展示
-    [self.tableData addObject:@[self.infoModel].mutableCopy];
+    [self.tableData addObject:@[self.infoModel]];
     
-    // 5.点赞列表
-    [self.tableData addObject:@[self.infoModel].mutableCopy];
-    
-    // 6.打赏列表
-    [self.tableData addObject:@[self.infoModel].mutableCopy];
-    
-    // 7.相关标签
-    [self.tableData addObject:@[self.infoModel].mutableCopy];
+    // 5.相关标签
+    [self.tableData addObject:@[self.infoModel]];
     
     // 刷新界面
     !then ?: then(YES);
@@ -156,9 +156,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    //return self.tableData.count;
-    
-    return 4;
+    return self.tableData.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -220,6 +218,17 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
+        // 相关标签
+        case YHSCookBookDishVideoDetailInfoTableSectionRelatedTag:{
+            YHSCookBookDishDetailRelatedTagTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_RELATED_TAG];
+            if (!cell) {
+                cell = [[YHSCookBookDishDetailRelatedTagTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_RELATED_TAG];
+            }
+            cell.delegate = self;
+            cell.model = self.tableData[indexPath.section][indexPath.row];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        }
         default: {
             return  nil;
         }
@@ -258,6 +267,13 @@
                 cell.model = self.tableData[indexPath.section][indexPath.row];
             }];
         }
+        // 相关标签
+        case YHSCookBookDishVideoDetailInfoTableSectionRelatedTag:{
+            return [self.tableView fd_heightForCellWithIdentifier:CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_RELATED_TAG cacheByIndexPath:indexPath configuration:^(YHSCookBookDishDetailRelatedTagTableViewCell *cell) {
+                // 配置 cell 的数据源，和 "cellForRow" 干的事一致
+                cell.model = self.tableData[indexPath.section][indexPath.row];
+            }];
+        }
         default: {
             return  0.0;
         }
@@ -275,7 +291,7 @@
     switch (section) {
         // 详情头部
         case YHSCookBookDishVideoDetailInfoTableSectionHead:{
-            return nil;
+            return [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, CGFLOAT_MIN)];
         }
         // 食材详情
         case YHSCookBookDishVideoDetailInfoTableSectionFoodMaterial:{
@@ -294,10 +310,6 @@
             YHSCookBookDishDetailTableSectionHeaderFooterView *sectionHeaderView = [[YHSCookBookDishDetailTableSectionHeaderFooterView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) content:@"作品展示" color:color font:font tableSecion:YHSCookBookDishVideoDetailInfoTableSectionPhotoShow tagHeight:height];
             sectionHeaderView.delegate = self;
             return sectionHeaderView;
-        }
-        case YHSCookBookDishVideoDetailInfoTableSectionLikeUser: // 点赞列表
-        case YHSCookBookDishVideoDetailInfoTableSectionPlayTour:{ // 打赏列表
-            return nil;
         }
         // 相关标签
         case YHSCookBookDishVideoDetailInfoTableSectionRelatedTag:{
@@ -337,10 +349,6 @@
         case YHSCookBookDishVideoDetailInfoTableSectionPhotoShow:{
             return nil;
         }
-        case YHSCookBookDishVideoDetailInfoTableSectionLikeUser: // 点赞列表
-        case YHSCookBookDishVideoDetailInfoTableSectionPlayTour:{ // 打赏列表
-            return nil;
-        }
         // 相关标签
         case YHSCookBookDishVideoDetailInfoTableSectionRelatedTag:{
             return nil;
@@ -365,12 +373,8 @@
         }
         case YHSCookBookDishVideoDetailInfoTableSectionFoodMaterial: // 食材详情
         case YHSCookBookDishVideoDetailInfoTableSectionTips: // 注意提示
-        case YHSCookBookDishVideoDetailInfoTableSectionPhotoShow:{ // 作品展示
+        case YHSCookBookDishVideoDetailInfoTableSectionPhotoShow: { // 作品展示
            return height;
-        }
-        case YHSCookBookDishVideoDetailInfoTableSectionLikeUser: // 点赞列表
-        case YHSCookBookDishVideoDetailInfoTableSectionPlayTour:{ // 打赏列表
-            return 0.0;
         }
         // 相关标签
         case YHSCookBookDishVideoDetailInfoTableSectionRelatedTag:{
@@ -384,13 +388,14 @@
     return 0.0;
 }
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     
     CGFloat height = 40.0;
     
     switch (section) {
         // 详情头部
-        case YHSCookBookDishVideoDetailInfoTableSectionHead:{
+        case YHSCookBookDishVideoDetailInfoTableSectionHead: {
             return 0.0;
         }
         case YHSCookBookDishVideoDetailInfoTableSectionFoodMaterial: { // 食材详情
@@ -398,8 +403,6 @@
         }
         case YHSCookBookDishVideoDetailInfoTableSectionTips: // 注意提示
         case YHSCookBookDishVideoDetailInfoTableSectionPhotoShow: // 作品展示
-        case YHSCookBookDishVideoDetailInfoTableSectionLikeUser: // 点赞列表
-        case YHSCookBookDishVideoDetailInfoTableSectionPlayTour: // 打赏列表
         case YHSCookBookDishVideoDetailInfoTableSectionRelatedTag:{ // 相关标签
             return 0.0;
         }
@@ -410,12 +413,6 @@
     
     return 0.0;
 }
-
-
-
-
-
-
 
 
 #pragma mark - 触发点击食材采购清单事件
@@ -456,7 +453,18 @@
     [self alertPromptMessage:@"查看全部作品"];
 }
 
+- (void)didClickElementOfCellWithDishDetailTagsModel:(YHSCookBookDishTagsModel *)model
+{
 
+    YHSCategorySearchResultViewController *searchResultController = [YHSCategorySearchResultViewController new];
+    [searchResultController setTagId:[NSString stringWithFormat:@"%ld", model.Id]];
+    [searchResultController setTagName:model.Name];
+    [searchResultController setTitle:model.Name];
+    [searchResultController setScene:@"t1"];
+    [searchResultController setUuid:@"72b9cf70da593de0478cbb90f6025bf7"];
+    [self.navigationController pushViewController:searchResultController animated:YES];
+    
+}
 
 
 #pragma mark - 提示信息
