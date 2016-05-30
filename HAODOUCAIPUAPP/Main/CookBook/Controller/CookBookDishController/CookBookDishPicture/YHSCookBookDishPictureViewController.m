@@ -294,7 +294,6 @@
 {
     // 默认主页面内容，子类必须继承
     NSMutableDictionary *params = [YHSCookBookDataUtil getCookBookDishPictureRequestParams];
-    [params setObject:self.return_request_id forKey:@"return_request_id"];
     [params setObject:self.rid forKey:@"rid"];  // 必须有
     return params;
 }
