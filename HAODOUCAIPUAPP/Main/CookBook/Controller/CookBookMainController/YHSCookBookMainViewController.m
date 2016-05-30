@@ -42,6 +42,8 @@
 #import "YHSCookBookBannnerDetailRecipeDishVideoViewController.h"
 #import "YHSCookBookBannnerDetailRecipeDishPictureViewController.h"
 
+#import "YHSCookBookKitchenViewController.h"
+
 
 @interface YHSCookBookMainViewController () <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, YHSCookBookTableSectionHeaderViewDelegate, YHSCookBookBannerTableViewCellDelegate, YHSCookBookToolsTableViewCellDelegate, YHSCookBookHotsAlbumTableViewCellDelegate, YHSCookBookYourLoveTableViewCellDelegate, YHSCookBookRecommedTableViewCellDelegate, YHSCookBookGoodsTableViewCellDelegate, YHSCookBookQualityReadTableViewCellDelegate, YHSCookBookHotsActivityTableViewCellDelegate, YHSCookBookHaoDouVIPTableViewCellDelegate, YHSCookBookPublishTableViewCellDelegate>
 
@@ -875,14 +877,30 @@
 #pragma mark - 触发点击分类事件
 - (void)didClickElementOfCellWithToolModel:(YHSCookBookToolsModel *)model
 {
-    if ([model.Title isEqual:@"摇一摇"]) {
+    if ([model.Title isEqual:@"美食汇"]) {
+
+        // 跳转到家页面
+        [self.tabBarController setSelectedIndex:1];
+        
+    } else if ([model.Title isEqual:@"厨房宝典"]) {
+        
+        YHSCookBookKitchenViewController *kitchenViewController = [YHSCookBookKitchenViewController new];
+        [kitchenViewController setTitle:@"厨房宝典"];
+        [self.navigationController pushViewController:kitchenViewController animated:YES];
+        
+    } else if ([model.Title isEqual:@"摇一摇"]) {
+        
         YHSCookBookShakeItOffViewController *shakeItOffController = [YHSCookBookShakeItOffViewController new];
         [shakeItOffController setTitle:@"摇一摇"];
         [self.navigationController pushViewController:shakeItOffController animated:YES];
+        
     } else {
+        
         // 提示信息
         [self alertPromptMessage:@"分类标签"];
+        
     }
+    
 }
 
 #pragma mark - 触发点击热门专辑事件

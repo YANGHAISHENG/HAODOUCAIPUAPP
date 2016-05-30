@@ -176,7 +176,10 @@
 + (NSMutableDictionary *)getCookBookDishVideoMP4RequestParams;
 
 
-
+#pragma mark - N027.厨房宝典
++ (NSString *)getCookBookKitchenRequestURLString;
+#pragma mark - N027.厨房宝典
++ (NSMutableDictionary *)getCookBookKitchenRequestParams;
 
 
 @end

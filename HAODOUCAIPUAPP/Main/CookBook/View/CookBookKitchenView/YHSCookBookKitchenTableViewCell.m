@@ -1,17 +1,60 @@
 //
-//  YHSCookBookMenuTableViewCell.m
+//  YHSCookBookKitchenTableViewCell.m
 //  HAODOUCAIPUAPP
 //
-//  Created by YANGHAISHENG on 16/5/23.
+//  Created by YANGHAISHENG on 16/5/30.
 //  Copyright © 2016年 YANGHAISHENG. All rights reserved.
 //
 
-#import "YHSCookBookMenuTableViewCell.h"
-#import "YHSCookBookHotsAlbumMoreModel.h"
+#import "YHSCookBookKitchenTableViewCell.h"
+#import "YHSCookBookKitchenModel.h"
 
 
-@implementation YHSCookBookMenuTableViewCell
+NSString * const CELL_IDENTIFIER_COOKBOOK_KITCHEN = @"YHSCookBookKitchenTableViewCellID";
 
+@interface YHSCookBookKitchenTableViewCell ()
+
+/**
+ * 根容器组件
+ */
+@property (nonnull, nonatomic, strong) UIView *rootContainerView;
+
+/**
+ * 公共容器组件
+ */
+@property (nonnull, nonatomic, strong) UIView *publicContainerView;
+
+/**
+ * 图片
+ */
+@property (nonnull, nonatomic, strong) UIImageView *coverImageView;
+
+/**
+ * 标题
+ */
+@property (nonnull, nonatomic, strong) UILabel *titleLabel;
+
+/**
+ * 作者时间
+ */
+@property (nonnull, nonatomic, strong) UILabel *collectionLabel;
+
+/**
+ * 内容详情
+ */
+@property (nonnull, nonatomic, strong) UILabel *contentLabel;
+
+
+/**
+ * 分割线
+ */
+@property (nonnull, nonatomic, strong) UIView *separatorLineView;
+
+
+@end
+
+
+@implementation YHSCookBookKitchenTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     
@@ -60,7 +103,7 @@
     [self.titleLabel setTextAlignment:NSTextAlignmentLeft];
     [self.publicContainerView addSubview:self.titleLabel];
     
-    // 播放时长/收藏总数/浏览总数
+    //  作者时间
     self.collectionLabel = [UILabel new];
     [self.collectionLabel setUserInteractionEnabled:YES];
     [self.collectionLabel setTextColor:[UIColor colorWithRed:0.56 green:0.56 blue:0.57 alpha:1.00]];
@@ -110,8 +153,8 @@
     [self.coverImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(weakSelf.publicContainerView.mas_top).offset(margin/2.0);
         make.left.equalTo(weakSelf.publicContainerView.mas_left).offset(margin);
-        make.width.equalTo(@100);
-        make.height.equalTo(@70);
+        make.width.equalTo(weakSelf.publicContainerView.mas_width).multipliedBy(3.0/10.0);
+        make.height.equalTo(weakSelf.coverImageView.mas_width).multipliedBy(7.0f/10.0f).with.priority(750);
     }];
     
     // 标题
@@ -122,7 +165,7 @@
         make.height.equalTo(weakSelf.coverImageView.mas_height).multipliedBy(1.0/3.0);
     }];
     
-    // 收藏总数/浏览总数
+    //  作者时间
     [self.collectionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(weakSelf.titleLabel.mas_bottom);
         make.left.equalTo(weakSelf.coverImageView.mas_right).offset(margin);
@@ -153,12 +196,43 @@
     
 }
 
+/**
+ *  设置控件属性
+ */
+- (void)setModel:(YHSCookBookKitchenModel *)model
+{
+    _model = model;
+    
+    if (!_model) {
+        return;
+    }
+    
+    // 图片
+    [self.coverImageView sd_setImageWithURL:[NSURL URLWithString:_model.Image] placeholderImage:[UIImage imageNamed:PICTURE_PLACEHOLDER]];
+    
+    // 标题
+    [self.titleLabel setText:_model.Title];
+    
+    
+    //  作者时间
+    [self.collectionLabel setText:_model.Collection];
+    
+    // 详情
+    [self.contentLabel setText:_model.Content];
+    
+}
+
 
 #pragma mark - 触发操作事件
 
 - (void)pressPublicContainerArea:(UITapGestureRecognizer *)gesture
 {
-    // 子类必须继承
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickElementOfCellWithCookBookKitchenModel:)]) {
+        [self.delegate didClickElementOfCellWithCookBookKitchenModel:self.model];
+    }
+    
 }
+
 
 @end

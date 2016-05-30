@@ -461,6 +461,23 @@
 }
 
 
+#pragma mark - N027.厨房宝典
++ (NSString *)getCookBookKitchenRequestURLString
+{
+    return @"http://api.haodou.com/index.php?appid=2&appkey=9ef269eec4f7a9d07c73952d06b5413f&format=json&sessionid=1464576107391&vc=83&vn=6.1.0&loguid=9798666&deviceid=haodou864601020999058&uuid=72b9cf70da593de0478cbb90f6025bf7&channel=huawei_v610&method=Wiki.getListByType&virtual=&signmethod=md5&v=2&timestamp=1464588211&nonce=0.026340558162819994&appsign=050889dc1a996c27390cc206a0a17f12";
+}
+#pragma mark - N027.厨房宝典
++ (NSMutableDictionary *)getCookBookKitchenRequestParams
+{
+    return @{@"tagid":@"0",
+             @"limit":@"20",
+             @"offset":@"0",
+             @"type":@"1",
+             @"appqs":@"haodourecipe://haodou.com/wiki/list/",
+             @"uuid":@"72b9cf70da593de0478cbb90f6025bf7"}.mutableCopy;
+}
+
+
 
 
 @end
