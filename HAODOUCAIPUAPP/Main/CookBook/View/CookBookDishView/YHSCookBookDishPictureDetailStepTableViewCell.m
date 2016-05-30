@@ -177,16 +177,21 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_PICTURE_DETAIL_STEP = @"YHSCookBo
     
     
     // 详情
+    
     [self.introLabel setText:_model.Intro];
     {
         WEAKSELF(weakSelf);
         CGFloat margin = 10.0;
+        
         CGFloat maxWidth = SCREEN_WIDTH*7.0/10.0-numSize.width-3.5*margin;
+        [self.introLabel setPreferredMaxLayoutWidth:maxWidth];
+        
         NSDictionary *introAttributes = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:16]};
         CGSize introSize = [_model.Intro boundingRectWithSize:CGSizeMake(maxWidth, MAXFLOAT)
                                                       options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                                    attributes:introAttributes
                                                       context:nil].size;
+        YHSLogRed(@"%f", introSize.height);
         if (introSize.height > SCREEN_WIDTH*21.0/100.0) {
             [self.introLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(weakSelf.publicContainerView).offset(margin);
