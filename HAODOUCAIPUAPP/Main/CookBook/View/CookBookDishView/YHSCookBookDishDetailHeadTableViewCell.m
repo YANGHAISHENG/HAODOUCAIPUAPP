@@ -52,6 +52,10 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER = @"YHSCookBookDish
 @property (nonatomic, strong) UIView *bottomContainerView;
 @property (nonatomic, strong) UILabel *foodIntroLabel; // 菜谱的介绍说明
 
+@property (nonatomic, assign) CGFloat foodIntroLabelHeight;
+@property (strong, nonatomic) MASConstraint *foodIntroLabelHeightConstraint; // 动态变高
+@property (strong, nonatomic) NSIndexPath *indexPath;
+
 @end
 
 
@@ -203,7 +207,14 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER = @"YHSCookBookDish
         [self.foodIntroLabel setTextColor:[UIColor blackColor]];
         [self.foodIntroLabel setFont:[UIFont systemFontOfSize:16.0]];
         [self.foodIntroLabel setTextAlignment:NSTextAlignmentLeft];
+        [self.foodIntroLabel setUserInteractionEnabled:YES];
         [self.bottomContainerView addSubview:self.foodIntroLabel];
+        
+        
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pressFoodIntroLabel:)];
+        tapGesture.numberOfTapsRequired = 1; // 设置点按次数，默认为1
+        tapGesture.numberOfTouchesRequired = 1; // 点按的手指数
+        [self.foodIntroLabel addGestureRecognizer:tapGesture];
     }
     
 }
@@ -375,10 +386,15 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER = @"YHSCookBookDish
         }];
         
         // 菜谱介绍
+        _foodIntroLabelHeight = 100.0;
+        CGFloat preferredMaxWidth = SCREEN_WIDTH-2*margin; // 计算UILabel的preferredMaxLayoutWidth值，多行时必须设置这个值，否则系统无法决定Label的宽度
+        [self.foodIntroLabel setPreferredMaxLayoutWidth:preferredMaxWidth];
         [self.foodIntroLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(weakSelf.bottomContainerView.mas_top).offset(margin);
             make.left.equalTo(weakSelf.bottomContainerView.mas_left).offset(margin);
             make.right.equalTo(weakSelf.bottomContainerView.mas_right).offset(-margin);
+            // 加上高度的限制，优先级只设置成High，比正常的高度约束低一些，防止冲突
+            _foodIntroLabelHeightConstraint = make.height.lessThanOrEqualTo(@(_foodIntroLabelHeight)).with.priorityHigh();
         }];
         
         // 约束完整性
@@ -398,9 +414,11 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER = @"YHSCookBookDish
 /**
  *  设置控件属性
  */
-- (void)setModel:(YHSCookBookDishModel *)model
+- (void)setModel:(YHSCookBookDishModel *)model indexPath:(NSIndexPath *)indexPath
 {
     _model = model;
+    
+    _indexPath = indexPath;
     
     if (!_model) {
         return;
@@ -535,6 +553,13 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER = @"YHSCookBookDish
     {
         // 菜谱介绍
         self.foodIntroLabel.text = model.Intro;
+        
+        // 是否显示全文
+        if (_model.isExpandedAllIntro) {
+            [_foodIntroLabelHeightConstraint uninstall];
+        } else {
+            [_foodIntroLabelHeightConstraint install];
+        }
     }
     
     
@@ -560,6 +585,16 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER = @"YHSCookBookDish
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(pressRelationImageViewArea:)]) {
         [self.delegate pressRelationImageViewArea:self.model];
+    }
+    
+}
+
+// 点击显示菜谱介绍文字
+- (void)pressFoodIntroLabel:(UITapGestureRecognizer *)gesture
+{
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didFoodIntroLabelWithCookBookDishModel:expandedAllWithIndexPath:)]) {
+        [self.delegate didFoodIntroLabelWithCookBookDishModel:self.model expandedAllWithIndexPath:self.indexPath];
     }
     
 }

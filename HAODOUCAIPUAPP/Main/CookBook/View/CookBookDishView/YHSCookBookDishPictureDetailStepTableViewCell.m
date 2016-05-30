@@ -25,6 +25,7 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_PICTURE_DETAIL_STEP = @"YHSCookBo
  * 公共容器组件
  */
 @property (nonatomic, strong) UIView *publicContainerView;
+@property (nonatomic, strong) MASConstraint *publicContainerViewBottomConstraint;
 
 /**
  * 图片
@@ -145,7 +146,7 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_PICTURE_DETAIL_STEP = @"YHSCookBo
     
     // 约束的完整性
     [self.publicContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.greaterThanOrEqualTo(@(SCREEN_WIDTH*21.0/100.0+2*margin));
+        _publicContainerViewBottomConstraint = make.bottom.equalTo(weakSelf.stepPhotoView.mas_bottom).offset(margin);
     }];
     
 }
@@ -160,7 +161,7 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_PICTURE_DETAIL_STEP = @"YHSCookBo
     if (!_model) {
         return;
     }
-    
+
     // 图片
     [self.stepPhotoView sd_setImageWithURL:[NSURL URLWithString:_model.StepPhoto] placeholderImage:[UIImage imageNamed:PICTURE_PLACEHOLDER]];
     
@@ -177,7 +178,6 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_PICTURE_DETAIL_STEP = @"YHSCookBo
     
     
     // 详情
-    
     [self.introLabel setText:_model.Intro];
     {
         WEAKSELF(weakSelf);
@@ -193,18 +193,19 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_PICTURE_DETAIL_STEP = @"YHSCookBo
                                                       context:nil].size;
         YHSLogRed(@"%f", introSize.height);
         if (introSize.height > SCREEN_WIDTH*21.0/100.0) {
-            [self.introLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(weakSelf.publicContainerView).offset(margin);
-                make.left.equalTo(weakSelf.numLabel.mas_right).offset(margin/2.0);
-                make.right.equalTo(weakSelf.publicContainerView.mas_right).offset(-margin);
-                make.bottom.equalTo(weakSelf.publicContainerView.mas_bottom).offset(-margin);
+
+            [_publicContainerViewBottomConstraint uninstall];
+            [self.publicContainerView mas_updateConstraints:^(MASConstraintMaker *make) {
+                _publicContainerViewBottomConstraint = make.bottom.equalTo(weakSelf.introLabel.mas_bottom).offset(margin);
             }];
+
         } else {
-            [self.introLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(weakSelf.publicContainerView).offset(margin);
-                make.left.equalTo(weakSelf.numLabel.mas_right).offset(margin/2.0);
-                make.right.equalTo(weakSelf.publicContainerView.mas_right).offset(-margin);
+            
+            [_publicContainerViewBottomConstraint uninstall];
+            [self.publicContainerView mas_updateConstraints:^(MASConstraintMaker *make) {
+                _publicContainerViewBottomConstraint = make.bottom.equalTo(weakSelf.stepPhotoView.mas_bottom).offset(margin);
             }];
+            
         }
         
     }

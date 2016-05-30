@@ -29,7 +29,7 @@ NSString * const PICTURE_PLACEHOLDER = @"default_big.png";
 NSString * const NOTIFICATION_NETWORKING_STATUS_FREQUENCY  = @"ReachabilityNetWorkingStatusFrequency";
 
 #pragma mark 测试数据加载时SLEEP延迟动画显示时间
-CGFloat const LOADING_SLEEP_TIME = 2.0;
+CGFloat const LOADING_SLEEP_TIME = 0.0;
 
 #pragma mark 网络状态提示信息字体
 CGFloat const LOADING_FONT_SIZE = 12.0;

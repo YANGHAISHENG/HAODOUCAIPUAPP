@@ -12,6 +12,8 @@
 
 @interface YHSCookBookDishModel : NSObject
 
+@property (nonatomic, assign) BOOL isExpandedAllIntro; // 是否已展开全部介绍信息
+
 @property (nonatomic, strong) NSArray<YHSCookBookDishRecommendtopicModel *> *RecommendTopic;
 
 @property (nonatomic, copy) NSString *CommentCount;

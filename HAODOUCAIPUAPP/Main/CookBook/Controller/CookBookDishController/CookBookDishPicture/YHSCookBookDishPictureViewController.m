@@ -350,7 +350,7 @@
                 cell = [[YHSCookBookDishDetailHeadTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER];
             }
             cell.delegate = self;
-            cell.model = self.tableData[indexPath.section][indexPath.row];
+            [cell setModel:self.tableData[indexPath.section][indexPath.row] indexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
@@ -429,7 +429,7 @@
         case YHSCookBookDishPictureDetailInfoTableSectionHead:{
             return [self.tableView fd_heightForCellWithIdentifier:CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER cacheByIndexPath:indexPath configuration:^(YHSCookBookDishDetailHeadTableViewCell *cell) {
                 // 配置 cell 的数据源，和 "cellForRow" 干的事一致
-                cell.model = self.tableData[indexPath.section][indexPath.row];
+                [cell setModel:self.tableData[indexPath.section][indexPath.row] indexPath:indexPath];
             }];
         }
             // 食材详情
@@ -665,6 +665,17 @@
 {
     [self alertPromptMessage:@"关注"];
 }
+
+// 点击显示菜谱介绍文字
+- (void)didFoodIntroLabelWithCookBookDishModel:(YHSCookBookDishModel *)model expandedAllWithIndexPath:(NSIndexPath *)indexPath
+{
+    YHSCookBookDishModel *dishModel = self.tableData[indexPath.section][indexPath.row];
+    dishModel.isExpandedAllIntro = !dishModel.isExpandedAllIntro; // 切换展开还是收回
+    
+    // 先重新计算高度，然后reload，不是原来的cell实例
+    [_tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
+
 
 #pragma mark - 触发点击食材详情事件
 - (void)didClickElementOfCellWithCookBookDishDetailFoodMaterialModel:(YHSCookBookDishFoodMaterialModel *)model

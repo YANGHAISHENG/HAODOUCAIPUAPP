@@ -15,6 +15,7 @@ UIKIT_EXTERN NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER;
 @optional
 - (void)didClickElementOfCellWithCookBookDishModel:(YHSCookBookDishModel *)model;
 - (void)pressRelationImageViewArea:(YHSCookBookDishModel *)model;
+- (void)didFoodIntroLabelWithCookBookDishModel:(YHSCookBookDishModel *)model expandedAllWithIndexPath:(NSIndexPath *)index;
 @end
 
 
@@ -23,6 +24,8 @@ UIKIT_EXTERN NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER;
 @property (nonatomic, strong) YHSCookBookDishModel *model;
 
 @property (nonatomic, strong) id<YHSCookBookDishDetailHeadTableViewCellDelegate> delegate;
+
+- (void)setModel:(YHSCookBookDishModel *)model indexPath:(NSIndexPath *)indexPath;
 
 @end
 
