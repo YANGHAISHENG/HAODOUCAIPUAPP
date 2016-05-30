@@ -114,7 +114,7 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_FOOD_MATERIAL = @"YHSCookBookDish
     WEAKSELF(weakSelf);
 
     CGFloat margin = 10.0;
-    CGFloat height = 30.0;
+    CGFloat height = 40.0;
     
     // 根容器组件
     [self.rootContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
