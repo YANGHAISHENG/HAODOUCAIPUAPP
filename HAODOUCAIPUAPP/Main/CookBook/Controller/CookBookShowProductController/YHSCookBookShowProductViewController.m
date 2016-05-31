@@ -1,17 +1,23 @@
 //
-//  YHSCookBookKitchenViewController.m
+//  YHSCookBookShowProductViewController.m
 //  HAODOUCAIPUAPP
 //
 //  Created by YANGHAISHENG on 16/5/30.
 //  Copyright © 2016年 YANGHAISHENG. All rights reserved.
 //
 
-#import "YHSCookBookKitchenViewController.h"
-#import "YHSCookBookKitchenTableViewCell.h"
-#import "YHSCookBookKitchenModel.h"
+#import "YHSCookBookShowProductViewController.h"
+#import "YHSCookBookShowProductDayTableViewCell.h"
+#import "YHSCookBookShowProductCateTableViewCell.h"
+#import "YHSCookBookShowProductUserTableViewCell.h"
+
+#import "YHSCookBookShowProductDayModel.h"
+#import "YHSCookBookShowProductCateModel.h"
+#import "YHSCookBookShowProductUserModel.h"
+#import "YHSCookBookShowProductUserModel.h"
 
 
-@interface YHSCookBookKitchenViewController () <UITableViewDelegate, UITableViewDataSource, YHSCookBookKitchenTableViewCellDelegate>
+@interface YHSCookBookShowProductViewController () <UITableViewDelegate, UITableViewDataSource, YHSCookBookShowProductDayTableViewCellDelegate, YHSCookBookShowProductCateTableViewCellDelegate, YHSCookBookShowProductUserTableViewCellDelegate>
 
 /**
  * 根容器组件
@@ -19,12 +25,11 @@
 @property (nonnull, nonatomic, strong) UIView *rootContainerView;
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray<YHSCookBookKitchenModel *> *tableData;
+@property (nonatomic, strong) NSMutableArray *tableData;
 
 @end
 
-
-@implementation YHSCookBookKitchenViewController
+@implementation YHSCookBookShowProductViewController
 
 
 - (instancetype)init
@@ -40,6 +45,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [self.navBarHairlineImageView setHidden:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
     
     [self.navBarHairlineImageView setHidden:NO];
 }
@@ -154,11 +166,23 @@
         [self.tableView setMj_footer:autoNormalFooter];
         
         // 必须被注册到 UITableView 中
-        [self.tableView registerClass:[YHSCookBookKitchenTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_COOKBOOK_KITCHEN];
-        
+        [self.tableView registerClass:[YHSCookBookShowProductDayTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_COOKBOOK_SHOW_PRODUCT_DAY];
+        [self.tableView registerClass:[YHSCookBookShowProductCateTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_COOKBOOK_SHOW_PRODUCT_CATE];
+        [self.tableView registerClass:[YHSCookBookShowProductUserTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_COOKBOOK_SHOW_PRODUCT_USER];
     }
     
 }
+
+
+#pragma mark - 自定义配置导航栏
+- (void)customNavigationBar
+{
+    [super customNavigationBar];
+
+    [self.navBarCustomView setBackgroundColor:[UIColor whiteColor]];
+
+}
+
 
 #pragma mark - 请求网络数据（下拉刷新数据）
 - (void)loadData
@@ -263,8 +287,8 @@
         __block NSUInteger listCount = 0; // 请求到的数据数量
         
         // 请求地址与参数
-        NSString *url = [YHSCookBookDataUtil getCookBookKitchenRequestURLString];
-        NSMutableDictionary *params = [YHSCookBookDataUtil getCookBookKitchenRequestParams];
+        NSString *url = [YHSCookBookDataUtil getCookBookShowProductRequestURLString];
+        NSMutableDictionary *params = [YHSCookBookDataUtil getCookBookShowProductRequestParams];
         
         // 初始化Manager
         AFHTTPSessionManager *manager = [YHSNetworkingManager sharedYHSNetworkingManagerInstance].manager;
@@ -286,10 +310,22 @@
             NSArray *list = data[@"list"];
             
             // 数据模型转换
-            NSMutableArray<YHSCookBookKitchenModel *> *models = [NSMutableArray array];
+            __block NSInteger cateIndex = 1;
+            NSMutableArray *models = [NSMutableArray array];
             [list enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull dict, NSUInteger idx, BOOL * _Nonnull stop) {
-                YHSCookBookKitchenModel *model = [YHSCookBookKitchenModel mj_objectWithKeyValues:dict];
-                [models addObject:model];
+                NSString *itemType = dict[@"ItemType"];
+                if ([@"day" isEqualToString:itemType]) {
+                    YHSCookBookShowProductDayModel *model = [YHSCookBookShowProductDayModel mj_objectWithKeyValues:dict];
+                    [models addObject:model];
+                } else if ([@"cate" isEqualToString:itemType]) {
+                    YHSCookBookShowProductCateModel *model = [YHSCookBookShowProductCateModel mj_objectWithKeyValues:dict];
+                    model.index = cateIndex ++;
+                    [models addObject:model];
+                } else if ([@"user" isEqualToString:itemType]) {
+                    YHSCookBookShowProductUserModel *model = [YHSCookBookShowProductUserModel mj_objectWithKeyValues:dict];
+                    [models addObject:model];
+                }
+
             }];
             
             // 设置数据源
@@ -358,18 +394,6 @@
     
 }
 
-- (NSString *)getCookBookHotsAlbumMoreRequestURLString
-{
-    // 默认全部，子类必须继承
-    return [YHSCookBookDataUtil getCookBookHotsAlbumMoreAllRequestURLString];
-}
-
-- (NSMutableDictionary *)getCookBookHotsAlbumMoreRequestParams
-{
-    // 默认全部，子类必须继承
-    return [YHSCookBookDataUtil getCookBookHotsAlbumMoreAllRequestParams];
-}
-
 #pragma mark - TableView data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -383,29 +407,99 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    YHSCookBookKitchenTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_COOKBOOK_KITCHEN];
-    if (!cell) {
-        cell = [[YHSCookBookKitchenTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_IDENTIFIER_COOKBOOK_KITCHEN];
+    id model = self.tableData[indexPath.row];
+    
+    if ([model isKindOfClass:[YHSCookBookShowProductDayModel class]]) {
+        
+        YHSCookBookShowProductDayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_COOKBOOK_SHOW_PRODUCT_DAY];
+        if (!cell) {
+            cell = [[YHSCookBookShowProductDayTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_IDENTIFIER_COOKBOOK_SHOW_PRODUCT_DAY];
+        }
+        cell.delegate = self;
+        cell.model = self.tableData[indexPath.row];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+        
+    } else if ([model isKindOfClass:[YHSCookBookShowProductCateModel class]]) {
+        
+        YHSCookBookShowProductCateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_COOKBOOK_SHOW_PRODUCT_CATE];
+        if (!cell) {
+            cell = [[YHSCookBookShowProductCateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_IDENTIFIER_COOKBOOK_SHOW_PRODUCT_CATE];
+        }
+        cell.delegate = self;
+        cell.model = self.tableData[indexPath.row];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+        
+    } else if ([model isKindOfClass:[YHSCookBookShowProductUserModel class]]) {
+        
+        YHSCookBookShowProductUserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_COOKBOOK_SHOW_PRODUCT_USER];
+        if (!cell) {
+            cell = [[YHSCookBookShowProductUserTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_IDENTIFIER_COOKBOOK_SHOW_PRODUCT_USER];
+        }
+        cell.delegate = self;
+        cell.model = self.tableData[indexPath.row];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+        
     }
-    cell.delegate = self;
-    cell.model = self.tableData[indexPath.row];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
+    
+    return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [self.tableView fd_heightForCellWithIdentifier:CELL_IDENTIFIER_COOKBOOK_KITCHEN cacheByIndexPath:indexPath configuration:^(YHSCookBookKitchenTableViewCell *cell) {
-        // 配置 cell 的数据源，和 "cellForRow" 干的事一致
-        cell.model = self.tableData[indexPath.row];
-    }];
+    
+    id model = self.tableData[indexPath.row];
+    
+    if ([model isKindOfClass:[YHSCookBookShowProductDayModel class]]) {
+        
+        return [self.tableView fd_heightForCellWithIdentifier:CELL_IDENTIFIER_COOKBOOK_SHOW_PRODUCT_DAY cacheByIndexPath:indexPath configuration:^(YHSCookBookShowProductDayTableViewCell *cell) {
+            // 配置 cell 的数据源，和 "cellForRow" 干的事一致
+            cell.model = self.tableData[indexPath.row];
+        }];
+        
+    } else if ([model isKindOfClass:[YHSCookBookShowProductCateModel class]]) {
+        
+        return [self.tableView fd_heightForCellWithIdentifier:CELL_IDENTIFIER_COOKBOOK_SHOW_PRODUCT_CATE cacheByIndexPath:indexPath configuration:^(YHSCookBookShowProductCateTableViewCell *cell) {
+            // 配置 cell 的数据源，和 "cellForRow" 干的事一致
+            cell.model = self.tableData[indexPath.row];
+        }];
+        
+    } else if ([model isKindOfClass:[YHSCookBookShowProductUserModel class]]) {
+        
+        return [self.tableView fd_heightForCellWithIdentifier:CELL_IDENTIFIER_COOKBOOK_SHOW_PRODUCT_USER cacheByIndexPath:indexPath configuration:^(YHSCookBookShowProductUserTableViewCell *cell) {
+            // 配置 cell 的数据源，和 "cellForRow" 干的事一致
+            cell.model = self.tableData[indexPath.row];
+        }];
+        
+    }
+    
+    return 0.0;
+
 }
 
 
 #pragma mark - 触发点击Cell事件
-- (void)didClickElementOfCellWithCookBookKitchenModel:(YHSCookBookKitchenModel *)model
+- (void)didClickElementOfCellWithCookBookShowProductDayItemModel:(YHSCookBookShowProductDayItemModel *)model
 {
     [self alertPromptMessage:@""];
 }
+
+- (void)didClickElementOfCellWithCookBookShowProductCateItemModel:(YHSCookBookShowProductCateItemModel *)model
+{
+    [self alertPromptMessage:@""];
+}
+
+- (void)didClickElementOfCellWithCookBookShowProductCateModel:(YHSCookBookShowProductCateModel *)model
+{
+    [self alertPromptMessage:@""];
+}
+
+- (void)didClickElementOfCellWithCookBookShowProductUserItemModel:(YHSCookBookShowProductUserItemModel *)model
+{
+    [self alertPromptMessage:@""];
+}
+
 
 
 @end

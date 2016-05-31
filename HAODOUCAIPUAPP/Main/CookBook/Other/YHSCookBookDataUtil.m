@@ -7,6 +7,8 @@
 //
 
 #import "YHSCookBookDataUtil.h"
+#import "YHSCookBookShowVideoCateModel.h"
+
 
 @implementation YHSCookBookDataUtil
 
@@ -476,6 +478,41 @@
              @"appqs":@"haodourecipe://haodou.com/wiki/list/",
              @"uuid":@"72b9cf70da593de0478cbb90f6025bf7"}.mutableCopy;
 }
+
+
+#pragma mark - N028.晒作品
++ (NSString *)getCookBookShowProductRequestURLString
+{
+    return @"http://api.haodou.com/index.php?appid=2&appkey=9ef269eec4f7a9d07c73952d06b5413f&format=json&sessionid=1464576107391&vc=83&vn=6.1.0&loguid=9798666&deviceid=haodou864601020999058&uuid=72b9cf70da593de0478cbb90f6025bf7&channel=huawei_v610&method=Show.discovery&virtual=&signmethod=md5&v=2&timestamp=1464593045&nonce=0.37931975070846347&appsign=8d0848afdf8475e8c1b7a9a81dbdaaea";
+}
+#pragma mark - N028.晒作品
++ (NSMutableDictionary *)getCookBookShowProductRequestParams
+{
+    return @{@"uid":@"9798666",
+             @"limit":@"10",
+             @"offset":@"0",
+             @"sign":@"a8b56ca6aefe903b94030c71e145d536",
+             @"appqs":@"haodourecipe://haodou.com/find/",
+             @"uuid":@"72b9cf70da593de0478cbb90f6025bf7"}.mutableCopy;
+}
+
+
+#pragma mark - N029.视屏
++ (NSString *)getCookBookShowVideoRequestURLString
+{
+    return @"http://api.haodou.com/index.php?appid=2&appkey=9ef269eec4f7a9d07c73952d06b5413f&format=json&sessionid=1464674709074&vc=83&vn=6.1.0&loguid=9798666&deviceid=haodou864601020999058&uuid=72b9cf70da593de0478cbb90f6025bf7&channel=huawei_v610&method=Video.getVideoListByCate&virtual=&signmethod=md5&v=2&timestamp=1464678841&nonce=0.9873694802201092&appsign=0a84e8c73803710ad10c6bd2cd2a1780";
+}
+#pragma mark - N029.视屏
++ (NSMutableDictionary *)getCookBookShowVideoRequestParams
+{
+    // 返回结果请求参数
+    NSMutableDictionary *dictParams = @{@"type":@"1",
+                                        @"limit":@"20",
+                                        @"offset":@"0",
+                                        @"cate_id":@"49"}.mutableCopy;
+    return dictParams;
+}
+
 
 
 

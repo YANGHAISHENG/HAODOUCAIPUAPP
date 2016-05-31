@@ -182,6 +182,20 @@
 + (NSMutableDictionary *)getCookBookKitchenRequestParams;
 
 
+#pragma mark - N028.晒作品
++ (NSString *)getCookBookShowProductRequestURLString;
+#pragma mark - N028.晒作品
++ (NSMutableDictionary *)getCookBookShowProductRequestParams;
+
+
+#pragma mark - N029.视屏
++ (NSString *)getCookBookShowVideoRequestURLString;
+#pragma mark - N029.视屏
++ (NSMutableDictionary *)getCookBookShowVideoRequestParams;
+
+
+
+
 @end
 
 

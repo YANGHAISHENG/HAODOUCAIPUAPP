@@ -1,38 +1,38 @@
 //
-//  YHSCookBookKitchenViewController.m
+//  YHSCookBookShowVideoViewController.m
 //  HAODOUCAIPUAPP
 //
-//  Created by YANGHAISHENG on 16/5/30.
+//  Created by YANGHAISHENG on 16/5/31.
 //  Copyright © 2016年 YANGHAISHENG. All rights reserved.
 //
 
-#import "YHSCookBookKitchenViewController.h"
-#import "YHSCookBookKitchenTableViewCell.h"
-#import "YHSCookBookKitchenModel.h"
+#import "YHSCookBookShowVideoViewController.h"
+#import "YHSCookBookShowVideoModel.h"
+#import "YHSCookBookShowVideoCollectionViewCell.h"
+#import "YHSCookBookShowVideoCollectionViewLayout.h"
+#import "YHSCategorySearchDishVideoViewController.h"
 
 
-@interface YHSCookBookKitchenViewController () <UITableViewDelegate, UITableViewDataSource, YHSCookBookKitchenTableViewCellDelegate>
+@interface YHSCookBookShowVideoViewController () <UICollectionViewDataSource, UICollectionViewDelegate, YHSCookBookShowVideoCollectionViewCellDelegate>
 
-/**
- * 根容器组件
- */
+// 根容器组件
 @property (nonnull, nonatomic, strong) UIView *rootContainerView;
 
-@property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray<YHSCookBookKitchenModel *> *tableData;
+// 表格
+@property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) NSMutableArray *collectionData;
+@property (nonatomic, strong) NSMutableArray *cateListData;
 
 @end
 
-
-@implementation YHSCookBookKitchenViewController
-
+@implementation YHSCookBookShowVideoViewController
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
         _offset = 0;
-        _limit = 20;
+        _limit = 50;
     }
     return self;
 }
@@ -57,21 +57,21 @@
         
         // 根据请求到数据小于1页，则隐藏上拉刷新控件
         if (count < _limit ) {
-            [self.tableView.mj_footer setHidden:YES];;
+            [self.collectionView.mj_footer setHidden:YES];;
         }
         
         // 加载成功
         if (success && count) {
             
             // 刷新表格
-            [weakSelf.tableView reloadData];
+            [weakSelf.collectionView reloadData];
             
             // 增加偏移量
             _offset += _limit;
             YHSLogBlue(@"加载后偏移量 ：%ld", _offset);
         }
         
-    } andWritingLoading:(self.tableData.count == 0 ? YES : NO)];
+    } andWritingLoading:(self.collectionData.count == 0 ? YES : NO)];
     
 }
 
@@ -82,7 +82,7 @@
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
     
     // 表格已经存在或无数据源则无需创建，直接返回
-    if (self.tableView) {
+    if (self.collectionView) {
         return;
     }
     
@@ -105,44 +105,33 @@
     });
     self.rootContainerView = rootContainerView;
     
-    // 创建表格
+    // 创建瀑布流
     {
-        // 创建表格
-        self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-        [self.rootContainerView addSubview:self.tableView];
-        self.tableView.delegate = self;
-        self.tableView.dataSource = self;
-        self.tableView.showsVerticalScrollIndicator = YES;
-        self.tableView.backgroundColor = [UIColor whiteColor];
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        // 创建瀑布流
+        YHSCookBookShowVideoCollectionViewLayout *flowLayout = [[YHSCookBookShowVideoCollectionViewLayout alloc] init];
+        flowLayout.margin = 5;
+        flowLayout.columnCount = 2;
+        flowLayout.cellMinHeight = 80;
+        flowLayout.cellMaxHeight = 250;
+        flowLayout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);
+        
+        // 创建集合视图
+        self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
+        self.collectionView.delegate = self;
+        self.collectionView.dataSource = self;
+        self.collectionView.backgroundColor = [UIColor whiteColor];
+        [self.rootContainerView addSubview:self.collectionView];
         
         // 添加约束
-        [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(weakSelf.rootContainerView.mas_top).with.offset(0.0);
             make.left.equalTo(weakSelf.rootContainerView.mas_left).with.offset(0);
             make.bottom.equalTo(weakSelf.rootContainerView.mas_bottom).with.offset(0);
             make.right.equalTo(weakSelf.rootContainerView.mas_right).with.offset(0);
         }];
         
-        // 自动算高 UITableView+FDTemplateLayoutCell
-        self.tableView.estimatedRowHeight = 120; //预算行高
-        self.tableView.fd_debugLogEnabled = YES; //开启log打印高度
-        
-        // 空白数据背景
-        self.tableView.emptyDataSetSource = self;
-        self.tableView.emptyDataSetDelegate = self;
-        
-        // 设置表格背景
-        UIView *backView = [[UIView alloc] init];
-        [backView setBackgroundColor:[UIColor whiteColor]];
-        [self.tableView setBackgroundView:backView];
-        
-        // 表头表尾
-        self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, CGFLOAT_MIN)];
-        self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, CGFLOAT_MIN)];
-        
         // 下拉刷新
-        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+        self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
         
         // 上拉加载
         MJRefreshAutoNormalFooter *autoNormalFooter = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
@@ -151,14 +140,25 @@
         [autoNormalFooter setTitle:YHSRefreshAutoFooterNoMoreDataText forState:MJRefreshStateNoMoreData];
         [autoNormalFooter.stateLabel setFont:[UIFont boldSystemFontOfSize:YHSRefreshAutoFooterFontSize]];
         [autoNormalFooter.stateLabel setTextColor:YHSRefreshAutoFooterTextColor];
-        [self.tableView setMj_footer:autoNormalFooter];
+        [self.collectionView setMj_footer:autoNormalFooter];
         
-        // 必须被注册到 UITableView 中
-        [self.tableView registerClass:[YHSCookBookKitchenTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_COOKBOOK_KITCHEN];
+        // 注册cell（必须要有）
+        [self.collectionView registerClass:[YHSCookBookShowVideoCollectionViewCell class] forCellWithReuseIdentifier:CELL_IDENTIFIER_COOKBOOK_SHOW_VIDEO_COLLECTION];
         
     }
     
 }
+
+
+#pragma mark - 自定义配置导航栏
+- (void)customNavigationBar
+{
+    [super customNavigationBar];
+    
+    [self.navBarCustomView setBackgroundColor:[UIColor whiteColor]];
+    
+}
+
 
 #pragma mark - 请求网络数据（下拉刷新数据）
 - (void)loadData
@@ -183,10 +183,10 @@
         || [YHSNetworkingManager sharedYHSNetworkingManagerInstance].networkReachabilityStatus == YHSNetworkReachabilityStatusNotReachable) {
         
         // 下拉刷新控件，结束刷新状态
-        [self.tableView.mj_header endRefreshing];
+        [self.collectionView.mj_header endRefreshing];
         
         // 上拉刷新控件，结束刷新状态
-        [self.tableView.mj_footer endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
         
         // 直接返回
         return;
@@ -199,18 +199,18 @@
             if (count < _limit) {
                 
                 // 下拉刷新控件，没有更多数据
-                [weakSelf.tableView.mj_header endRefreshing];
+                [weakSelf.collectionView.mj_header endRefreshing];
                 
                 // 上拉刷新控件，没有更多数据
-                [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+                [weakSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
                 
             } else {
                 
                 // 下拉刷新控件，结束刷新状态
-                [weakSelf.tableView.mj_header endRefreshing];
+                [weakSelf.collectionView.mj_header endRefreshing];
                 
                 // 上拉刷新控件，结束刷新状态
-                [self.tableView.mj_footer endRefreshing];
+                [self.collectionView.mj_footer endRefreshing];
                 
             }
             
@@ -218,7 +218,7 @@
             if (success && count) {
                 
                 // 刷新表格
-                [weakSelf.tableView reloadData];
+                [weakSelf.collectionView reloadData];
                 
                 // 增加偏移量
                 _offset += _limit;
@@ -263,8 +263,9 @@
         __block NSUInteger listCount = 0; // 请求到的数据数量
         
         // 请求地址与参数
-        NSString *url = [YHSCookBookDataUtil getCookBookKitchenRequestURLString];
-        NSMutableDictionary *params = [YHSCookBookDataUtil getCookBookKitchenRequestParams];
+        NSString *url = [YHSCookBookDataUtil getCookBookShowVideoRequestURLString];
+        NSMutableDictionary *params = [YHSCookBookDataUtil getCookBookShowVideoRequestParams];
+        [params setObject:@(self.limit) forKey:@"limit"];
         
         // 初始化Manager
         AFHTTPSessionManager *manager = [YHSNetworkingManager sharedYHSNetworkingManagerInstance].manager;
@@ -286,18 +287,18 @@
             NSArray *list = data[@"list"];
             
             // 数据模型转换
-            NSMutableArray<YHSCookBookKitchenModel *> *models = [NSMutableArray array];
+            NSMutableArray *models = [NSMutableArray array];
             [list enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull dict, NSUInteger idx, BOOL * _Nonnull stop) {
-                YHSCookBookKitchenModel *model = [YHSCookBookKitchenModel mj_objectWithKeyValues:dict];
+                YHSCookBookShowVideoModel *model = [YHSCookBookShowVideoModel mj_objectWithKeyValues:dict];
                 [models addObject:model];
             }];
             
             // 设置数据源
             if (list.count > 0) {
                 if (0 == _offset) {
-                    weakSelf.tableData = models.mutableCopy; // 刷新数据
+                    weakSelf.collectionData = models.mutableCopy; // 刷新数据
                 } else {
-                    [weakSelf.tableData addObjectsFromArray:models.mutableCopy]; // 加载更多数据
+                    [weakSelf.collectionData addObjectsFromArray:models.mutableCopy]; // 加载更多数据
                 }
             }
             
@@ -358,54 +359,41 @@
     
 }
 
-- (NSString *)getCookBookHotsAlbumMoreRequestURLString
-{
-    // 默认全部，子类必须继承
-    return [YHSCookBookDataUtil getCookBookHotsAlbumMoreAllRequestURLString];
-}
 
-- (NSMutableDictionary *)getCookBookHotsAlbumMoreRequestParams
-{
-    // 默认全部，子类必须继承
-    return [YHSCookBookDataUtil getCookBookHotsAlbumMoreAllRequestParams];
-}
-
-#pragma mark - TableView data source
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if (self.tableData.count > 0) {
-        return self.tableData.count;
-    }
-    return 0;
+#pragma mark - UICollection View DataSource
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.collectionData.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    YHSCookBookKitchenTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_COOKBOOK_KITCHEN];
-    if (!cell) {
-        cell = [[YHSCookBookKitchenTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_IDENTIFIER_COOKBOOK_KITCHEN];
-    }
+    YHSCookBookShowVideoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_IDENTIFIER_COOKBOOK_SHOW_VIDEO_COLLECTION forIndexPath:indexPath];
+    
     cell.delegate = self;
-    cell.model = self.tableData[indexPath.row];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    cell.model = self.collectionData[indexPath.row];
+    
     return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [self.tableView fd_heightForCellWithIdentifier:CELL_IDENTIFIER_COOKBOOK_KITCHEN cacheByIndexPath:indexPath configuration:^(YHSCookBookKitchenTableViewCell *cell) {
-        // 配置 cell 的数据源，和 "cellForRow" 干的事一致
-        cell.model = self.tableData[indexPath.row];
-    }];
 }
 
 
 #pragma mark - 触发点击Cell事件
-- (void)didClickElementOfCellWithCookBookKitchenModel:(YHSCookBookKitchenModel *)model
+- (void)didClickElementOfCellWithCookBookShowVideoModel:(YHSCookBookShowVideoModel *)model
 {
-    [self alertPromptMessage:@""];
+    // 视屏菜谱
+    YHSCategorySearchDishVideoViewController *dishVideoViewController = [YHSCategorySearchDishVideoViewController new];
+    [dishVideoViewController setRid:model.VideoId];
+    [dishVideoViewController setReturn_request_id:@"f7a76b77c2050361636afbdef807ec66"];
+    [dishVideoViewController setTitle:model.Title];
+    [self.navigationController pushViewController:dishVideoViewController animated:YES];
+    
 }
+
 
 
 @end

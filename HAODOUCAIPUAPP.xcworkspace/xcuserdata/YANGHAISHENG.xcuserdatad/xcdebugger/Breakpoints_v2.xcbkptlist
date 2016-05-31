@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HAODOUCAIPUAPP/Main/CookBook/View/CookBookDishView/YHSCookBookDishDetailFoodMaterialTableViewCell.m"
-            timestampString = "486189969.371057"
+            filePath = "HAODOUCAIPUAPP/Main/CookBook/Controller/CookBookMainController/YHSCookBookMainViewController.m"
+            timestampString = "486373177.502437"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "246"
-            endingLineNumber = "246"
-            landmarkName = "-pressMainFoodMaterialViewArea:"
+            startingLineNumber = "882"
+            endingLineNumber = "882"
+            landmarkName = "-didClickElementOfCellWithToolModel:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

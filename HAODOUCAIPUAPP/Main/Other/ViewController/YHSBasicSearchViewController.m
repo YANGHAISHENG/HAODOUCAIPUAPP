@@ -809,12 +809,25 @@
         }
         
         if (delModel) {
+            
             // 删除数据模型
             [self.tableData[indexPath.section] removeObjectAtIndex:indexPath.row];
     
             // 更新界面
-            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-            
+            if (self.tableData[indexPath.section].count == 0) {
+                // 删除数据模型
+                self.clearAllModels = @[].mutableCopy;
+                self.historyModels = @[].mutableCopy;
+                self.searchFriendModels = @[].mutableCopy;
+                [self.tableData[0] removeAllObjects];
+                [self.tableData[1] removeAllObjects];
+                [self.tableData[2] removeAllObjects];
+                // 刷新界面
+                [self.tableView reloadData];
+            } else {
+                [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+            }
+ 
             return NO; // Don't auto hide to improve delete expansion animation
         } else {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"删除历史记录失败！" preferredStyle:UIAlertControllerStyleAlert];
@@ -880,8 +893,11 @@
         // 删除数据模型
         weakSelf.clearAllModels = @[].mutableCopy;
         weakSelf.historyModels = @[].mutableCopy;
+        self.searchFriendModels = @[].mutableCopy;
+        
         [weakSelf.tableData[0] removeAllObjects];
         [weakSelf.tableData[1] removeAllObjects];
+        [weakSelf.tableData[2] removeAllObjects];
         
         // 更新界面
         [weakSelf.tableView reloadData];

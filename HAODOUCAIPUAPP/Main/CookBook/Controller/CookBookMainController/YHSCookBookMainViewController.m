@@ -42,6 +42,8 @@
 #import "YHSCookBookBannnerDetailRecipeDishVideoViewController.h"
 #import "YHSCookBookBannnerDetailRecipeDishPictureViewController.h"
 
+#import "YHSCookBookShowProductViewController.h"
+#import "YHSCookBookShowVideoViewController.h"
 #import "YHSCookBookKitchenViewController.h"
 
 
@@ -882,11 +884,23 @@
         // 跳转到家页面
         [self.tabBarController setSelectedIndex:1];
         
+    } else if ([model.Title isEqual:@"晒作品"]) {
+        
+        YHSCookBookShowProductViewController *viewController = [YHSCookBookShowProductViewController new];
+        [viewController setTitle:@"晒作品"];
+        [self.navigationController pushViewController:viewController animated:YES];
+        
+    } else if ([model.Title isEqual:@"视频"]) {
+        
+        YHSCookBookShowVideoViewController *viewController = [YHSCookBookShowVideoViewController new];
+        [viewController setTitle:@"视频"];
+        [self.navigationController pushViewController:viewController animated:YES];
+        
     } else if ([model.Title isEqual:@"厨房宝典"]) {
         
-        YHSCookBookKitchenViewController *kitchenViewController = [YHSCookBookKitchenViewController new];
-        [kitchenViewController setTitle:@"厨房宝典"];
-        [self.navigationController pushViewController:kitchenViewController animated:YES];
+        YHSCookBookKitchenViewController *viewController = [YHSCookBookKitchenViewController new];
+        [viewController setTitle:@"厨房宝典"];
+        [self.navigationController pushViewController:viewController animated:YES];
         
     } else if ([model.Title isEqual:@"摇一摇"]) {
         
@@ -895,10 +909,8 @@
         [self.navigationController pushViewController:shakeItOffController animated:YES];
         
     } else {
-        
         // 提示信息
         [self alertPromptMessage:@"分类标签"];
-        
     }
     
 }
