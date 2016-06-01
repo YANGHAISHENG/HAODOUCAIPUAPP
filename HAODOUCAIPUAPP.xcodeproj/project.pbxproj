@@ -20,6 +20,7 @@
 		7D012E331CF14C2A002FD903 /* YHSCookBookHotsAlbumDetailElemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D012E321CF14C2A002FD903 /* YHSCookBookHotsAlbumDetailElemTableViewCell.m */; };
 		7D012E3C1CF150E7002FD903 /* YHSCookBookHotsAlbumMainDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D012E3B1CF150E7002FD903 /* YHSCookBookHotsAlbumMainDetailViewController.m */; };
 		7D0152FB1CF6F81B00E8B2E3 /* YHSCookBookVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0152FA1CF6F81B00E8B2E3 /* YHSCookBookVideoModel.m */; };
+		7D0182E31CFE87B600A81857 /* feedback_reply.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0182E21CFE87B600A81857 /* feedback_reply.png */; };
 		7D01D9C31CF69689009AE62F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D01D9C21CF69689009AE62F /* MediaPlayer.framework */; };
 		7D02354E1CF067B900DE6EC0 /* YHSCookBookSearchVIPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D02354D1CF067B900DE6EC0 /* YHSCookBookSearchVIPViewController.m */; };
 		7D0235511CF067ED00DE6EC0 /* YHSCookBookSearchVIPTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0235501CF067ED00DE6EC0 /* YHSCookBookSearchVIPTableViewCell.m */; };
@@ -176,6 +177,8 @@
 		7DC8304D1CFD81930042A4A5 /* YHSCookBookShowVideoCateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC8304C1CFD81930042A4A5 /* YHSCookBookShowVideoCateModel.m */; };
 		7DC830501CFD8AF50042A4A5 /* bg_vedio_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DC8304E1CFD8AF50042A4A5 /* bg_vedio_small.png */; };
 		7DC830511CFD8AF50042A4A5 /* ico_vedio_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DC8304F1CFD8AF50042A4A5 /* ico_vedio_small.png */; };
+		7DC830571CFDB4AC0042A4A5 /* YHSCookBookCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC830561CFDB4AC0042A4A5 /* YHSCookBookCommentModel.m */; };
+		7DC8305A1CFDB5700042A4A5 /* YHSCookBookCommentInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC830591CFDB5700042A4A5 /* YHSCookBookCommentInfoTableViewCell.m */; };
 		7DC87CBF1CF31E7600C435C6 /* YHSCookBookYourLoveDishVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC87CBE1CF31E7600C435C6 /* YHSCookBookYourLoveDishVideoViewController.m */; };
 		7DC87CC21CF31EA500C435C6 /* YHSCookBookYourLoveDishPictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC87CC11CF31EA500C435C6 /* YHSCookBookYourLoveDishPictureViewController.m */; };
 		7DC87CC81CF323BD00C435C6 /* YHSCookBookBannnerDetailRecipeDishVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC87CC71CF323BD00C435C6 /* YHSCookBookBannnerDetailRecipeDishVideoViewController.m */; };
@@ -234,7 +237,6 @@
 		7DFE8E101CF8967A00DD09BE /* default_daily_special_goods.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DFE8DF71CF8967A00DD09BE /* default_daily_special_goods.png */; };
 		7DFE8E111CF8967A00DD09BE /* digg_background.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DFE8DF81CF8967A00DD09BE /* digg_background.9.png */; };
 		7DFE8E121CF8967A00DD09BE /* empty_shake_it_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DFE8DF91CF8967A00DD09BE /* empty_shake_it_off.png */; };
-		7DFE8E131CF8967A00DD09BE /* feedback_reply.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DFE8DFA1CF8967A00DD09BE /* feedback_reply.9.png */; };
 		7DFE8E141CF8967A00DD09BE /* ico_auxiliary_male.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DFE8DFB1CF8967A00DD09BE /* ico_auxiliary_male.png */; };
 		7DFE8E151CF8967A00DD09BE /* icon_vip_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DFE8DFC1CF8967A00DD09BE /* icon_vip_small.png */; };
 		7DFE8E161CF8967A00DD09BE /* icon_vip.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DFE8DFD1CF8967A00DD09BE /* icon_vip.png */; };
@@ -276,6 +278,7 @@
 		7D012E3B1CF150E7002FD903 /* YHSCookBookHotsAlbumMainDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookHotsAlbumMainDetailViewController.m; sourceTree = "<group>"; };
 		7D0152F91CF6F81B00E8B2E3 /* YHSCookBookVideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookVideoModel.h; sourceTree = "<group>"; };
 		7D0152FA1CF6F81B00E8B2E3 /* YHSCookBookVideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookVideoModel.m; sourceTree = "<group>"; };
+		7D0182E21CFE87B600A81857 /* feedback_reply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feedback_reply.png; sourceTree = "<group>"; };
 		7D01D9C21CF69689009AE62F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		7D02354C1CF067B900DE6EC0 /* YHSCookBookSearchVIPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookSearchVIPViewController.h; sourceTree = "<group>"; };
 		7D02354D1CF067B900DE6EC0 /* YHSCookBookSearchVIPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookSearchVIPViewController.m; sourceTree = "<group>"; };
@@ -553,6 +556,10 @@
 		7DC8304C1CFD81930042A4A5 /* YHSCookBookShowVideoCateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookShowVideoCateModel.m; sourceTree = "<group>"; };
 		7DC8304E1CFD8AF50042A4A5 /* bg_vedio_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_vedio_small.png; sourceTree = "<group>"; };
 		7DC8304F1CFD8AF50042A4A5 /* ico_vedio_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_vedio_small.png; sourceTree = "<group>"; };
+		7DC830551CFDB4AC0042A4A5 /* YHSCookBookCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookCommentModel.h; sourceTree = "<group>"; };
+		7DC830561CFDB4AC0042A4A5 /* YHSCookBookCommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookCommentModel.m; sourceTree = "<group>"; };
+		7DC830581CFDB5700042A4A5 /* YHSCookBookCommentInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookCommentInfoTableViewCell.h; sourceTree = "<group>"; };
+		7DC830591CFDB5700042A4A5 /* YHSCookBookCommentInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookCommentInfoTableViewCell.m; sourceTree = "<group>"; };
 		7DC87CBD1CF31E7600C435C6 /* YHSCookBookYourLoveDishVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookYourLoveDishVideoViewController.h; sourceTree = "<group>"; };
 		7DC87CBE1CF31E7600C435C6 /* YHSCookBookYourLoveDishVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookYourLoveDishVideoViewController.m; sourceTree = "<group>"; };
 		7DC87CC01CF31EA500C435C6 /* YHSCookBookYourLoveDishPictureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookYourLoveDishPictureViewController.h; sourceTree = "<group>"; };
@@ -638,7 +645,6 @@
 		7DFE8DF71CF8967A00DD09BE /* default_daily_special_goods.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_daily_special_goods.png; sourceTree = "<group>"; };
 		7DFE8DF81CF8967A00DD09BE /* digg_background.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = digg_background.9.png; sourceTree = "<group>"; };
 		7DFE8DF91CF8967A00DD09BE /* empty_shake_it_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empty_shake_it_off.png; sourceTree = "<group>"; };
-		7DFE8DFA1CF8967A00DD09BE /* feedback_reply.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feedback_reply.9.png; sourceTree = "<group>"; };
 		7DFE8DFB1CF8967A00DD09BE /* ico_auxiliary_male.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_auxiliary_male.png; sourceTree = "<group>"; };
 		7DFE8DFC1CF8967A00DD09BE /* icon_vip_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_vip_small.png; sourceTree = "<group>"; };
 		7DFE8DFD1CF8967A00DD09BE /* icon_vip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_vip.png; sourceTree = "<group>"; };
@@ -708,6 +714,8 @@
 				7D0152FA1CF6F81B00E8B2E3 /* YHSCookBookVideoModel.m */,
 				7D0497D11CF86DFD005E3F74 /* YHSCookBookDishFoodMaterialModel.h */,
 				7D0497D21CF86DFD005E3F74 /* YHSCookBookDishFoodMaterialModel.m */,
+				7DC830551CFDB4AC0042A4A5 /* YHSCookBookCommentModel.h */,
+				7DC830561CFDB4AC0042A4A5 /* YHSCookBookCommentModel.m */,
 			);
 			path = CookBookDishModel;
 			sourceTree = "<group>";
@@ -1136,6 +1144,8 @@
 				7DF893811CFAC84D003BB2FC /* YHSCookBookDishPictureDetailCoverPhotoTableViewCell.m */,
 				7DF893831CFADB1B003BB2FC /* YHSCookBookDishPictureDetailStepTableViewCell.h */,
 				7DF893841CFADB1B003BB2FC /* YHSCookBookDishPictureDetailStepTableViewCell.m */,
+				7DC830581CFDB5700042A4A5 /* YHSCookBookCommentInfoTableViewCell.h */,
+				7DC830591CFDB5700042A4A5 /* YHSCookBookCommentInfoTableViewCell.m */,
 			);
 			path = CookBookDishView;
 			sourceTree = "<group>";
@@ -1860,6 +1870,7 @@
 		7DFE1D8F1CE21FDA005A061B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				7D0182E21CFE87B600A81857 /* feedback_reply.png */,
 				7DC8304E1CFD8AF50042A4A5 /* bg_vedio_small.png */,
 				7DC8304F1CFD8AF50042A4A5 /* ico_vedio_small.png */,
 				7D02ACD81CF93E7E002C43B1 /* btn_auxiliary_add.png */,
@@ -1877,7 +1888,6 @@
 				7DFE8DFC1CF8967A00DD09BE /* icon_vip_small.png */,
 				7DFE8DFD1CF8967A00DD09BE /* icon_vip.png */,
 				7DFE8DF91CF8967A00DD09BE /* empty_shake_it_off.png */,
-				7DFE8DFA1CF8967A00DD09BE /* feedback_reply.9.png */,
 				7D0335601CF5FEEC00B273E8 /* video_fullscreen_on.png */,
 				7D0335611CF5FEEC00B273E8 /* video_fullscreen.png */,
 				7D0335621CF5FEEC00B273E8 /* video_pause_on.png */,
@@ -2063,7 +2073,6 @@
 				7DFE1DAF1CE21FDA005A061B /* action_search_gray.png in Resources */,
 				7DFE8E1E1CF8967A00DD09BE /* mine_pressed.png in Resources */,
 				7D38CE0A1CF0571D0041335C /* search_result_empty.png in Resources */,
-				7DFE8E131CF8967A00DD09BE /* feedback_reply.9.png in Resources */,
 				7D0335771CF5FEEC00B273E8 /* video_start.png in Resources */,
 				7D08276C1CE5C10B008D77AD /* ico_auxiliary_more.png in Resources */,
 				7DFE1DBA1CE21FDA005A061B /* btn_header_back_sec.png in Resources */,
@@ -2117,6 +2126,7 @@
 				7DFE8E1D1CF8967A00DD09BE /* mine_normal.png in Resources */,
 				7DFDEBEE1CEEE68400CEDBDC /* search_suggest.png in Resources */,
 				7DFE1DB01CE21FDA005A061B /* action_search_white.png in Resources */,
+				7D0182E31CFE87B600A81857 /* feedback_reply.png in Resources */,
 				7DFE1CE21CE2063B005A061B /* Main.storyboard in Resources */,
 				7DFE1DAE1CE21FDA005A061B /* action_search.png in Resources */,
 			);
@@ -2259,6 +2269,7 @@
 				7D070AA61CF82C89003E0920 /* YHSCookBookDishDetailHeadTableViewCell.m in Sources */,
 				7D051B6F1CEF2E1000B97699 /* YHSCookBookSearchDetailViewController.m in Sources */,
 				7D0335591CF5F0FD00B273E8 /* YHSCookBookDishVideoDetailInfoViewController.m in Sources */,
+				7DC8305A1CFDB5700042A4A5 /* YHSCookBookCommentInfoTableViewCell.m in Sources */,
 				7D8975271CEAF892002CF981 /* YHSCookBookYourLoveTableViewCell.m in Sources */,
 				7D8975211CEAF892002CF981 /* YHSCookBookHotsActivityTableViewCell.m in Sources */,
 				7D0652071CE2BDA7003D9BEC /* YHSBackHomeMainViewController.m in Sources */,
@@ -2283,6 +2294,7 @@
 				7DC87CC21CF31EA500C435C6 /* YHSCookBookYourLoveDishPictureViewController.m in Sources */,
 				7DC87CD41CF33A0E00C435C6 /* YHSCookBookSearchDetailDishPictureViewController.m in Sources */,
 				7D89751C1CEAF892002CF981 /* YHSCookBookBannerTableViewCell.m in Sources */,
+				7DC830571CFDB4AC0042A4A5 /* YHSCookBookCommentModel.m in Sources */,
 				7D89751E1CEAF892002CF981 /* YHSCookBookGoodsTableViewCell.m in Sources */,
 				7D051B3B1CEF2AF400B97699 /* YHSCookBookSearchDetailTableViewCell.m in Sources */,
 				7DA6BF871CF1CF6900BF297C /* YHSCookBookHotsAlbumTabDetailViewController.m in Sources */,

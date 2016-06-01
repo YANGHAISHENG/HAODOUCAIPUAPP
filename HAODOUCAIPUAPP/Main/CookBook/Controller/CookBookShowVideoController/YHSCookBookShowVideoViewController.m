@@ -32,7 +32,7 @@
     self = [super init];
     if (self) {
         _offset = 0;
-        _limit = 50;
+        _limit = 20;
     }
     return self;
 }

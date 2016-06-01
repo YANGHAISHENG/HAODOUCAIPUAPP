@@ -241,6 +241,7 @@
         {
             YHSCookBookDishVideoCommentInfoViewController *viewController = [[YHSCookBookDishVideoCommentInfoViewController alloc] init];
             viewController.infoModel = self.infoModel;
+            viewController.rid = self.infoModel.RecipeId;
             return viewController;
         }
         default: {

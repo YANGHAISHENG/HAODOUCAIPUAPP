@@ -17,6 +17,6 @@
 
 @property (nonatomic, strong) id<YHSCookBookDishDetailTableSectionHeaderFooterViewDelegate> delegate;
 
-- (instancetype)initWithFrame:(CGRect)frame content:(NSString *)content color:(UIColor *)color font:(UIFont *)font tableSecion:(NSInteger)tableSection tagHeight:(CGFloat)sectionHeight;
+- (instancetype)initWithFrame:(CGRect)frame content:(NSString *)content color:(UIColor *)color font:(UIFont *)font tableSecion:(NSInteger)tableSection tagHeight:(CGFloat)sectionHeight showBuyeListBtn:(BOOL)showBuyeListBtn;
 
 @end

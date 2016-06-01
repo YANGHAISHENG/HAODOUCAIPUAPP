@@ -194,6 +194,11 @@
 + (NSMutableDictionary *)getCookBookShowVideoRequestParams;
 
 
+#pragma mark - N030.评论
++ (NSString *)getCookBookCommentInfoRequestURLString;
+#pragma mark - N030.评论
++ (NSMutableDictionary *)getCookBookCommentInfoRequestParams;
+
 
 
 @end

@@ -13,7 +13,6 @@
 // 根容器组件
 @property (nonnull, nonatomic, strong) UIView *rootContainerView;
 
-
 // 标题
 @property (nonatomic, strong) UIColor *color;
 @property (nonatomic, assign) UIFont *font;
@@ -29,13 +28,16 @@
 @property (nonatomic, strong) UIImageView *btnImageView;
 @property (nonatomic, strong) UILabel *btnTitleLabel;
 
+// 显示右边按钮
+@property (nonatomic, assign) BOOL showBuyeListBtn;
+
 @end
 
 
 @implementation YHSCookBookDishDetailTableSectionHeaderFooterView
 
 
-- (instancetype)initWithFrame:(CGRect)frame content:(NSString *)content color:(UIColor *)color font:(UIFont *)font tableSecion:(NSInteger)tableSection tagHeight:(CGFloat)sectionHeight
+- (instancetype)initWithFrame:(CGRect)frame content:(NSString *)content color:(UIColor *)color font:(UIFont *)font tableSecion:(NSInteger)tableSection tagHeight:(CGFloat)sectionHeight showBuyeListBtn:(BOOL)showBuyeListBtn
 {
     self = [super init];
     if (self) {
@@ -44,6 +46,7 @@
         _content = content;
         _tableSection = tableSection;
         _sectionHeight = sectionHeight;
+        _showBuyeListBtn = showBuyeListBtn;
         [self createUI];
         [self setViewAtuoLayout];
     }
@@ -96,7 +99,7 @@
     }];
     
     // 右边按钮
-    if (1 == self.tableSection) { // 食材
+    if (self.showBuyeListBtn) { // 食材
         
         // 主容器
         UIView *btnView = ({

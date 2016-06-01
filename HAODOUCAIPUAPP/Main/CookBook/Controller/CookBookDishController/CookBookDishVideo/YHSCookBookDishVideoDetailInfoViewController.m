@@ -294,25 +294,25 @@
         }
         // 食材详情
         case YHSCookBookDishVideoDetailInfoTableSectionFoodMaterial:{
-            YHSCookBookDishDetailTableSectionHeaderFooterView *sectionHeaderView = [[YHSCookBookDishDetailTableSectionHeaderFooterView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) content:@"食材" color:color font:font tableSecion:YHSCookBookDishVideoDetailInfoTableSectionFoodMaterial tagHeight:height];
+            YHSCookBookDishDetailTableSectionHeaderFooterView *sectionHeaderView = [[YHSCookBookDishDetailTableSectionHeaderFooterView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) content:@"食材" color:color font:font tableSecion:YHSCookBookDishVideoDetailInfoTableSectionFoodMaterial tagHeight:height showBuyeListBtn:YES];
             sectionHeaderView.delegate = self;
             return sectionHeaderView;
         }
         // 注意提示
         case YHSCookBookDishVideoDetailInfoTableSectionTips: {
-            YHSCookBookDishDetailTableSectionHeaderFooterView *sectionHeaderView = [[YHSCookBookDishDetailTableSectionHeaderFooterView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) content:@"小贴士" color:color font:font tableSecion:YHSCookBookDishVideoDetailInfoTableSectionTips tagHeight:height];
+            YHSCookBookDishDetailTableSectionHeaderFooterView *sectionHeaderView = [[YHSCookBookDishDetailTableSectionHeaderFooterView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) content:@"小贴士" color:color font:font tableSecion:YHSCookBookDishVideoDetailInfoTableSectionTips tagHeight:height showBuyeListBtn:NO];
             sectionHeaderView.delegate = self;
             return sectionHeaderView;
         }
         // 作品展示
         case YHSCookBookDishVideoDetailInfoTableSectionPhotoShow:{
-            YHSCookBookDishDetailTableSectionHeaderFooterView *sectionHeaderView = [[YHSCookBookDishDetailTableSectionHeaderFooterView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) content:@"作品展示" color:color font:font tableSecion:YHSCookBookDishVideoDetailInfoTableSectionPhotoShow tagHeight:height];
+            YHSCookBookDishDetailTableSectionHeaderFooterView *sectionHeaderView = [[YHSCookBookDishDetailTableSectionHeaderFooterView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) content:@"作品展示" color:color font:font tableSecion:YHSCookBookDishVideoDetailInfoTableSectionPhotoShow tagHeight:height showBuyeListBtn:NO];
             sectionHeaderView.delegate = self;
             return sectionHeaderView;
         }
         // 相关标签
         case YHSCookBookDishVideoDetailInfoTableSectionRelatedTag:{
-            YHSCookBookDishDetailTableSectionHeaderFooterView *sectionHeaderView = [[YHSCookBookDishDetailTableSectionHeaderFooterView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) content:@"相关标签" color:color font:font tableSecion:YHSCookBookDishVideoDetailInfoTableSectionRelatedTag tagHeight:height];
+            YHSCookBookDishDetailTableSectionHeaderFooterView *sectionHeaderView = [[YHSCookBookDishDetailTableSectionHeaderFooterView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) content:@"相关标签" color:color font:font tableSecion:YHSCookBookDishVideoDetailInfoTableSectionRelatedTag tagHeight:height showBuyeListBtn:NO];
             sectionHeaderView.delegate = self;
             return sectionHeaderView;
         }
@@ -337,7 +337,7 @@
         }
         // 食材详情
         case YHSCookBookDishVideoDetailInfoTableSectionFoodMaterial:{
-            YHSCookBookDishDetailTableSectionHeaderFooterView *sectionHeaderView = [[YHSCookBookDishDetailTableSectionHeaderFooterView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) content:[NSString stringWithFormat:@"制作日间：%@", self.infoModel.CookTime] color:color font:font tableSecion:-1 tagHeight:height];
+            YHSCookBookDishDetailTableSectionHeaderFooterView *sectionHeaderView = [[YHSCookBookDishDetailTableSectionHeaderFooterView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) content:[NSString stringWithFormat:@"制作日间：%@", self.infoModel.CookTime] color:color font:font tableSecion:-1 tagHeight:height showBuyeListBtn:NO];
             return sectionHeaderView;
         }
         // 注意提示

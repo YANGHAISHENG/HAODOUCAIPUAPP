@@ -505,13 +505,31 @@
 #pragma mark - N029.视屏
 + (NSMutableDictionary *)getCookBookShowVideoRequestParams
 {
-    // 返回结果请求参数
     NSMutableDictionary *dictParams = @{@"type":@"1",
                                         @"limit":@"20",
                                         @"offset":@"0",
                                         @"cate_id":@"49"}.mutableCopy;
     return dictParams;
 }
+
+
+#pragma mark - N030.评论
++ (NSString *)getCookBookCommentInfoRequestURLString
+{
+    return @"http://api.haodou.com/index.php?appid=2&appkey=9ef269eec4f7a9d07c73952d06b5413f&format=json&sessionid=1464693162233&vc=83&vn=6.1.0&loguid=9832584&deviceid=haodou864601020999058&uuid=72b9cf70da593de0478cbb90f6025bf7&channel=huawei_v610&method=Comment.getList&virtual=&signmethod=md5&v=2&timestamp=1464695201&nonce=0.04330409132841262&appsign=ee52ce53b8f816ff560035c45500c2ca";
+}
+#pragma mark - N030.评论
++ (NSMutableDictionary *)getCookBookCommentInfoRequestParams
+{
+    return @{@"cid":@"",
+             @"uid":@"9832584",
+             @"limit":@"10",
+             @"offset":@"0",
+             @"rid":@"850877",
+             @"sign":@"1133e1de8081f6500b20d31f3f6729e3",
+             @"type":@"0"}.mutableCopy;
+}
+
 
 
 
