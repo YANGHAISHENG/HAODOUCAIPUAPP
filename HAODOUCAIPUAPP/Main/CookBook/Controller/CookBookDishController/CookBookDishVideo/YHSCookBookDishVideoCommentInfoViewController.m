@@ -334,10 +334,10 @@
     __block YHSHandWritingLoadingView *writingLoadingVeiw = nil;
     if (showWritingLoading) {
         
-        CGFloat topHegiht = 60.0; // 调试值，固定的
+       CGFloat sliderViewY = HEIGHT_NAVIGATION_STATUS+HEIGHT_NAVIGATION_BAR + HEADER_VIDEO_PICTURE_HEIGHT;
         
         // 加载动画根容器
-        loadingContainerView = [[YHSHandWritingLoadingView alloc] initWithFrame:CGRectMake(0, -topHegiht, self.view.frame.size.width, self.view.frame.size.height-topHegiht-49)];
+        loadingContainerView = [[YHSHandWritingLoadingView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-sliderViewY-HEIGHT_NAVIGATION_BAR)];
         [self.view addSubview:loadingContainerView];
         // 手势Loading动画
         writingLoadingVeiw = [[YHSHandWritingLoadingView alloc] initWithView:loadingContainerView];
