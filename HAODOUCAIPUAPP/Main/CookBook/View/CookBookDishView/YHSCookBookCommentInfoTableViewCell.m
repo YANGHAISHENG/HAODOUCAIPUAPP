@@ -35,6 +35,11 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_COMMENT = @"YHSCookBookCommentInf
 @property (nonnull, nonatomic, strong) UILabel *userNameLabel;
 
 /**
+ * 回复
+ */
+@property (nonnull, nonatomic, strong) UILabel *replayCommentLabel;
+
+/**
  * 创建时间
  */
 @property (nonatomic, strong) UILabel *createTimeLabel;
@@ -48,7 +53,6 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_COMMENT = @"YHSCookBookCommentInf
  * 评论图片
  */
 @property (nonatomic, strong) UIImageView *contentImageView;
-
 
 /**
  * 回复容器组件
@@ -73,7 +77,6 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_COMMENT = @"YHSCookBookCommentInf
  * 回复图片
  */
 @property (nonatomic, strong) UIImageView *atContentImageView;
-
 
 /**
  * 分割线
@@ -113,10 +116,33 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_COMMENT = @"YHSCookBookCommentInf
     [self.rootContainerView addSubview:self.publicContainerView];
     
     // 头像
-    self.avatarImageView = [[UIImageView alloc] init];
-    [self.avatarImageView setUserInteractionEnabled:YES];
-    [self.avatarImageView.layer setMasksToBounds:YES];
-    [self.publicContainerView addSubview:self.avatarImageView];
+    {
+        self.avatarImageView = [[UIImageView alloc] init];
+        [self.avatarImageView setUserInteractionEnabled:YES];
+        [self.avatarImageView.layer setMasksToBounds:YES];
+        [self.publicContainerView addSubview:self.avatarImageView];
+        
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pressReplayCommentViewArea:)];
+        tapGesture.numberOfTapsRequired = 1; // 设置点按次数，默认为1
+        tapGesture.numberOfTouchesRequired = 1; // 点按的手指数
+        [self.publicContainerView addGestureRecognizer:tapGesture];
+    }
+    
+    // 回复
+    {
+        self.replayCommentLabel = [UILabel new];
+        [self.replayCommentLabel setNumberOfLines:1];
+        [self.replayCommentLabel setTextColor:[UIColor lightGrayColor]];
+        [self.replayCommentLabel setFont:[UIFont systemFontOfSize:14]];
+        [self.replayCommentLabel setTextAlignment:NSTextAlignmentLeft];
+        [self.replayCommentLabel setUserInteractionEnabled:YES];
+        [self.publicContainerView addSubview:self.replayCommentLabel];
+        
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pressReplayCommentViewArea:)];
+        tapGesture.numberOfTapsRequired = 1; // 设置点按次数，默认为1
+        tapGesture.numberOfTouchesRequired = 1; // 点按的手指数
+        [self.replayCommentLabel addGestureRecognizer:tapGesture];
+    }
     
     // 用户名
     self.userNameLabel = [UILabel new];
@@ -219,11 +245,18 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_COMMENT = @"YHSCookBookCommentInf
             make.size.mas_equalTo(CGSizeMake(avatarSize, avatarSize));
         }];
         
+        // 回复
+        [self.replayCommentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(weakSelf.userNameLabel.mas_centerY);
+            make.left.equalTo(weakSelf.publicContainerView.mas_right).offset(-margin-30.0);
+            make.right.equalTo(weakSelf.publicContainerView.mas_right).offset(-margin);
+        }];
+        
         // 用户名
         [self.userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(weakSelf.avatarImageView.mas_top);
             make.left.equalTo(weakSelf.avatarImageView.mas_right).offset(margin);
-            make.right.equalTo(weakSelf.publicContainerView.mas_right).offset(-margin);
+            make.right.equalTo(weakSelf.replayCommentLabel.mas_left).offset(-margin);
             make.height.equalTo(weakSelf.avatarImageView.mas_height).multipliedBy(1.0/2.0);
         }];
         
@@ -336,7 +369,10 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_COMMENT = @"YHSCookBookCommentInf
     
     // 图片
     [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:_model.Avatar] placeholderImage:[UIImage imageNamed:PICTURE_PLACEHOLDER]];
-        
+    
+    // 回复
+    [self.replayCommentLabel setText:@"回复"];
+    
     // 用户名
     [self.userNameLabel setText:_model.UserName];
     

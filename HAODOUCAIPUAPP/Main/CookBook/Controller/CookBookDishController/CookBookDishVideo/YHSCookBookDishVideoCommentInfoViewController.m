@@ -15,11 +15,17 @@
 
 @property (nonatomic, strong) NSMutableArray *tableData;
 
+@property (strong, nonatomic) UITextField *textField;
+
 @end
 
 
 @implementation YHSCookBookDishVideoCommentInfoViewController
 
+- (void)dealloc {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (instancetype)init
 {
@@ -142,6 +148,107 @@
         [self.tableView registerClass:[YHSCookBookCommentInfoTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_COOKBOOK_DISH_COMMENT];
     }
     
+    // 创建键盘
+    [self createKeyboardView];
+    
+}
+
+// 创建键盘界面
+- (void)createKeyboardView
+{
+    UITextField *textField = ({
+        UITextField *textField = [UITextField new];
+        [textField setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1.00]];
+        [textField setPlaceholder:@"说点什么..."];
+        [self.view addSubview:textField];
+        
+        [textField mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(@(10.0));
+            make.right.equalTo(@(-10.0));
+            make.bottom.equalTo(@(0.0));
+            make.height.equalTo(@(50.0));
+        }];
+        
+        textField;
+    });
+    self.textField = textField;
+    
+    
+    // 注册键盘通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrameNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHideNotification:) name:UIKeyboardWillHideNotification object:nil];
+    
+    // 实际开发过程中，会有自定义键盘的需求，比如，需要添加一个表情键盘。本文提供一种解决方法，思路就是通过获取系统键盘所在的view，然后自定义一个view覆盖在系统键盘view上，接下来的事情就非常简单了，就是在自定义的view里做任何自己想做的事情。
+    // 这个方法的关键在于获取系统键盘所在的view。要完成这个，需要监听UIKeyboardDidShowNotification这个系统通知（注意：如果在UIKeyboardWillShowNotification这个系统通知里处理是不会得到键盘所在view的）。
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+}
+
+// 键盘显示
+- (void)keyboardWillChangeFrameNotification:(NSNotification *)notification {
+    
+    // 获取键盘基本信息（动画时长与键盘高度）
+    NSDictionary *userInfo = [notification userInfo];
+    CGRect rect = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat keyboardHeight = CGRectGetHeight(rect);
+    CGFloat keyboardDuration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    
+    // 修改下边距约束
+    [_textField mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(-keyboardHeight);
+    }];
+    
+    // 更新约束
+    [UIView animateWithDuration:keyboardDuration animations:^{
+        [self.view layoutIfNeeded];
+    }];
+}
+
+// 键盘隐藏
+- (void)keyboardWillHideNotification:(NSNotification *)notification {
+    
+    // 获得键盘动画时长
+    NSDictionary *userInfo = [notification userInfo];
+    CGFloat keyboardDuration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    
+    // 修改为以前的约束（距下边距0）
+    [_textField mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(0);
+    }];
+    
+    // 更新约束
+    [UIView animateWithDuration:keyboardDuration animations:^{
+        [self.view layoutIfNeeded];
+    }];
+}
+
+// 监听键盘显示后事件
+- (void)keyboardDidShow:(NSNotification *)notification{
+    UIView *keyboardView = [self getKeyboardView];
+    
+    UIView *subView = [[UIView alloc] initWithFrame:CGRectMake(0, 500, 200, 150)];
+    [subView setBackgroundColor:[UIColor redColor]];
+    [keyboardView addSubview:subView];
+    
+}
+
+- (UIView *)getKeyboardView{
+    UIView *result = nil;
+    NSArray *windowsArray = [UIApplication sharedApplication].windows;
+    for (UIView *tmpWindow in windowsArray) {
+        NSArray *viewArray = [tmpWindow subviews];
+        for (UIView *tmpView  in viewArray) {
+            if ([[NSString stringWithUTF8String:object_getClassName(tmpView)] isEqualToString:@"UIPeripheralHostView"]) {
+                result = tmpView;
+                break;
+            }
+        }
+        
+        if (result != nil) {
+            break;
+        }
+    }
+    
+    return result;
 }
 
 
@@ -382,9 +489,17 @@
 
 
 #pragma mark - 触发点击Cell事件
-//- (void)didClickElementOfCellWithCookBookShowProductDayItemModel:(YHSCookBookShowProductDayItemModel *)model
-//{
-//    [self alertPromptMessage:@""];
-//}
+- (void)didClickElementOfCellWithCommentModel:(YHSCookBookCommentModel *)model
+{
+    [self.textField setPlaceholder:[NSString stringWithFormat:@"回复：%@", model.UserName]];
+    
+    BOOL isFirstResponder = [self.textField isFirstResponder];
+    if (isFirstResponder) {
+        [self.textField resignFirstResponder];
+    } else {
+        [self.textField becomeFirstResponder];
+    }
+    
+}
 
 @end
