@@ -15,7 +15,9 @@
 
 @property (nonatomic, strong) NSMutableArray *tableData;
 
-@property (strong, nonatomic) UITextField *textField;
+@property (nonatomic, strong) UIView *keyboardView;
+@property (nonatomic, strong) UITextField *textField;
+@property (nonatomic, strong) UIButton *sendButton;
 
 @end
 
@@ -156,23 +158,64 @@
 // 创建键盘界面
 - (void)createKeyboardView
 {
+    CGFloat margin = 10.0;
+    
+    // 键盘容器
+   UIView *keyboardView =({
+        UIView *view = [UIView new];
+        [view setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1.00]];
+        [self.view addSubview:view];
+        
+        [view mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(@(0.0));
+            make.right.equalTo(@(0.0));
+            make.bottom.equalTo(@(0.0));
+            make.height.equalTo(@(45.0));
+        }];
+        
+        view;
+    });
+    self.keyboardView = keyboardView;
+    
+    // 发送
+    UIButton *sendButton = ({
+        UIButton *button = [UIButton new];
+        [button setTitle:@"发送" forState:UIControlStateNormal];
+        [button.titleLabel setFont:[UIFont boldSystemFontOfSize:14.0]];
+        [button setTitleColor:[UIColor colorWithRed:0.38 green:0.38 blue:0.40 alpha:1.00] forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(pressSendButton:) forControlEvents:UIControlEventTouchUpInside];
+
+        [keyboardView addSubview:button];
+        
+        [button mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(keyboardView.mas_top).offset(margin);
+            make.left.equalTo(keyboardView.mas_right).offset(-50.0);
+            make.bottom.equalTo(keyboardView.mas_bottom).offset(-margin);
+            make.right.equalTo(keyboardView.mas_right).offset(-margin);
+        }];
+        
+        button;
+    });
+    self.sendButton = sendButton;
+    
+    // 输入框
     UITextField *textField = ({
         UITextField *textField = [UITextField new];
-        [textField setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1.00]];
         [textField setPlaceholder:@"说点什么..."];
-        [self.view addSubview:textField];
+        [textField setBackgroundColor:[UIColor whiteColor]];
+        [textField setBorderStyle:UITextBorderStyleRoundedRect];
+        [self.keyboardView addSubview:textField];
         
         [textField mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(@(10.0));
-            make.right.equalTo(@(-10.0));
-            make.bottom.equalTo(@(0.0));
-            make.height.equalTo(@(50.0));
+            make.top.equalTo(keyboardView.mas_top).offset(margin);
+            make.left.equalTo(keyboardView.mas_left).offset(margin);
+            make.bottom.equalTo(keyboardView.mas_bottom).offset(-margin);
+            make.right.equalTo(sendButton.mas_left).offset(-margin);
         }];
         
         textField;
     });
     self.textField = textField;
-    
     
     // 注册键盘通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrameNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
@@ -193,7 +236,7 @@
     CGFloat keyboardDuration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     
     // 修改下边距约束
-    [_textField mas_updateConstraints:^(MASConstraintMaker *make) {
+    [_keyboardView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(-keyboardHeight);
     }];
     
@@ -211,7 +254,7 @@
     CGFloat keyboardDuration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     
     // 修改为以前的约束（距下边距0）
-    [_textField mas_updateConstraints:^(MASConstraintMaker *make) {
+    [_keyboardView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(0);
     }];
     
@@ -500,6 +543,21 @@
         [self.textField becomeFirstResponder];
     }
     
+}
+
+
+// 点击显示菜谱介绍文字
+- (void)pressSendButton:(UIButton *)button
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:[NSString stringWithFormat:@"功能模块正在开发中，请使用其它功能！"] preferredStyle:UIAlertControllerStyleAlert];
+    
+    // 取消
+    UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alertController addAction:cancleAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 @end
