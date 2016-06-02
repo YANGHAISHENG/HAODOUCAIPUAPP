@@ -50,7 +50,11 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER = @"YHSCookBookDish
  * 底部容器组件
  */
 @property (nonatomic, strong) UIView *bottomContainerView;
+@property (strong, nonatomic) MASConstraint *bottomContainerBottomToIntrolLabel;
+@property (strong, nonatomic) MASConstraint *bottomContainerBottomToIntrolButton;
+
 @property (nonatomic, strong) UILabel *foodIntroLabel; // 菜谱的介绍说明
+@property (nonatomic, strong) UIButton *btnExpandAllIntro;
 
 @property (nonatomic, assign) CGFloat foodIntroLabelHeight;
 @property (strong, nonatomic) MASConstraint *foodIntroLabelHeightConstraint; // 动态变高
@@ -202,19 +206,23 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER = @"YHSCookBookDish
         [self.publicContainerView addSubview:self.bottomContainerView];
         
         // 介绍
-        self.foodIntroLabel = [UILabel new];
-        [self.foodIntroLabel setNumberOfLines:0];
-        [self.foodIntroLabel setTextColor:[UIColor blackColor]];
-        [self.foodIntroLabel setFont:[UIFont systemFontOfSize:16.0]];
-        [self.foodIntroLabel setTextAlignment:NSTextAlignmentLeft];
-        [self.foodIntroLabel setUserInteractionEnabled:YES];
-        [self.bottomContainerView addSubview:self.foodIntroLabel];
-        
-        
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pressFoodIntroLabel:)];
-        tapGesture.numberOfTapsRequired = 1; // 设置点按次数，默认为1
-        tapGesture.numberOfTouchesRequired = 1; // 点按的手指数
-        [self.foodIntroLabel addGestureRecognizer:tapGesture];
+        {
+            self.foodIntroLabel = [UILabel new];
+            [self.foodIntroLabel setNumberOfLines:0];
+            [self.foodIntroLabel setTextColor:[UIColor blackColor]];
+            [self.foodIntroLabel setFont:[UIFont systemFontOfSize:16.0]];
+            [self.foodIntroLabel setTextAlignment:NSTextAlignmentLeft];
+            [self.foodIntroLabel setUserInteractionEnabled:YES];
+            [self.bottomContainerView addSubview:self.foodIntroLabel];
+        }
+
+        // 全文/收起
+        self.btnExpandAllIntro = [[UIButton alloc] init];
+        [self.btnExpandAllIntro setTitle:@"全文" forState:UIControlStateNormal];
+        [self.btnExpandAllIntro setTitleColor:[UIColor colorWithRed:0.95 green:0.63 blue:0.15 alpha:1.00] forState:UIControlStateNormal];
+        [self.btnExpandAllIntro setFont:[UIFont boldSystemFontOfSize:12.0]];
+        [self.btnExpandAllIntro addTarget:self action:@selector(pressToShowFoodIntroByButton:) forControlEvents:UIControlEventTouchUpInside];
+        [self.bottomContainerView addSubview:self.btnExpandAllIntro];
     }
     
 }
@@ -397,9 +405,20 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER = @"YHSCookBookDish
             _foodIntroLabelHeightConstraint = make.height.lessThanOrEqualTo(@(_foodIntroLabelHeight)).with.priorityHigh();
         }];
         
+        // 全文/收起
+        [self.btnExpandAllIntro mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(weakSelf.foodIntroLabel.mas_bottom).offset(margin/2.0);
+            make.left.equalTo(weakSelf.bottomContainerView.mas_left).offset(margin/2.0);
+            make.width.equalTo(@(40.0));
+            make.height.equalTo(@(15.0));
+        }];
+        
         // 约束完整性
         [self.bottomContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(weakSelf.foodIntroLabel.mas_bottom).offset(margin);
+            self.bottomContainerBottomToIntrolButton = make.bottom.equalTo(weakSelf.btnExpandAllIntro.mas_bottom).offset(0.0).priorityHigh();
+            self.bottomContainerBottomToIntrolLabel = make.bottom.equalTo(weakSelf.btnExpandAllIntro.mas_bottom).offset(0.0).priorityLow();
+            [self.bottomContainerBottomToIntrolButton deactivate];
+            [self.bottomContainerBottomToIntrolLabel deactivate];
         }];
         
     }
@@ -571,6 +590,33 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER = @"YHSCookBookDish
         } else {
             [_foodIntroLabelHeightConstraint install];
         }
+
+        // 全文/收起
+        {
+            CGFloat maxWidth = SCREEN_WIDTH-2*10.0;
+            NSDictionary *attributes = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:16.0]};
+            CGSize size = [model.Intro boundingRectWithSize:CGSizeMake(maxWidth, MAXFLOAT)
+                                                           options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                                        attributes:attributes
+                                                           context:nil].size;
+            if (size.height <= 100) {
+                [self.btnExpandAllIntro setHidden:YES];
+                [self.bottomContainerBottomToIntrolButton deactivate];
+                [self.bottomContainerBottomToIntrolLabel activate];
+            } else {
+                [self.btnExpandAllIntro setHidden:NO];
+                [self.bottomContainerBottomToIntrolButton activate];
+                [self.bottomContainerBottomToIntrolLabel deactivate];
+            }
+            
+            if (!self.model.isExpandedAllIntro) {
+                [self.btnExpandAllIntro setTitle:@"全文" forState:UIControlStateNormal];
+            } else {
+                [self.btnExpandAllIntro setTitle:@"收起" forState:UIControlStateNormal];
+            }
+        }
+
+        
     }
     
     
@@ -601,9 +647,9 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER = @"YHSCookBookDish
 }
 
 // 点击显示菜谱介绍文字
-- (void)pressFoodIntroLabel:(UITapGestureRecognizer *)gesture
+- (void)pressToShowFoodIntroByButton:(UIButton *)button
 {
-    
+
     if (self.delegate && [self.delegate respondsToSelector:@selector(didFoodIntroLabelWithCookBookDishModel:expandedAllWithIndexPath:)]) {
         [self.delegate didFoodIntroLabelWithCookBookDishModel:self.model expandedAllWithIndexPath:self.indexPath];
     }
