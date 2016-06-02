@@ -21,6 +21,17 @@
 		7D012E3C1CF150E7002FD903 /* YHSCookBookHotsAlbumMainDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D012E3B1CF150E7002FD903 /* YHSCookBookHotsAlbumMainDetailViewController.m */; };
 		7D0152FB1CF6F81B00E8B2E3 /* YHSCookBookVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0152FA1CF6F81B00E8B2E3 /* YHSCookBookVideoModel.m */; };
 		7D0182E31CFE87B600A81857 /* feedback_reply.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0182E21CFE87B600A81857 /* feedback_reply.png */; };
+		7D01ABB51CFFDECA0016E0AF /* PresentingAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D01ABB41CFFDECA0016E0AF /* PresentingAnimator.m */; };
+		7D01ABB81CFFDEF50016E0AF /* DismissingAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D01ABB71CFFDEF50016E0AF /* DismissingAnimator.m */; };
+		7D01ABCA1CFFDFF90016E0AF /* YHSBasicNetworkReachabilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D01ABBC1CFFDFF90016E0AF /* YHSBasicNetworkReachabilityViewController.m */; };
+		7D01ABCB1CFFDFF90016E0AF /* YHSBasicSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D01ABBE1CFFDFF90016E0AF /* YHSBasicSearchViewController.m */; };
+		7D01ABCC1CFFDFF90016E0AF /* YHSBasicViewController+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D01ABC01CFFDFF90016E0AF /* YHSBasicViewController+EmptyDataSet.m */; };
+		7D01ABCD1CFFDFF90016E0AF /* YHSBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D01ABC21CFFDFF90016E0AF /* YHSBasicViewController.m */; };
+		7D01ABCE1CFFDFF90016E0AF /* YHSBasicWithBackBarItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D01ABC41CFFDFF90016E0AF /* YHSBasicWithBackBarItemViewController.m */; };
+		7D01ABCF1CFFDFF90016E0AF /* YHSBasicWithCollectShareBarItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D01ABC61CFFDFF90016E0AF /* YHSBasicWithCollectShareBarItemViewController.m */; };
+		7D01ABD01CFFDFF90016E0AF /* YHSBasicWithSearchBarItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D01ABC81CFFDFF90016E0AF /* YHSBasicWithSearchBarItemViewController.m */; };
+		7D01ABD71CFFE4FC0016E0AF /* YHSCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D01ABD61CFFE4FC0016E0AF /* YHSCollectionViewController.m */; };
+		7D01ABDA1CFFE5150016E0AF /* YHSShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D01ABD91CFFE5150016E0AF /* YHSShareViewController.m */; };
 		7D01D9C31CF69689009AE62F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D01D9C21CF69689009AE62F /* MediaPlayer.framework */; };
 		7D02354E1CF067B900DE6EC0 /* YHSCookBookSearchVIPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D02354D1CF067B900DE6EC0 /* YHSCookBookSearchVIPViewController.m */; };
 		7D0235511CF067ED00DE6EC0 /* YHSCookBookSearchVIPTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0235501CF067ED00DE6EC0 /* YHSCookBookSearchVIPTableViewCell.m */; };
@@ -165,13 +176,6 @@
 		7DB84FBE1CF1A67D00633D55 /* fav_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DB84FBA1CF1A67D00633D55 /* fav_green.png */; };
 		7DB84FC11CF1AD5200633D55 /* YHSCookBookHotsAlbumMoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB84FC01CF1AD5200633D55 /* YHSCookBookHotsAlbumMoreModel.m */; };
 		7DB84FC41CF1ADA000633D55 /* YHSCookBookHotsAlbumMoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB84FC31CF1ADA000633D55 /* YHSCookBookHotsAlbumMoreTableViewCell.m */; };
-		7DB84FD21CF1B65A00633D55 /* YHSBasicNetworkReachabilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB84FC71CF1B65A00633D55 /* YHSBasicNetworkReachabilityViewController.m */; };
-		7DB84FD31CF1B65A00633D55 /* YHSBasicSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB84FC91CF1B65A00633D55 /* YHSBasicSearchViewController.m */; };
-		7DB84FD41CF1B65A00633D55 /* YHSBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB84FCB1CF1B65A00633D55 /* YHSBasicViewController.m */; };
-		7DB84FD51CF1B65A00633D55 /* YHSBasicWithBackBarItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB84FCD1CF1B65A00633D55 /* YHSBasicWithBackBarItemViewController.m */; };
-		7DB84FD61CF1B65A00633D55 /* YHSBasicWithCollectShareBarItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB84FCF1CF1B65A00633D55 /* YHSBasicWithCollectShareBarItemViewController.m */; };
-		7DB84FD71CF1B65A00633D55 /* YHSBasicWithSearchBarItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB84FD11CF1B65A00633D55 /* YHSBasicWithSearchBarItemViewController.m */; };
-		7DB84FDA1CF1B6F700633D55 /* YHSBasicViewController+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB84FD91CF1B6F700633D55 /* YHSBasicViewController+EmptyDataSet.m */; };
 		7DC8303B1CFD61810042A4A5 /* YHSCookBookShowProductUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC8303A1CFD61810042A4A5 /* YHSCookBookShowProductUserTableViewCell.m */; };
 		7DC830411CFD6FCC0042A4A5 /* YHSCookBookShowVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC830401CFD6FCC0042A4A5 /* YHSCookBookShowVideoModel.m */; };
 		7DC830441CFD70200042A4A5 /* YHSCookBookShowVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC830431CFD70200042A4A5 /* YHSCookBookShowVideoViewController.m */; };
@@ -282,6 +286,28 @@
 		7D0152F91CF6F81B00E8B2E3 /* YHSCookBookVideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookVideoModel.h; sourceTree = "<group>"; };
 		7D0152FA1CF6F81B00E8B2E3 /* YHSCookBookVideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookVideoModel.m; sourceTree = "<group>"; };
 		7D0182E21CFE87B600A81857 /* feedback_reply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feedback_reply.png; sourceTree = "<group>"; };
+		7D01ABB31CFFDECA0016E0AF /* PresentingAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentingAnimator.h; sourceTree = "<group>"; };
+		7D01ABB41CFFDECA0016E0AF /* PresentingAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresentingAnimator.m; sourceTree = "<group>"; };
+		7D01ABB61CFFDEF50016E0AF /* DismissingAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissingAnimator.h; sourceTree = "<group>"; };
+		7D01ABB71CFFDEF50016E0AF /* DismissingAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DismissingAnimator.m; sourceTree = "<group>"; };
+		7D01ABBB1CFFDFF90016E0AF /* YHSBasicNetworkReachabilityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSBasicNetworkReachabilityViewController.h; sourceTree = "<group>"; };
+		7D01ABBC1CFFDFF90016E0AF /* YHSBasicNetworkReachabilityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSBasicNetworkReachabilityViewController.m; sourceTree = "<group>"; };
+		7D01ABBD1CFFDFF90016E0AF /* YHSBasicSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSBasicSearchViewController.h; sourceTree = "<group>"; };
+		7D01ABBE1CFFDFF90016E0AF /* YHSBasicSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSBasicSearchViewController.m; sourceTree = "<group>"; };
+		7D01ABBF1CFFDFF90016E0AF /* YHSBasicViewController+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YHSBasicViewController+EmptyDataSet.h"; sourceTree = "<group>"; };
+		7D01ABC01CFFDFF90016E0AF /* YHSBasicViewController+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YHSBasicViewController+EmptyDataSet.m"; sourceTree = "<group>"; };
+		7D01ABC11CFFDFF90016E0AF /* YHSBasicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSBasicViewController.h; sourceTree = "<group>"; };
+		7D01ABC21CFFDFF90016E0AF /* YHSBasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSBasicViewController.m; sourceTree = "<group>"; };
+		7D01ABC31CFFDFF90016E0AF /* YHSBasicWithBackBarItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSBasicWithBackBarItemViewController.h; sourceTree = "<group>"; };
+		7D01ABC41CFFDFF90016E0AF /* YHSBasicWithBackBarItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSBasicWithBackBarItemViewController.m; sourceTree = "<group>"; };
+		7D01ABC51CFFDFF90016E0AF /* YHSBasicWithCollectShareBarItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSBasicWithCollectShareBarItemViewController.h; sourceTree = "<group>"; };
+		7D01ABC61CFFDFF90016E0AF /* YHSBasicWithCollectShareBarItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSBasicWithCollectShareBarItemViewController.m; sourceTree = "<group>"; };
+		7D01ABC71CFFDFF90016E0AF /* YHSBasicWithSearchBarItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSBasicWithSearchBarItemViewController.h; sourceTree = "<group>"; };
+		7D01ABC81CFFDFF90016E0AF /* YHSBasicWithSearchBarItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSBasicWithSearchBarItemViewController.m; sourceTree = "<group>"; };
+		7D01ABD51CFFE4FC0016E0AF /* YHSCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCollectionViewController.h; sourceTree = "<group>"; };
+		7D01ABD61CFFE4FC0016E0AF /* YHSCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCollectionViewController.m; sourceTree = "<group>"; };
+		7D01ABD81CFFE5150016E0AF /* YHSShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSShareViewController.h; sourceTree = "<group>"; };
+		7D01ABD91CFFE5150016E0AF /* YHSShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSShareViewController.m; sourceTree = "<group>"; };
 		7D01D9C21CF69689009AE62F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		7D02354C1CF067B900DE6EC0 /* YHSCookBookSearchVIPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookSearchVIPViewController.h; sourceTree = "<group>"; };
 		7D02354D1CF067B900DE6EC0 /* YHSCookBookSearchVIPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookSearchVIPViewController.m; sourceTree = "<group>"; };
@@ -537,20 +563,6 @@
 		7DB84FC01CF1AD5200633D55 /* YHSCookBookHotsAlbumMoreModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookHotsAlbumMoreModel.m; sourceTree = "<group>"; };
 		7DB84FC21CF1ADA000633D55 /* YHSCookBookHotsAlbumMoreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookHotsAlbumMoreTableViewCell.h; sourceTree = "<group>"; };
 		7DB84FC31CF1ADA000633D55 /* YHSCookBookHotsAlbumMoreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookHotsAlbumMoreTableViewCell.m; sourceTree = "<group>"; };
-		7DB84FC61CF1B65A00633D55 /* YHSBasicNetworkReachabilityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSBasicNetworkReachabilityViewController.h; sourceTree = "<group>"; };
-		7DB84FC71CF1B65A00633D55 /* YHSBasicNetworkReachabilityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSBasicNetworkReachabilityViewController.m; sourceTree = "<group>"; };
-		7DB84FC81CF1B65A00633D55 /* YHSBasicSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSBasicSearchViewController.h; sourceTree = "<group>"; };
-		7DB84FC91CF1B65A00633D55 /* YHSBasicSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSBasicSearchViewController.m; sourceTree = "<group>"; };
-		7DB84FCA1CF1B65A00633D55 /* YHSBasicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSBasicViewController.h; sourceTree = "<group>"; };
-		7DB84FCB1CF1B65A00633D55 /* YHSBasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSBasicViewController.m; sourceTree = "<group>"; };
-		7DB84FCC1CF1B65A00633D55 /* YHSBasicWithBackBarItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSBasicWithBackBarItemViewController.h; sourceTree = "<group>"; };
-		7DB84FCD1CF1B65A00633D55 /* YHSBasicWithBackBarItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSBasicWithBackBarItemViewController.m; sourceTree = "<group>"; };
-		7DB84FCE1CF1B65A00633D55 /* YHSBasicWithCollectShareBarItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSBasicWithCollectShareBarItemViewController.h; sourceTree = "<group>"; };
-		7DB84FCF1CF1B65A00633D55 /* YHSBasicWithCollectShareBarItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSBasicWithCollectShareBarItemViewController.m; sourceTree = "<group>"; };
-		7DB84FD01CF1B65A00633D55 /* YHSBasicWithSearchBarItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSBasicWithSearchBarItemViewController.h; sourceTree = "<group>"; };
-		7DB84FD11CF1B65A00633D55 /* YHSBasicWithSearchBarItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSBasicWithSearchBarItemViewController.m; sourceTree = "<group>"; };
-		7DB84FD81CF1B6F700633D55 /* YHSBasicViewController+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YHSBasicViewController+EmptyDataSet.h"; sourceTree = "<group>"; };
-		7DB84FD91CF1B6F700633D55 /* YHSBasicViewController+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YHSBasicViewController+EmptyDataSet.m"; sourceTree = "<group>"; };
 		7DC830391CFD61810042A4A5 /* YHSCookBookShowProductUserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookShowProductUserTableViewCell.h; sourceTree = "<group>"; };
 		7DC8303A1CFD61810042A4A5 /* YHSCookBookShowProductUserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookShowProductUserTableViewCell.m; sourceTree = "<group>"; };
 		7DC8303F1CFD6FCC0042A4A5 /* YHSCookBookShowVideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookShowVideoModel.h; sourceTree = "<group>"; };
@@ -688,6 +700,58 @@
 			);
 			name = "DataBase[数据]";
 			path = DataBase;
+			sourceTree = "<group>";
+		};
+		7D01ABB21CFFDEA10016E0AF /* Transition */ = {
+			isa = PBXGroup;
+			children = (
+				7D01ABB31CFFDECA0016E0AF /* PresentingAnimator.h */,
+				7D01ABB41CFFDECA0016E0AF /* PresentingAnimator.m */,
+				7D01ABB61CFFDEF50016E0AF /* DismissingAnimator.h */,
+				7D01ABB71CFFDEF50016E0AF /* DismissingAnimator.m */,
+			);
+			path = Transition;
+			sourceTree = "<group>";
+		};
+		7D01ABB91CFFDFF90016E0AF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7D01ABBA1CFFDFF90016E0AF /* Basic */,
+				7D01ABD41CFFE4FC0016E0AF /* Common */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7D01ABBA1CFFDFF90016E0AF /* Basic */ = {
+			isa = PBXGroup;
+			children = (
+				7D01ABBB1CFFDFF90016E0AF /* YHSBasicNetworkReachabilityViewController.h */,
+				7D01ABBC1CFFDFF90016E0AF /* YHSBasicNetworkReachabilityViewController.m */,
+				7D01ABBD1CFFDFF90016E0AF /* YHSBasicSearchViewController.h */,
+				7D01ABBE1CFFDFF90016E0AF /* YHSBasicSearchViewController.m */,
+				7D01ABBF1CFFDFF90016E0AF /* YHSBasicViewController+EmptyDataSet.h */,
+				7D01ABC01CFFDFF90016E0AF /* YHSBasicViewController+EmptyDataSet.m */,
+				7D01ABC11CFFDFF90016E0AF /* YHSBasicViewController.h */,
+				7D01ABC21CFFDFF90016E0AF /* YHSBasicViewController.m */,
+				7D01ABC31CFFDFF90016E0AF /* YHSBasicWithBackBarItemViewController.h */,
+				7D01ABC41CFFDFF90016E0AF /* YHSBasicWithBackBarItemViewController.m */,
+				7D01ABC51CFFDFF90016E0AF /* YHSBasicWithCollectShareBarItemViewController.h */,
+				7D01ABC61CFFDFF90016E0AF /* YHSBasicWithCollectShareBarItemViewController.m */,
+				7D01ABC71CFFDFF90016E0AF /* YHSBasicWithSearchBarItemViewController.h */,
+				7D01ABC81CFFDFF90016E0AF /* YHSBasicWithSearchBarItemViewController.m */,
+			);
+			path = Basic;
+			sourceTree = "<group>";
+		};
+		7D01ABD41CFFE4FC0016E0AF /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				7D01ABD81CFFE5150016E0AF /* YHSShareViewController.h */,
+				7D01ABD91CFFE5150016E0AF /* YHSShareViewController.m */,
+				7D01ABD51CFFE4FC0016E0AF /* YHSCollectionViewController.h */,
+				7D01ABD61CFFE4FC0016E0AF /* YHSCollectionViewController.m */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		7D03354B1CF5F0FD00B273E8 /* CookBookDishPicture */ = {
@@ -1450,27 +1514,6 @@
 			path = CookBookDishController;
 			sourceTree = "<group>";
 		};
-		7DB84FC51CF1B65A00633D55 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				7DB84FC81CF1B65A00633D55 /* YHSBasicSearchViewController.h */,
-				7DB84FC91CF1B65A00633D55 /* YHSBasicSearchViewController.m */,
-				7DB84FCE1CF1B65A00633D55 /* YHSBasicWithCollectShareBarItemViewController.h */,
-				7DB84FCF1CF1B65A00633D55 /* YHSBasicWithCollectShareBarItemViewController.m */,
-				7DB84FD01CF1B65A00633D55 /* YHSBasicWithSearchBarItemViewController.h */,
-				7DB84FD11CF1B65A00633D55 /* YHSBasicWithSearchBarItemViewController.m */,
-				7DB84FCC1CF1B65A00633D55 /* YHSBasicWithBackBarItemViewController.h */,
-				7DB84FCD1CF1B65A00633D55 /* YHSBasicWithBackBarItemViewController.m */,
-				7DB84FC61CF1B65A00633D55 /* YHSBasicNetworkReachabilityViewController.h */,
-				7DB84FC71CF1B65A00633D55 /* YHSBasicNetworkReachabilityViewController.m */,
-				7DB84FCA1CF1B65A00633D55 /* YHSBasicViewController.h */,
-				7DB84FCB1CF1B65A00633D55 /* YHSBasicViewController.m */,
-				7DB84FD81CF1B6F700633D55 /* YHSBasicViewController+EmptyDataSet.h */,
-				7DB84FD91CF1B6F700633D55 /* YHSBasicViewController+EmptyDataSet.m */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
 		7DC8303C1CFD6F790042A4A5 /* CookBookShowVideoModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1853,7 +1896,8 @@
 		7DFE1D8A1CE21B34005A061B /* Other[其它] */ = {
 			isa = PBXGroup;
 			children = (
-				7DB84FC51CF1B65A00633D55 /* ViewController */,
+				7D01ABB91CFFDFF90016E0AF /* Controller */,
+				7D01ABB21CFFDEA10016E0AF /* Transition */,
 				7DFE1D8E1CE21B90005A061B /* TabBar */,
 				7DFE1D8B1CE21B90005A061B /* Navigation */,
 				7DD3ADA91CE345E500F9D3F1 /* Control */,
@@ -2212,9 +2256,13 @@
 			files = (
 				7DC830471CFD73130042A4A5 /* YHSCookBookShowVideoCollectionViewCell.m in Sources */,
 				7D051B611CEF2B2500B97699 /* YHSCookBookHaoDouVIPModel.m in Sources */,
+				7D01ABCA1CFFDFF90016E0AF /* YHSBasicNetworkReachabilityViewController.m in Sources */,
+				7D01ABB81CFFDEF50016E0AF /* DismissingAnimator.m in Sources */,
 				7DAA89981CF310860046CCC0 /* YHSCategorySearchDishVideoViewController.m in Sources */,
 				7D070A9F1CF7EB27003E0920 /* ZFSessionModel.m in Sources */,
+				7D01ABB51CFFDECA0016E0AF /* PresentingAnimator.m in Sources */,
 				7DFC47101CED50DD00A29464 /* YHSCategorySearchResultViewController.m in Sources */,
+				7D01ABCE1CFFDFF90016E0AF /* YHSBasicWithBackBarItemViewController.m in Sources */,
 				7D0651F01CE2BC1E003D9BEC /* YHSRootViewController.m in Sources */,
 				7D8975321CEB0E0B002CF981 /* UIImage+Scale.m in Sources */,
 				7DC8304A1CFD73890042A4A5 /* YHSCookBookShowVideoCollectionViewLayout.m in Sources */,
@@ -2223,7 +2271,6 @@
 				7D063F6D1CF09E8700152563 /* YHSCookBookHotsAlbumTabAllViewController.m in Sources */,
 				7D127E0F1CFC110700F98C12 /* YHSCookBookKitchenModel.m in Sources */,
 				7D0103CD1CEFFD3B00B89D07 /* YHSCookBookSearchModel.m in Sources */,
-				7DB84FD31CF1B65A00633D55 /* YHSBasicSearchViewController.m in Sources */,
 				7D012E3C1CF150E7002FD903 /* YHSCookBookHotsAlbumMainDetailViewController.m in Sources */,
 				7D0335581CF5F0FD00B273E8 /* YHSCookBookDishVideoCommentInfoViewController.m in Sources */,
 				7D0335571CF5F0FD00B273E8 /* YHSCookBookDishPictureViewController.m in Sources */,
@@ -2244,6 +2291,7 @@
 				7D051B661CEF2B2500B97699 /* YHSCookBookRecommedModel.m in Sources */,
 				7D127E1B1CFC1EE400F98C12 /* YHSCookBookShowProductViewController.m in Sources */,
 				7D05A3311CF2AD1F00F3CF60 /* YHSCookBookMenuTableViewCell.m in Sources */,
+				7D01ABDA1CFFE5150016E0AF /* YHSShareViewController.m in Sources */,
 				7DD3ADB51CE34F4B00F9D3F1 /* YHSNetworkingService.m in Sources */,
 				7D0E20A71CF5B107007941F4 /* DLCustomSlideView.m in Sources */,
 				7DC87CDA1CF3409400C435C6 /* YHSCookBookShakeItOffDetailDishVideoViewController.m in Sources */,
@@ -2286,7 +2334,9 @@
 				7D06521F1CE2C45B003D9BEC /* YHSVenderMacro.m in Sources */,
 				7D0497D31CF86DFD005E3F74 /* YHSCookBookDishFoodMaterialModel.m in Sources */,
 				7D8975231CEAF892002CF981 /* YHSCookBookPublishTableViewCell.m in Sources */,
+				7D01ABCB1CFFDFF90016E0AF /* YHSBasicSearchViewController.m in Sources */,
 				7D127E151CFC14F800F98C12 /* YHSCookBookKitchenViewController.m in Sources */,
+				7D01ABD71CFFE4FC0016E0AF /* YHSCollectionViewController.m in Sources */,
 				7D051B751CEF3F0C00B97699 /* YHSCookBookSearchDetailAlbumTableViewCell.m in Sources */,
 				7D063F741CF09EC500152563 /* YHSUITabScrollView.m in Sources */,
 				7D0E20A61CF5B107007941F4 /* DLLRUCache.m in Sources */,
@@ -2296,12 +2346,13 @@
 				7DC8305A1CFDB5700042A4A5 /* YHSCookBookCommentInfoTableViewCell.m in Sources */,
 				7D8975271CEAF892002CF981 /* YHSCookBookYourLoveTableViewCell.m in Sources */,
 				7D8975211CEAF892002CF981 /* YHSCookBookHotsActivityTableViewCell.m in Sources */,
+				7D01ABCC1CFFDFF90016E0AF /* YHSBasicViewController+EmptyDataSet.m in Sources */,
 				7D0652071CE2BDA7003D9BEC /* YHSBackHomeMainViewController.m in Sources */,
 				7DD3ADDC1CE38A0E00F9D3F1 /* UIView+MasonryAutoLayout.m in Sources */,
 				7D03355F1CF5F71200B273E8 /* YHSCookBookDishModel.m in Sources */,
 				7D24BD2C1CF97AEA0029F515 /* YHSCookBookDishDetailProductTableViewCell.m in Sources */,
+				7D01ABD01CFFDFF90016E0AF /* YHSBasicWithSearchBarItemViewController.m in Sources */,
 				7D0827711CE5D047008D77AD /* iCarousel.m in Sources */,
-				7DB84FD51CF1B65A00633D55 /* YHSBasicWithBackBarItemViewController.m in Sources */,
 				7D89751F1CEAF892002CF981 /* YHSCookBookHaoDouVIPTableViewCell.m in Sources */,
 				7DFDEBF41CEEE8D200CEDBDC /* TBAnimationButton.m in Sources */,
 				7D012E241CF14A94002FD903 /* YHSCookBookHotsAlbumDetailElemModel.m in Sources */,
@@ -2310,7 +2361,6 @@
 				7D012E2D1CF14BF8002FD903 /* YHSCookBookHotsAlbumDetailInfoTableViewCell.m in Sources */,
 				7D070A9E1CF7EB27003E0920 /* ZFDownloadManager.m in Sources */,
 				7DFE1D831CE219B8005A061B /* AppDelegate.m in Sources */,
-				7DB84FD71CF1B65A00633D55 /* YHSBasicWithSearchBarItemViewController.m in Sources */,
 				7D070A9B1CF7EB27003E0920 /* ZFBrightnessView.m in Sources */,
 				7DF8937F1CFA9D71003BB2FC /* YHSCookBookDishDetailRelatedTagTableViewCell.m in Sources */,
 				7DAA898A1CF2EA280046CCC0 /* YHSCookBookShakeItOffDetailViewController.m in Sources */,
@@ -2340,23 +2390,22 @@
 				7DC87CC81CF323BD00C435C6 /* YHSCookBookBannnerDetailRecipeDishVideoViewController.m in Sources */,
 				7D063F731CF09EC500152563 /* YHSUITabPagerViewController.m in Sources */,
 				7D012E301CF14C13002FD903 /* YHSCookBookHotsAlbumDetailShareTableViewCell.m in Sources */,
-				7DB84FDA1CF1B6F700633D55 /* YHSBasicViewController+EmptyDataSet.m in Sources */,
 				7DFDEBE61CEED20E00CEDBDC /* YHSCookBookSearchViewController.m in Sources */,
 				7D03355A1CF5F0FD00B273E8 /* YHSCookBookDishVideoStepInfoViewController.m in Sources */,
 				7D5A499D1CE9D07E00D05649 /* YHSNetworkingManager.m in Sources */,
 				7D8975261CEAF892002CF981 /* YHSCookBookToolsTableViewCell.m in Sources */,
 				7D06521E1CE2C45B003D9BEC /* YHSUtilsMacro.m in Sources */,
-				7DB84FD21CF1B65A00633D55 /* YHSBasicNetworkReachabilityViewController.m in Sources */,
 				7DB84FC41CF1ADA000633D55 /* YHSCookBookHotsAlbumMoreTableViewCell.m in Sources */,
 				7D0103D41CF016BB00B89D07 /* YHSCookBookSearchClearAllTableViewCell.m in Sources */,
 				7DA6BF7E1CF1C70A00BF297C /* YHSCookBookHotsAlbumTabViewController.m in Sources */,
+				7D01ABCD1CFFDFF90016E0AF /* YHSBasicViewController.m in Sources */,
 				7D0744C01CFF29F500A994C2 /* YHSBasicScrollTabBarViewController.m in Sources */,
 				7DFC470D1CED4F2F00A29464 /* YHSCategorySearchResultTableViewCell.m in Sources */,
 				7DC87CDD1CF340CA00C435C6 /* YHSCookBookShakeItOffDetailDishPictureViewController.m in Sources */,
 				7DC8303B1CFD61810042A4A5 /* YHSCookBookShowProductUserTableViewCell.m in Sources */,
 				7D0744BD1CFF28A200A994C2 /* WXTabBarController.m in Sources */,
 				7D0497D01CF86CC2005E3F74 /* YHSCookBookDishDetailFoodMaterialTableViewCell.m in Sources */,
-				7DB84FD61CF1B65A00633D55 /* YHSBasicWithCollectShareBarItemViewController.m in Sources */,
+				7D01ABCF1CFFDFF90016E0AF /* YHSBasicWithCollectShareBarItemViewController.m in Sources */,
 				7D06520A1CE2BDD4003D9BEC /* YHSSquareMainViewController.m in Sources */,
 				7D012E2A1CF14BB3002FD903 /* YHSCookBookHotsAlbumDetailShareModel.m in Sources */,
 				7D051B641CEF2B2500B97699 /* YHSCookBookPublishModel.m in Sources */,
@@ -2366,7 +2415,6 @@
 				7D127E211CFC1F2800F98C12 /* YHSCookBookShowProductDayModel.m in Sources */,
 				7D0235541CF0680F00DE6EC0 /* YHSCookBookSearchVIPModel.m in Sources */,
 				7D127E121CFC114600F98C12 /* YHSCookBookKitchenTableViewCell.m in Sources */,
-				7DB84FD41CF1B65A00633D55 /* YHSBasicViewController.m in Sources */,
 				7D012E331CF14C2A002FD903 /* YHSCookBookHotsAlbumDetailElemTableViewCell.m in Sources */,
 				7DC8304D1CFD81930042A4A5 /* YHSCookBookShowVideoCateModel.m in Sources */,
 				7DF893851CFADB1B003BB2FC /* YHSCookBookDishPictureDetailStepTableViewCell.m in Sources */,

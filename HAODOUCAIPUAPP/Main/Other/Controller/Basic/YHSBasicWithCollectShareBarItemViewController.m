@@ -8,7 +8,13 @@
 
 #import "YHSBasicWithCollectShareBarItemViewController.h"
 #import "YHSBasicSearchViewController.h"
+#import "YHSCollectionViewController.h"
+#import "YHSShareViewController.h"
 
+
+@interface YHSBasicWithCollectShareBarItemViewController () <UIViewControllerTransitioningDelegate>
+
+@end
 
 @implementation YHSBasicWithCollectShareBarItemViewController
 
@@ -110,15 +116,38 @@
 #pragma mark - 触发分享按钮事件
 - (void)naviShareBarButtonItemClicked:(UIButton *)button
 {
-    [self alertPromptMessage:@""];
+    YHSCollectionViewController *modalViewController = [YHSCollectionViewController new];
+    modalViewController.transitioningDelegate = self;
+    modalViewController.modalPresentationStyle = UIModalPresentationCustom;
+    
+    [self.navigationController presentViewController:modalViewController animated:YES completion:NULL];
 }
 
 
 #pragma mark - 触发收藏按钮事件
 - (void)naviCollectBarButtonItemClicked:(UIButton *)button
 {
-    [self alertPromptMessage:@""];
+    YHSCollectionViewController *modalViewController = [YHSCollectionViewController new];
+    modalViewController.transitioningDelegate = self;
+    modalViewController.modalPresentationStyle = UIModalPresentationCustom;
+    
+    [self.navigationController presentViewController:modalViewController animated:YES completion:NULL];
 }
+
+#pragma mark - UIViewControllerTransitioningDelegate
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
+                                                                  presentingController:(UIViewController *)presenting
+                                                                      sourceController:(UIViewController *)source
+{
+    return [PresentingAnimator new];
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
+{
+    return [DismissingAnimator new];
+}
+
 
 
 @end
