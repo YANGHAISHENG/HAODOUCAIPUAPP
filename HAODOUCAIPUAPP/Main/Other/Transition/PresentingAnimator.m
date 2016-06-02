@@ -13,7 +13,7 @@
 
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext
 {
-    return 0.5f;
+    return 0.2f;
 }
 
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext
@@ -29,8 +29,8 @@
     UIView *toView = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey].view;
     toView.frame = CGRectMake(0,
                               0,
-                              CGRectGetWidth(transitionContext.containerView.bounds) - 104.f,
-                              CGRectGetHeight(transitionContext.containerView.bounds) - 288.f);
+                              CGRectGetWidth(transitionContext.containerView.bounds) - 80.f,
+                              CGRectGetHeight(transitionContext.containerView.bounds) - 200.f);
     toView.center = CGPointMake(transitionContext.containerView.center.x, -transitionContext.containerView.center.y);
     
     [transitionContext.containerView addSubview:dimmingView];

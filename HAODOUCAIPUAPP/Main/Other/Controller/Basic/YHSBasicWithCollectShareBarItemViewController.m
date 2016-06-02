@@ -116,7 +116,7 @@
 #pragma mark - 触发分享按钮事件
 - (void)naviShareBarButtonItemClicked:(UIButton *)button
 {
-    YHSCollectionViewController *modalViewController = [YHSCollectionViewController new];
+    YHSShareViewController *modalViewController = [YHSShareViewController new];
     modalViewController.transitioningDelegate = self;
     modalViewController.modalPresentationStyle = UIModalPresentationCustom;
     
