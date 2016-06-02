@@ -49,7 +49,7 @@
     
     // 我的
     [self addChildNavigationController:[YHSBasicNavigationController class]
-                    rootViewController:[YHSSquareMainViewController class]
+                    rootViewController:[YHSMineMainViewController class]
                                  title:@"我的"
                        tabBarImageName:@"mine_normal"
                  tabBarSelectImageName:@"mine_pressed"];

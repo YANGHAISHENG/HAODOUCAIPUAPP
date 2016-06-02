@@ -6,8 +6,15 @@
 //  Copyright © 2016年 YANGHAISHENG. All rights reserved.
 //
 
-#import "YHSBasicViewController.h"
+#import "YHSBasicWithBackBarItemViewController.h"
 
-@interface YHSMineMainViewController : YHSBasicViewController
+@interface YHSMineMainViewController : YHSBasicWithBackBarItemViewController
+
+
+@property (nonatomic, strong) UIButton *settingItem;
+
+#pragma mark - 触发分享按钮事件
+- (void)naviSettingBarButtonItemClicked:(UIButton *)button;
+
 
 @end

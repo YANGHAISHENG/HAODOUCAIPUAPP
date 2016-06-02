@@ -18,6 +18,7 @@ UIKIT_EXTERN CGFloat const HEIGHT_NAVIGATION_BAR;
 
 #pragma mark 导航条按钮字体大小
 UIKIT_EXTERN CGFloat const FONT_SIZE_NAVIGATION;
+UIKIT_EXTERN CGFloat const FONT_SIZE_NAVIGATION_20;
 
 #pragma mark 标签栏按钮字体大小
 UIKIT_EXTERN CGFloat const FONT_SIZE_TABBAR;

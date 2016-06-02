@@ -18,6 +18,7 @@ CGFloat const HEIGHT_NAVIGATION_BAR = 44.0;
 
 #pragma mark 导航条按钮字体大小
 CGFloat const FONT_SIZE_NAVIGATION = 18.0;
+CGFloat const FONT_SIZE_NAVIGATION_20 = 20.0;
 
 #pragma mark 标签栏按钮字体大小
 CGFloat const FONT_SIZE_TABBAR = 10.0;
