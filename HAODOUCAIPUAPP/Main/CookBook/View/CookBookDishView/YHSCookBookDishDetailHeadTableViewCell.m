@@ -320,7 +320,7 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER = @"YHSCookBookDish
         [self.userIntroLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(weakSelf.userNameLabel.mas_bottom).offset(0.0);
             make.left.equalTo(weakSelf.userAvatarImageView.mas_right).offset(margin);
-            make.right.equalTo(weakSelf.userNameLabel.mas_right).offset(0.0);
+            make.right.equalTo(weakSelf.middleContainerView.mas_right).offset(-margin);
             make.bottom.equalTo(weakSelf.userAvatarImageView.mas_bottom);
         }];
         
@@ -449,6 +449,17 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER = @"YHSCookBookDish
         [self.auxiliaryImageView setImage:[UIImage imageNamed:@"ico_auxiliary_male"]];
         // 关注
         [self.relationImageView setImage:[UIImage imageNamed:@"myhome_follow_normal"]];
+        
+        {
+            NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:16]};
+            CGSize size = [model.UserInfo.UserName boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
+                                                                options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                                             attributes:attributes
+                                                                context:nil].size;
+            [self.userNameLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.width.equalTo(@(size.width));
+            }];
+        }
         
         // 标签主容器
         CGFloat margin = 10.0;

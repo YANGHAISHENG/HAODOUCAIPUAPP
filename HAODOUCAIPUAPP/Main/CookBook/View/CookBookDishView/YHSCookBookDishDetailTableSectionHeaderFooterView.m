@@ -159,6 +159,11 @@
         });
         self.btnImageView = btnImageView;
         
+    } else {
+        for (UIView *subView in self.rightBtnView.subviews) {
+            [subView removeFromSuperview];
+        }
+        [self.rightBtnView removeFromSuperview];
     }
     
 

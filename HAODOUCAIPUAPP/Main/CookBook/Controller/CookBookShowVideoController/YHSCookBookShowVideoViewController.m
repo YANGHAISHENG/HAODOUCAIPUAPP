@@ -242,10 +242,8 @@
     __block YHSHandWritingLoadingView *writingLoadingVeiw = nil;
     if (showWritingLoading) {
         
-        CGFloat topHegiht = 60.0; // 调试值，固定的
-        
         // 加载动画根容器
-        loadingContainerView = [[YHSHandWritingLoadingView alloc] initWithFrame:CGRectMake(0, -topHegiht, self.view.frame.size.width, self.view.frame.size.height-topHegiht-49)];
+        loadingContainerView = [[YHSHandWritingLoadingView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         [self.view addSubview:loadingContainerView];
         // 手势Loading动画
         writingLoadingVeiw = [[YHSHandWritingLoadingView alloc] initWithView:loadingContainerView];

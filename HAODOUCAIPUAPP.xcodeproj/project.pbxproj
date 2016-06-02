@@ -103,6 +103,9 @@
 		7D070AA01CF7EB27003E0920 /* ZFPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D070A9A1CF7EB27003E0920 /* ZFPlayerView.m */; };
 		7D070AA21CF7F411003E0920 /* loading_bgView.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7D070AA11CF7F411003E0920 /* loading_bgView.jpg */; };
 		7D070AA61CF82C89003E0920 /* YHSCookBookDishDetailHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D070AA51CF82C89003E0920 /* YHSCookBookDishDetailHeadTableViewCell.m */; };
+		7D0744BD1CFF28A200A994C2 /* WXTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0744BC1CFF28A200A994C2 /* WXTabBarController.m */; };
+		7D0744C01CFF29F500A994C2 /* YHSBasicScrollTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0744BF1CFF29F500A994C2 /* YHSBasicScrollTabBarViewController.m */; };
+		7D0744C31CFF2E8800A994C2 /* YHSScrollRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0744C21CFF2E8800A994C2 /* YHSScrollRootViewController.m */; };
 		7D08276A1CE5C10B008D77AD /* ico_auxiliary_master.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0827661CE5C10B008D77AD /* ico_auxiliary_master.png */; };
 		7D08276B1CE5C10B008D77AD /* ico_auxiliary_more_grayc.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0827671CE5C10B008D77AD /* ico_auxiliary_more_grayc.png */; };
 		7D08276C1CE5C10B008D77AD /* ico_auxiliary_more.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0827681CE5C10B008D77AD /* ico_auxiliary_more.png */; };
@@ -422,6 +425,12 @@
 		7D070AA31CF82694003E0920 /* HAODOUCAIPUAPPHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HAODOUCAIPUAPPHeader.pch; sourceTree = "<group>"; };
 		7D070AA41CF82C89003E0920 /* YHSCookBookDishDetailHeadTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookDishDetailHeadTableViewCell.h; sourceTree = "<group>"; };
 		7D070AA51CF82C89003E0920 /* YHSCookBookDishDetailHeadTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookDishDetailHeadTableViewCell.m; sourceTree = "<group>"; };
+		7D0744BB1CFF28A200A994C2 /* WXTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXTabBarController.h; sourceTree = "<group>"; };
+		7D0744BC1CFF28A200A994C2 /* WXTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXTabBarController.m; sourceTree = "<group>"; };
+		7D0744BE1CFF29F500A994C2 /* YHSBasicScrollTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSBasicScrollTabBarViewController.h; sourceTree = "<group>"; };
+		7D0744BF1CFF29F500A994C2 /* YHSBasicScrollTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSBasicScrollTabBarViewController.m; sourceTree = "<group>"; };
+		7D0744C11CFF2E8800A994C2 /* YHSScrollRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSScrollRootViewController.h; sourceTree = "<group>"; };
+		7D0744C21CFF2E8800A994C2 /* YHSScrollRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSScrollRootViewController.m; sourceTree = "<group>"; };
 		7D0827661CE5C10B008D77AD /* ico_auxiliary_master.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_auxiliary_master.png; sourceTree = "<group>"; };
 		7D0827671CE5C10B008D77AD /* ico_auxiliary_more_grayc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_auxiliary_more_grayc.png; sourceTree = "<group>"; };
 		7D0827681CE5C10B008D77AD /* ico_auxiliary_more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_auxiliary_more.png; sourceTree = "<group>"; };
@@ -1112,6 +1121,15 @@
 			path = ZFPlayerDownload;
 			sourceTree = "<group>";
 		};
+		7D0744BA1CFF28A200A994C2 /* WXTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				7D0744BB1CFF28A200A994C2 /* WXTabBarController.h */,
+				7D0744BC1CFF28A200A994C2 /* WXTabBarController.m */,
+			);
+			path = WXTabBarController;
+			sourceTree = "<group>";
+		};
 		7D08276E1CE5D047008D77AD /* iCarousel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1608,6 +1626,7 @@
 				7D0E20931CF5B107007941F4 /* DLSlideView */,
 				7DD3ADB61CE350F600F9D3F1 /* MBProgressHUD */,
 				7DFDEBF11CEEE8D200CEDBDC /* TBIconTransitionKit */,
+				7D0744BA1CFF28A200A994C2 /* WXTabBarController */,
 			);
 			name = "Vender[三方]";
 			path = Vender;
@@ -1636,6 +1655,8 @@
 				7DFE1D6E1CE219B8005A061B /* ViewController.m */,
 				7D0651EE1CE2BC1E003D9BEC /* YHSRootViewController.h */,
 				7D0651EF1CE2BC1E003D9BEC /* YHSRootViewController.m */,
+				7D0744C11CFF2E8800A994C2 /* YHSScrollRootViewController.h */,
+				7D0744C21CFF2E8800A994C2 /* YHSScrollRootViewController.m */,
 			);
 			name = "AppDelegate[入口]";
 			path = AppDelegate;
@@ -1863,6 +1884,8 @@
 			children = (
 				7D0651EB1CE2BB91003D9BEC /* YHSBasicTabBarController.h */,
 				7D0651EC1CE2BB91003D9BEC /* YHSBasicTabBarController.m */,
+				7D0744BE1CFF29F500A994C2 /* YHSBasicScrollTabBarViewController.h */,
+				7D0744BF1CFF29F500A994C2 /* YHSBasicScrollTabBarViewController.m */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -2217,6 +2240,7 @@
 				7D0651EA1CE2BB77003D9BEC /* YHSBasicNavigationController.m in Sources */,
 				7D051B671CEF2B2500B97699 /* YHSCookBookToolsModel.m in Sources */,
 				7D0E20A91CF5B107007941F4 /* DLFixedTabbarView.m in Sources */,
+				7D0744C31CFF2E8800A994C2 /* YHSScrollRootViewController.m in Sources */,
 				7D051B661CEF2B2500B97699 /* YHSCookBookRecommedModel.m in Sources */,
 				7D127E1B1CFC1EE400F98C12 /* YHSCookBookShowProductViewController.m in Sources */,
 				7D05A3311CF2AD1F00F3CF60 /* YHSCookBookMenuTableViewCell.m in Sources */,
@@ -2326,9 +2350,11 @@
 				7DB84FC41CF1ADA000633D55 /* YHSCookBookHotsAlbumMoreTableViewCell.m in Sources */,
 				7D0103D41CF016BB00B89D07 /* YHSCookBookSearchClearAllTableViewCell.m in Sources */,
 				7DA6BF7E1CF1C70A00BF297C /* YHSCookBookHotsAlbumTabViewController.m in Sources */,
+				7D0744C01CFF29F500A994C2 /* YHSBasicScrollTabBarViewController.m in Sources */,
 				7DFC470D1CED4F2F00A29464 /* YHSCategorySearchResultTableViewCell.m in Sources */,
 				7DC87CDD1CF340CA00C435C6 /* YHSCookBookShakeItOffDetailDishPictureViewController.m in Sources */,
 				7DC8303B1CFD61810042A4A5 /* YHSCookBookShowProductUserTableViewCell.m in Sources */,
+				7D0744BD1CFF28A200A994C2 /* WXTabBarController.m in Sources */,
 				7D0497D01CF86CC2005E3F74 /* YHSCookBookDishDetailFoodMaterialTableViewCell.m in Sources */,
 				7DB84FD61CF1B65A00633D55 /* YHSBasicWithCollectShareBarItemViewController.m in Sources */,
 				7D06520A1CE2BDD4003D9BEC /* YHSSquareMainViewController.m in Sources */,

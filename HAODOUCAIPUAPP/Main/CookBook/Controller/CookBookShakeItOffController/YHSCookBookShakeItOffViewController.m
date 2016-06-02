@@ -194,7 +194,7 @@
     __block YHSHandWritingLoadingView *writingLoadingVeiw = nil;
     if (showWritingLoading) {
         // 加载动画根容器
-        loadingContainerView = [[YHSHandWritingLoadingView alloc] initWithFrame:CGRectMake(0, HEIGHT_NAVIGATION_STATUS, self.view.frame.size.width, self.view.frame.size.height-HEIGHT_NAVIGATION_STATUS-49)];
+        loadingContainerView = [[YHSHandWritingLoadingView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         [self.view addSubview:loadingContainerView];
         // 手势Loading动画
         writingLoadingVeiw = [[YHSHandWritingLoadingView alloc] initWithView:loadingContainerView];
