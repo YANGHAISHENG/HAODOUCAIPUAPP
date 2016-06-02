@@ -21,4 +21,10 @@
     return [YHSCookBookDataUtil getCookBookHotsAlbumMoreRecommendRequestParams];
 }
 
+
+- (void)setCurrentSelectedIndexOfHotsAlbumTab
+{
+    [self.hotsAlbumMoreViewController setCurrentSelectedIndex:0];
+}
+
 @end

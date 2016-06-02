@@ -26,4 +26,7 @@
 - (void)naviSearchBarButtonItemClicked:(UIButton *)button;
 
 
+@property (nonatomic, assign) NSInteger currentSelectedIndex;
+
+
 @end

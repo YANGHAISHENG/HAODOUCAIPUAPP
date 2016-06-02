@@ -28,6 +28,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self reloadData];
+    
+    // 默认选中第一个
+    [self selectTabbarIndex:self.currentSelectedIndex];
 }
 
 
@@ -41,9 +44,11 @@
     
     if (0 == index) {
         YHSCookBookHotsAlbumTabRecommendViewController *recommendController = [[YHSCookBookHotsAlbumTabRecommendViewController alloc] init];
+        recommendController.hotsAlbumMoreViewController = self;
         return recommendController;
     } else if (1 == index) {
         YHSCookBookHotsAlbumTabAllViewController *allController = [[YHSCookBookHotsAlbumTabAllViewController alloc] init];
+        allController.hotsAlbumMoreViewController = self;
         return allController;
     }
     

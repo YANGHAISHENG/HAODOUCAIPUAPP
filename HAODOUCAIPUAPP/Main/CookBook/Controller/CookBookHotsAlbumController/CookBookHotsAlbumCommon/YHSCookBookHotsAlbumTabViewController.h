@@ -7,6 +7,8 @@
 //
 
 #import "YHSBasicNetworkReachabilityViewController.h"
+#import "YHSCookBookHotsAlbumMoreViewController.h"
+
 
 @interface YHSCookBookHotsAlbumTabViewController : YHSBasicNetworkReachabilityViewController
 
@@ -16,5 +18,7 @@
 @property (nonatomic, assign) NSUInteger offset; // 数据偏移量
 @property (nonatomic, strong) NSString *request_id; // 0ba5cb08e3d53747acfc081eb1afd5c2
 @property (nonatomic, strong) NSString *uuid;
+
+@property (nonatomic, strong) YHSCookBookHotsAlbumMoreViewController *hotsAlbumMoreViewController;
 
 @end

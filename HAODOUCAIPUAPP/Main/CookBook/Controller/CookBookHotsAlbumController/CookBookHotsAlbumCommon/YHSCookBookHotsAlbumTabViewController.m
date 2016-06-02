@@ -414,6 +414,9 @@
 #pragma mark - 触发点击Cell事件
 - (void)didClickElementOfCellWithCookBookHotsAlbumMoreModel:(YHSCookBookHotsAlbumMoreModel *)model
 {
+    // 设置当前选中的Tab下标
+    [self setCurrentSelectedIndexOfHotsAlbumTab];
+    
     YHSCookBookHotsAlbumTabDetailViewController *hotsAlbumDetailController = [YHSCookBookHotsAlbumTabDetailViewController new];
     [hotsAlbumDetailController setReturn_request_id:@"ad6ae6f1e152a07395434276a7b2838b"];
     [hotsAlbumDetailController setAid:[NSString stringWithFormat:@"%ld", model.Id]];
@@ -422,6 +425,9 @@
 }
 
 
-
+- (void)setCurrentSelectedIndexOfHotsAlbumTab
+{
+    // 子类继承
+}
 
 @end
