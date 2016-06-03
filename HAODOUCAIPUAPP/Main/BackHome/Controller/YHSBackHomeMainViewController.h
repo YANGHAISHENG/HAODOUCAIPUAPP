@@ -8,6 +8,13 @@
 
 #import "YHSBasicWithBackBarItemViewController.h"
 
+typedef NS_ENUM(NSInteger, YHSBackHomeTableSection) {
+    YHSBackHomeTableSectionAD, // 广告横幅
+    YHSBackHomeTableSectionFoodieFavoriteGoods, // 吃货最爱
+    YHSBackHomeTableSectionGoodList, // 逛逛商品
+};
+
+
 @interface YHSBackHomeMainViewController : YHSBasicWithBackBarItemViewController
 
 @property (nonatomic, strong) UILabel *loactionNavItem;

@@ -18,7 +18,6 @@
 #import "MGSwipeTableCell.h"
 #import "ZFPlayer.h"
 #import "iCarousel.h"
-
 #import "DLScrollTabbarView.h"
 #import "DLLRUCache.h"
 
@@ -29,11 +28,13 @@
 #import "YHSCookBookDataUtil.h"
 #import "YHSNetworkingManager.h"
 #import "YHSNetworkingService.h"
-#import "YHSCookBookDataUtil.h"
 #import "YHSNavigationBarTitleView.h"
 #import "YHSHandWritingLoadingView.h"
 #import "PresentingAnimator.h"
 #import "DismissingAnimator.h"
+
+#import "YHSCookBookDataUtil.h"
+#import "YHSBackHomeDataUtil.h"
 
 #import "UIColor+Hex.h"
 #import "UIImage+Scale.h"
