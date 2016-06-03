@@ -13,7 +13,7 @@
 
 @property (nonatomic, strong) UIButton *settingItem;
 
-#pragma mark - 触发分享按钮事件
+#pragma mark - 触发设置按钮事件
 - (void)naviSettingBarButtonItemClicked:(UIButton *)button;
 
 

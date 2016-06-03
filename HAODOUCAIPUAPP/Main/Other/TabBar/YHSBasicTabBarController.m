@@ -61,7 +61,6 @@
     // 创建视图控制器
     UIViewController *rootViewController = [[rootViewControllerClass alloc] init];
     rootViewController.automaticallyAdjustsScrollViewInsets = NO;
-    rootViewController.title = title;
     
     // 创建导航控制器
     UINavigationController *naviViewController = [[navigationControllerClass  alloc] initWithRootViewController:rootViewController];
