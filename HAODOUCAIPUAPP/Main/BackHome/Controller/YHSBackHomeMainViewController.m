@@ -477,7 +477,9 @@
                     YHSBackHomeCateModel *model = [YHSBackHomeCateModel mj_objectWithKeyValues:dict];
                     [cateModelArray addObject:model];
                 }];
-                weakSelf.cateListData = cateModelArray.mutableCopy;
+                if (!weakSelf.cateListData) {
+                    weakSelf.cateListData = cateModelArray.mutableCopy;
+                }
             }
             
             // Table-0.广告栏数据
@@ -487,7 +489,9 @@
                     YHSBackHomeADModel *model = [YHSBackHomeADModel mj_objectWithKeyValues:dict];
                     [adModelArray addObject:model];
                 }];
-                weakSelf.adModels = adModelArray.mutableCopy;
+                if (!weakSelf.adModels) {
+                    weakSelf.adModels = adModelArray.mutableCopy;
+                }
             }
             
             // Table-1.吃货最爱
@@ -497,7 +501,9 @@
                     YHSBackHomeFoodieFavoriteGoodsModel *model = [YHSBackHomeFoodieFavoriteGoodsModel mj_objectWithKeyValues:dict];
                     [favoriteGoodModelArray addObject:model];
                 }];
-                weakSelf.favoriteGoodModels = favoriteGoodModelArray.mutableCopy;
+                if (!weakSelf.favoriteGoodModels) {
+                    weakSelf.favoriteGoodModels = favoriteGoodModelArray.mutableCopy;
+                }
             }
             
             // Table-2.逛逛商品
@@ -507,7 +513,12 @@
                     YHSBackHomeGoodsModel *model = [YHSBackHomeGoodsModel mj_objectWithKeyValues:dict];
                     [goodModelArray addObject:model];
                 }];
-                weakSelf.goodModels = goodModelArray.mutableCopy;
+                
+                if (0 == _offset) {
+                    weakSelf.goodModels = goodModelArray.mutableCopy;
+                } else {
+                    [weakSelf.goodModels addObjectsFromArray:goodModelArray.mutableCopy];
+                }
             }
             
             
@@ -537,8 +548,12 @@
                 [weakSelf.tableData replaceObjectAtIndex:1 withObject:@[weakSelf.favoriteGoodModels].mutableCopy];
                 
                 // Table-2.逛逛商品
-                [weakSelf.tableData[2] addObjectsFromArray:weakSelf.goodModels.mutableCopy]; // 加载更多数据
+                [weakSelf.tableData replaceObjectAtIndex:2 withObject:weakSelf.goodModels.mutableCopy];
             }
+            
+            YHSLogRed(@"%ld", weakSelf.tableData[0].count);
+            YHSLogRed(@"%ld", weakSelf.tableData[1].count);
+            YHSLogRed(@"%ld", weakSelf.tableData[2].count);
             
             /////////////////////////////////////////////////////////////////
             // B、配置数据源 DataSource  -> 结束

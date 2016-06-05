@@ -409,7 +409,8 @@ NSString * const CELL_IDENTIFIER_BACKHOME_GOODS = @"YHSBackHomeGoodTableViewCell
     }
     
     // 下部组件
-    {     
+    {
+        // 实价
         {
             CGFloat margin = 10.0;
             NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:18]};
@@ -423,16 +424,20 @@ NSString * const CELL_IDENTIFIER_BACKHOME_GOODS = @"YHSBackHomeGoodTableViewCell
             [self.deailPriceLabel setText:_model.DealPrice];
         }
         
-        {
+        // 原价
+        if (_model.Price.length > 0) {
             NSAttributedString *attrStr =
             [[NSAttributedString alloc]initWithString:_model.Price
                                            attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12.f],
                                                         NSForegroundColorAttributeName:[UIColor lightGrayColor],
                                                         NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),
                                                         NSStrikethroughColorAttributeName:[UIColor colorWithRed:0.55 green:0.13 blue:0.82 alpha:1.00]}];
-            self.priceLabel.attributedText = attrStr;
+            [self.priceLabel setAttributedText:attrStr];
+        } else {
+            [self.priceLabel setText:@""];
         }
         
+        // 购买标签
         [_buyLabel setText:@"立即购买"];
         
         // 动态标签
