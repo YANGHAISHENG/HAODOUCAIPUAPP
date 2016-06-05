@@ -41,6 +41,7 @@ NSString * const CELL_IDENTIFIER_BACKHOME_GOODS = @"YHSBackHomeGoodTableViewCell
 @property (nonnull, nonatomic, strong) UILabel *deailPriceLabel; // 现价
 @property (nonnull, nonatomic, strong) UILabel *priceLabel; // 原价
 @property (nonnull, nonatomic, strong) UILabel *buyLabel; // 立即购买
+@property (nonnull, nonatomic, strong) UIView *labelsContainerView; // 标签组件容器
 
 /**
  * 分割线
@@ -174,6 +175,10 @@ NSString * const CELL_IDENTIFIER_BACKHOME_GOODS = @"YHSBackHomeGoodTableViewCell
         [self.priceLabel setFont:[UIFont systemFontOfSize:12.0]];
         [self.priceLabel setTextAlignment:NSTextAlignmentLeft];
         [self.downContainerView addSubview:self.priceLabel];
+        
+        // 标签容器
+        self.labelsContainerView =[[UIView alloc] init];
+        [self.downContainerView addSubview:self.labelsContainerView];
         
         // 立即购买
         {
@@ -328,18 +333,24 @@ NSString * const CELL_IDENTIFIER_BACKHOME_GOODS = @"YHSBackHomeGoodTableViewCell
         
         // 立即购买
         [self.buyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(@(0));
+            make.top.equalTo(@(margin/3.0));
             make.right.equalTo(weakSelf.downContainerView.mas_right).offset(-margin);
-            make.bottom.equalTo(@(0));
+            make.bottom.equalTo(@(-margin/3.0));
             make.width.equalTo(@(80));
         }];
         
-        // 原格
+        // 原价
         [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(weakSelf.deailPriceLabel.mas_right).offset(0.0);
-            make.right.equalTo(weakSelf.buyLabel.mas_left).offset(-margin);
+            make.centerY.equalTo(weakSelf.downContainerView.mas_centerY).offset(0.0);
+        }];
+        
+        // 标签容器
+        [self.labelsContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(@(0));
+            make.left.equalTo(weakSelf.priceLabel.mas_right).offset(0.0);
+            make.right.equalTo(weakSelf.buyLabel.mas_left).offset(0.0);
             make.bottom.equalTo(@(0));
-            make.height.equalTo(weakSelf.deailPriceLabel.mas_height).multipliedBy(9.0/10.0);
         }];
 
     }
@@ -398,7 +409,7 @@ NSString * const CELL_IDENTIFIER_BACKHOME_GOODS = @"YHSBackHomeGoodTableViewCell
     }
     
     // 下部组件
-    {
+    {     
         {
             CGFloat margin = 10.0;
             NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:18]};
@@ -412,9 +423,75 @@ NSString * const CELL_IDENTIFIER_BACKHOME_GOODS = @"YHSBackHomeGoodTableViewCell
             [self.deailPriceLabel setText:_model.DealPrice];
         }
         
-        [_priceLabel setText:_model.Price];
+        {
+            NSAttributedString *attrStr =
+            [[NSAttributedString alloc]initWithString:_model.Price
+                                           attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12.f],
+                                                        NSForegroundColorAttributeName:[UIColor lightGrayColor],
+                                                        NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),
+                                                        NSStrikethroughColorAttributeName:[UIColor colorWithRed:0.55 green:0.13 blue:0.82 alpha:1.00]}];
+            self.priceLabel.attributedText = attrStr;
+        }
         
         [_buyLabel setText:@"立即购买"];
+        
+        // 动态标签
+        {
+            // 注意Cell的利用机制
+            for (UIView *view in self.labelsContainerView.subviews) {
+                [view removeFromSuperview];
+            }
+            
+            // 重新创建Labels
+            if(self.model.Labels.count > 0) {
+                
+                WEAKSELF(weakSelf);
+                
+                CGFloat margin = 10.0;
+                
+                UILabel *lastLabel = nil;
+                
+                for (int i = 0; i < self.model.Labels.count; i ++) {
+                    
+                    UILabel *subLabel = ({
+                        UILabel *label = [[UILabel alloc] init];
+                        [label setText:self.model.Labels[i]];
+                        [label setTextColor:[UIColor whiteColor]];
+                        [label setFont:[UIFont systemFontOfSize:12.0]];
+                        [label setTextAlignment:NSTextAlignmentCenter];
+                        [label setBackgroundColor:[UIColor colorWithRed:0.91 green:0.16 blue:0.00 alpha:1.00]];
+                        [label.layer setCornerRadius:3.0];
+                        [label.layer setMasksToBounds:YES];
+                        [self.labelsContainerView addSubview:label];
+          
+                        NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:12.0]};
+                        CGSize size = [self.model.Labels[i] boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
+                                                                         options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                                                      attributes:attributes
+                                                                         context:nil].size;
+                        
+                        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                            make.centerY.equalTo(weakSelf.labelsContainerView.mas_centerY).offset(0.0);
+                            make.height.equalTo(weakSelf.labelsContainerView.mas_height).multipliedBy(5.0/10.0);
+                            
+                            make.width.mas_equalTo(size.width+margin/2.0);
+                            
+                            if (lastLabel) {
+                                make.left.equalTo(lastLabel.mas_right).offset(margin/2.0);
+                            } else {
+                                make.left.equalTo(weakSelf.labelsContainerView.mas_left).offset(margin);
+                            }
+                        }];
+                        
+                        label;
+                    });
+                    
+                    lastLabel = subLabel;
+                }
+                
+            } // if(self.model.Labels.count > 0)
+            
+        }
 
     }
     

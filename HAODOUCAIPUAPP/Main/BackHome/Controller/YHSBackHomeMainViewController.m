@@ -8,6 +8,7 @@
 
 #import "YHSAllButton.h"
 #import "YHSPopMenu.h"
+#import "YHSButtonWithIcon.h"
 
 #import "YHSBackHomeMainViewController.h"
 #import "YHSCookBookSearchViewController.h"
@@ -26,11 +27,13 @@
 @property (nonatomic, strong) UIView *searchAreaView; // 导航条搜索按钮区域
 @property (nonatomic, strong) UIImageView *searchIconImageView; // 导航条搜索图标
 @property (nonatomic, strong) UILabel *searchTitleLable; // 导航条搜索标题
-@property (nonatomic, assign) NSInteger allItemCurrentIndex; // 全部按钮当前选中项的下标
 
 // 头部分类
 @property (nonatomic, strong) NSMutableArray<YHSBackHomeCateModel *> *cateListData; // 分类标签
 @property (nonatomic, strong) UIView *cateAreaContainer; // 分类标签区域
+
+// 购物按钮
+@property (nonatomic, strong) YHSButtonWithIcon *button_shopping;
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray<NSMutableArray *> *tableData; // 数据源
@@ -48,6 +51,7 @@
     if (self) {
         _offset = 0;
         _limit = 20;
+        _RecommendType = 0;
     }
     return self;
 }
@@ -81,6 +85,9 @@
             
             // 配置UI界面
             [weakSelf createUITable];
+            
+            // 购物按钮
+            [weakSelf createUIBuyButton];
             
             // 根据请求到数据小于1页，则隐藏上拉刷新控件
             if (count < _limit ) {
@@ -307,6 +314,28 @@
     
 }
 
+- (void)createUIBuyButton
+{
+    WEAKSELF(weakSelf);
+    
+    CGFloat margin = 10.0;
+    CGFloat shoppingSize = 40.0;
+    
+    self.button_shopping = [[YHSButtonWithIcon alloc] initWithFrame:CGRectMake(0, 0, shoppingSize, shoppingSize) haveLabel:YES];
+    [self.button_shopping setIconLabelText:@"1"]; //icon label text
+    [self.button_shopping setBaseImage:@"icon_shoping_car" highlightImage:@"icon_shoping_car"];
+    [self.button_shopping setDownLabelColor:[UIColor whiteColor] highlightColor:[UIColor whiteColor]];//set label color
+    [self.button_shopping setIconLabelColor:[UIColor whiteColor] highlightColor:[UIColor whiteColor]];//set icon label color
+    [self.button_shopping addTarget:self action:@selector(pressShoppingButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.button_shopping];
+    
+    [self.button_shopping mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weakSelf.mas_bottomLayoutGuide).offset(-margin-shoppingSize);
+        make.left.equalTo(weakSelf.view.mas_left).offset(margin);
+        make.size.mas_equalTo(CGSizeMake(shoppingSize, shoppingSize));
+    }];
+    
+}
 
 #pragma mark - 请求网络数据（下拉刷新数据）
 - (void)loadData
@@ -411,6 +440,9 @@
         // 请求地址与参数
         NSString *url = [YHSBackHomeDataUtil getBackHomeRequestURLString];
         NSMutableDictionary *params = [YHSBackHomeDataUtil getBackHomeMainRequestParams];
+        [params setObject:[NSString stringWithFormat:@"%ld", self.limit] forKey:@"limit"];
+        [params setObject:[NSString stringWithFormat:@"%ld", self.offset] forKey:@"offset"];
+        [params setObject:[NSString stringWithFormat:@"%ld", self.RecommendType] forKey:@"RecommendType"];
         
         // 初始化Manager
         AFHTTPSessionManager *manager = [YHSNetworkingManager sharedYHSNetworkingManagerInstance].manager;
@@ -645,7 +677,6 @@
             button;
         });
         self.allItem  = allItem;
-        _allItemCurrentIndex = 0;
         
         // 4.导航条搜索按钮区域
         {
@@ -725,12 +756,29 @@
     [button setImage:[UIImage imageNamed:@"btn_weaken_arrowup_orange"] forState:UIControlStateNormal];
     
     NSArray<NSString *> *itemTiltes = @[@"全部", @"附近", @"全国"];
-    [YHSPopMenu popFromView:self.allItem rect:CGRectMake(0, 0, 50, 40*itemTiltes.count) itemTitles:itemTiltes selectedIndex:_allItemCurrentIndex dismiss:^(NSInteger selected) {
+    [YHSPopMenu popFromView:self.allItem rect:CGRectMake(0, 0, 50, 40*itemTiltes.count) itemTitles:itemTiltes selectedIndex:_RecommendType dismiss:^(NSInteger selected) {
         
-        _allItemCurrentIndex = selected;
+        _RecommendType = selected;
         
         [button setTitle:itemTiltes[selected] forState:UIControlStateNormal];
         [button setImage:[UIImage imageNamed:@"btn_weaken_arrowdown_orange"] forState:UIControlStateNormal];
+        
+        // 根据结果刷新数据
+        {
+            // 每次刷新时重置
+            _offset = 0;
+            
+            // 加载更多数据
+            [self loadMoreData];
+            
+            // 滚动到某行显示
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:2];
+            if (0 == _RecommendType) {
+                indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            }
+            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        }
+        
     }];
 
 }
@@ -745,6 +793,14 @@
     YHSLogBrown(@"%@ %@", self.cateListData[index].CateName, self.cateListData[index].CateId);
     
 }
+
+#pragma mark - 触发购物按钮事件
+
+- (void)pressShoppingButton:(YHSButtonWithIcon *)button
+{
+    [self alertPromptMessage:@"购物车"];
+}
+
 
 #pragma mark - 触发点击广告栏事件
 - (void)didClickElementOfCellWithBackHomeADModel:(YHSBackHomeADModel *)model

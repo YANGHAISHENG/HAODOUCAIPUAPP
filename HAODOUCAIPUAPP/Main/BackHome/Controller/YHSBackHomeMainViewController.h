@@ -19,6 +19,7 @@ typedef NS_ENUM(NSInteger, YHSBackHomeTableSection) {
 
 @property (nonatomic, assign) NSUInteger limit; // 数量限制
 @property (nonatomic, assign) NSUInteger offset; // 数据偏移量
+@property (nonatomic, assign) NSUInteger RecommendType; // 类型
 
 @property (nonatomic, strong) UILabel *loactionNavItem;
 
