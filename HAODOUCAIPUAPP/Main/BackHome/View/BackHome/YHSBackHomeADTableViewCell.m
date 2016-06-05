@@ -115,7 +115,7 @@ NSString * const CELL_IDENTIFIER_BACKHOME_AD = @"YHSBackHomeADTableViewCellID";
     [cycleBannerView setImageURLStringsGroup:imageUrlArray];
     [self.publicContainerView addSubview:cycleBannerView];
     [cycleBannerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(@(margin/2.0));
+        make.top.equalTo(@(margin));
         make.left.equalTo(@(margin));
         make.right.equalTo(@(-margin));
         make.height.equalTo(@(SCROLL_AD_HEIGHT));

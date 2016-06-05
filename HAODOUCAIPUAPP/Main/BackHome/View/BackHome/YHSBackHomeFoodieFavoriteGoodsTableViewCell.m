@@ -1,12 +1,12 @@
 
 
-#import "YHSCookBookFoodieFavoriteGoodsTableViewCell.h"
+#import "YHSBackHomeFoodieFavoriteGoodsTableViewCell.h"
 #import "YHSBackHomeFoodieFavoriteGoodsModel.h"
 
 
 NSString * const CELL_IDENTIFIER_BACKHOME_FOODIEFAVORITE_GOODS = @"YHSCookBookFoodieFavoriteGoodsTableViewCellID";
 
-@interface YHSCookBookFoodieFavoriteGoodsTableViewCell () <SDCycleScrollViewDelegate>
+@interface YHSBackHomeFoodieFavoriteGoodsTableViewCell ()
 /**
  * 根容器组件
  */
@@ -28,7 +28,7 @@ NSString * const CELL_IDENTIFIER_BACKHOME_FOODIEFAVORITE_GOODS = @"YHSCookBookFo
 @end
 
 
-@implementation YHSCookBookFoodieFavoriteGoodsTableViewCell
+@implementation YHSBackHomeFoodieFavoriteGoodsTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     
@@ -94,7 +94,7 @@ NSString * const CELL_IDENTIFIER_BACKHOME_FOODIEFAVORITE_GOODS = @"YHSCookBookFo
         [view addGestureRecognizer:tapGesture];
         
         [view mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(@(margin));
+            make.top.equalTo(@(0.0));
             make.left.equalTo(@(margin));
             make.right.equalTo(@(-margin));
             make.height.equalTo(@(itemViewHeight));
@@ -210,6 +210,7 @@ NSString * const CELL_IDENTIFIER_BACKHOME_FOODIEFAVORITE_GOODS = @"YHSCookBookFo
             
             // 标题
             CGFloat titleBottom = -35.0;
+            CGFloat titleHeight = 20.0;
             UILabel *itemTitleLabel0 = ({
                 UILabel *label = [UILabel new];
                 [label setTextColor:[UIColor blackColor]];
@@ -222,6 +223,7 @@ NSString * const CELL_IDENTIFIER_BACKHOME_FOODIEFAVORITE_GOODS = @"YHSCookBookFo
                     make.top.equalTo(itemView.mas_bottom).offset(titleBottom);
                     make.left.equalTo(@(0));
                     make.right.equalTo(@(0));
+                    make.height.equalTo(@(titleHeight));
                 }];
                 
                 label;
@@ -312,6 +314,7 @@ NSString * const CELL_IDENTIFIER_BACKHOME_FOODIEFAVORITE_GOODS = @"YHSCookBookFo
             
             // 标题
             CGFloat titleBottom = -35.0;
+            CGFloat titleHeight = 20.0;
             UILabel *itemTitleLabel0 = ({
                 UILabel *label = [UILabel new];
                 [label setTextColor:[UIColor blackColor]];
@@ -324,6 +327,7 @@ NSString * const CELL_IDENTIFIER_BACKHOME_FOODIEFAVORITE_GOODS = @"YHSCookBookFo
                     make.top.equalTo(itemView.mas_bottom).offset(titleBottom);
                     make.left.equalTo(@(0));
                     make.right.equalTo(@(0));
+                    make.height.equalTo(@(titleHeight));
                 }];
                 
                 label;
@@ -417,8 +421,8 @@ NSString * const CELL_IDENTIFIER_BACKHOME_FOODIEFAVORITE_GOODS = @"YHSCookBookFo
     UIView *view = (UIView *)[gesture view];
     NSInteger index = view.tag-1000;
     
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickElementOfCellWithBackHomeFoodieFavoriteGoods:)]) {
-        [self.delegate didClickElementOfCellWithBackHomeFoodieFavoriteGoods:self.model[index]];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickElementOfCellWithBackHomeFoodieFavoriteGoodsModels:)]) {
+        [self.delegate didClickElementOfCellWithBackHomeFoodieFavoriteGoodsModels:self.model[index]];
     }
     
 }

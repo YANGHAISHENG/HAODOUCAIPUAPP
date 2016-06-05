@@ -17,6 +17,9 @@ typedef NS_ENUM(NSInteger, YHSBackHomeTableSection) {
 
 @interface YHSBackHomeMainViewController : YHSBasicWithBackBarItemViewController
 
+@property (nonatomic, assign) NSUInteger limit; // 数量限制
+@property (nonatomic, assign) NSUInteger offset; // 数据偏移量
+
 @property (nonatomic, strong) UILabel *loactionNavItem;
 
 @property (nonatomic, strong) UIButton *allItem;

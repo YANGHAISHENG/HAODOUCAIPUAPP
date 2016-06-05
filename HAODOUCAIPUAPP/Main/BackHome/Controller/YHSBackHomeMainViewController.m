@@ -12,14 +12,16 @@
 #import "YHSBackHomeMainViewController.h"
 #import "YHSCookBookSearchViewController.h"
 #import "YHSBackHomeCateModel.h"
-
+#import "YHSBackHomeTableSectionHeaderView.h"
 #import "YHSBackHomeADTableViewCell.h"
 #import "YHSBackHomeADModel.h"
-#import "YHSCookBookFoodieFavoriteGoodsTableViewCell.h"
+#import "YHSBackHomeFoodieFavoriteGoodsTableViewCell.h"
 #import "YHSBackHomeFoodieFavoriteGoodsModel.h"
+#import "YHSBackHomeGoodTableViewCell.h"
+#import "YHSBackHomeGoodsModel.h"
 
 
-@interface YHSBackHomeMainViewController () <UITableViewDelegate, UITableViewDataSource, YHSBackHomeADTableViewCellDelegate, YHSCookBookFoodieFavoriteGoodsTableViewCellDelegate>
+@interface YHSBackHomeMainViewController () <UITableViewDelegate, UITableViewDataSource, YHSBackHomeTableSectionHeaderViewDelegate, YHSBackHomeADTableViewCellDelegate, YHSBackHomeFoodieFavoriteGoodsTableViewCellDelegate, YHSBackHomeGoodTableViewCellDelegate>
 
 @property (nonatomic, strong) UIView *searchAreaView; // 导航条搜索按钮区域
 @property (nonatomic, strong) UIImageView *searchIconImageView; // 导航条搜索图标
@@ -34,11 +36,21 @@
 @property (nonatomic, strong) NSMutableArray<NSMutableArray *> *tableData; // 数据源
 @property (nonatomic, strong) NSMutableArray<YHSBackHomeADModel *> *adModels; // 广告栏
 @property (nonatomic, strong) NSMutableArray<YHSBackHomeFoodieFavoriteGoodsModel *> *favoriteGoodModels; // 吃货最爱
-
+@property (nonatomic, strong) NSMutableArray<YHSBackHomeGoodsModel *> *goodModels; // 逛逛商品
 
 @end
 
 @implementation YHSBackHomeMainViewController
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _offset = 0;
+        _limit = 20;
+    }
+    return self;
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -62,7 +74,7 @@
     // 请求网络数据（如果没有请求过数据，则进行数据加载）
     if (!self.tableData || self.tableData.count == 0) {
         
-        [self loadDataThen:^(BOOL success){
+        [self loadDataThen:^(BOOL success, NSUInteger count){
             
             // 创建标签头部
             [weakSelf createUICate];
@@ -70,8 +82,21 @@
             // 配置UI界面
             [weakSelf createUITable];
             
-            // 刷新表格
-            [weakSelf.tableView reloadData];
+            // 根据请求到数据小于1页，则隐藏上拉刷新控件
+            if (count < _limit ) {
+                [self.tableView.mj_footer setHidden:YES];;
+            }
+            
+            // 加载成功
+            if (success && count) {
+                
+                // 刷新表格
+                [weakSelf.tableView reloadData];
+                
+                // 增加偏移量
+                _offset += _limit;
+                YHSLogBlue(@"加载后偏移量 ：%ld", _offset);
+            }
             
         } andWritingLoading:(self.tableData.count == 0 ? YES : NO)];
         
@@ -229,11 +254,11 @@
     // 创建表格
     {
         // 创建表格
-        self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         [self.view addSubview:self.tableView];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
-        self.tableView.showsVerticalScrollIndicator = NO;
+        self.tableView.showsVerticalScrollIndicator = YES;
         self.tableView.backgroundColor = [UIColor whiteColor];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
@@ -263,29 +288,53 @@
         self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, CGFLOAT_MIN)];
         
         // 下拉刷新
-        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadDataWithWritingLoading:)];
+        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+        
+        // 上拉加载
+        MJRefreshAutoNormalFooter *autoNormalFooter = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+        [autoNormalFooter setTitle:YHSRefreshAutoFooterIdleText forState:MJRefreshStateIdle];
+        [autoNormalFooter setTitle:YHSRefreshAutoFooterRefreshingText forState:MJRefreshStateRefreshing];
+        [autoNormalFooter setTitle:YHSRefreshAutoFooterNoMoreDataText forState:MJRefreshStateNoMoreData];
+        [autoNormalFooter.stateLabel setFont:[UIFont boldSystemFontOfSize:YHSRefreshAutoFooterFontSize]];
+        [autoNormalFooter.stateLabel setTextColor:YHSRefreshAutoFooterTextColor];
+        [self.tableView setMj_footer:autoNormalFooter];
         
         // 必须被注册到 UITableView 中
         [self.tableView registerClass:[YHSBackHomeADTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_BACKHOME_AD];
-        [self.tableView registerClass:[YHSCookBookFoodieFavoriteGoodsTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_BACKHOME_FOODIEFAVORITE_GOODS];
-        
+        [self.tableView registerClass:[YHSBackHomeFoodieFavoriteGoodsTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_BACKHOME_FOODIEFAVORITE_GOODS];
+        [self.tableView registerClass:[YHSBackHomeGoodTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_BACKHOME_GOODS];
     }
     
 }
 
 
+#pragma mark - 请求网络数据（下拉刷新数据）
+- (void)loadData
+{
+    // 每次刷新时重置
+    _offset = 0;
+    
+    // 加载更多数据
+    [self loadMoreData];
+    
+}
 
-#pragma mark - 请求网络数据
-- (void)loadDataWithWritingLoading:(BOOL)showWritingLoading
+#pragma mark - 请求网络数据（上拉加载数据）
+- (void)loadMoreData
 {
     WEAKSELF(weakSelf);
+    
+    YHSLogBlue(@"%s \n加载前偏移量 ：%ld", __FUNCTION__, _offset);
     
     // 验证网络状态，无网则直接返回
     if ([YHSNetworkingManager sharedYHSNetworkingManagerInstance].networkReachabilityStatus == YHSNetworkReachabilityStatusUnknown
         || [YHSNetworkingManager sharedYHSNetworkingManagerInstance].networkReachabilityStatus == YHSNetworkReachabilityStatusNotReachable) {
         
-        // 上拉刷新控件，结束刷新状态
+        // 下拉刷新控件，结束刷新状态
         [self.tableView.mj_header endRefreshing];
+        
+        // 上拉刷新控件，结束刷新状态
+        [self.tableView.mj_footer endRefreshing];
         
         // 直接返回
         return;
@@ -293,17 +342,35 @@
     } else {
         
         // 请求数据
-        [self loadDataThen:^(BOOL success){
+        [self loadDataThen:^(BOOL success, NSUInteger count){
             
-            // 上拉刷新控件，结束刷新状态
-            [weakSelf.tableView.mj_header endRefreshing];
+            if (count < _limit) {
+                
+                // 下拉刷新控件，没有更多数据
+                [weakSelf.tableView.mj_header endRefreshing];
+                
+                // 上拉刷新控件，没有更多数据
+                [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+                
+            } else {
+                
+                // 下拉刷新控件，结束刷新状态
+                [weakSelf.tableView.mj_header endRefreshing];
+                
+                // 上拉刷新控件，结束刷新状态
+                [self.tableView.mj_footer endRefreshing];
+                
+            }
             
             // 加载成功
-            if (success) {
+            if (success && count) {
                 
                 // 刷新表格
                 [weakSelf.tableView reloadData];
                 
+                // 增加偏移量
+                _offset += _limit;
+                YHSLogBlue(@"加载后偏移量 ：%ld", _offset);
             }
             
         } andWritingLoading:NO];
@@ -312,7 +379,8 @@
     
 }
 
-- (void)loadDataThen:(void (^)(BOOL success))then andWritingLoading:(BOOL)showWritingLoading {
+
+- (void)loadDataThen:(void (^)(BOOL success, NSUInteger count))then andWritingLoading:(BOOL)showWritingLoading {
     
     // 弱引用self
     WEAKSELF(weakSelf);
@@ -338,6 +406,7 @@
         
         // 请求数据是否成功
         __block BOOL isSuccess = NO;
+        __block NSUInteger listCount = 0; // 请求到的数据数量
         
         // 请求地址与参数
         NSString *url = [YHSBackHomeDataUtil getBackHomeRequestURLString];
@@ -399,6 +468,15 @@
                 weakSelf.favoriteGoodModels = favoriteGoodModelArray.mutableCopy;
             }
             
+            // Table-2.逛逛商品
+            {
+                NSMutableArray<YHSBackHomeGoodsModel *> *goodModelArray = [NSMutableArray array];
+                [data[@"list"] enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull dict, NSUInteger idx, BOOL * _Nonnull stop) {
+                    YHSBackHomeGoodsModel *model = [YHSBackHomeGoodsModel mj_objectWithKeyValues:dict];
+                    [goodModelArray addObject:model];
+                }];
+                weakSelf.goodModels = goodModelArray.mutableCopy;
+            }
             
             
             /////////////////////////////////////////////////////////////////
@@ -409,10 +487,26 @@
             /////////////////////////////////////////////////////////////////
             // B、配置数据源 DataSource  -> 开始
             /////////////////////////////////////////////////////////////////
-            // Table-0.广告栏
-            [self.tableData addObject:@[weakSelf.adModels].mutableCopy];
-            // Table-1.吃货最爱
-            [self.tableData addObject:@[weakSelf.favoriteGoodModels].mutableCopy];
+            if (0 == _offset) {
+                weakSelf.tableData = [NSMutableArray array];
+                // Table-0.广告栏
+                [weakSelf.tableData addObject:@[weakSelf.adModels].mutableCopy];
+                
+                // Table-1.吃货最爱
+                [weakSelf.tableData addObject:@[weakSelf.favoriteGoodModels].mutableCopy];
+                
+                // Table-2.逛逛商品
+                [weakSelf.tableData addObject:weakSelf.goodModels.mutableCopy];
+            } else {
+                // Table-0.广告栏
+                [weakSelf.tableData replaceObjectAtIndex:0 withObject:@[weakSelf.adModels].mutableCopy];
+                
+                // Table-1.吃货最爱
+                [weakSelf.tableData replaceObjectAtIndex:1 withObject:@[weakSelf.favoriteGoodModels].mutableCopy];
+                
+                // Table-2.逛逛商品
+                [weakSelf.tableData[2] addObjectsFromArray:weakSelf.goodModels.mutableCopy]; // 加载更多数据
+            }
             
             /////////////////////////////////////////////////////////////////
             // B、配置数据源 DataSource  -> 结束
@@ -421,6 +515,12 @@
             
             // 请求数据成功
             isSuccess = YES;
+            listCount = weakSelf.goodModels.count;
+            if (listCount > 0) {
+                YHSLogRed(@"请求数据成功");
+            } else {
+                YHSLogRed(@"没有更多数据");
+            }
             
             // 在 Main Dispatch Queue 中执行块(Block)，串行处理
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -435,7 +535,7 @@
                 }
                 
                 // 刷新界面
-                !then ?: then(isSuccess);
+                !then ?: then(isSuccess, listCount);
                 
             });
             
@@ -459,7 +559,7 @@
                 }
                 
                 // 刷新界面
-                !then ?: then(isSuccess);
+                !then ?: then(isSuccess, listCount);
                 
             });
             
@@ -653,8 +753,14 @@
     [self alertPromptMessage:@"广告详情"];
 }
 
+#pragma mark - 触发点击表格 Secion 头部事件
+- (void)didClickHeaderOfTableSecion:(NSInteger)tableSection
+{
+    [self alertPromptMessage:@""];
+}
+
 #pragma mark - 触发点击吃货最爱事件
-- (void)didClickElementOfCellWithBackHomeFoodieFavoriteGoods:(YHSBackHomeFoodieFavoriteGoodsModel *)model
+- (void)didClickElementOfCellWithBackHomeFoodieFavoriteGoodsModels:(YHSBackHomeFoodieFavoriteGoodsModel *)model
 {
     YHSLogRed(@"%@ %@", model.Title, model.Price);
     
@@ -662,12 +768,31 @@
     [self alertPromptMessage:@"吃货最爱"];
 }
 
+#pragma mark - 触发点击逛逛商品
+// 用户详情
+- (void)didClickElementOfCellWithUserDetailInfoAction:(YHSBackHomeGoodsModel *)model
+{
+    [self alertPromptMessage:@"用户详情"];
+}
+
+// 商品详情
+- (void)didClickElementOfCellWithGoodDetailInfoInfoAction:(YHSBackHomeGoodsModel *)model
+{
+    [self alertPromptMessage:@"商品详情"];
+}
+
+// 立即购买
+- (void)didClickElementOfCellWithBuyAction:(YHSBackHomeGoodsModel *)model{
+    [self alertPromptMessage:@"立即购买"];
+}
+
+
 
 #pragma mark - TableView data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -698,9 +823,20 @@
         }
             // 吃货最爱
         case YHSBackHomeTableSectionFoodieFavoriteGoods: {
-            YHSCookBookFoodieFavoriteGoodsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_BACKHOME_FOODIEFAVORITE_GOODS];
+            YHSBackHomeFoodieFavoriteGoodsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_BACKHOME_FOODIEFAVORITE_GOODS];
             if (!cell) {
-                cell = [[YHSCookBookFoodieFavoriteGoodsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_IDENTIFIER_BACKHOME_FOODIEFAVORITE_GOODS];
+                cell = [[YHSBackHomeFoodieFavoriteGoodsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_IDENTIFIER_BACKHOME_FOODIEFAVORITE_GOODS];
+            }
+            cell.delegate = self;
+            cell.model = self.tableData[indexPath.section][indexPath.row];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        }
+            // 逛逛商品
+        case YHSBackHomeTableSectionGoodList: {
+            YHSBackHomeGoodTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_BACKHOME_GOODS];
+            if (!cell) {
+                cell = [[YHSBackHomeGoodTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_IDENTIFIER_BACKHOME_GOODS];
             }
             cell.delegate = self;
             cell.model = self.tableData[indexPath.section][indexPath.row];
@@ -726,7 +862,14 @@
         }
             // 吃货最爱
         case YHSBackHomeTableSectionFoodieFavoriteGoods: {
-            return [self.tableView fd_heightForCellWithIdentifier:CELL_IDENTIFIER_BACKHOME_FOODIEFAVORITE_GOODS cacheByIndexPath:indexPath configuration:^(YHSCookBookFoodieFavoriteGoodsTableViewCell *cell) {
+            return [self.tableView fd_heightForCellWithIdentifier:CELL_IDENTIFIER_BACKHOME_FOODIEFAVORITE_GOODS cacheByIndexPath:indexPath configuration:^(YHSBackHomeFoodieFavoriteGoodsTableViewCell *cell) {
+                // 配置 cell 的数据源，和 "cellForRow" 干的事一致
+                cell.model = self.tableData[indexPath.section][indexPath.row];
+            }];
+        }
+            // 逛逛商品
+        case YHSBackHomeTableSectionGoodList: {
+            return [self.tableView fd_heightForCellWithIdentifier:CELL_IDENTIFIER_BACKHOME_GOODS cacheByIndexPath:indexPath configuration:^(YHSBackHomeGoodTableViewCell *cell) {
                 // 配置 cell 的数据源，和 "cellForRow" 干的事一致
                 cell.model = self.tableData[indexPath.section][indexPath.row];
             }];
@@ -735,6 +878,84 @@
             return 0.0;
         }
     }
+}
+
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    CGFloat height = 45.0;
+    
+    switch (section) {
+        case YHSBackHomeTableSectionAD: {// 广告横幅
+            return nil;
+        }
+        case YHSBackHomeTableSectionFoodieFavoriteGoods: { // 吃货最爱
+            YHSBackHomeTableSectionHeaderView *sectionHeaderView = [[YHSBackHomeTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:@"吃货最爱" imageIcon:@"ico_favorite_version" tableSecion:YHSBackHomeTableSectionFoodieFavoriteGoods];
+            sectionHeaderView.delegate = self;
+            return sectionHeaderView;
+        }
+        case YHSBackHomeTableSectionGoodList: { // 逛逛商品
+            YHSBackHomeTableSectionHeaderView *sectionHeaderView = [[YHSBackHomeTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:@"逛逛" imageIcon:@"ico_mybrowse" tableSecion:YHSBackHomeTableSectionFoodieFavoriteGoods];
+            sectionHeaderView.delegate = self;
+            return sectionHeaderView;
+        }
+        default: {
+            return nil;
+        }
+    }
+    
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    
+    switch (section) {
+        case YHSBackHomeTableSectionAD: // 广告横幅
+        case YHSBackHomeTableSectionFoodieFavoriteGoods: // 吃货最爱
+        case YHSBackHomeTableSectionGoodList: { // 逛逛商品
+            return nil;
+        }
+        default: {
+            return nil;
+        }
+    }
+
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    CGFloat height = 45.0;
+    
+    switch (section) {
+        case YHSBackHomeTableSectionAD: { // 广告横幅
+            return 0.01f;
+        }
+        case YHSBackHomeTableSectionFoodieFavoriteGoods: // 吃货最爱
+        case YHSBackHomeTableSectionGoodList: { // 逛逛商品
+            return height;
+        }
+        default: {
+            return 0.01f;
+        }
+    }
+    
+    return 0.01f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    
+    switch (section) {
+        case YHSBackHomeTableSectionAD: // 广告横幅
+        case YHSBackHomeTableSectionFoodieFavoriteGoods: // 吃货最爱
+        case YHSBackHomeTableSectionGoodList: { // 逛逛商品
+            return 0.01f;
+        }
+        default: {
+            return 0.01f;
+        }
+    }
+    
+    return 0.01f;
 }
 
 

@@ -151,7 +151,8 @@
 		7D4739E41D016FF700D022ED /* YHSBackHomeADModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4739E31D016FF700D022ED /* YHSBackHomeADModel.m */; };
 		7D4739E81D01704900D022ED /* YHSBackHomeADTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4739E71D01704900D022ED /* YHSBackHomeADTableViewCell.m */; };
 		7D4739EB1D0176EA00D022ED /* YHSBackHomeFoodieFavoriteGoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4739EA1D0176EA00D022ED /* YHSBackHomeFoodieFavoriteGoodsModel.m */; };
-		7D4739EE1D01771F00D022ED /* YHSCookBookFoodieFavoriteGoodsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4739ED1D01771F00D022ED /* YHSCookBookFoodieFavoriteGoodsTableViewCell.m */; };
+		7D4739EE1D01771F00D022ED /* YHSBackHomeFoodieFavoriteGoodsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4739ED1D01771F00D022ED /* YHSBackHomeFoodieFavoriteGoodsTableViewCell.m */; };
+		7D4739F11D0190DE00D022ED /* YHSBackHomeTableSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4739F01D0190DE00D022ED /* YHSBackHomeTableSectionHeaderView.m */; };
 		7D5A499D1CE9D07E00D05649 /* YHSNetworkingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5A499C1CE9D07E00D05649 /* YHSNetworkingManager.m */; };
 		7D7238CD1CE4580F00C36165 /* YHSHandWritingLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7238CC1CE4580F00C36165 /* YHSHandWritingLoadingView.m */; };
 		7D7238D01CE45A1B00C36165 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7238CF1CE45A1B00C36165 /* UIColor+Hex.m */; };
@@ -188,6 +189,11 @@
 		7DB84FBE1CF1A67D00633D55 /* fav_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DB84FBA1CF1A67D00633D55 /* fav_green.png */; };
 		7DB84FC11CF1AD5200633D55 /* YHSCookBookHotsAlbumMoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB84FC01CF1AD5200633D55 /* YHSCookBookHotsAlbumMoreModel.m */; };
 		7DB84FC41CF1ADA000633D55 /* YHSCookBookHotsAlbumMoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB84FC31CF1ADA000633D55 /* YHSCookBookHotsAlbumMoreTableViewCell.m */; };
+		7DC49A0F1D01A17400FF117C /* ico_favorite_version.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DC49A0C1D01A17400FF117C /* ico_favorite_version.png */; };
+		7DC49A101D01A17400FF117C /* ico_mybrowse.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DC49A0D1D01A17400FF117C /* ico_mybrowse.png */; };
+		7DC49A111D01A17400FF117C /* ico_new_product.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DC49A0E1D01A17400FF117C /* ico_new_product.png */; };
+		7DC49A141D01A3A400FF117C /* YHSBackHomeGoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC49A131D01A3A400FF117C /* YHSBackHomeGoodsModel.m */; };
+		7DC49A171D01A3E100FF117C /* YHSBackHomeGoodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC49A161D01A3E100FF117C /* YHSBackHomeGoodTableViewCell.m */; };
 		7DC8303B1CFD61810042A4A5 /* YHSCookBookShowProductUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC8303A1CFD61810042A4A5 /* YHSCookBookShowProductUserTableViewCell.m */; };
 		7DC830411CFD6FCC0042A4A5 /* YHSCookBookShowVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC830401CFD6FCC0042A4A5 /* YHSCookBookShowVideoModel.m */; };
 		7DC830441CFD70200042A4A5 /* YHSCookBookShowVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC830431CFD70200042A4A5 /* YHSCookBookShowVideoViewController.m */; };
@@ -530,8 +536,10 @@
 		7D4739E71D01704900D022ED /* YHSBackHomeADTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSBackHomeADTableViewCell.m; sourceTree = "<group>"; };
 		7D4739E91D0176EA00D022ED /* YHSBackHomeFoodieFavoriteGoodsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSBackHomeFoodieFavoriteGoodsModel.h; sourceTree = "<group>"; };
 		7D4739EA1D0176EA00D022ED /* YHSBackHomeFoodieFavoriteGoodsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSBackHomeFoodieFavoriteGoodsModel.m; sourceTree = "<group>"; };
-		7D4739EC1D01771F00D022ED /* YHSCookBookFoodieFavoriteGoodsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookFoodieFavoriteGoodsTableViewCell.h; sourceTree = "<group>"; };
-		7D4739ED1D01771F00D022ED /* YHSCookBookFoodieFavoriteGoodsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookFoodieFavoriteGoodsTableViewCell.m; sourceTree = "<group>"; };
+		7D4739EC1D01771F00D022ED /* YHSBackHomeFoodieFavoriteGoodsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSBackHomeFoodieFavoriteGoodsTableViewCell.h; sourceTree = "<group>"; };
+		7D4739ED1D01771F00D022ED /* YHSBackHomeFoodieFavoriteGoodsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSBackHomeFoodieFavoriteGoodsTableViewCell.m; sourceTree = "<group>"; };
+		7D4739EF1D0190DE00D022ED /* YHSBackHomeTableSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSBackHomeTableSectionHeaderView.h; sourceTree = "<group>"; };
+		7D4739F01D0190DE00D022ED /* YHSBackHomeTableSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSBackHomeTableSectionHeaderView.m; sourceTree = "<group>"; };
 		7D5A499B1CE9D07E00D05649 /* YHSNetworkingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSNetworkingManager.h; sourceTree = "<group>"; };
 		7D5A499C1CE9D07E00D05649 /* YHSNetworkingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSNetworkingManager.m; sourceTree = "<group>"; };
 		7D7238CB1CE4580F00C36165 /* YHSHandWritingLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSHandWritingLoadingView.h; sourceTree = "<group>"; };
@@ -595,6 +603,13 @@
 		7DB84FC01CF1AD5200633D55 /* YHSCookBookHotsAlbumMoreModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookHotsAlbumMoreModel.m; sourceTree = "<group>"; };
 		7DB84FC21CF1ADA000633D55 /* YHSCookBookHotsAlbumMoreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookHotsAlbumMoreTableViewCell.h; sourceTree = "<group>"; };
 		7DB84FC31CF1ADA000633D55 /* YHSCookBookHotsAlbumMoreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookHotsAlbumMoreTableViewCell.m; sourceTree = "<group>"; };
+		7DC49A0C1D01A17400FF117C /* ico_favorite_version.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_favorite_version.png; sourceTree = "<group>"; };
+		7DC49A0D1D01A17400FF117C /* ico_mybrowse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mybrowse.png; sourceTree = "<group>"; };
+		7DC49A0E1D01A17400FF117C /* ico_new_product.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_new_product.png; sourceTree = "<group>"; };
+		7DC49A121D01A3A400FF117C /* YHSBackHomeGoodsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSBackHomeGoodsModel.h; sourceTree = "<group>"; };
+		7DC49A131D01A3A400FF117C /* YHSBackHomeGoodsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSBackHomeGoodsModel.m; sourceTree = "<group>"; };
+		7DC49A151D01A3E100FF117C /* YHSBackHomeGoodTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSBackHomeGoodTableViewCell.h; sourceTree = "<group>"; };
+		7DC49A161D01A3E100FF117C /* YHSBackHomeGoodTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSBackHomeGoodTableViewCell.m; sourceTree = "<group>"; };
 		7DC830391CFD61810042A4A5 /* YHSCookBookShowProductUserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookShowProductUserTableViewCell.h; sourceTree = "<group>"; };
 		7DC8303A1CFD61810042A4A5 /* YHSCookBookShowProductUserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookShowProductUserTableViewCell.m; sourceTree = "<group>"; };
 		7DC8303F1CFD6FCC0042A4A5 /* YHSCookBookShowVideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookShowVideoModel.h; sourceTree = "<group>"; };
@@ -1382,6 +1397,8 @@
 				7D4739E31D016FF700D022ED /* YHSBackHomeADModel.m */,
 				7D4739E91D0176EA00D022ED /* YHSBackHomeFoodieFavoriteGoodsModel.h */,
 				7D4739EA1D0176EA00D022ED /* YHSBackHomeFoodieFavoriteGoodsModel.m */,
+				7DC49A121D01A3A400FF117C /* YHSBackHomeGoodsModel.h */,
+				7DC49A131D01A3A400FF117C /* YHSBackHomeGoodsModel.m */,
 			);
 			path = BackHome;
 			sourceTree = "<group>";
@@ -1397,10 +1414,14 @@
 		7D4739E51D01701900D022ED /* BackHome */ = {
 			isa = PBXGroup;
 			children = (
+				7D4739EF1D0190DE00D022ED /* YHSBackHomeTableSectionHeaderView.h */,
+				7D4739F01D0190DE00D022ED /* YHSBackHomeTableSectionHeaderView.m */,
 				7D4739E61D01704900D022ED /* YHSBackHomeADTableViewCell.h */,
 				7D4739E71D01704900D022ED /* YHSBackHomeADTableViewCell.m */,
-				7D4739EC1D01771F00D022ED /* YHSCookBookFoodieFavoriteGoodsTableViewCell.h */,
-				7D4739ED1D01771F00D022ED /* YHSCookBookFoodieFavoriteGoodsTableViewCell.m */,
+				7D4739EC1D01771F00D022ED /* YHSBackHomeFoodieFavoriteGoodsTableViewCell.h */,
+				7D4739ED1D01771F00D022ED /* YHSBackHomeFoodieFavoriteGoodsTableViewCell.m */,
+				7DC49A151D01A3E100FF117C /* YHSBackHomeGoodTableViewCell.h */,
+				7DC49A161D01A3E100FF117C /* YHSBackHomeGoodTableViewCell.m */,
 			);
 			path = BackHome;
 			sourceTree = "<group>";
@@ -2001,6 +2022,9 @@
 		7DFE1D8F1CE21FDA005A061B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				7DC49A0C1D01A17400FF117C /* ico_favorite_version.png */,
+				7DC49A0D1D01A17400FF117C /* ico_mybrowse.png */,
+				7DC49A0E1D01A17400FF117C /* ico_new_product.png */,
 				7D4739E01D016E3C00D022ED /* ico_group_arrow_right.png */,
 				7D015D171D00651100630B28 /* btn_weaken_arrowdown_orange.png */,
 				7D015D181D00651100630B28 /* btn_weaken_arrowup_orange.png */,
@@ -2196,6 +2220,7 @@
 				7DFE8E101CF8967A00DD09BE /* default_daily_special_goods.png in Resources */,
 				7DFC47141CED6E0300A29464 /* ico_video.png in Resources */,
 				7DA6BF8D1CF1EBC100BF297C /* btn_auxiliary_good.png in Resources */,
+				7DC49A0F1D01A17400FF117C /* ico_favorite_version.png in Resources */,
 				7D0335751CF5FEEC00B273E8 /* video_smallscreen_on.png in Resources */,
 				7DA6BF8E1CF1EBC100BF297C /* ico_user_mydown.png in Resources */,
 				7D08276B1CE5C10B008D77AD /* ico_auxiliary_more_grayc.png in Resources */,
@@ -2205,6 +2230,7 @@
 				7DFDEBF01CEEE84E00CEDBDC /* btn_tag_del.png in Resources */,
 				7D0335731CF5FEEC00B273E8 /* video_seek_on.png in Resources */,
 				7D02ACDB1CF93E7E002C43B1 /* warning.png in Resources */,
+				7DC49A111D01A17400FF117C /* ico_new_product.png in Resources */,
 				7DFDEBEC1CEEE5DB00CEDBDC /* ico_search_gray.png in Resources */,
 				7DFE1DAF1CE21FDA005A061B /* action_search_gray.png in Resources */,
 				7DFE8E1E1CF8967A00DD09BE /* mine_pressed.png in Resources */,
@@ -2234,6 +2260,7 @@
 				7DFE1CE41CE2063B005A061B /* Assets.xcassets in Resources */,
 				7D0335741CF5FEEC00B273E8 /* video_seek.png in Resources */,
 				7DFE1DB51CE21FDA005A061B /* HAODOU80.png in Resources */,
+				7DC49A101D01A17400FF117C /* ico_mybrowse.png in Resources */,
 				7DFE8E191CF8967A00DD09BE /* find_normal.png in Resources */,
 				7D0335721CF5FEEC00B273E8 /* video_play.png in Resources */,
 				7DFE8E151CF8967A00DD09BE /* icon_vip_small.png in Resources */,
@@ -2387,6 +2414,7 @@
 				7D8975241CEAF892002CF981 /* YHSCookBookQualityReadTableViewCell.m in Sources */,
 				7D8975201CEAF892002CF981 /* YHSCookBookTableSectionHeaderView.m in Sources */,
 				7D05A3291CF2A40900F3CF60 /* YHSCookBookShakeItOffTableViewCell.m in Sources */,
+				7D4739F11D0190DE00D022ED /* YHSBackHomeTableSectionHeaderView.m in Sources */,
 				7D0651ED1CE2BB91003D9BEC /* YHSBasicTabBarController.m in Sources */,
 				7D051B601CEF2B2500B97699 /* YHSCookBookGoodsModel.m in Sources */,
 				7DD3ADDB1CE38A0E00F9D3F1 /* UIView+Frame.m in Sources */,
@@ -2442,7 +2470,7 @@
 				7DAA898A1CF2EA280046CCC0 /* YHSCookBookShakeItOffDetailViewController.m in Sources */,
 				7D05A3231CF29F6E00F3CF60 /* YHSCookBookShakeItOffViewController.m in Sources */,
 				7DC87CC21CF31EA500C435C6 /* YHSCookBookYourLoveDishPictureViewController.m in Sources */,
-				7D4739EE1D01771F00D022ED /* YHSCookBookFoodieFavoriteGoodsTableViewCell.m in Sources */,
+				7D4739EE1D01771F00D022ED /* YHSBackHomeFoodieFavoriteGoodsTableViewCell.m in Sources */,
 				7DC87CD41CF33A0E00C435C6 /* YHSCookBookSearchDetailDishPictureViewController.m in Sources */,
 				7D89751C1CEAF892002CF981 /* YHSCookBookBannerTableViewCell.m in Sources */,
 				7DC830571CFDB4AC0042A4A5 /* YHSCookBookCommentModel.m in Sources */,
@@ -2463,6 +2491,7 @@
 				7D04C5111D0120B500CB03F6 /* YHSPopMenu.m in Sources */,
 				7D051B3C1CEF2AF400B97699 /* YHSCookBookSearchTableViewCell.m in Sources */,
 				7D063F591CF0997700152563 /* YHSCookBookYourLoveMoreViewController.m in Sources */,
+				7DC49A171D01A3E100FF117C /* YHSBackHomeGoodTableViewCell.m in Sources */,
 				7D127E2A1CFC20B600F98C12 /* YHSCookBookShowProductDayTableViewCell.m in Sources */,
 				7D02354E1CF067B900DE6EC0 /* YHSCookBookSearchVIPViewController.m in Sources */,
 				7DC87CC81CF323BD00C435C6 /* YHSCookBookBannnerDetailRecipeDishVideoViewController.m in Sources */,
@@ -2480,6 +2509,7 @@
 				7DA6BF7E1CF1C70A00BF297C /* YHSCookBookHotsAlbumTabViewController.m in Sources */,
 				7D01ABCD1CFFDFF90016E0AF /* YHSBasicViewController.m in Sources */,
 				7D0744C01CFF29F500A994C2 /* YHSBasicScrollTabBarViewController.m in Sources */,
+				7DC49A141D01A3A400FF117C /* YHSBackHomeGoodsModel.m in Sources */,
 				7DFC470D1CED4F2F00A29464 /* YHSCategorySearchResultTableViewCell.m in Sources */,
 				7DC87CDD1CF340CA00C435C6 /* YHSCookBookShakeItOffDetailDishPictureViewController.m in Sources */,
 				7DC8303B1CFD61810042A4A5 /* YHSCookBookShowProductUserTableViewCell.m in Sources */,
