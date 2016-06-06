@@ -807,6 +807,8 @@
     
     YHSLogBrown(@"%@ %@", self.cateListData[index].CateName, self.cateListData[index].CateId);
     
+    [self alertPromptMessage:@"分类详情"];
+    
 }
 
 #pragma mark - 触发购物按钮事件
