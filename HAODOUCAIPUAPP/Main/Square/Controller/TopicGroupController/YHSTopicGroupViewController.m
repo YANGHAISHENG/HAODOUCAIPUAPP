@@ -16,9 +16,11 @@
 #import "YHSTopicGroupGroupTitleModel.h"
 #import "YHSTopicGroupTodayStarTableViewCell.h"
 #import "YHSTopicGroupTodayStarModel.h"
+#import "YHSTopicGroupGroupTitleTableViewCell.h"
+#import "YHSTopicGroupGroupTitleModel.h"
 
 
-@interface YHSTopicGroupViewController () <UITableViewDelegate, UITableViewDataSource, YHSTopicGroupTableSectionHeaderViewDelegate, YHSTopicGroupADTableViewCellDelegate, YHSTopicGroupHotTitleTableViewCellDelegate>
+@interface YHSTopicGroupViewController () <UITableViewDelegate, UITableViewDataSource, YHSTopicGroupTableSectionHeaderViewDelegate, YHSTopicGroupADTableViewCellDelegate, YHSTopicGroupHotTitleTableViewCellDelegate, YHSTopicGroupGroupTitleTableViewCellDelegate>
 
 // 根容器组件
 @property (nonnull, nonatomic, strong) UIView *rootContainerView;
@@ -113,7 +115,7 @@
     // 创建表格
     {
         // 创建表格
-        self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         [self.rootContainerView addSubview:self.tableView];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
@@ -161,6 +163,7 @@
         // 必须被注册到 UITableView 中
         [self.tableView registerClass:[YHSTopicGroupADTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_TOPIC_GROUP_AD];
         [self.tableView registerClass:[YHSTopicGroupHotTitleTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_TOPIC_GROUP_HOTTITLE];
+        [self.tableView registerClass:[YHSTopicGroupGroupTitleTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_TOPIC_GROUP_GROUPTITLE];
     }
     
 }
@@ -411,7 +414,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -453,7 +456,14 @@
         }
             // 话题小组
         case YHSTopicGroupTableSectionGroupTitle: {
-            return nil;
+            YHSTopicGroupGroupTitleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_TOPIC_GROUP_GROUPTITLE];
+            if (!cell) {
+                cell = [[YHSTopicGroupGroupTitleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_IDENTIFIER_TOPIC_GROUP_GROUPTITLE];
+            }
+            cell.delegate = self;
+            cell.model = self.tableData[indexPath.section][indexPath.row];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
         }
             // 活跃豆亲
         case YHSTopicGroupTableSectionTodayStar: {
@@ -485,7 +495,10 @@
         }
             // 话题小组
         case YHSTopicGroupTableSectionGroupTitle: {
-            return 0.0;
+            return [self.tableView fd_heightForCellWithIdentifier:CELL_IDENTIFIER_TOPIC_GROUP_GROUPTITLE cacheByIndexPath:indexPath configuration:^(YHSTopicGroupGroupTitleTableViewCell *cell) {
+                // 配置 cell 的数据源，和 "cellForRow" 干的事一致
+                cell.model = self.tableData[indexPath.section][indexPath.row];
+            }];
         }
             // 活跃豆亲
         case YHSTopicGroupTableSectionTodayStar: {
@@ -531,9 +544,15 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     
     switch (section) {
-        case YHSTopicGroupTableSectionAD: // 广告横幅
+        case YHSTopicGroupTableSectionAD: { // 广告横幅
+            return nil;
+        }
         case YHSTopicGroupTableSectionHotTitle: // 实时热点
-        case YHSTopicGroupTableSectionGroupTitle: // 话题小组
+        case YHSTopicGroupTableSectionGroupTitle: { // 话题小组
+            UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 10)];
+            footerView.backgroundColor = [UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1.00];
+            return footerView;
+        }
         case YHSTopicGroupTableSectionTodayStar: { // 活跃豆亲
             return nil;
         }
@@ -569,9 +588,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     
     switch (section) {
-        case YHSTopicGroupTableSectionAD: // 广告横幅
+        case YHSTopicGroupTableSectionAD: { // 广告横幅
+            return 0.01f;
+        }
         case YHSTopicGroupTableSectionHotTitle: // 实时热点
-        case YHSTopicGroupTableSectionGroupTitle: // 话题小组
+        case YHSTopicGroupTableSectionGroupTitle: { // 话题小组
+             return 6.0;
+        }
         case YHSTopicGroupTableSectionTodayStar: { // 活跃豆亲
             return 0.01f;
         }
@@ -601,7 +624,11 @@
     [self alertPromptMessage:@"实时热点"];
 }
 
-
+#pragma mark - 触发点击话题小组事件
+- (void)didClickElementOfCellWithTopicGroupGroupTitleModel:(YHSTopicGroupGroupTitleModel *)model
+{
+    [self alertPromptMessage:@"话题小组"];
+}
 
 
 @end

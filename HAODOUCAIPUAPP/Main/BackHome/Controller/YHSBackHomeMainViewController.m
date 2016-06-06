@@ -985,8 +985,14 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     
     switch (section) {
-        case YHSBackHomeTableSectionAD: // 广告横幅
-        case YHSBackHomeTableSectionFoodieFavoriteGoods: // 吃货最爱
+        case YHSBackHomeTableSectionAD: { // 广告横幅
+            return nil;
+        }
+        case YHSBackHomeTableSectionFoodieFavoriteGoods: { // 吃货最爱
+            UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 10)];
+            footerView.backgroundColor = [UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1.00];
+            return footerView;
+        }
         case YHSBackHomeTableSectionGoodList: { // 逛逛商品
             return nil;
         }
@@ -1021,8 +1027,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     
     switch (section) {
-        case YHSBackHomeTableSectionAD: // 广告横幅
-        case YHSBackHomeTableSectionFoodieFavoriteGoods: // 吃货最爱
+        case YHSBackHomeTableSectionAD: { // 广告横幅
+            return 0.01f;
+        }
+        case YHSBackHomeTableSectionFoodieFavoriteGoods: { // 吃货最爱
+            return 6.0f;
+        }
         case YHSBackHomeTableSectionGoodList: { // 逛逛商品
             return 0.01f;
         }
