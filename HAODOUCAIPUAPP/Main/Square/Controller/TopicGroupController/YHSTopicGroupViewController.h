@@ -6,8 +6,8 @@
 //  Copyright © 2016年 YANGHAISHENG. All rights reserved.
 //
 
-#import "YHSBasicViewController.h"
+#import "YHSBasicNetworkReachabilityViewController.h"
 
-@interface YHSTopicGroupViewController : YHSBasicViewController
+@interface YHSTopicGroupViewController : YHSBasicNetworkReachabilityViewController
 
 @end
