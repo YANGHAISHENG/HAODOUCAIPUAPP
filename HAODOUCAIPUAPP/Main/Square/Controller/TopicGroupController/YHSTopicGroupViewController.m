@@ -18,9 +18,11 @@
 #import "YHSTopicGroupTodayStarModel.h"
 #import "YHSTopicGroupGroupTitleTableViewCell.h"
 #import "YHSTopicGroupGroupTitleModel.h"
+#import "YHSTopicGroupTodayStarTableViewCell.h"
+#import "YHSTopicGroupTodayStarModel.h"
 
 
-@interface YHSTopicGroupViewController () <UITableViewDelegate, UITableViewDataSource, YHSTopicGroupTableSectionHeaderViewDelegate, YHSTopicGroupADTableViewCellDelegate, YHSTopicGroupHotTitleTableViewCellDelegate, YHSTopicGroupGroupTitleTableViewCellDelegate>
+@interface YHSTopicGroupViewController () <UITableViewDelegate, UITableViewDataSource, YHSTopicGroupTableSectionHeaderViewDelegate, YHSTopicGroupADTableViewCellDelegate, YHSTopicGroupHotTitleTableViewCellDelegate, YHSTopicGroupGroupTitleTableViewCellDelegate, YHSTopicGroupTodayStarTableViewCellDelegate>
 
 // 根容器组件
 @property (nonnull, nonatomic, strong) UIView *rootContainerView;
@@ -164,6 +166,7 @@
         [self.tableView registerClass:[YHSTopicGroupADTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_TOPIC_GROUP_AD];
         [self.tableView registerClass:[YHSTopicGroupHotTitleTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_TOPIC_GROUP_HOTTITLE];
         [self.tableView registerClass:[YHSTopicGroupGroupTitleTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_TOPIC_GROUP_GROUPTITLE];
+        [self.tableView registerClass:[YHSTopicGroupTodayStarTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_TOPIC_GROUP_TODAY_STAR];
     }
     
 }
@@ -344,6 +347,7 @@
             [self.tableData addObject:@[weakSelf.adModels]];
             [self.tableData addObject:weakSelf.hotTitleModels];
             [self.tableData addObject:weakSelf.groupTitleModels];
+            [self.tableData addObject:@[weakSelf.todayStarModels]];
             
             // 请求数据成功
             isSuccess = YES;
@@ -414,7 +418,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -467,7 +471,14 @@
         }
             // 活跃豆亲
         case YHSTopicGroupTableSectionTodayStar: {
-            return nil;
+            YHSTopicGroupTodayStarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_TOPIC_GROUP_TODAY_STAR];
+            if (!cell) {
+                cell = [[YHSTopicGroupTodayStarTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_IDENTIFIER_TOPIC_GROUP_TODAY_STAR];
+            }
+            cell.delegate = self;
+            cell.model = self.tableData[indexPath.section][indexPath.row];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
         }
         default: {
             return nil;
@@ -502,7 +513,10 @@
         }
             // 活跃豆亲
         case YHSTopicGroupTableSectionTodayStar: {
-            return 0.0;
+            return [self.tableView fd_heightForCellWithIdentifier:CELL_IDENTIFIER_TOPIC_GROUP_TODAY_STAR cacheByIndexPath:indexPath configuration:^(YHSTopicGroupTodayStarTableViewCell *cell) {
+                // 配置 cell 的数据源，和 "cellForRow" 干的事一致
+                cell.model = self.tableData[indexPath.section][indexPath.row];
+            }];
         }
         default: {
             return 0.0;
@@ -630,5 +644,10 @@
     [self alertPromptMessage:@"话题小组"];
 }
 
+#pragma mark - 触发点击活跃豆亲事件
+- (void)didClickElementOfCellWithTopicGroupTodayStarModel:(YHSTopicGroupTodayStarModel *)model
+{
+    [self alertPromptMessage:@"活跃豆亲"];
+}
 
 @end

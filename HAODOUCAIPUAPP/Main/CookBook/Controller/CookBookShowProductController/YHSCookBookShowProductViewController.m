@@ -120,7 +120,7 @@
     // 创建表格
     {
         // 创建表格
-        self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         [self.rootContainerView addSubview:self.tableView];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
