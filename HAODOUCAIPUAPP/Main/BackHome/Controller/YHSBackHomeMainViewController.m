@@ -637,7 +637,7 @@
 
         // 1.自定义导航条
         self.navBarCustomView = [[YHSNavigationBarTitleView alloc] initWithFrame:CGRectMake(0, 0, self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height)];
-        [self.navBarCustomView setBackgroundColor:COLOR_NAVIGATION_BAR_WHITE];
+        [self.navBarCustomView setBackgroundColor:COLOR_NAVIGATION_BAR];
         [self.navigationItem setTitleView:self.navBarCustomView];
         
         // 2.到家

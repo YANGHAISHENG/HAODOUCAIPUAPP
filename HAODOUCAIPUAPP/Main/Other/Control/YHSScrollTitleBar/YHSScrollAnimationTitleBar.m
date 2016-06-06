@@ -146,9 +146,8 @@
     _heightLightView = [[UIView alloc] initWithFrame:heightLightViewFrame];
     _heightLightView.clipsToBounds = YES;
     
-    _heightColoreView = [[UIView alloc] initWithFrame:CGRectMake(5, 5, _labelWidth-10, _viewHeight-10)];
+    _heightColoreView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _labelWidth, _viewHeight)];
     _heightColoreView.backgroundColor = _backgroundHeightLightColor;
-    _heightColoreView.layer.cornerRadius = 10;
     [_heightLightView addSubview:_heightColoreView];
     
     _heightTopView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, _viewWidth, _viewHeight)];
@@ -206,6 +205,7 @@
 - (void)shakeAnimationForView:(UIView *) view
 {
     // Core Animation 实现
+    /*
     {
         CALayer *viewLayer = view.layer;
         CGPoint position = viewLayer.position;
@@ -220,28 +220,26 @@
         [animation setRepeatCount:3];
         [viewLayer addAnimation:animation forKey:nil];
     }
-    
+    */
     
     // POP 动画实现
-//    {
-//        CALayer *viewLayer = view.layer;
-//        CGPoint position = viewLayer.position;
-//        POPSpringAnimation *framepositionAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPosition];
-//        framepositionAnimation.toValue = [NSValue valueWithCGPoint:position];
-//        framepositionAnimation.dynamicsTension = 15.f;
-//        framepositionAnimation.dynamicsFriction = 5.0f;
-//        framepositionAnimation.springBounciness = 18.0f;
-//        [view.layer pop_addAnimation:framepositionAnimation forKey:@"frameLayerPositionAnimation"];
-//    }
+    {
+        CALayer *viewLayer = view.layer;
+        CGPoint position = viewLayer.position;
+        POPSpringAnimation *framepositionAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPosition];
+        framepositionAnimation.toValue = [NSValue valueWithCGPoint:position];
+        framepositionAnimation.dynamicsTension = 15.f;
+        framepositionAnimation.dynamicsFriction = 5.0f;
+        framepositionAnimation.springBounciness = 18.0f;
+        [view.layer pop_addAnimation:framepositionAnimation forKey:@"frameLayerPositionAnimation"];
+    }
     
 }
 
 
 - (void)wanerSelected:(NSInteger)tagIndex
 {
-    
     [self tapButton:_buttons[tagIndex]];
-    
 }
 
 

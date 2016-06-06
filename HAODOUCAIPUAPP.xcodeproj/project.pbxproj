@@ -52,6 +52,10 @@
 		7D02EE911D0510C1005D319D /* YHSDynamicGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D02EE901D0510C1005D319D /* YHSDynamicGroupViewController.m */; };
 		7D02EE971D0510F0005D319D /* YHSScrollAnimationTitleBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D02EE941D0510F0005D319D /* YHSScrollAnimationTitleBar.m */; };
 		7D02EE981D0510F0005D319D /* YHSScrollTitleBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D02EE961D0510F0005D319D /* YHSScrollTitleBar.m */; };
+		7D02EE9D1D05142B005D319D /* btn_auxiliary_filter.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D02EE991D05142B005D319D /* btn_auxiliary_filter.png */; };
+		7D02EE9E1D05142B005D319D /* btn_header_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D02EE9A1D05142B005D319D /* btn_header_edit.png */; };
+		7D02EE9F1D05142B005D319D /* btn_header_photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D02EE9B1D05142B005D319D /* btn_header_photo.png */; };
+		7D02EEA01D05142B005D319D /* font_header_theme.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D02EE9C1D05142B005D319D /* font_header_theme.png */; };
 		7D0335571CF5F0FD00B273E8 /* YHSCookBookDishPictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D03354D1CF5F0FD00B273E8 /* YHSCookBookDishPictureViewController.m */; };
 		7D0335581CF5F0FD00B273E8 /* YHSCookBookDishVideoCommentInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0335501CF5F0FD00B273E8 /* YHSCookBookDishVideoCommentInfoViewController.m */; };
 		7D0335591CF5F0FD00B273E8 /* YHSCookBookDishVideoDetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0335521CF5F0FD00B273E8 /* YHSCookBookDishVideoDetailInfoViewController.m */; };
@@ -366,6 +370,10 @@
 		7D02EE941D0510F0005D319D /* YHSScrollAnimationTitleBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSScrollAnimationTitleBar.m; sourceTree = "<group>"; };
 		7D02EE951D0510F0005D319D /* YHSScrollTitleBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSScrollTitleBar.h; sourceTree = "<group>"; };
 		7D02EE961D0510F0005D319D /* YHSScrollTitleBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSScrollTitleBar.m; sourceTree = "<group>"; };
+		7D02EE991D05142B005D319D /* btn_auxiliary_filter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_auxiliary_filter.png; sourceTree = "<group>"; };
+		7D02EE9A1D05142B005D319D /* btn_header_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_header_edit.png; sourceTree = "<group>"; };
+		7D02EE9B1D05142B005D319D /* btn_header_photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_header_photo.png; sourceTree = "<group>"; };
+		7D02EE9C1D05142B005D319D /* font_header_theme.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = font_header_theme.png; sourceTree = "<group>"; };
 		7D03354C1CF5F0FD00B273E8 /* YHSCookBookDishPictureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookDishPictureViewController.h; sourceTree = "<group>"; };
 		7D03354D1CF5F0FD00B273E8 /* YHSCookBookDishPictureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookDishPictureViewController.m; sourceTree = "<group>"; };
 		7D03354F1CF5F0FD00B273E8 /* YHSCookBookDishVideoCommentInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookDishVideoCommentInfoViewController.h; sourceTree = "<group>"; };
@@ -2142,6 +2150,12 @@
 		7DFE1D8F1CE21FDA005A061B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				7D02EE991D05142B005D319D /* btn_auxiliary_filter.png */,
+				7D02EE9A1D05142B005D319D /* btn_header_edit.png */,
+				7D02EE9B1D05142B005D319D /* btn_header_photo.png */,
+				7D02EE9C1D05142B005D319D /* font_header_theme.png */,
+				7DFE1D951CE21FDA005A061B /* AppIcon */,
+				7DFE8DFE1CF8967A00DD09BE /* TabBar */,
 				7DF2CDF21D03DF1A00887D76 /* icon_shoping_car.png */,
 				7DC49A0C1D01A17400FF117C /* ico_favorite_version.png */,
 				7DC49A0D1D01A17400FF117C /* ico_mybrowse.png */,
@@ -2156,8 +2170,6 @@
 				7D02ACD81CF93E7E002C43B1 /* btn_auxiliary_add.png */,
 				7D02ACD91CF93E7E002C43B1 /* warning.png */,
 				7D02ACD61CF93B22002C43B1 /* stuff_in.png */,
-				7DFE1D951CE21FDA005A061B /* AppIcon */,
-				7DFE8DFE1CF8967A00DD09BE /* TabBar */,
 				7D070AA11CF7F411003E0920 /* loading_bgView.jpg */,
 				7DFE8DF41CF8967A00DD09BE /* bg_tag_recipe.9.png */,
 				7DFE8DF51CF8967A00DD09BE /* comment_bg.9.png */,
@@ -2362,6 +2374,7 @@
 				7DFE1DBA1CE21FDA005A061B /* btn_header_back_sec.png in Resources */,
 				7DB84FBE1CF1A67D00633D55 /* fav_green.png in Resources */,
 				7D81A1851CEE16E4003D1ADA /* ico_tag.png in Resources */,
+				7D02EEA01D05142B005D319D /* font_header_theme.png in Resources */,
 				7DFE8E141CF8967A00DD09BE /* ico_auxiliary_male.png in Resources */,
 				7DFE8E121CF8967A00DD09BE /* empty_shake_it_off.png in Resources */,
 				7D063F4A1CF085D000152563 /* myhome_follow_pressed.png in Resources */,
@@ -2372,6 +2385,7 @@
 				7DFE1CE71CE2063B005A061B /* LaunchScreen.storyboard in Resources */,
 				7D08276D1CE5C10B008D77AD /* ico_hot_classfix.png in Resources */,
 				7DFE1DB21CE21FDA005A061B /* HAODOU120.png in Resources */,
+				7D02EE9F1D05142B005D319D /* btn_header_photo.png in Resources */,
 				7DB84FBD1CF1A67D00633D55 /* fav_gray.png in Resources */,
 				7D0335791CF5FEEC00B273E8 /* video_step_ico.png in Resources */,
 				7D03356F1CF5FEEC00B273E8 /* video_pause_on.png in Resources */,
@@ -2382,6 +2396,7 @@
 				7DFE1CE41CE2063B005A061B /* Assets.xcassets in Resources */,
 				7D0335741CF5FEEC00B273E8 /* video_seek.png in Resources */,
 				7DFE1DB51CE21FDA005A061B /* HAODOU80.png in Resources */,
+				7D02EE9E1D05142B005D319D /* btn_header_edit.png in Resources */,
 				7DC49A101D01A17400FF117C /* ico_mybrowse.png in Resources */,
 				7DFE8E191CF8967A00DD09BE /* find_normal.png in Resources */,
 				7D0335721CF5FEEC00B273E8 /* video_play.png in Resources */,
@@ -2417,6 +2432,7 @@
 				7DFE1CE21CE2063B005A061B /* Main.storyboard in Resources */,
 				7D015D1A1D00651100630B28 /* btn_weaken_arrowup_orange.png in Resources */,
 				7DFE1DAE1CE21FDA005A061B /* action_search.png in Resources */,
+				7D02EE9D1D05142B005D319D /* btn_auxiliary_filter.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

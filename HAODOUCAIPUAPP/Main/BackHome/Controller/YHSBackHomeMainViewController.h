@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger, YHSBackHomeTableSection) {
 
 @property (nonatomic, strong) UIButton *allItem;
 
-#pragma mark - 触发全部按钮事件
+#pragma mark - 触发位置按钮事件
 - (void)naviLocationBarButtonItemClicked:(UIButton *)button;
 
 #pragma mark - 触发全部按钮事件
