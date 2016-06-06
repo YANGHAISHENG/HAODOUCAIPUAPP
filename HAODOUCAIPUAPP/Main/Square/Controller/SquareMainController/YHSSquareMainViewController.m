@@ -64,6 +64,7 @@ static CGFloat SQUARE_SCROLL_TITLE_BAR_HEIGHT = 35.0;
     scrollTitleBar.delegate = self;
     scrollTitleBar.titles = @[@"话题", @"豆友", @"动态"];
     scrollTitleBar.duration = 0.3f;
+    scrollTitleBar.titlesFont = [UIFont boldSystemFontOfSize:18.0];
     scrollTitleBar.titlesCustomeColor = COLOR_NAVIGATION_BAR_TITLE;
     scrollTitleBar.titlesHeightLightColor = [UIColor colorWithRed:0.95 green:0.63 blue:0.15 alpha:1.00];
     scrollTitleBar.backgroundHeightLightColor = [UIColor whiteColor];
