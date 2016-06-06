@@ -51,7 +51,6 @@
 		7D02EE8E1D0510B0005D319D /* YHSFriendGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D02EE8D1D0510B0005D319D /* YHSFriendGroupViewController.m */; };
 		7D02EE911D0510C1005D319D /* YHSDynamicGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D02EE901D0510C1005D319D /* YHSDynamicGroupViewController.m */; };
 		7D02EE971D0510F0005D319D /* YHSScrollAnimationTitleBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D02EE941D0510F0005D319D /* YHSScrollAnimationTitleBar.m */; };
-		7D02EE981D0510F0005D319D /* YHSScrollTitleBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D02EE961D0510F0005D319D /* YHSScrollTitleBar.m */; };
 		7D02EE9D1D05142B005D319D /* btn_auxiliary_filter.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D02EE991D05142B005D319D /* btn_auxiliary_filter.png */; };
 		7D02EE9E1D05142B005D319D /* btn_header_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D02EE9A1D05142B005D319D /* btn_header_edit.png */; };
 		7D02EE9F1D05142B005D319D /* btn_header_photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D02EE9B1D05142B005D319D /* btn_header_photo.png */; };
@@ -368,8 +367,6 @@
 		7D02EE901D0510C1005D319D /* YHSDynamicGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSDynamicGroupViewController.m; sourceTree = "<group>"; };
 		7D02EE931D0510F0005D319D /* YHSScrollAnimationTitleBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSScrollAnimationTitleBar.h; sourceTree = "<group>"; };
 		7D02EE941D0510F0005D319D /* YHSScrollAnimationTitleBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSScrollAnimationTitleBar.m; sourceTree = "<group>"; };
-		7D02EE951D0510F0005D319D /* YHSScrollTitleBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSScrollTitleBar.h; sourceTree = "<group>"; };
-		7D02EE961D0510F0005D319D /* YHSScrollTitleBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSScrollTitleBar.m; sourceTree = "<group>"; };
 		7D02EE991D05142B005D319D /* btn_auxiliary_filter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_auxiliary_filter.png; sourceTree = "<group>"; };
 		7D02EE9A1D05142B005D319D /* btn_header_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_header_edit.png; sourceTree = "<group>"; };
 		7D02EE9B1D05142B005D319D /* btn_header_photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_header_photo.png; sourceTree = "<group>"; };
@@ -989,8 +986,6 @@
 			children = (
 				7D02EE931D0510F0005D319D /* YHSScrollAnimationTitleBar.h */,
 				7D02EE941D0510F0005D319D /* YHSScrollAnimationTitleBar.m */,
-				7D02EE951D0510F0005D319D /* YHSScrollTitleBar.h */,
-				7D02EE961D0510F0005D319D /* YHSScrollTitleBar.m */,
 			);
 			path = YHSScrollTitleBar;
 			sourceTree = "<group>";
@@ -2499,7 +2494,6 @@
 				7D070A9F1CF7EB27003E0920 /* ZFSessionModel.m in Sources */,
 				7D01ABB51CFFDECA0016E0AF /* PresentingAnimator.m in Sources */,
 				7DFC47101CED50DD00A29464 /* YHSCategorySearchResultViewController.m in Sources */,
-				7D02EE981D0510F0005D319D /* YHSScrollTitleBar.m in Sources */,
 				7D01ABCE1CFFDFF90016E0AF /* YHSBasicWithBackBarItemViewController.m in Sources */,
 				7D0651F01CE2BC1E003D9BEC /* YHSRootViewController.m in Sources */,
 				7D8975321CEB0E0B002CF981 /* UIImage+Scale.m in Sources */,
