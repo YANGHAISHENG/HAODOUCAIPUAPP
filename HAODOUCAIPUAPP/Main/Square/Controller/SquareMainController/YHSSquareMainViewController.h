@@ -6,9 +6,9 @@
 //  Copyright © 2016年 YANGHAISHENG. All rights reserved.
 //
 
-#import "YHSBasicWithBackBarItemViewController.h"
+#import "YHSBasicViewController.h"
 
-@interface YHSSquareMainViewController : YHSBasicWithBackBarItemViewController
+@interface YHSSquareMainViewController : YHSBasicViewController
 
 @property (nonatomic, strong) UIView *searchAreaView; // 导航条搜索按钮区域
 @property (nonatomic, strong) UIImageView *searchIconImageView; // 导航条搜索图标

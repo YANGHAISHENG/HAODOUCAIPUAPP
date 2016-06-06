@@ -438,7 +438,7 @@
         __block NSUInteger listCount = 0; // 请求到的数据数量
         
         // 请求地址与参数
-        NSString *url = [YHSBackHomeDataUtil getBackHomeRequestURLString];
+        NSString *url = [YHSBackHomeDataUtil getBackHomeMainRequestURLString];
         NSMutableDictionary *params = [YHSBackHomeDataUtil getBackHomeMainRequestParams];
         [params setObject:[NSString stringWithFormat:@"%ld", self.limit] forKey:@"limit"];
         [params setObject:[NSString stringWithFormat:@"%ld", self.offset] forKey:@"offset"];

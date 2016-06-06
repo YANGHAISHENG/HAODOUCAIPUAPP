@@ -12,7 +12,7 @@
 
 
 #pragma mark - N001.到家请求数据
-+ (NSString *)getBackHomeRequestURLString;
++ (NSString *)getBackHomeMainRequestURLString;
 #pragma mark - N001.到家请求数据
 + (NSMutableDictionary *)getBackHomeMainRequestParams;
 
