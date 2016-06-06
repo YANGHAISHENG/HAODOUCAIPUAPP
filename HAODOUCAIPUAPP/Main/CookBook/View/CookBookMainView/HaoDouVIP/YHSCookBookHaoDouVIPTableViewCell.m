@@ -166,7 +166,7 @@ NSString * const CELL_IDENTIFIER_HAODOU_VIP = @"YHSCookBookHaoDouVIPTableViewCel
             UILabel *label = [[UILabel alloc] init];
             [label setText:elem.Title];
             [label setNumberOfLines:1];
-            [label setTextColor:[UIColor blackColor]];
+            [label setTextColor:[UIColor colorWithRed:0.56 green:0.56 blue:0.57 alpha:1.00]];
             [label setFont:[UIFont systemFontOfSize:12]];
             [label setTextAlignment:NSTextAlignmentCenter];
             [containerView addSubview:label];
