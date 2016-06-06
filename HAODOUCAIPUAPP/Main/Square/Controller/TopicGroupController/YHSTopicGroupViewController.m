@@ -7,11 +7,12 @@
 //
 
 #import "YHSTopicGroupViewController.h"
+#import "YHSTopicGroupTableSectionHeaderView.h"
 #import "YHSTopicGroupADTableViewCell.h"
 #import "YHSTopicGroupADModel.h"
 
 
-@interface YHSTopicGroupViewController () <UITableViewDelegate, UITableViewDataSource, YHSTopicGroupADTableViewCellDelegate>
+@interface YHSTopicGroupViewController () <UITableViewDelegate, UITableViewDataSource, YHSTopicGroupTableSectionHeaderViewDelegate, YHSTopicGroupADTableViewCellDelegate>
 
 // 根容器组件
 @property (nonnull, nonatomic, strong) UIView *rootContainerView;
@@ -449,9 +450,9 @@
             return nil;
         }
         case YHSTopicGroupTableSectionHotTitle: { // 实时热点
-//            YHSBackHomeTableSectionHeaderView *sectionHeaderView = [[YHSBackHomeTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:@"吃货最爱" imageIcon:@"ico_favorite_version" tableSecion:YHSBackHomeTableSectionFoodieFavoriteGoods];
-//            sectionHeaderView.delegate = self;
-//            return sectionHeaderView;
+            YHSTopicGroupTableSectionHeaderView *sectionHeaderView = [[YHSTopicGroupTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:@"实时热点" imageIcon:@"ico_favorite_version" tableSecion:YHSTopicGroupTableSectionHotTitle];
+            sectionHeaderView.delegate = self;
+            return sectionHeaderView;
             return nil;
         }
         case YHSTopicGroupTableSectionGroupTitle: { // 话题小组
