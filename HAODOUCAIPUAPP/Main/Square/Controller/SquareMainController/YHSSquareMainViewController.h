@@ -14,7 +14,6 @@
 @property (nonatomic, strong) UIImageView *searchIconImageView; // 导航条搜索图标
 @property (nonatomic, strong) UILabel *searchTitleLable; // 导航条搜索标题
 
-
 @property (nonatomic, strong) UIButton *rightOneItem;
 
 @end

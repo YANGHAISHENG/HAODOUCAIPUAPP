@@ -62,11 +62,13 @@ static CGFloat SQUARE_SCROLL_TITLE_BAR_HEIGHT = 35.0;
 {
     YHSScrollAnimationTitleBar *scrollTitleBar = [[YHSScrollAnimationTitleBar alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, SQUARE_SCROLL_TITLE_BAR_HEIGHT)];
     scrollTitleBar.delegate = self;
-    scrollTitleBar.titles = @[@"话题", @"豆友", @"动态"];
     scrollTitleBar.duration = 0.3f;
-    scrollTitleBar.titlesFont = [UIFont boldSystemFontOfSize:18.0];
-    scrollTitleBar.titlesCustomeColor = COLOR_NAVIGATION_BAR_TITLE;
-    scrollTitleBar.titlesHeightLightColor = [UIColor colorWithRed:0.95 green:0.63 blue:0.15 alpha:1.00];
+    scrollTitleBar.itemTitles = @[@"话题", @"豆友", @"动态"];
+    scrollTitleBar.itemImagesNormal = @[@"ico_class_topic_gray", @"ico_class_people_gray", @"ico_class_activity_gray"];
+    scrollTitleBar.itemImagesSelected = @[@"ico_class_topic_orange", @"ico_class_people_orange", @"ico_class_activity_orange"];
+    scrollTitleBar.itemTitlesFont = [UIFont boldSystemFontOfSize:18.0];
+    scrollTitleBar.itemTitlesCustomeColor = COLOR_NAVIGATION_BAR_TITLE;
+    scrollTitleBar.itemTitlesHeightLightColor = [UIColor colorWithRed:0.95 green:0.63 blue:0.15 alpha:1.00];
     scrollTitleBar.backgroundHeightLightColor = [UIColor whiteColor];
     scrollTitleBar.backgroundColor = [UIColor colorWithRed:0.88 green:0.88 blue:0.88 alpha:1.00];
     [self.view addSubview:scrollTitleBar];

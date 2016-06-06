@@ -7,6 +7,7 @@
 //
 
 #import "YHSScrollAnimationTitleBar.h"
+#import "YHSScrollAnimationTitleButton.h"
 #import "Masonry.h"
 #import "UIView+Frame.h"
 #import "POP.h"
@@ -65,31 +66,39 @@
  */
 - (void)customeData
 {
-    if (_titles == nil) {
-        _titles = @[@"item1", @"item2", @"item3"];
+    if (_itemTitles == nil) {
+        _itemTitles = @[@"item1", @"item2", @"item3"];
     }
     
-    if (_titlesCustomeColor == nil) {
-        _titlesCustomeColor = [UIColor blackColor];
+    if (_itemImagesNormal == nil) {
+        _itemImagesNormal = @[@"ico_class_topic_gray", @"ico_class_people_gray", @"ico_class_activity_gray"];
     }
     
-    if (_titlesHeightLightColor == nil) {
-        _titlesHeightLightColor = [UIColor whiteColor];
+    if (_itemImagesSelected == nil) {
+        _itemImagesSelected = @[@"ico_class_topic_orange", @"ico_class_people_orange", @"ico_class_activity_orange"];
+    }
+    
+    if (_itemTitlesCustomeColor == nil) {
+        _itemTitlesCustomeColor = [UIColor blackColor];
+    }
+    
+    if (_itemTitlesHeightLightColor == nil) {
+        _itemTitlesHeightLightColor = [UIColor whiteColor];
     }
     
     if (_backgroundHeightLightColor == nil) {
         _backgroundHeightLightColor = [UIColor redColor];
     }
     
-    if (_titlesFont == nil) {
-        _titlesFont = [UIFont systemFontOfSize:DEFAULT_TITLES_FONT];
+    if (_itemTitlesFont == nil) {
+        _itemTitlesFont = [UIFont systemFontOfSize:DEFAULT_TITLES_FONT];
     }
     
     if (_itemMutableArray == nil) {
-        _itemMutableArray = [[NSMutableArray alloc] initWithCapacity:_titles.count];
+        _itemMutableArray = [[NSMutableArray alloc] initWithCapacity:_itemTitles.count];
     }
     
-    _itemWidth = _viewWidth / _titles.count;
+    _itemWidth = _viewWidth / _itemTitles.count;
 }
 
 /**
@@ -97,8 +106,8 @@
  */
 - (void)createBottomItems
 {
-    for (int i = 0; i < _titles.count; i ++) {
-        UIButton *tempLabel = [self createItemWithTitlesIndex:i textColor:_titlesCustomeColor];
+    for (int i = 0; i < _itemTitles.count; i ++) {
+        UIButton *tempLabel = [self createItemWithTitlesIndex:i textColor:_itemTitlesCustomeColor imageName:_itemImagesNormal[i]];
         [self addSubview:tempLabel];
         [_itemMutableArray addObject:tempLabel];
     }
@@ -112,14 +121,15 @@
  *
  *  @return 返回创建好的label
  */
-- (UIButton *)createItemWithTitlesIndex: (NSInteger) index textColor: (UIColor *) textColor
+- (UIButton *)createItemWithTitlesIndex: (NSInteger) index textColor: (UIColor *) textColor imageName:(NSString *)imageName
 {
-    CGRect currentLabelFrame = [self countCurrentRectWithIndex:index];
-    UIButton *tempLabel = [[UIButton alloc] initWithFrame:currentLabelFrame];
-    [tempLabel setTitle:_titles[index] forState:UIControlStateNormal];
-    [tempLabel setTitleColor:textColor forState:UIControlStateNormal];
-    tempLabel.font = _titlesFont;
-    return tempLabel;
+    CGRect currentItemFrame = [self countCurrentRectWithIndex:index];
+    UIButton *tempBtn = [[YHSScrollAnimationTitleButton alloc] initWithFrame:currentItemFrame];
+    [tempBtn setTitle:_itemTitles[index] forState:UIControlStateNormal];
+    [tempBtn setTitleColor:textColor forState:UIControlStateNormal];
+    [tempBtn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+    tempBtn.font = _itemTitlesFont;
+    return tempBtn;
 }
 
 /**
@@ -149,8 +159,8 @@
     [_heightLightView addSubview:_heightColoreView];
     
     _heightTopView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, _viewWidth, _viewHeight)];
-    for (int i = 0; i < _titles.count; i ++) {
-        UIButton *label = [self createItemWithTitlesIndex:i textColor:_titlesHeightLightColor];
+    for (int i = 0; i < _itemTitles.count; i ++) {
+        UIButton *label = [self createItemWithTitlesIndex:i textColor:_itemTitlesHeightLightColor imageName:_itemImagesSelected[i]];
         [_heightTopView addSubview:label];
     }
     [_heightLightView addSubview:_heightTopView];
@@ -161,8 +171,8 @@
  *  创建按钮
  */
 - (void) createTopButtons {
-    _buttons = [[NSMutableArray alloc] initWithCapacity:_titles.count];
-    for (int i = 0; i < _titles.count; i ++) {
+    _buttons = [[NSMutableArray alloc] initWithCapacity:_itemTitles.count];
+    for (int i = 0; i < _itemTitles.count; i ++) {
         CGRect tempFrame = [self countCurrentRectWithIndex:i];
         UIButton *tempButton = [[UIButton alloc] initWithFrame:tempFrame];
         tempButton.tag = i;
@@ -180,7 +190,7 @@
 - (void)tapButton:(UIButton *) sender
 {
     if([self.delegate respondsToSelector:@selector(scrollTitleBar:scrollToIndex:title:)]){
-        [self.delegate scrollTitleBar:self scrollToIndex:sender.tag title:_titles[sender.tag]];
+        [self.delegate scrollTitleBar:self scrollToIndex:sender.tag title:_itemTitles[sender.tag]];
     }
     
     CGRect frame = [self countCurrentRectWithIndex:sender.tag];
