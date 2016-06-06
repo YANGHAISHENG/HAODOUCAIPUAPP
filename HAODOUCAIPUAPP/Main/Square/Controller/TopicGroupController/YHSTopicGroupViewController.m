@@ -10,9 +10,15 @@
 #import "YHSTopicGroupTableSectionHeaderView.h"
 #import "YHSTopicGroupADTableViewCell.h"
 #import "YHSTopicGroupADModel.h"
+#import "YHSTopicGroupHotTitleTableViewCell.h"
+#import "YHSTopicGroupHotTitleModel.h"
+#import "YHSTopicGroupGroupTitleTableViewCell.h"
+#import "YHSTopicGroupGroupTitleModel.h"
+#import "YHSTopicGroupTodayStarTableViewCell.h"
+#import "YHSTopicGroupTodayStarModel.h"
 
 
-@interface YHSTopicGroupViewController () <UITableViewDelegate, UITableViewDataSource, YHSTopicGroupTableSectionHeaderViewDelegate, YHSTopicGroupADTableViewCellDelegate>
+@interface YHSTopicGroupViewController () <UITableViewDelegate, UITableViewDataSource, YHSTopicGroupTableSectionHeaderViewDelegate, YHSTopicGroupADTableViewCellDelegate, YHSTopicGroupHotTitleTableViewCellDelegate>
 
 // 根容器组件
 @property (nonnull, nonatomic, strong) UIView *rootContainerView;
@@ -20,6 +26,15 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *tableData;
 @property (nonatomic, strong) NSMutableArray<YHSTopicGroupADModel *> *adModels; // 广告栏
+@property (nonatomic, strong) NSString *hotUrl; // 实时热点
+@property (nonatomic, strong) NSString *hotTitle; // 实时热点
+@property (nonatomic, strong) NSMutableArray<YHSTopicGroupHotTitleModel *> *hotTitleModels; // 实时热点
+@property (nonatomic, strong) NSString *groupUrl; // 话题小组
+@property (nonatomic, strong) NSString *groupTitle; // 话题小组
+@property (nonatomic, strong) NSMutableArray<YHSTopicGroupGroupTitleModel *> *groupTitleModels; // 话题小组
+@property (nonatomic, strong) NSString *todayStarUrl; // 活跃豆亲
+@property (nonatomic, strong) NSString *todayStarTitle; // 活跃豆亲
+@property (nonatomic, strong) NSMutableArray<YHSTopicGroupTodayStarModel *> *todayStarModels; // 活跃豆亲
 @end
 
 @implementation YHSTopicGroupViewController
@@ -145,6 +160,7 @@
         
         // 必须被注册到 UITableView 中
         [self.tableView registerClass:[YHSTopicGroupADTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_TOPIC_GROUP_AD];
+        [self.tableView registerClass:[YHSTopicGroupHotTitleTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_TOPIC_GROUP_HOTTITLE];
     }
     
 }
@@ -283,6 +299,7 @@
             NSDictionary *data = dict[@"result"];
             
             // 数据模型转换
+            // 1.广告横幅
             NSMutableArray<YHSTopicGroupADModel *> *adModelArray = [NSMutableArray array];
             [data[@"ad"] enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull dict, NSUInteger idx, BOOL * _Nonnull stop) {
                 YHSTopicGroupADModel *model = [YHSTopicGroupADModel mj_objectWithKeyValues:dict];
@@ -290,8 +307,40 @@
             }];
             weakSelf.adModels = adModelArray.mutableCopy;
             
+            // 2.实时热点
+            NSMutableArray<YHSTopicGroupHotTitleModel *> *hotTitleModelArray = [NSMutableArray array];
+            [data[@"hot"] enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull dict, NSUInteger idx, BOOL * _Nonnull stop) {
+                YHSTopicGroupHotTitleModel *model = [YHSTopicGroupHotTitleModel mj_objectWithKeyValues:dict];
+                [hotTitleModelArray addObject:model];
+            }];
+            weakSelf.hotTitleModels = hotTitleModelArray.mutableCopy;
+            weakSelf.hotUrl = data[@"hotUrl"];
+            weakSelf.hotTitle = data[@"hotTitle"];
+            
+            // 3.话题小组
+            NSMutableArray<YHSTopicGroupGroupTitleModel *> *groupTitleModelArray = [NSMutableArray array];
+            [data[@"group"] enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull dict, NSUInteger idx, BOOL * _Nonnull stop) {
+                YHSTopicGroupGroupTitleModel *model = [YHSTopicGroupGroupTitleModel mj_objectWithKeyValues:dict];
+                [groupTitleModelArray addObject:model];
+            }];
+            weakSelf.groupTitleModels = groupTitleModelArray.mutableCopy;
+            weakSelf.groupUrl = data[@"groupUrl"];
+            weakSelf.groupTitle = data[@"groupTitle"];
+            
+            // 4.活跃豆亲
+            NSMutableArray<YHSTopicGroupTodayStarModel *> *todayStarModelArray = [NSMutableArray array];
+            [data[@"todayStar"] enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull dict, NSUInteger idx, BOOL * _Nonnull stop) {
+                YHSTopicGroupTodayStarModel *model = [YHSTopicGroupTodayStarModel mj_objectWithKeyValues:dict];
+                [todayStarModelArray addObject:model];
+            }];
+            weakSelf.todayStarModels = todayStarModelArray.mutableCopy;
+            weakSelf.todayStarUrl = data[@"todayStarUrl"];
+            weakSelf.todayStarTitle = data[@"todayStarTitle"];
+            
             // 设置数据源
             [self.tableData addObject:@[weakSelf.adModels]];
+            [self.tableData addObject:weakSelf.hotTitleModels];
+            [self.tableData addObject:weakSelf.groupTitleModels];
             
             // 请求数据成功
             isSuccess = YES;
@@ -362,7 +411,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -393,8 +442,14 @@
         }
             // 实时热点
         case YHSTopicGroupTableSectionHotTitle: {
-            
-            return nil;
+            YHSTopicGroupHotTitleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_TOPIC_GROUP_HOTTITLE];
+            if (!cell) {
+                cell = [[YHSTopicGroupHotTitleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_IDENTIFIER_TOPIC_GROUP_HOTTITLE];
+            }
+            cell.delegate = self;
+            cell.model = self.tableData[indexPath.section][indexPath.row];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
         }
             // 话题小组
         case YHSTopicGroupTableSectionGroupTitle: {
@@ -423,8 +478,10 @@
         }
             // 实时热点
         case YHSTopicGroupTableSectionHotTitle: {
-
-            return 0.0;
+            return [self.tableView fd_heightForCellWithIdentifier:CELL_IDENTIFIER_TOPIC_GROUP_HOTTITLE cacheByIndexPath:indexPath configuration:^(YHSTopicGroupHotTitleTableViewCell *cell) {
+                // 配置 cell 的数据源，和 "cellForRow" 干的事一致
+                cell.model = self.tableData[indexPath.section][indexPath.row];
+            }];
         }
             // 话题小组
         case YHSTopicGroupTableSectionGroupTitle: {
@@ -450,16 +507,19 @@
             return nil;
         }
         case YHSTopicGroupTableSectionHotTitle: { // 实时热点
-            YHSTopicGroupTableSectionHeaderView *sectionHeaderView = [[YHSTopicGroupTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:@"实时热点" imageIcon:@"ico_favorite_version" tableSecion:YHSTopicGroupTableSectionHotTitle];
+            YHSTopicGroupTableSectionHeaderView *sectionHeaderView = [[YHSTopicGroupTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:_hotTitle imageIcon:@"ico_auxiliary_hotspot" tableSecion:YHSTopicGroupTableSectionHotTitle];
             sectionHeaderView.delegate = self;
             return sectionHeaderView;
-            return nil;
         }
         case YHSTopicGroupTableSectionGroupTitle: { // 话题小组
-            return nil;
+            YHSTopicGroupTableSectionHeaderView *sectionHeaderView = [[YHSTopicGroupTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:_groupTitle imageIcon:@"ico_auxiliary_topic" tableSecion:YHSTopicGroupTableSectionHotTitle];
+            sectionHeaderView.delegate = self;
+            return sectionHeaderView;
         }
         case YHSTopicGroupTableSectionTodayStar: { // 活跃豆亲
-            return nil;
+            YHSTopicGroupTableSectionHeaderView *sectionHeaderView = [[YHSTopicGroupTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:_todayStarTitle imageIcon:@"ico_auxiliary_master" tableSecion:YHSTopicGroupTableSectionHotTitle];
+            sectionHeaderView.delegate = self;
+            return sectionHeaderView;
         }
         default: {
             return nil;
@@ -523,13 +583,25 @@
     return 0.01f;
 }
 
+#pragma mark - 触发点击表格 Secion 头部事件
+- (void)didClickHeaderOfTableSecion:(NSInteger)tableSection
+{
+    [self alertPromptMessage:@""];
+}
 
-#pragma mark - 触发点击Cell事件
-// 点击广告栏事件
+#pragma mark - 触发点击广告栏事件
 - (void)didClickElementOfCellWithTopicGroupADModel:(YHSTopicGroupADModel *)model
 {
     [self alertPromptMessage:@"广告详情"];
 }
+
+#pragma mark - 触发点击实时热点事件
+- (void)didClickElementOfCellWithTopicGroupHotTitleModel:(YHSTopicGroupHotTitleModel *)model
+{
+    [self alertPromptMessage:@"实时热点"];
+}
+
+
 
 
 @end

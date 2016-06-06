@@ -242,9 +242,12 @@
         
     }
     
-    [container mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(lastView.mas_right).offset(margin);
-    }];
+    if (lastView) {
+        [container mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(lastView.mas_right).offset(margin);
+        }];
+    }
+
 
 }
 
