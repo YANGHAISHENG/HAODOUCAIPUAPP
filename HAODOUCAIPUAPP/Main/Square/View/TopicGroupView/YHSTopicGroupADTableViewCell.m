@@ -1,20 +1,19 @@
 //
-//  YHSBackHomeADTableViewCell.m
+//  YHSTopicGroupADTableViewCell.m
 //  HAODOUCAIPUAPP
 //
-//  Created by YANGHAISHENG on 16/6/3.
+//  Created by YANGHAISHENG on 16/6/6.
 //  Copyright © 2016年 YANGHAISHENG. All rights reserved.
 //
 
-#import "YHSBackHomeADTableViewCell.h"
-#import "YHSBackHomeADModel.h"
+#import "YHSTopicGroupADTableViewCell.h"
+#import "YHSTopicGroupADModel.h"
 
+CGFloat const TOPICGROUP_SCROLL_AD_HEIGHT = 150.0;
 
-CGFloat const BACK_HOME_SCROLL_AD_HEIGHT = 150.0;
+NSString * const CELL_IDENTIFIER_TOPIC_GROUP_AD = @"YHSTopicGroupADTableViewCellID";
 
-NSString * const CELL_IDENTIFIER_BACKHOME_AD = @"YHSBackHomeADTableViewCellID";
-
-@interface YHSBackHomeADTableViewCell () <SDCycleScrollViewDelegate>
+@interface YHSTopicGroupADTableViewCell () <SDCycleScrollViewDelegate>
 /**
  * 根容器组件
  */
@@ -33,7 +32,7 @@ NSString * const CELL_IDENTIFIER_BACKHOME_AD = @"YHSBackHomeADTableViewCellID";
 @end
 
 
-@implementation YHSBackHomeADTableViewCell
+@implementation YHSTopicGroupADTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     
@@ -83,7 +82,7 @@ NSString * const CELL_IDENTIFIER_BACKHOME_AD = @"YHSBackHomeADTableViewCellID";
 /**
  *  设置控件属性
  */
-- (void)setModel:(NSMutableArray<YHSBackHomeADModel *> *)model {
+- (void)setModel:(NSMutableArray<YHSTopicGroupADModel *> *)model {
     
     _model = model;
     
@@ -100,8 +99,8 @@ NSString * const CELL_IDENTIFIER_BACKHOME_AD = @"YHSBackHomeADTableViewCellID";
     
     // 广告数据信息
     NSMutableArray<NSString *> *imageUrlArray = [NSMutableArray array];
-    [_model enumerateObjectsUsingBlock:^(YHSBackHomeADModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [imageUrlArray addObject:obj.ImgUrl];
+    [_model enumerateObjectsUsingBlock:^(YHSTopicGroupADModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [imageUrlArray addObject:obj.Img];
     }];
     
     // 滚动广告栏
@@ -115,10 +114,10 @@ NSString * const CELL_IDENTIFIER_BACKHOME_AD = @"YHSBackHomeADTableViewCellID";
     [cycleBannerView setImageURLStringsGroup:imageUrlArray];
     [self.publicContainerView addSubview:cycleBannerView];
     [cycleBannerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(@(margin));
-        make.left.equalTo(@(margin));
-        make.right.equalTo(@(-margin));
-        make.height.equalTo(@(BACK_HOME_SCROLL_AD_HEIGHT));
+        make.top.equalTo(@(0.0));
+        make.left.equalTo(@(0.0));
+        make.right.equalTo(@(0.0));
+        make.height.equalTo(@(TOPICGROUP_SCROLL_AD_HEIGHT));
     }];
     self.cycleBannerView = cycleBannerView;
     
@@ -126,7 +125,7 @@ NSString * const CELL_IDENTIFIER_BACKHOME_AD = @"YHSBackHomeADTableViewCellID";
     [self.publicContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(weakSelf.cycleBannerView.mas_bottom).offset(margin/2.0);
     }];
-        
+    
 }
 
 
@@ -134,17 +133,18 @@ NSString * const CELL_IDENTIFIER_BACKHOME_AD = @"YHSBackHomeADTableViewCellID";
 /** 点击图片回调 */
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickElementOfCellWithBackHomeADModel:)]) {
-        [self.delegate didClickElementOfCellWithBackHomeADModel:self.model[index]];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickElementOfCellWithTopicGroupADModel:)]) {
+        [self.delegate didClickElementOfCellWithTopicGroupADModel:self.model[index]];
     }
 }
 
 
 /** 图片滚动回调 */
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index {
-
+    
     
 }
+
 
 
 @end

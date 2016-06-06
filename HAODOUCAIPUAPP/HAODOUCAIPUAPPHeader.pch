@@ -35,6 +35,7 @@
 
 #import "YHSCookBookDataUtil.h"
 #import "YHSBackHomeDataUtil.h"
+#import "YHSSquareDataUtil.h"
 
 #import "UIColor+Hex.h"
 #import "UIImage+Scale.h"

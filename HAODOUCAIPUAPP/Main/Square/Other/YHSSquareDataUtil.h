@@ -15,4 +15,19 @@
 #pragma mark - N001.广场话题请求数据
 + (NSMutableDictionary *)getTopicGroupRequestParams;
 
+
+#pragma mark - N002.广场话题请求数据
++ (NSString *)getFriendGroupRequestURLString;
+#pragma mark - N002.广场话题请求数据
++ (NSMutableDictionary *)getFriendGroupRequestParams;
+
+
+#pragma mark - N003.广场话题请求数据
++ (NSString *)getDynamicGroupRequestURLString;
+#pragma mark - N003.广场话题请求数据
++ (NSMutableDictionary *)getDynamicGroupRequestParams;
+
+
+
+
 @end

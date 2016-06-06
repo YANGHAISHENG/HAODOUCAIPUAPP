@@ -151,6 +151,11 @@
 		7D0E20AC1CF5B107007941F4 /* DLUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0E20A51CF5B107007941F4 /* DLUtility.m */; };
 		7D0F10201D054137009017E4 /* YHSScrollAnimationTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F101F1D054137009017E4 /* YHSScrollAnimationTitleButton.m */; };
 		7D0F10231D055797009017E4 /* YHSSquareDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F10221D055797009017E4 /* YHSSquareDataUtil.m */; };
+		7D0F10291D0563C7009017E4 /* YHSTopicGroupADModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F10281D0563C7009017E4 /* YHSTopicGroupADModel.m */; };
+		7D0F102C1D05642D009017E4 /* YHSTopicGroupGroupTitleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F102B1D05642D009017E4 /* YHSTopicGroupGroupTitleModel.m */; };
+		7D0F102F1D056447009017E4 /* YHSTopicGroupHotTitleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F102E1D056447009017E4 /* YHSTopicGroupHotTitleModel.m */; };
+		7D0F10321D056488009017E4 /* YHSTopicGroupTodayStarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F10311D056488009017E4 /* YHSTopicGroupTodayStarModel.m */; };
+		7D0F10351D0564F6009017E4 /* YHSTopicGroupADTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F10341D0564F6009017E4 /* YHSTopicGroupADTableViewCell.m */; };
 		7D127E0F1CFC110700F98C12 /* YHSCookBookKitchenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D127E0E1CFC110700F98C12 /* YHSCookBookKitchenModel.m */; };
 		7D127E121CFC114600F98C12 /* YHSCookBookKitchenTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D127E111CFC114600F98C12 /* YHSCookBookKitchenTableViewCell.m */; };
 		7D127E151CFC14F800F98C12 /* YHSCookBookKitchenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D127E141CFC14F800F98C12 /* YHSCookBookKitchenViewController.m */; };
@@ -546,6 +551,16 @@
 		7D0F101F1D054137009017E4 /* YHSScrollAnimationTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSScrollAnimationTitleButton.m; sourceTree = "<group>"; };
 		7D0F10211D055797009017E4 /* YHSSquareDataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSSquareDataUtil.h; sourceTree = "<group>"; };
 		7D0F10221D055797009017E4 /* YHSSquareDataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSSquareDataUtil.m; sourceTree = "<group>"; };
+		7D0F10271D0563C7009017E4 /* YHSTopicGroupADModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSTopicGroupADModel.h; sourceTree = "<group>"; };
+		7D0F10281D0563C7009017E4 /* YHSTopicGroupADModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSTopicGroupADModel.m; sourceTree = "<group>"; };
+		7D0F102A1D05642D009017E4 /* YHSTopicGroupGroupTitleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSTopicGroupGroupTitleModel.h; sourceTree = "<group>"; };
+		7D0F102B1D05642D009017E4 /* YHSTopicGroupGroupTitleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSTopicGroupGroupTitleModel.m; sourceTree = "<group>"; };
+		7D0F102D1D056447009017E4 /* YHSTopicGroupHotTitleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSTopicGroupHotTitleModel.h; sourceTree = "<group>"; };
+		7D0F102E1D056447009017E4 /* YHSTopicGroupHotTitleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSTopicGroupHotTitleModel.m; sourceTree = "<group>"; };
+		7D0F10301D056488009017E4 /* YHSTopicGroupTodayStarModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSTopicGroupTodayStarModel.h; sourceTree = "<group>"; };
+		7D0F10311D056488009017E4 /* YHSTopicGroupTodayStarModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSTopicGroupTodayStarModel.m; sourceTree = "<group>"; };
+		7D0F10331D0564F6009017E4 /* YHSTopicGroupADTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSTopicGroupADTableViewCell.h; sourceTree = "<group>"; };
+		7D0F10341D0564F6009017E4 /* YHSTopicGroupADTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSTopicGroupADTableViewCell.m; sourceTree = "<group>"; };
 		7D127E0D1CFC110700F98C12 /* YHSCookBookKitchenModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookKitchenModel.h; sourceTree = "<group>"; };
 		7D127E0E1CFC110700F98C12 /* YHSCookBookKitchenModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookKitchenModel.m; sourceTree = "<group>"; };
 		7D127E101CFC114600F98C12 /* YHSCookBookKitchenTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookKitchenTableViewCell.h; sourceTree = "<group>"; };
@@ -867,9 +882,9 @@
 		7D02EE6E1D0509FB005D319D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7D02EE831D051007005D319D /* DynamicGroupModel */,
-				7D02EE841D051007005D319D /* FriendGroupModel */,
-				7D02EE851D051007005D319D /* TopicGroupModel */,
+				7D0F10261D0563A8009017E4 /* TopicGroupModel */,
+				7D0F10251D0563A8009017E4 /* FriendGroupModel */,
+				7D0F10241D0563A8009017E4 /* DynamicGroupModel */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -886,9 +901,9 @@
 		7D02EE701D0509FB005D319D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7D02EE861D05102F005D319D /* DynamicGroupView */,
-				7D02EE871D05102F005D319D /* FriendGroupView */,
 				7D02EE881D05102F005D319D /* TopicGroupView */,
+				7D02EE871D05102F005D319D /* FriendGroupView */,
+				7D02EE861D05102F005D319D /* DynamicGroupView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -959,27 +974,6 @@
 			path = TopicGroupController;
 			sourceTree = "<group>";
 		};
-		7D02EE831D051007005D319D /* DynamicGroupModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DynamicGroupModel;
-			sourceTree = "<group>";
-		};
-		7D02EE841D051007005D319D /* FriendGroupModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = FriendGroupModel;
-			sourceTree = "<group>";
-		};
-		7D02EE851D051007005D319D /* TopicGroupModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = TopicGroupModel;
-			sourceTree = "<group>";
-		};
 		7D02EE861D05102F005D319D /* DynamicGroupView */ = {
 			isa = PBXGroup;
 			children = (
@@ -997,6 +991,8 @@
 		7D02EE881D05102F005D319D /* TopicGroupView */ = {
 			isa = PBXGroup;
 			children = (
+				7D0F10331D0564F6009017E4 /* YHSTopicGroupADTableViewCell.h */,
+				7D0F10341D0564F6009017E4 /* YHSTopicGroupADTableViewCell.m */,
 			);
 			path = TopicGroupView;
 			sourceTree = "<group>";
@@ -1527,6 +1523,35 @@
 				7D0E20A11CF5B107007941F4 /* DLSlideTabbarProtocol.h */,
 			);
 			path = DLTabbarView;
+			sourceTree = "<group>";
+		};
+		7D0F10241D0563A8009017E4 /* DynamicGroupModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DynamicGroupModel;
+			sourceTree = "<group>";
+		};
+		7D0F10251D0563A8009017E4 /* FriendGroupModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FriendGroupModel;
+			sourceTree = "<group>";
+		};
+		7D0F10261D0563A8009017E4 /* TopicGroupModel */ = {
+			isa = PBXGroup;
+			children = (
+				7D0F10271D0563C7009017E4 /* YHSTopicGroupADModel.h */,
+				7D0F10281D0563C7009017E4 /* YHSTopicGroupADModel.m */,
+				7D0F102D1D056447009017E4 /* YHSTopicGroupHotTitleModel.h */,
+				7D0F102E1D056447009017E4 /* YHSTopicGroupHotTitleModel.m */,
+				7D0F102A1D05642D009017E4 /* YHSTopicGroupGroupTitleModel.h */,
+				7D0F102B1D05642D009017E4 /* YHSTopicGroupGroupTitleModel.m */,
+				7D0F10301D056488009017E4 /* YHSTopicGroupTodayStarModel.h */,
+				7D0F10311D056488009017E4 /* YHSTopicGroupTodayStarModel.m */,
+			);
+			path = TopicGroupModel;
 			sourceTree = "<group>";
 		};
 		7D127E0A1CFC108100F98C12 /* CookBookKitchenController */ = {
@@ -2573,6 +2598,7 @@
 				7DD3ADB91CE350F600F9D3F1 /* MBProgressHUD.m in Sources */,
 				7D8975221CEAF892002CF981 /* YHSCookBookHotsAlbumTableViewCell.m in Sources */,
 				7D05A3261CF2A37E00F3CF60 /* YHSCookBookShakeItOffModel.m in Sources */,
+				7D0F10351D0564F6009017E4 /* YHSTopicGroupADTableViewCell.m in Sources */,
 				7D051B5F1CEF2B2500B97699 /* YHSCookBookBannerModel.m in Sources */,
 				7DC87CD71CF33B5F00C435C6 /* YHSCookBookSearchDetailDishVideoViewController.m in Sources */,
 				7D063F6A1CF09E5E00152563 /* YHSCookBookHotsAlbumTabRecommendViewController.m in Sources */,
@@ -2600,6 +2626,7 @@
 				7D127E271CFC1FE200F98C12 /* YHSCookBookShowProductUserModel.m in Sources */,
 				7D070A9D1CF7EB27003E0920 /* ZFPlayerControlView.m in Sources */,
 				7DC830441CFD70200042A4A5 /* YHSCookBookShowVideoViewController.m in Sources */,
+				7D0F10291D0563C7009017E4 /* YHSTopicGroupADModel.m in Sources */,
 				7DD3ADAF1CE34D8200F9D3F1 /* YHSCookBookDataUtil.m in Sources */,
 				7DC830411CFD6FCC0042A4A5 /* YHSCookBookShowVideoModel.m in Sources */,
 				7D127E2D1CFC3A2600F98C12 /* YHSCookBookShowProductCateTableViewCell.m in Sources */,
@@ -2607,9 +2634,11 @@
 				7D06521F1CE2C45B003D9BEC /* YHSVenderMacro.m in Sources */,
 				7D0497D31CF86DFD005E3F74 /* YHSCookBookDishFoodMaterialModel.m in Sources */,
 				7D8975231CEAF892002CF981 /* YHSCookBookPublishTableViewCell.m in Sources */,
+				7D0F10321D056488009017E4 /* YHSTopicGroupTodayStarModel.m in Sources */,
 				7D01ABCB1CFFDFF90016E0AF /* YHSBasicSearchViewController.m in Sources */,
 				7D127E151CFC14F800F98C12 /* YHSCookBookKitchenViewController.m in Sources */,
 				7D01ABD71CFFE4FC0016E0AF /* YHSCollectionViewController.m in Sources */,
+				7D0F102F1D056447009017E4 /* YHSTopicGroupHotTitleModel.m in Sources */,
 				7D051B751CEF3F0C00B97699 /* YHSCookBookSearchDetailAlbumTableViewCell.m in Sources */,
 				7D063F741CF09EC500152563 /* YHSUITabScrollView.m in Sources */,
 				7D0E20A61CF5B107007941F4 /* DLLRUCache.m in Sources */,
@@ -2656,6 +2685,7 @@
 				7D0235511CF067ED00DE6EC0 /* YHSCookBookSearchVIPTableViewCell.m in Sources */,
 				7DD3ADAC1CE3464E00F9D3F1 /* YHSNavigationBarTitleView.m in Sources */,
 				7D051B631CEF2B2500B97699 /* YHSCookBookHotsAlbumModel.m in Sources */,
+				7D0F102C1D05642D009017E4 /* YHSTopicGroupGroupTitleModel.m in Sources */,
 				7D051B721CEF3ED100B97699 /* YHSCookBookSearchDetailAlbumModel.m in Sources */,
 				7DC87CD11CF3367900C435C6 /* YHSCookBookSearchHotsAlbumDetailViewController.m in Sources */,
 				7D063F641CF09AA700152563 /* YHSCookBookHotsAlbumMoreViewController.m in Sources */,

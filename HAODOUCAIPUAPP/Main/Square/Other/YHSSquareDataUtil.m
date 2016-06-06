@@ -13,19 +13,49 @@
 #pragma mark - N001.广场话题请求数据
 + (NSString *)getTopicGroupRequestURLString
 {
-    return @"http://api.haodou.com/mall/index.php?appid=2&appkey=9ef269eec4f7a9d07c73952d06b5413f&format=json&sessionid=1465111200576&vc=83&vn=6.1.0&loguid=9832584&deviceid=haodou864601020999058&uuid=72b9cf70da593de0478cbb90f6025bf7&channel=huawei_v610&method=idx.index&virtual=&signmethod=md5&v=2&timestamp=1465111330&nonce=0.5391561331120396&appsign=18e0fcb3b7f31a834c67da857bec7f4d";
+    return @"http://api.haodou.com/index.php?appid=2&appkey=9ef269eec4f7a9d07c73952d06b5413f&format=json&sessionid=1465196747580&vc=84&vn=6.1.1&loguid=9832584&deviceid=haodou864601020999058&uuid=72b9cf70da593de0478cbb90f6025bf7&channel=huawei_v611&method=Topic.indexTopic&virtual=&signmethod=md5&v=3&timestamp=1465197550&nonce=0.9284769544340404&appsign=69582baf414a273a0bcf76e68bc18dc0";
 }
 #pragma mark - N001.广场话题请求数据
 + (NSMutableDictionary *)getTopicGroupRequestParams
 {
-    return @{@"Latitude":@"30.45974",
-             @"Longitude":@"114.436491",
-             @"RecommendType":@"0",
-             @"limit":@"20",
+    return @{@"uid":@"9832584",
              @"offset":@"0",
-             @"uid":@"9832584",
-             @"sign":@"1133e1de8081f6500b20d31f3f6729e3",
-             @"uuid":@"72b9cf70da593de0478cbb90f6025bf7"}.mutableCopy;
+             @"sign":@"1133e1de8081f6500b20d31f3f6729e3"}.mutableCopy;
 }
+
+
+#pragma mark - N002.广场话题请求数据
++ (NSString *)getFriendGroupRequestURLString
+{
+    return @"http://api.haodou.com/index.php?appid=2&appkey=9ef269eec4f7a9d07c73952d06b5413f&format=json&sessionid=1465196747580&vc=84&vn=6.1.1&loguid=9832584&deviceid=haodou864601020999058&uuid=72b9cf70da593de0478cbb90f6025bf7&channel=huawei_v611&method=Topic.indexPeople&virtual=&signmethod=md5&v=3&timestamp=1465197611&nonce=0.9557851770005336&appsign=cbeaa776bdefdeb275ae8c120b7b5b97";
+}
+#pragma mark - N002.广场话题请求数据
++ (NSMutableDictionary *)getFriendGroupRequestParams
+{
+    return @{@"position":@"中国湖北省武汉市江夏区金融港四路",
+             @"lng":@"114.436479",
+             @"lat":@"30.459732",
+             @"offset":@"0",
+             @"limit":@"20",
+             @"sign":@"1133e1de8081f6500b20d31f3f6729e3",
+             @"uid":@"9832584"}.mutableCopy;
+}
+
+
+#pragma mark - N003.广场话题请求数据
++ (NSString *)getDynamicGroupRequestURLString
+{
+    return @"http://api.haodou.com/index.php?appid=2&appkey=9ef269eec4f7a9d07c73952d06b5413f&format=json&sessionid=1465196747580&vc=84&vn=6.1.1&loguid=9832584&deviceid=haodou864601020999058&uuid=72b9cf70da593de0478cbb90f6025bf7&channel=huawei_v611&method=UserFeed.getFollowUserFeed&virtual=&signmethod=md5&v=3&timestamp=1465197853&nonce=0.6701287047443995&appsign=d0e4efd0edfb600492ef6a6fe07ba03c";
+}
+#pragma mark - N003.广场话题请求数据
++ (NSMutableDictionary *)getDynamicGroupRequestParams
+{
+    return @{@"offset":@"0",
+             @"limit":@"10",
+             @"sign":@"1133e1de8081f6500b20d31f3f6729e3",
+             @"uid":@"9832584"}.mutableCopy;
+}
+
+
 
 @end
