@@ -132,7 +132,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     CGFloat margin = 10.0;
-    CGFloat cateItemHeight = 30.0;
+    CGFloat cateItemHeight = 32.0;
     
     UIScrollView *cateAreaContainer = ({
         UIScrollView *scrollView = [[UIScrollView alloc] init];
@@ -331,7 +331,7 @@
     
     [self.button_shopping mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(weakSelf.mas_bottomLayoutGuide).offset(-margin-shoppingSize);
-        make.left.equalTo(weakSelf.view.mas_left).offset(margin);
+        make.left.equalTo(weakSelf.view.mas_left).offset(1.5*margin);
         make.size.mas_equalTo(CGSizeMake(shoppingSize, shoppingSize));
     }];
     
