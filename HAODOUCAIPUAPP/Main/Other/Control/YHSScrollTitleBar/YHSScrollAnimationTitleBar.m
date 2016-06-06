@@ -17,11 +17,11 @@
 @interface YHSScrollAnimationTitleBar()
 @property (nonatomic, assign) CGFloat viewWidth;                    // 组件的宽度
 @property (nonatomic, assign) CGFloat viewHeight;                   // 组件的高度
-@property (nonatomic, assign) CGFloat labelWidth;                   // Label的宽度
+@property (nonatomic, assign) CGFloat itemWidth;                   // item的宽度
 @property (nonatomic, strong) UIView *heightLightView;
 @property (nonatomic, strong) UIView *heightTopView;
 @property (nonatomic, strong) UIView *heightColoreView;
-@property (nonatomic, strong) NSMutableArray *labelMutableArray;
+@property (nonatomic, strong) NSMutableArray *itemMutableArray;
 @property (nonatomic, strong) NSMutableArray<UIButton *> *buttons;
 
 @end
@@ -55,8 +55,8 @@
 - (void)layoutSubviews
 {
     [self customeData];
-    [self createBottomLabels];
-    [self createTopLables];
+    [self createBottomItems];
+    [self createTopItems];
     [self createTopButtons];
 }
 
@@ -85,42 +85,40 @@
         _titlesFont = [UIFont systemFontOfSize:DEFAULT_TITLES_FONT];
     }
     
-    if (_labelMutableArray == nil) {
-        _labelMutableArray = [[NSMutableArray alloc] initWithCapacity:_titles.count];
+    if (_itemMutableArray == nil) {
+        _itemMutableArray = [[NSMutableArray alloc] initWithCapacity:_titles.count];
     }
     
-    _labelWidth = _viewWidth / _titles.count;
+    _itemWidth = _viewWidth / _titles.count;
 }
 
 /**
- *  创建最底层的Label
+ *  创建最底层的元素（UILabel或UIButton）
  */
-- (void)createBottomLabels
+- (void)createBottomItems
 {
     for (int i = 0; i < _titles.count; i ++) {
-        UILabel *tempLabel = [self createLabelWithTitlesIndex:i textColor:_titlesCustomeColor];
+        UIButton *tempLabel = [self createItemWithTitlesIndex:i textColor:_titlesCustomeColor];
         [self addSubview:tempLabel];
-        [_labelMutableArray addObject:tempLabel];
+        [_itemMutableArray addObject:tempLabel];
     }
 }
 
 /**
- *  根据索引创建Label
+ *  根据索引创建元素（UILabel或UIButton）
  *
  *  @param index     创建的第几个Index
  *  @param textColor Label字体颜色
  *
  *  @return 返回创建好的label
  */
-- (UILabel *)createLabelWithTitlesIndex: (NSInteger) index textColor: (UIColor *) textColor
+- (UIButton *)createItemWithTitlesIndex: (NSInteger) index textColor: (UIColor *) textColor
 {
     CGRect currentLabelFrame = [self countCurrentRectWithIndex:index];
-    UILabel *tempLabel = [[UILabel alloc] initWithFrame:currentLabelFrame];
-    tempLabel.textColor = textColor;
-    tempLabel.text = _titles[index];
+    UIButton *tempLabel = [[UIButton alloc] initWithFrame:currentLabelFrame];
+    [tempLabel setTitle:_titles[index] forState:UIControlStateNormal];
+    [tempLabel setTitleColor:textColor forState:UIControlStateNormal];
     tempLabel.font = _titlesFont;
-    tempLabel.minimumScaleFactor = 0.1f;
-    tempLabel.textAlignment = NSTextAlignmentCenter;
     return tempLabel;
 }
 
@@ -133,26 +131,26 @@
  */
 - (CGRect)countCurrentRectWithIndex: (NSInteger) index
 {
-    return CGRectMake(_labelWidth * index, 0, _labelWidth, _viewHeight);
+    return CGRectMake(_itemWidth * index, 0, _itemWidth, _viewHeight);
 }
 
 
 /**
- *  创建上一层高亮使用的Label
+ *  创建上一层高亮使用的元素（UILabel或UIButton）
  */
-- (void) createTopLables
+- (void) createTopItems
 {
-    CGRect heightLightViewFrame = CGRectMake(0, 0, _labelWidth, _viewHeight);
+    CGRect heightLightViewFrame = CGRectMake(0, 0, _itemWidth, _viewHeight);
     _heightLightView = [[UIView alloc] initWithFrame:heightLightViewFrame];
     _heightLightView.clipsToBounds = YES;
     
-    _heightColoreView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _labelWidth, _viewHeight)];
+    _heightColoreView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _itemWidth, _viewHeight)];
     _heightColoreView.backgroundColor = _backgroundHeightLightColor;
     [_heightLightView addSubview:_heightColoreView];
     
     _heightTopView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, _viewWidth, _viewHeight)];
     for (int i = 0; i < _titles.count; i ++) {
-        UILabel *label = [self createLabelWithTitlesIndex:i textColor:_titlesHeightLightColor];
+        UIButton *label = [self createItemWithTitlesIndex:i textColor:_titlesHeightLightColor];
         [_heightTopView addSubview:label];
     }
     [_heightLightView addSubview:_heightTopView];
