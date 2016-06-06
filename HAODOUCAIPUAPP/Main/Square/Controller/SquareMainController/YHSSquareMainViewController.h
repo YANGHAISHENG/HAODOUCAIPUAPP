@@ -15,5 +15,6 @@
 @property (nonatomic, strong) UILabel *searchTitleLable; // 导航条搜索标题
 
 @property (nonatomic, strong) UIButton *rightOneItem;
+@property (nonatomic, strong) UIButton *rightTwoItem;
 
 @end

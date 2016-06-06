@@ -20,9 +20,14 @@ static CGFloat SQUARE_SCROLL_TITLE_BAR_HEIGHT = 35.0;
 
 
 @interface YHSSquareMainViewController () <UIScrollViewDelegate, YHSScrollAnimationTitleBarDelegate>
+
+// 头部滚动的按钮栏
 @property (nonatomic, strong) YHSScrollAnimationTitleBar *scrollTitleBar;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableArray<UIView *> *scrollChildViews;
+@property (nonatomic, assign) NSInteger currentScrollIndex;
+
+
 @end
 
 
@@ -53,7 +58,8 @@ static CGFloat SQUARE_SCROLL_TITLE_BAR_HEIGHT = 35.0;
     [self setupScrollViewController];
     
     // 默认选中第一个
-    [self.scrollTitleBar wanerSelected:0];
+    _currentScrollIndex = 0;
+    [self.scrollTitleBar wanerSelected:_currentScrollIndex];
 }
 
 
@@ -175,6 +181,13 @@ static CGFloat SQUARE_SCROLL_TITLE_BAR_HEIGHT = 35.0;
 #pragma mark 添加SJBPicTitleScrollerView的代理方法
 - (void)scrollTitleBar:(YHSScrollAnimationTitleBar *)scrollTitleBar scrollToIndex:(NSInteger)tagIndex title:(NSString *)title
 {
+    // 当前选中的ViewController
+    _currentScrollIndex = tagIndex;
+    
+    // 调整相应导航栏
+    [self customNavigationBarWithIndex:_currentScrollIndex];
+    
+    // 显示第N个ViewController
     [self.scrollView scrollRectToVisible:CGRectMake(self.view.width*tagIndex, 0, self.view.width, self.view.height)
                                 animated:YES];
 }
@@ -183,13 +196,20 @@ static CGFloat SQUARE_SCROLL_TITLE_BAR_HEIGHT = 35.0;
 #pragma mark - UIScrollView 代理方法，只要滚动了就会触发
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    
     if(scrollView.contentOffset.x/self.view.width == 0) {
-        [self.scrollTitleBar wanerSelected:0];
+        _currentScrollIndex = 0; // 当前选中的ViewController
+        [self.scrollTitleBar wanerSelected:_currentScrollIndex];
     } else if (scrollView.contentOffset.x/self.view.width == 1) {
-        [self.scrollTitleBar wanerSelected:1];
+        _currentScrollIndex = 1; // 当前选中的ViewController
+        [self.scrollTitleBar wanerSelected:_currentScrollIndex];
     } else if (scrollView.contentOffset.x/self.view.width == 2) {
-        [self.scrollTitleBar wanerSelected:2];
+        _currentScrollIndex = 2; // 当前选中的ViewController
+        [self.scrollTitleBar wanerSelected:_currentScrollIndex];
     }
+    
+    // 调整相应导航栏
+    [self customNavigationBarWithIndex:_currentScrollIndex];
 }
 
 
@@ -198,16 +218,28 @@ static CGFloat SQUARE_SCROLL_TITLE_BAR_HEIGHT = 35.0;
 {
     [super customNavigationBar];
     
+    [self customNavigationBarWithIndex:0];
+}
+
+// 根据选中的ViewController显示相应的导航栏
+- (void)customNavigationBarWithIndex:(NSInteger)index
+{
     // 自定义导航栏
     if (self.navigationController) {
         
         CGFloat margin = 10;
         
         // 1.自定义导航条
-        self.navBarCustomView = [[YHSNavigationBarTitleView alloc] initWithFrame:CGRectMake(0, 0, self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height)];
-        [self.navBarCustomView setBackgroundColor:COLOR_NAVIGATION_BAR];
-        [self.navigationItem setTitleView:self.navBarCustomView];
-        
+        if (!self.navBarCustomView) {
+            self.navBarCustomView = [[YHSNavigationBarTitleView alloc] initWithFrame:CGRectMake(0, 0, self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height)];
+            [self.navBarCustomView setBackgroundColor:COLOR_NAVIGATION_BAR];
+            [self.navigationItem setTitleView:self.navBarCustomView];
+        } else {
+            for (UIView *view in self.navBarCustomView.subviews) {
+                [view removeFromSuperview];
+            }
+        }
+
         // 2.到家
         CGFloat iconWidth = 50.0f;
         CGFloat iconHeight = 22.0f;
@@ -216,15 +248,27 @@ static CGFloat SQUARE_SCROLL_TITLE_BAR_HEIGHT = 35.0;
         [leftIcon.layer setMasksToBounds:YES];
         [self.navBarCustomView addSubview:leftIcon];
         
-        // 2.全部
+        // 3.全部
         CGFloat rightOneWidth = 35.0; // 最大值为44
         CGFloat rightOneHeight = 35.0;
         UIButton *rightOneItem = ({
             UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width-margin/2.0-rightOneWidth, ((HEIGHT_NAVIGATION_BAR-rightOneHeight)/2.0), rightOneWidth, rightOneHeight)];
+            if (1 == _currentScrollIndex) {
+                // 如果是第二个ViewController，则右侧有两个按钮
+                rightOneWidth = 30.0;
+                rightOneHeight = 30.0;
+                button.frame = CGRectMake(self.navigationController.navigationBar.frame.size.width-margin/2.0-rightOneWidth, ((HEIGHT_NAVIGATION_BAR-rightOneHeight)/2.0), rightOneWidth, rightOneHeight);
+            }
             [button.layer setMasksToBounds:YES];
             [button setAdjustsImageWhenHighlighted:NO];
             [button.titleLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
-            [button setImage:[UIImage imageNamed:@"btn_header_edit"] forState:UIControlStateNormal];
+            if (0 == _currentScrollIndex) {
+                [button setImage:[UIImage imageNamed:@"btn_header_edit"] forState:UIControlStateNormal];
+            } else if (1 == _currentScrollIndex) {
+                [button setImage:[UIImage imageNamed:@"btn_auxiliary_filter"] forState:UIControlStateNormal];
+            } else if (2 == _currentScrollIndex) {
+                [button setImage:[UIImage imageNamed:@"btn_header_photo"] forState:UIControlStateNormal];
+            }
             
             [button addTarget:self action:@selector(naviRightOneBarButtonItemClicked:) forControlEvents:UIControlEventTouchUpInside];
             [self.navBarCustomView addSubview:button];
@@ -232,12 +276,33 @@ static CGFloat SQUARE_SCROLL_TITLE_BAR_HEIGHT = 35.0;
             button;
         });
         self.rightOneItem  = rightOneItem;
+    
+        // 4.添加好友
+        CGFloat rightTwoWidth = 30.0; // 最大值为44
+        CGFloat rightTwoHeight = 30.0;
+        UIButton *rightTwoItem = ({
+            UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width-margin/2.0-rightOneWidth-rightTwoWidth, ((HEIGHT_NAVIGATION_BAR-rightTwoHeight)/2.0), rightTwoWidth, rightTwoHeight)];
+            [button.layer setMasksToBounds:YES];
+            [button setAdjustsImageWhenHighlighted:NO];
+            [button.titleLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
+            [button setImage:[UIImage imageNamed:@"btn_auxiliary_add"] forState:UIControlStateNormal];
+            
+            [button addTarget:self action:@selector(naviRightTwoBarButtonItemClicked:) forControlEvents:UIControlEventTouchUpInside];
+            [self.navBarCustomView addSubview:button];
+            
+            button;
+        });
+        self.rightTwoItem  = rightTwoItem;
         
-        // 4.导航条搜索按钮区域
+        // 5.导航条搜索按钮区域
         {
-            // 4.1搜索区域主容器
+            // 5.1搜索区域主容器
             UIView *searchAreaView = ({
                 UIView *searchAreaView = [[UIView alloc] initWithFrame:CGRectMake(2*margin+iconWidth, 7, self.navigationController.navigationBar.frame.size.width-iconWidth-rightOneWidth-3.0*margin, self.navigationController.navigationBar.frame.size.height-14)];
+                if (1 == _currentScrollIndex) {
+                    // 如果是第二个ViewController，则右侧有两个按钮
+                    searchAreaView.frame = CGRectMake(2*margin+iconWidth, 7, self.navigationController.navigationBar.frame.size.width-iconWidth-rightOneWidth-rightTwoWidth-3.0*margin, self.navigationController.navigationBar.frame.size.height-14);
+                }
                 [searchAreaView.layer setBorderWidth:1.0f];
                 [searchAreaView.layer setCornerRadius:6.0f];
                 [searchAreaView.layer setBorderColor:COLOR_NAVIGATION_BAR_SEARCH.CGColor];
@@ -254,7 +319,7 @@ static CGFloat SQUARE_SCROLL_TITLE_BAR_HEIGHT = 35.0;
             });
             self.searchAreaView  = searchAreaView;
             
-            // 4.2导航条搜索图标
+            // 5.2导航条搜索图标
             UIImageView *searchIconImageView = ({
                 UIImageView *searchIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 22, 22)];
                 [searchIconImageView setImage:[UIImage imageNamed:@"action_search_gray"]];
@@ -264,10 +329,16 @@ static CGFloat SQUARE_SCROLL_TITLE_BAR_HEIGHT = 35.0;
             });
             self.searchIconImageView = searchIconImageView;
             
-            // 4.3导航条搜索标题
+            // 5.3导航条搜索标题
             UILabel *searchTitleLable = ({
                 UILabel *searchTitleLable = [[UILabel alloc] init];
-                [searchTitleLable setText:@"搜索话题"];
+                if (0 == _currentScrollIndex) {
+                    [searchTitleLable setText:@"搜索话题"];
+                } else  if (1 == _currentScrollIndex) {
+                    [searchTitleLable setText:@"搜索豆友"];
+                } else  if (2 == _currentScrollIndex) {
+                    [searchTitleLable setText:@"搜索话题"];
+                }
                 [searchTitleLable setTextColor:COLOR_NAVIGATION_BAR_SEARCH_TITLE_GRAY];
                 [searchTitleLable setFont:[UIFont boldSystemFontOfSize:13.0]];
                 [searchAreaView addSubview:searchTitleLable];
@@ -285,24 +356,41 @@ static CGFloat SQUARE_SCROLL_TITLE_BAR_HEIGHT = 35.0;
         }
         
     }
-    
 }
+
 
 #pragma mark - 触发导航栏按钮事件
 
 // 触发搜索按钮事件
 - (void)pressSearchArea:(UITapGestureRecognizer *)gesture
 {
-    YHSCookBookSearchViewController *searchViewController = [YHSCookBookSearchViewController new];
-    [self.navigationController pushViewController:searchViewController animated:YES];
+    if (0 == _currentScrollIndex) {
+        [self alertPromptMessage:@"搜索话题"];
+    } else  if (1 == _currentScrollIndex) {
+        [self alertPromptMessage:@"搜索豆友"];
+    } else  if (2 == _currentScrollIndex) {
+        [self alertPromptMessage:@"搜索话题"];
+    }
 }
 
-// 触发最右边按钮事件
+// 触发最右边第一个按钮事件
 - (void)naviRightOneBarButtonItemClicked:(UIButton *)button
 {
-    
+    if (0 == _currentScrollIndex) {
+        [self alertPromptMessage:@"发表话题"];
+    } else  if (1 == _currentScrollIndex) {
+        [self alertPromptMessage:@"过滤豆友"];
+    } else  if (2 == _currentScrollIndex) {
+        [self alertPromptMessage:@"发表作品"];
+    }
+
 }
 
+// 触发最右边第二个按钮事件
+- (void)naviRightTwoBarButtonItemClicked:(UIButton *)button
+{
+    [self alertPromptMessage:@"添加豆友"];
+}
 
 
 @end
