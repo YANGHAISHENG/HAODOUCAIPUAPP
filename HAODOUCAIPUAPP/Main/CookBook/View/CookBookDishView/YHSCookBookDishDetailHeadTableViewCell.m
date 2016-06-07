@@ -40,9 +40,11 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER = @"YHSCookBookDish
 @property (nonatomic, strong) UIImageView *userAvatarImageView; // 用户头像
 @property (nonatomic, strong) UILabel *userNameLabel; // 用户名
 @property (nonatomic, strong) UILabel *userIntroLabel; // 用户介绍
-@property (nonatomic, strong) UIImageView *vipImageView; // VIP标识
-@property (nonatomic, strong) UIImageView *auxiliaryImageView; //
 @property (nonatomic, strong) UIImageView *relationImageView; // 关注标识
+@property (nonatomic, strong) UIImageView *vipImageView; // VIP标识
+@property (nonatomic, strong) UIImageView *auxiliaryImageView; // 性别
+@property (nonnull, nonatomic, strong) MASConstraint* auxiliaryImageViewLeftToVipImageView;
+@property (nonnull, nonatomic, strong) MASConstraint* auxiliaryImageViewLeftToUserNameLabel;
 @property (nonatomic, strong) UIView *userFavoriteContainerView;
 
 
@@ -324,11 +326,24 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER = @"YHSCookBookDish
             make.height.equalTo(weakSelf.userAvatarImageView.mas_height).multipliedBy(1.0/2.0);
         }];
         
+        // 关注标识
+        {
+            CGFloat relationWidth = 45.0;
+            CGFloat relationHeight = 18.0;
+            [self.relationImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(weakSelf.userNameLabel.mas_top).offset((avatarImageSize/2.0-relationHeight)/2.0);
+                make.left.equalTo(weakSelf.middleContainerView.mas_right).offset(-margin-relationWidth);
+                make.right.equalTo(weakSelf.middleContainerView.mas_right).offset(-margin);
+                make.width.equalTo(@(relationWidth));
+                make.height.equalTo(@(relationHeight));
+            }];
+        }
+        
         // 用户介绍
         [self.userIntroLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(weakSelf.userNameLabel.mas_bottom).offset(0.0);
             make.left.equalTo(weakSelf.userAvatarImageView.mas_right).offset(margin);
-            make.right.equalTo(weakSelf.middleContainerView.mas_right).offset(-margin);
+            make.right.equalTo(weakSelf.relationImageView.mas_left).offset(-margin);
             make.bottom.equalTo(weakSelf.userAvatarImageView.mas_bottom);
         }];
         
@@ -350,21 +365,32 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER = @"YHSCookBookDish
                 make.height.equalTo(@(size));
             }];
         }
-
         
-        // 关注标识
+
+        // VIP标识
         {
-            CGFloat relationWidth = 45.0;
-            CGFloat relationHeight = 18.0;
-            [self.relationImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(weakSelf.userNameLabel.mas_top).offset((avatarImageSize/2.0-relationHeight)/2.0);
-                make.right.equalTo(weakSelf.middleContainerView.mas_right).offset(-margin);
-                make.width.equalTo(@(relationWidth));
-                make.height.equalTo(@(relationHeight));
+            CGFloat size = 14.0;
+            
+            [self.vipImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(weakSelf.userNameLabel.mas_top).offset((avatarImageSize/2.0-size)/2.0);
+                make.left.equalTo(weakSelf.userNameLabel.mas_right).offset(margin/2.0);
+                make.width.equalTo(@(size));
+                make.height.equalTo(@(size));
+            }];
+            
+            [self.auxiliaryImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(weakSelf.userNameLabel.mas_top).offset((avatarImageSize/2.0-size)/2.0);
+                make.width.equalTo(@(size));
+                make.height.equalTo(@(size));
+                
+                // 位置判断约束，因为不能同时存在，所以需要设置优先级
+                self.auxiliaryImageViewLeftToVipImageView = make.left.equalTo(weakSelf.vipImageView.mas_right).offset(margin/4.0).priorityHigh();
+                self.auxiliaryImageViewLeftToUserNameLabel = make.left.equalTo(weakSelf.userNameLabel.mas_right).offset(margin/2.0).priorityLow();
+                [self.auxiliaryImageViewLeftToVipImageView deactivate];
+                [self.auxiliaryImageViewLeftToUserNameLabel deactivate];
             }];
         }
 
-        
         
         // 用户爱好
         {
@@ -394,16 +420,24 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER = @"YHSCookBookDish
         }];
         
         // 菜谱介绍
-        _foodIntroLabelHeight = 100.0;
-        CGFloat preferredMaxWidth = SCREEN_WIDTH-2*margin; // 计算UILabel的preferredMaxLayoutWidth值，多行时必须设置这个值，否则系统无法决定Label的宽度
-        [self.foodIntroLabel setPreferredMaxLayoutWidth:preferredMaxWidth];
-        [self.foodIntroLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(weakSelf.bottomContainerView.mas_top).offset(margin);
-            make.left.equalTo(weakSelf.bottomContainerView.mas_left).offset(margin);
-            make.right.equalTo(weakSelf.bottomContainerView.mas_right).offset(-margin);
-            // 加上高度的限制，优先级只设置成High，比正常的高度约束低一些，防止冲突
-            _foodIntroLabelHeightConstraint = make.height.lessThanOrEqualTo(@(_foodIntroLabelHeight)).with.priorityHigh();
-        }];
+        {
+            _foodIntroLabelHeight = 100.0;
+            CGFloat preferredMaxWidth = SCREEN_WIDTH-2*margin; // 计算UILabel的preferredMaxLayoutWidth值，多行时必须设置这个值，否则系统无法决定Label的宽度
+            [self.foodIntroLabel setPreferredMaxLayoutWidth:preferredMaxWidth];
+            [self.foodIntroLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(weakSelf.bottomContainerView.mas_top).offset(margin);
+                make.left.equalTo(weakSelf.bottomContainerView.mas_left).offset(margin);
+                make.right.equalTo(weakSelf.bottomContainerView.mas_right).offset(-margin);
+                // 加上高度的限制，优先级只设置成High，比正常的高度约束低一些，防止冲突
+                _foodIntroLabelHeightConstraint = make.height.lessThanOrEqualTo(@(_foodIntroLabelHeight)).with.priorityHigh();
+            }];
+            
+            UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pressToShowFoodIntroByLabel:)];
+            tapGesture.numberOfTapsRequired = 1; // 设置点按次数，默认为1
+            tapGesture.numberOfTouchesRequired = 1; // 点按的手指数
+            [self.foodIntroLabel addGestureRecognizer:tapGesture];
+            
+        }
         
         // 全文/收起
         [self.btnExpandAllIntro mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -463,9 +497,6 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER = @"YHSCookBookDish
         self.userNameLabel.text = model.UserInfo.UserName;
         // 用户介绍
         self.userIntroLabel.text = model.UserInfo.Intro;
-        // VIP标识
-        [self.vipImageView setImage:[UIImage imageNamed:@"icon_vip_small"]];
-        [self.auxiliaryImageView setImage:[UIImage imageNamed:@"ico_auxiliary_male"]];
         // 关注
         [self.relationImageView setImage:[UIImage imageNamed:@"myhome_follow_normal"]];
         
@@ -479,6 +510,35 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER = @"YHSCookBookDish
                 make.width.equalTo(@(size.width));
             }];
         }
+        
+        // VIP标识与性别标识
+        {
+            // VIP标识
+            [self.vipImageView setImage:[UIImage imageNamed:@"icon_vip_small"]];
+            if (1 == _model.UserInfo.Vip) {
+                [self.vipImageView setHidden:NO];
+                [self.auxiliaryImageViewLeftToVipImageView activate];
+                [self.auxiliaryImageViewLeftToUserNameLabel deactivate];
+            } else {
+                [self.vipImageView setHidden:YES];
+                [self.auxiliaryImageViewLeftToVipImageView deactivate];
+                [self.auxiliaryImageViewLeftToUserNameLabel activate];
+            }
+            
+            // 性别
+            if (0 == _model.UserInfo.Gender) { // 女
+                [self.auxiliaryImageView setImage:[UIImage imageNamed:@"ico_auxiliary_female"]];
+                [self.auxiliaryImageView setHidden:NO];
+            } else if (1 == _model.UserInfo.Gender) { // 男
+                [self.auxiliaryImageView setImage:[UIImage imageNamed:@"ico_auxiliary_male"]];
+                [self.auxiliaryImageView setHidden:NO];
+            } else { // 无
+                [self.auxiliaryImageView setHidden:YES];
+            }
+            
+        }
+        
+
         
         // 标签主容器
         CGFloat margin = 10.0;
@@ -650,6 +710,17 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER = @"YHSCookBookDish
 - (void)pressToShowFoodIntroByButton:(UIButton *)button
 {
 
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didFoodIntroLabelWithCookBookDishModel:expandedAllWithIndexPath:)]) {
+        [self.delegate didFoodIntroLabelWithCookBookDishModel:self.model expandedAllWithIndexPath:self.indexPath];
+    }
+    
+}
+
+
+// 点击显示菜谱介绍文字
+- (void)pressToShowFoodIntroByLabel:(UITapGestureRecognizer *)gesture
+{
+    
     if (self.delegate && [self.delegate respondsToSelector:@selector(didFoodIntroLabelWithCookBookDishModel:expandedAllWithIndexPath:)]) {
         [self.delegate didFoodIntroLabelWithCookBookDishModel:self.model expandedAllWithIndexPath:self.indexPath];
     }
