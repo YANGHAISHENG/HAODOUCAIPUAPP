@@ -138,6 +138,8 @@
 		7D0744BD1CFF28A200A994C2 /* WXTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0744BC1CFF28A200A994C2 /* WXTabBarController.m */; };
 		7D0744C01CFF29F500A994C2 /* YHSBasicScrollTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0744BF1CFF29F500A994C2 /* YHSBasicScrollTabBarViewController.m */; };
 		7D0744C31CFF2E8800A994C2 /* YHSScrollRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0744C21CFF2E8800A994C2 /* YHSScrollRootViewController.m */; };
+		7D074C8B1D06B08E00A76F1D /* YHSDynamicGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D074C8A1D06B08E00A76F1D /* YHSDynamicGroupModel.m */; };
+		7D074C8E1D06B19F00A76F1D /* YHSDynamicGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D074C8D1D06B19F00A76F1D /* YHSDynamicGroupTableViewCell.m */; };
 		7D08276A1CE5C10B008D77AD /* ico_auxiliary_master.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0827661CE5C10B008D77AD /* ico_auxiliary_master.png */; };
 		7D08276B1CE5C10B008D77AD /* ico_auxiliary_more_grayc.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0827671CE5C10B008D77AD /* ico_auxiliary_more_grayc.png */; };
 		7D08276C1CE5C10B008D77AD /* ico_auxiliary_more.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0827681CE5C10B008D77AD /* ico_auxiliary_more.png */; };
@@ -537,6 +539,10 @@
 		7D0744BF1CFF29F500A994C2 /* YHSBasicScrollTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSBasicScrollTabBarViewController.m; sourceTree = "<group>"; };
 		7D0744C11CFF2E8800A994C2 /* YHSScrollRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSScrollRootViewController.h; sourceTree = "<group>"; };
 		7D0744C21CFF2E8800A994C2 /* YHSScrollRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSScrollRootViewController.m; sourceTree = "<group>"; };
+		7D074C891D06B08E00A76F1D /* YHSDynamicGroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSDynamicGroupModel.h; sourceTree = "<group>"; };
+		7D074C8A1D06B08E00A76F1D /* YHSDynamicGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSDynamicGroupModel.m; sourceTree = "<group>"; };
+		7D074C8C1D06B19F00A76F1D /* YHSDynamicGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSDynamicGroupTableViewCell.h; sourceTree = "<group>"; };
+		7D074C8D1D06B19F00A76F1D /* YHSDynamicGroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSDynamicGroupTableViewCell.m; sourceTree = "<group>"; };
 		7D0827661CE5C10B008D77AD /* ico_auxiliary_master.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_auxiliary_master.png; sourceTree = "<group>"; };
 		7D0827671CE5C10B008D77AD /* ico_auxiliary_more_grayc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_auxiliary_more_grayc.png; sourceTree = "<group>"; };
 		7D0827681CE5C10B008D77AD /* ico_auxiliary_more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_auxiliary_more.png; sourceTree = "<group>"; };
@@ -1005,6 +1011,8 @@
 		7D02EE861D05102F005D319D /* DynamicGroupView */ = {
 			isa = PBXGroup;
 			children = (
+				7D074C8C1D06B19F00A76F1D /* YHSDynamicGroupTableViewCell.h */,
+				7D074C8D1D06B19F00A76F1D /* YHSDynamicGroupTableViewCell.m */,
 			);
 			path = DynamicGroupView;
 			sourceTree = "<group>";
@@ -1566,6 +1574,8 @@
 		7D0F10241D0563A8009017E4 /* DynamicGroupModel */ = {
 			isa = PBXGroup;
 			children = (
+				7D074C891D06B08E00A76F1D /* YHSDynamicGroupModel.h */,
+				7D074C8A1D06B08E00A76F1D /* YHSDynamicGroupModel.m */,
 			);
 			path = DynamicGroupModel;
 			sourceTree = "<group>";
@@ -2645,6 +2655,8 @@
 				7D03357C1CF5FFB700B273E8 /* YHSCookBookDishVideoPictureView.m in Sources */,
 				7D0E20AC1CF5B107007941F4 /* DLUtility.m in Sources */,
 				7D02ACD51CF92655002C43B1 /* YHSCookBookDishDetailTableSectionHeaderFooterView.m in Sources */,
+				7D074C8E1D06B19F00A76F1D /* YHSDynamicGroupTableViewCell.m in Sources */,
+				7D074C8B1D06B08E00A76F1D /* YHSDynamicGroupModel.m in Sources */,
 				7D3AA42C1D040109009E5165 /* YHSButtonWithIcon.m in Sources */,
 				7D0F10231D055797009017E4 /* YHSSquareDataUtil.m in Sources */,
 				7DD3ADB91CE350F600F9D3F1 /* MBProgressHUD.m in Sources */,

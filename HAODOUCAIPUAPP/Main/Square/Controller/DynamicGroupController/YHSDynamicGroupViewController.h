@@ -10,5 +10,9 @@
 
 @interface YHSDynamicGroupViewController : YHSBasicNetworkReachabilityViewController
 
+@property (nonatomic, assign) NSUInteger limit; // 数量限制
+@property (nonatomic, assign) NSUInteger offset; // 数据偏移量
+@property (nonatomic, strong) NSString *sign;
+@property (nonatomic, strong) NSString *uid;
 
 @end
