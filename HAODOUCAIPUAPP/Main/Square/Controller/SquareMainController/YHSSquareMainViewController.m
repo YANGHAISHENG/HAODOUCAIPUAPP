@@ -68,7 +68,7 @@ static CGFloat SQUARE_SCROLL_TITLE_BAR_HEIGHT = 35.0;
 {
     YHSScrollAnimationTitleBar *scrollTitleBar = [[YHSScrollAnimationTitleBar alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, SQUARE_SCROLL_TITLE_BAR_HEIGHT)];
     scrollTitleBar.delegate = self;
-    scrollTitleBar.duration = 0.3f;
+    scrollTitleBar.duration = 0.05f;
     scrollTitleBar.itemTitles = @[@"话题", @"豆友", @"动态"];
     scrollTitleBar.itemImagesNormal = @[@"ico_class_topic_gray", @"ico_class_people_gray", @"ico_class_activity_gray"];
     scrollTitleBar.itemImagesSelected = @[@"ico_class_topic_orange", @"ico_class_people_orange", @"ico_class_activity_orange"];

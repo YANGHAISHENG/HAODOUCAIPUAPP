@@ -48,7 +48,7 @@
     self = [super init];
     if (self) {
         _offset = 0;
-        _limit = 20;
+        _limit = 10;
     }
     return self;
 }
