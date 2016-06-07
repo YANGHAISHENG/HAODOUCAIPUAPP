@@ -282,10 +282,10 @@
         manager.responseSerializer = [AFHTTPResponseSerializer serializer]; // 设置返回的数据格式
         
         // 请求网络数据前，先取消之前的请求，再发网络请求
-        [manager.tasks makeObjectsPerformSelector:@selector(cancel)]; // 取消之前的所有请求
+        // [manager.tasks makeObjectsPerformSelector:@selector(cancel)]; // 取消之前的所有请求
         
         // 请求网络数据
-        [manager GET:url parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        [manager POST:url parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
             // 拼接data到请求体，这个block的参数是遵守AFMultipartFormData协议的。
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

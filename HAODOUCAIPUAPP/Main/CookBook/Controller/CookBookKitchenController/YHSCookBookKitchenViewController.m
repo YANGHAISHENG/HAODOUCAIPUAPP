@@ -273,7 +273,7 @@
         [manager.tasks makeObjectsPerformSelector:@selector(cancel)]; // 取消之前的所有请求
         
         // 请求网络数据
-        [manager GET:url parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        [manager POST:url parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
             // 拼接data到请求体，这个block的参数是遵守AFMultipartFormData协议的。
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

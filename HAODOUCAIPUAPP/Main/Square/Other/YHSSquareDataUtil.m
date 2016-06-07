@@ -45,15 +45,15 @@
 #pragma mark - N003.广场f动态请求数据
 + (NSString *)getDynamicGroupRequestURLString
 {
-    return @"http://api.haodou.com/index.php?appid=2&appkey=9ef269eec4f7a9d07c73952d06b5413f&format=json&sessionid=1465287435260&vc=84&vn=6.1.1&loguid=0&deviceid=haodou864601020999058&uuid=72b9cf70da593de0478cbb90f6025bf7&channel=huawei_v611&method=UserFeed.getFollowUserFeed&virtual=&signmethod=md5&v=3&timestamp=1465287475&nonce=0.5079375856590514&appsign=ffc6af65a4c5a4b102738ac26add53c7";
+    return @"http://api.haodou.com/index.php?appid=2&appkey=9ef269eec4f7a9d07c73952d06b5413f&format=json&sessionid=1465300400629&vc=84&vn=6.1.1&loguid=0&deviceid=haodou864601020999058&uuid=72b9cf70da593de0478cbb90f6025bf7&channel=huawei_v611&method=UserFeed.getFollowUserFeed&virtual=&signmethod=md5&v=3&timestamp=1465300605&nonce=0.0580156205718545&appsign=f2ada80f00df15ca6d8df22d1f6d5788";
 }
 #pragma mark - N003.广场动态请求数据
 + (NSMutableDictionary *)getDynamicGroupRequestParams
 {
     return @{@"offset":@"0",
              @"limit":@"10",
-             @"sign":@"1133e1de8081f6500b20d31f3f6729e3",
-             @"uid":@"9832584"}.mutableCopy;
+             @"sign":@"",
+             @"uid":@"0"}.mutableCopy;
 }
 
 
