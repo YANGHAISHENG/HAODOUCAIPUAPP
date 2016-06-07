@@ -322,7 +322,6 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER = @"YHSCookBookDish
         [self.userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(weakSelf.userAvatarImageView.mas_top).offset(0.0);
             make.left.equalTo(weakSelf.userAvatarImageView.mas_right).offset(margin);
-            //make.right.equalTo(weakSelf.middleContainerView.mas_right).offset(-margin);
             make.height.equalTo(weakSelf.userAvatarImageView.mas_height).multipliedBy(1.0/2.0);
         }];
         
@@ -493,23 +492,25 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_DISH_DETAIL_HEADER = @"YHSCookBookDish
     {
         // 头部
         [self.userAvatarImageView sd_setImageWithURL:[NSURL URLWithString:model.UserInfo.Avatar] placeholderImage:[UIImage imageNamed:PICTURE_PLACEHOLDER]];
-        // 用户名
-        self.userNameLabel.text = model.UserInfo.UserName;
-        // 用户介绍
-        self.userIntroLabel.text = model.UserInfo.Intro;
-        // 关注
-        [self.relationImageView setImage:[UIImage imageNamed:@"myhome_follow_normal"]];
         
+        // 用户名
         {
-            NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:16]};
+            self.userNameLabel.text = model.UserInfo.UserName;
+            NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:16.0]};
             CGSize size = [model.UserInfo.UserName boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
                                                                 options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                                              attributes:attributes
                                                                 context:nil].size;
             [self.userNameLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.width.equalTo(@(size.width));
+                make.width.equalTo(@(size.width+5.0));
             }];
         }
+        
+        // 用户介绍
+        self.userIntroLabel.text = model.UserInfo.Intro;
+        
+        // 关注
+        [self.relationImageView setImage:[UIImage imageNamed:@"myhome_follow_normal"]];
         
         // VIP标识与性别标识
         {
