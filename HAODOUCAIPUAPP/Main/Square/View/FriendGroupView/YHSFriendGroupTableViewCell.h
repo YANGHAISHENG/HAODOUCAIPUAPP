@@ -15,6 +15,7 @@ UIKIT_EXTERN NSString * const CELL_IDENTIFIER_FRIEND_GROUP;
 @optional
 - (void)didClickElementOfCellUserInfoWithFriendGroupModel:(YHSFriendGroupModel *)model;
 - (void)didClickElementOfCellRelationWithFriendGroupModel:(YHSFriendGroupModel *)model;
+- (void)didClickElementOfCellCommonInfoWithFriendGroupModel:(YHSFriendGroupModel *)model;
 @end
 
 

@@ -12,9 +12,6 @@
 
 @interface YHSFriendGroupViewController () <UITableViewDelegate, UITableViewDataSource, YHSFriendGroupTableViewCellDelegate>
 
-// 根容器组件
-@property (nonnull, nonatomic, strong) UIView *rootContainerView;
-
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *tableData;
 
@@ -89,43 +86,16 @@
         return;
     }
     
-    WEAKSELF(weakSelf);
-    
-    // 根容器组件
-    UIView *rootContainerView = ({
-        UIView *view = [[UIView alloc] init];
-        [view setBackgroundColor:[UIColor whiteColor]];
-        [self.view addSubview:view];
-        
-        [view mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(weakSelf.mas_topLayoutGuide).offset(0);
-            make.left.equalTo(@0);
-            make.right.equalTo(@0);
-            make.bottom.equalTo(@0);
-        }];
-        
-        view;
-    });
-    self.rootContainerView = rootContainerView;
-    
     // 创建表格
     {
         // 创建表格
-        self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-        [self.rootContainerView addSubview:self.tableView];
+        self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+        [self.view addSubview:self.tableView];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
         self.tableView.showsVerticalScrollIndicator = YES;
         self.tableView.backgroundColor = [UIColor whiteColor];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
-        // 添加约束
-        [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(weakSelf.rootContainerView.mas_top).with.offset(0.0);
-            make.left.equalTo(weakSelf.rootContainerView.mas_left).with.offset(0);
-            make.bottom.equalTo(weakSelf.rootContainerView.mas_bottom).with.offset(0);
-            make.right.equalTo(weakSelf.rootContainerView.mas_right).with.offset(0);
-        }];
         
         // 自动算高 UITableView+FDTemplateLayoutCell
         self.tableView.estimatedRowHeight = 120; //预算行高
@@ -414,5 +384,12 @@
 {
     [self alertPromptMessage:@"关注"];
 }
+
+// 评论
+- (void)didClickElementOfCellCommonInfoWithFriendGroupModel:(YHSFriendGroupModel *)model
+{
+    [self alertPromptMessage:@"详情"];
+}
+
 
 @end

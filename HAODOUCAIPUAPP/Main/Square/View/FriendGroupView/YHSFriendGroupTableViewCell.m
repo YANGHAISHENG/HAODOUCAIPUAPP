@@ -21,7 +21,7 @@ NSString * const CELL_IDENTIFIER_FRIEND_GROUP = @"YHSFriendGroupTableViewCellID"
 @property (nonnull, nonatomic, strong) UIView *publicContainerView;
 
 // 上部组件
-@property (nonnull, nonatomic, strong) UIView *upContainerView;
+@property (nonnull, nonatomic, strong) UIView *upContainerView; // 上部容器组件
 @property (nonnull, nonatomic, strong) UIImageView *avatarImageView; // 头像
 @property (nonnull, nonatomic, strong) UILabel *userNameLabel; // 用户名称
 @property (nonnull, nonatomic, strong) UILabel *introLabel; // 介绍详情
@@ -37,6 +37,19 @@ NSString * const CELL_IDENTIFIER_FRIEND_GROUP = @"YHSFriendGroupTableViewCellID"
 @property (nonnull, nonatomic, strong) MASConstraint* userFavoriteContainerTopToUserNameLabel;
 @property (nonnull, nonatomic, strong) MASConstraint* userFavoriteContainerBottomToLastMarkLabel;
 @property (nonnull, nonatomic, strong) MASConstraint* userFavoriteContainerBottomToIntroLabel;
+
+
+// 下部组件
+@property (nonnull, nonatomic, strong) UIView *downContainerView; // 下部容器组件
+@property (nonnull, nonatomic, strong) UILabel *sameFeatureLabel; // 概述按钮
+@property (nonnull, nonatomic, strong) UIImageView *commonImageView; // 评论图片
+@property (nonnull, nonatomic, strong) UILabel *commonTitleLabel; // 评论标题
+@property (nonnull, nonatomic, strong) UILabel *commonDescLabel; // 评论内容
+
+@property (nonnull, nonatomic, strong) UILabel *addressLabel; // 地址
+@property (nonnull, nonatomic, strong) MASConstraint* addressTopToCommonInfoView;
+@property (nonnull, nonatomic, strong) MASConstraint* addressTopToUserFavoriteContainerView;
+
 
 // 分割线
 @property (nonnull, nonatomic, strong) UIView *separatorLineView;
@@ -138,8 +151,61 @@ NSString * const CELL_IDENTIFIER_FRIEND_GROUP = @"YHSFriendGroupTableViewCellID"
     }
 
     
+    // 下部容器组件
+    {
+        // 容器
+        {
+            self.downContainerView =[[UIView alloc] init];
+            [self.downContainerView.layer setMasksToBounds:YES];
+            [self.publicContainerView addSubview:self.downContainerView];
+            
+            UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pressDownViewArea:)];
+            tapGesture.numberOfTapsRequired = 1; // 设置点按次数，默认为1
+            tapGesture.numberOfTouchesRequired = 1; // 点按的手指数
+            [self.downContainerView addGestureRecognizer:tapGesture];
+        }
+        
+        // 概述按钮
+        self.sameFeatureLabel = [UILabel new];
+        [self.sameFeatureLabel setUserInteractionEnabled:YES];
+        [self.sameFeatureLabel setTextColor:COLOR_NAVIGATION_BAR_TITLE_YELLOW];
+        [self.sameFeatureLabel setFont:[UIFont systemFontOfSize:13.0]];
+        [self.sameFeatureLabel setTextAlignment:NSTextAlignmentLeft];
+        [self.downContainerView addSubview:self.sameFeatureLabel];
+        
+        // 评论图片
+        self.commonImageView = [UIImageView new];
+        [self.commonImageView.layer setMasksToBounds:YES];
+        [self.commonImageView setUserInteractionEnabled:YES];
+        [self.downContainerView addSubview:self.commonImageView];
+        
+        
+        // 评论标题
+        self.commonTitleLabel = [UILabel new];
+        [self.commonTitleLabel setUserInteractionEnabled:YES];
+        [self.commonTitleLabel setTextColor:[UIColor blackColor]];
+        [self.commonTitleLabel setFont:[UIFont systemFontOfSize:16.0]];
+        [self.commonTitleLabel setTextAlignment:NSTextAlignmentLeft];
+        [self.downContainerView addSubview:self.commonTitleLabel];
+        
+        // 评论内容
+        self.commonDescLabel = [UILabel new];
+        [self.commonDescLabel setNumberOfLines:0];
+        [self.commonDescLabel setUserInteractionEnabled:YES];
+        [self.commonDescLabel setTextColor:[UIColor colorWithRed:0.56 green:0.56 blue:0.57 alpha:1.00]];
+        [self.commonDescLabel setFont:[UIFont systemFontOfSize:13.0]];
+        [self.commonDescLabel setTextAlignment:NSTextAlignmentLeft];
+        [self.downContainerView addSubview:self.commonDescLabel];
+        
+        
+        // 地址
+        self.addressLabel = [UILabel new];
+        [self.addressLabel setTextColor:[UIColor colorWithRed:0.56 green:0.56 blue:0.57 alpha:1.00]];
+        [self.addressLabel setFont:[UIFont systemFontOfSize:12.0]];
+        [self.addressLabel setTextAlignment:NSTextAlignmentLeft];
+        [self.downContainerView addSubview:self.addressLabel];
+    }
 
-    
     // 分割线
     self.separatorLineView =[[UIView alloc] init];
     [self.separatorLineView setBackgroundColor:[UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1.00]];
@@ -267,11 +333,68 @@ NSString * const CELL_IDENTIFIER_FRIEND_GROUP = @"YHSFriendGroupTableViewCellID"
         
     }
 
+    
+    // 下部容器
+    {
+        // 容器
+        [self.downContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(weakSelf.upContainerView.mas_bottom);
+            make.left.equalTo(weakSelf.avatarImageView.mas_right).offset(margin);
+            make.right.equalTo(@(0.0));
+        }];
+        
+        // 概述按钮
+        [self.sameFeatureLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(@(margin/2.0));
+            make.left.equalTo(@(0.0));
+            make.right.equalTo(@(0.0));
+        }];
+        
+        // 评论图片
+        CGFloat commonImageSize = 50.0;
+        [self.commonImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(weakSelf.sameFeatureLabel.mas_bottom).offset(margin);
+            make.left.equalTo(@(0.0));
+            make.size.mas_equalTo(CGSizeMake(commonImageSize, commonImageSize));
+        }];
+        
+        // 评论标题
+        [self.commonTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(weakSelf.commonImageView.mas_top).offset(0.0);
+            make.left.equalTo(weakSelf.commonImageView.mas_right).offset(margin);
+            make.right.equalTo(weakSelf.downContainerView.mas_right).offset(-margin);
+            make.height.equalTo(weakSelf.commonImageView.mas_height).multipliedBy(1.0/3.0);
+        }];
+        
+        // 评论内容
+        [self.commonDescLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(weakSelf.commonTitleLabel.mas_bottom).offset(0.0);
+            make.left.equalTo(weakSelf.commonImageView.mas_right).offset(margin);
+            make.right.equalTo(weakSelf.downContainerView.mas_right).offset(-margin);
+            make.bottom.equalTo(weakSelf.commonImageView.mas_bottom);
+        }];
 
+        // 地址
+        [self.addressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(@(0.0));
+            make.right.equalTo(@(0.0));
+            
+            // 位置判断约束，因为不能同时存在，所以需要设置优先级
+            self.addressTopToCommonInfoView = make.top.equalTo(weakSelf.commonImageView.mas_bottom).offset(margin).priorityHigh();
+            self.addressTopToUserFavoriteContainerView = make.top.equalTo(weakSelf.userFavoriteContainerView.mas_bottom).offset(margin/2.0).priorityLow();
+            [self.addressTopToCommonInfoView deactivate];
+            [self.addressTopToUserFavoriteContainerView deactivate];
+        }];
+        
+        // 约束完整性
+        [self.downContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(weakSelf.addressLabel.mas_bottom).offset(0.0);
+        }];
+    }
     
     // 分割线
     [self.separatorLineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf.upContainerView.mas_bottom).offset(margin);
+        make.top.equalTo(weakSelf.downContainerView.mas_bottom).offset(margin);
         make.left.equalTo(weakSelf.publicContainerView.mas_left).offset(0.0);
         make.right.equalTo(weakSelf.publicContainerView.mas_right).offset(0.0);
         make.height.equalTo(@(TABLE_FOOTER_SEPARATOR_VIEW_HEIGHT));
@@ -281,7 +404,6 @@ NSString * const CELL_IDENTIFIER_FRIEND_GROUP = @"YHSFriendGroupTableViewCellID"
     [self.publicContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(weakSelf.separatorLineView.mas_bottom).offset(0.0);
     }];
-    
     
 }
 
@@ -457,13 +579,48 @@ NSString * const CELL_IDENTIFIER_FRIEND_GROUP = @"YHSFriendGroupTableViewCellID"
         } // 标签主容器
         
     } // 上部
+    
+    
+    // 下部
+    {
+        // 评论按钮
+        if (_model.SameFeature.length > 0) {
+            [self.sameFeatureLabel setText:[NSString stringWithFormat:@"%@   >", _model.SameFeature]];
+        } else {
+            [self.sameFeatureLabel setText:@""];
+        }
         
+        // 评论图片
+        if (_model.CommonInfo.Img.length > 0) {
+            [self.commonImageView sd_setImageWithURL:[NSURL URLWithString:_model.CommonInfo.Img] placeholderImage:[UIImage imageNamed:PICTURE_PLACEHOLDER]];
+            
+            [self.addressTopToCommonInfoView activate];
+            [self.addressTopToUserFavoriteContainerView deactivate];
+        } else {
+            [self.commonImageView setImage:nil];
+            
+            [self.addressTopToCommonInfoView deactivate];
+            [self.addressTopToUserFavoriteContainerView activate];
+        }
+        
+        // 评论标题
+        [self.commonTitleLabel setText:_model.CommonInfo.Title];
+        
+        // 评论详情
+        [self.commonDescLabel setText:_model.CommonInfo.Desc];
+        
+        // 地址
+        if (_model.Address.length > 0) {
+            [self.addressLabel setText:_model.Address];
+        }
+    }
     
 }
 
 
 #pragma mark - 触发操作事件
 
+// 点击上部用户详情容器
 - (void)pressUpViewArea:(UITapGestureRecognizer *)gesture
 {
     if (self.delegate && [self.delegate respondsToSelector:@selector(didClickElementOfCellUserInfoWithFriendGroupModel:)]) {
@@ -471,6 +628,7 @@ NSString * const CELL_IDENTIFIER_FRIEND_GROUP = @"YHSFriendGroupTableViewCellID"
     }
 }
 
+// 点击关注按钮
 - (void)pressRelationImageViewArea:(UITapGestureRecognizer *)gesture
 {
     if (self.delegate && [self.delegate respondsToSelector:@selector(didClickElementOfCellRelationWithFriendGroupModel:)]) {
@@ -478,6 +636,13 @@ NSString * const CELL_IDENTIFIER_FRIEND_GROUP = @"YHSFriendGroupTableViewCellID"
     }
 }
 
+// 点击下部评论详情容器
+- (void)pressDownViewArea:(UITapGestureRecognizer *)gesture
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickElementOfCellCommonInfoWithFriendGroupModel:)]) {
+        [self.delegate didClickElementOfCellCommonInfoWithFriendGroupModel:self.model];
+    }
+}
 
 
 @end
