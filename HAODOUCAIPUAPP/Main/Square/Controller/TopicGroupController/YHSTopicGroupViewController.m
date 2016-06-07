@@ -61,16 +61,16 @@
     // 请求网络数据（如果没有请求过数据，则进行数据加载）
     [self loadDataThen:^(BOOL success, NSUInteger count){
         
-        // 配置TableView界面
-        [weakSelf createUITable];
-        
-        // 根据请求到数据小于1页，则隐藏上拉刷新控件
-        if (count < _limit ) {
-            [self.tableView.mj_footer setHidden:YES];;
-        }
-        
         // 加载成功
         if (success && count) {
+            
+            // 配置TableView界面
+            [weakSelf createUITable];
+            
+            // 根据请求到数据小于1页，则隐藏上拉刷新控件
+            if (count < _limit ) {
+                [self.tableView.mj_footer setHidden:YES];;
+            }
             
             // 刷新表格
             [weakSelf.tableView reloadData];
@@ -285,6 +285,8 @@
         // 请求地址与参数
         NSString *url = [YHSSquareDataUtil getTopicGroupRequestURLString];
         NSMutableDictionary *params = [YHSSquareDataUtil getTopicGroupRequestParams];
+        [params setObject:[NSNumber numberWithInteger:_limit] forKey:@"limit"];
+        [params setObject:[NSNumber numberWithInteger:_offset] forKey:@"offset"];
         
         // 初始化Manager
         AFHTTPSessionManager *manager = [YHSNetworkingManager sharedYHSNetworkingManagerInstance].manager;

@@ -657,7 +657,7 @@
             UILabel *label = [[UILabel alloc] init];
             [label setText:@"[武汉]"];
             [label setFont:[UIFont systemFontOfSize:12.0]];
-            [label setTextColor:COLOR_NAVIGATION_BAR_TITLE];
+            [label setTextColor:COLOR_NAVIGATION_BAR_TITLE_LIGHTGRAY];
             [label setUserInteractionEnabled:YES];
             [self.navBarCustomView addSubview:label];
             

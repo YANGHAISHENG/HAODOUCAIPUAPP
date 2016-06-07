@@ -38,6 +38,12 @@ CGFloat const LOADING_FONT_SIZE = 12.0;
 #pragma mark 网络状态提示容器高度
 CGFloat const LOADING_VIEW_HEIGHT = 35.0;
 
+#pragma mark 表格底部分割视图
+CGFloat const TABLE_FOOTER_SEPARATOR_VIEW_HEIGHT = 6.0;
+
+#pragma mark 表格底部分割线
+CGFloat const TABLE_FOOTER_SEPARATOR_LINE_HEIGHT = 1.0;
+
 #pragma mark 上拉刷新提示信息
 CGFloat const YHSRefreshAutoFooterFontSize = 14.0;
 NSString *const YHSRefreshAutoFooterIdleText = @"点击或上拉加载更多";

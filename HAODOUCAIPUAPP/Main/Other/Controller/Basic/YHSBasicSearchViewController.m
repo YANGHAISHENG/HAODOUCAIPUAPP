@@ -411,7 +411,7 @@
             {
                 UILabel *searchTitle = [[UILabel alloc] init];
                 [searchTitle setText:@"搜索"];
-                [searchTitle setTextColor:COLOR_NAVIGATION_BAR_TITLE];
+                [searchTitle setTextColor:COLOR_NAVIGATION_BAR_TITLE_LIGHTGRAY];
                 [searchTitle setUserInteractionEnabled:YES];
                 [searchTitle setFont:[UIFont boldSystemFontOfSize:FONT_SIZE_NAVIGATION]];
                 [searchTitle setTextAlignment:NSTextAlignmentLeft];

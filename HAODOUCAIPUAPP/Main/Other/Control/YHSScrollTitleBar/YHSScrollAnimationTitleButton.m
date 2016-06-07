@@ -18,7 +18,7 @@
     
     CGFloat imageH = imageW;
     
-    CGFloat imageX = contentRect.size.width * 0.50 - imageW * 1.2;
+    CGFloat imageX = contentRect.size.width * 0.45 - imageW * 1.0;
     
     CGFloat imageY = (contentRect.size.height - imageH)/2.0;
     

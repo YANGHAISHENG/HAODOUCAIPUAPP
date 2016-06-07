@@ -38,6 +38,12 @@ UIKIT_EXTERN CGFloat const LOADING_FONT_SIZE;
 #pragma mark 网络状态提示容器高度
 UIKIT_EXTERN CGFloat const LOADING_VIEW_HEIGHT;
 
+#pragma mark 表格底部分割视图
+UIKIT_EXTERN CGFloat const TABLE_FOOTER_SEPARATOR_VIEW_HEIGHT;
+
+#pragma mark 表格底部分割线
+UIKIT_EXTERN CGFloat const TABLE_FOOTER_SEPARATOR_LINE_HEIGHT;
+
 #pragma mark 上拉刷新提示信息
 UIKIT_EXTERN CGFloat const YHSRefreshAutoFooterFontSize;
 UIKIT_EXTERN NSString *const YHSRefreshAutoFooterIdleText;

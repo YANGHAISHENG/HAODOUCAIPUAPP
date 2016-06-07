@@ -63,7 +63,7 @@
             
             UILabel *label = [[UILabel alloc] init];
             [label setText:title];
-            [label setTextColor:COLOR_NAVIGATION_BAR_TITLE];
+            [label setTextColor:COLOR_NAVIGATION_BAR_TITLE_LIGHTGRAY];
             [label setFont:[UIFont boldSystemFontOfSize:FONT_SIZE_NAVIGATION]];
             [label setTextAlignment:NSTextAlignmentLeft];
             [self.navBarCustomView addSubview:label];

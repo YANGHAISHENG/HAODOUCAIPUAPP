@@ -28,7 +28,7 @@
 #pragma mark - 导航条颜色
 #define COLOR_NAVIGATION_BAR [UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1.00]
 #define COLOR_NAVIGATION_BAR_WHITE [UIColor colorWithRed:1.00 green:1.00 blue:1.00 alpha:1.00]
-#define COLOR_NAVIGATION_BAR_TITLE [UIColor colorWithRed:0.35 green:0.35 blue:0.36 alpha:1.00]
+#define COLOR_NAVIGATION_BAR_TITLE_LIGHTGRAY [UIColor colorWithRed:0.35 green:0.35 blue:0.36 alpha:1.00]
 #define COLOR_NAVIGATION_BAR_TITLE_YELLOW [UIColor colorWithRed:0.95 green:0.63 blue:0.15 alpha:1.00]
 
 #define COLOR_NAVIGATION_BAR_SEARCH [UIColor colorWithRed:0.88 green:0.88 blue:0.88 alpha:1.00]

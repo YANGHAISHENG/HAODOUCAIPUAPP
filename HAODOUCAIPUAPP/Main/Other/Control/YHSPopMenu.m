@@ -283,7 +283,7 @@ static CGFloat _menuItemHeight;
             [label setFont:[UIFont systemFontOfSize:16.0]];
             [label setTextAlignment:NSTextAlignmentCenter];
             [label setUserInteractionEnabled:YES];
-            [label setTextColor: _selected == i ? COLOR_NAVIGATION_BAR_TITLE_YELLOW : COLOR_NAVIGATION_BAR_TITLE];
+            [label setTextColor: _selected == i ? COLOR_NAVIGATION_BAR_TITLE_YELLOW : COLOR_NAVIGATION_BAR_TITLE_LIGHTGRAY];
             [subView addSubview:label];
             
             [label mas_makeConstraints:^(MASConstraintMaker *make) {
