@@ -27,7 +27,7 @@
 #pragma mark - N002.广场豆友请求数据
 + (NSString *)getFriendGroupRequestURLString
 {
-    return @"http://api.haodou.com/index.php?appid=2&appkey=9ef269eec4f7a9d07c73952d06b5413f&format=json&sessionid=1465217982126&vc=84&vn=6.1.1&loguid=9832584&deviceid=haodou864601020999058&uuid=72b9cf70da593de0478cbb90f6025bf7&channel=huawei_v611&method=Topic.indexPeople&virtual=&signmethod=md5&v=3&timestamp=1465217990&nonce=0.41977143477450996&appsign=e40263b8bf10d2c9a676870d96dc7425";
+    return @"http://api.haodou.com/index.php?appid=2&appkey=9ef269eec4f7a9d07c73952d06b5413f&format=json&sessionid=1465283867820&vc=84&vn=6.1.1&loguid=9832584&deviceid=haodou864601020999058&uuid=72b9cf70da593de0478cbb90f6025bf7&channel=huawei_v611&method=Topic.indexPeople&virtual=&signmethod=md5&v=3&timestamp=1465284069&nonce=0.8586627405175541&appsign=1c15f617a70edbf608e402465705f224";
 }
 #pragma mark - N002.广场豆友请求数据
 + (NSMutableDictionary *)getFriendGroupRequestParams
