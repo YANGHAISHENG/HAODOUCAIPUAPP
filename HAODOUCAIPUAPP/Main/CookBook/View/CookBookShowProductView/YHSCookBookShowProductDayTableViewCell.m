@@ -67,11 +67,9 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_SHOW_PRODUCT_DAY = @"YHSCookBookShowPr
     CGFloat titleFontSize = 16.0;
     CGFloat photoCountFontSize = 14.0;
     
-    
     // 设置背景色
     [self.contentView setBackgroundColor:[UIColor whiteColor]];
-    
-    
+
     // 根容器组件
     UIView *rootContainerView = ({
         UIView *view = [UIView new];
@@ -129,8 +127,8 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_SHOW_PRODUCT_DAY = @"YHSCookBookShowPr
             [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(@(margin));
                 make.left.equalTo(@(margin));
-                make.width.equalTo(publicContainerView.mas_width).multipliedBy(5.5/10.0);
-                make.height.equalTo(@(SCREEN_WIDTH*0.50));
+                make.width.equalTo(@(self.contentView.frame.size.width*0.65));
+                make.height.equalTo(@(self.contentView.frame.size.width*0.65));
             }];
             
             imageView;
@@ -370,6 +368,8 @@ NSString * const CELL_IDENTIFIER_COOKBOOK_SHOW_PRODUCT_DAY = @"YHSCookBookShowPr
         make.bottom.equalTo(weakSelf.leftImageView.mas_bottom).offset(margin);
     }];
  
+    
+    MASAttachKeys(self.rootContainerView, self.publicContainerView, self.leftImageView, self.rightUpImageView, self.rightDownImageView);
     
     // setModel方法赋值用
     _imageViews = [NSMutableArray array];
