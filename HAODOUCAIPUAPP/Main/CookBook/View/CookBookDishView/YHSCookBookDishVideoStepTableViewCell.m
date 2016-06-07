@@ -78,7 +78,7 @@ NSString * const CELL_IDENTIFIER_DISH_VIDEO_STEP_INFO = @"YHSCookBookDishVideoSt
     self.numLabel = [UILabel new];
     [self.numLabel setNumberOfLines:1];
     [self.numLabel setTextColor:[UIColor colorWithRed:0.49 green:0.71 blue:0.27 alpha:1.00]];
-    [self.numLabel setFont:[UIFont systemFontOfSize:18]];
+    [self.numLabel setFont:[UIFont systemFontOfSize:18.0]];
     [self.numLabel setTextAlignment:NSTextAlignmentLeft];
     [self.publicContainerView addSubview:self.numLabel];
     
@@ -132,7 +132,7 @@ NSString * const CELL_IDENTIFIER_DISH_VIDEO_STEP_INFO = @"YHSCookBookDishVideoSt
     [self.numLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(weakSelf.publicContainerView).offset(margin);
         make.left.equalTo(weakSelf.publicContainerView.mas_left).offset(margin);
-        make.size.mas_equalTo(CGSizeMake(15, 20));
+        make.height.equalTo(@(20.0));
     }];
     
     // 图片
@@ -178,13 +178,25 @@ NSString * const CELL_IDENTIFIER_DISH_VIDEO_STEP_INFO = @"YHSCookBookDishVideoSt
     }
     
     // 注意复用的问题
-    [self didSelectPublicContainerView:model.selected];
+    [self didSelectPublicContainerView:_model.selected];
     
     // 图片
     [self.videoImageView setImage:[UIImage imageNamed:@"ico_video_small"]];
     
     // 序号
-    [self.numLabel setText:model.num];
+    {
+        [self.numLabel setText:_model.num];
+        
+        NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:18.0]};
+        CGSize size = [_model.num boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
+                                               options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                            attributes:attributes
+                                               context:nil].size;
+        [self.numLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.width.equalTo(@(size.width));
+        }];
+    }
+
 
     // 内容
     [self.contentLabel setText:_model.Content];
