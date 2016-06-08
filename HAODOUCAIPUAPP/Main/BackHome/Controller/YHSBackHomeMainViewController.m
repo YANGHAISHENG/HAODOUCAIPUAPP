@@ -22,7 +22,9 @@
 #import "YHSBackHomeGoodsModel.h"
 
 
-@interface YHSBackHomeMainViewController () <UITableViewDelegate, UITableViewDataSource, YHSBackHomeTableSectionHeaderViewDelegate, YHSBackHomeADTableViewCellDelegate, YHSBackHomeFoodieFavoriteGoodsTableViewCellDelegate, YHSBackHomeGoodTableViewCellDelegate>
+@interface YHSBackHomeMainViewController () <UITableViewDelegate, UITableViewDataSource, BMKLocationServiceDelegate, YHSBackHomeTableSectionHeaderViewDelegate, YHSBackHomeADTableViewCellDelegate, YHSBackHomeFoodieFavoriteGoodsTableViewCellDelegate, YHSBackHomeGoodTableViewCellDelegate>
+
+@property (nonatomic, strong) BMKLocationService *locationService; // 地图定位功能
 
 @property (nonatomic, strong) UIView *searchAreaView; // 导航条搜索按钮区域
 @property (nonatomic, strong) UIImageView *searchIconImageView; // 导航条搜索图标
@@ -78,6 +80,9 @@
 - (void)viewDidLoadWithNetworkingStatus
 {
     WEAKSELF(weakSelf);
+    
+    // 启动地图定位
+    [self startLocaionMapService];
     
     // 请求网络数据（如果没有请求过数据，则进行数据加载）
     if (!self.tableData || self.tableData.count == 0) {
@@ -1047,6 +1052,39 @@
     
     return 0.01f;
 }
+
+
+#pragma mark - BMKLocationServiceDelegate
+
+
+// 自定开启定位功能函数
+- (void)startLocaionMapService
+{
+    // 初始化BMKLocationService
+    self.locationService = [[BMKLocationService alloc] init];
+    self.locationService.delegate = self;
+    // 启动LocationService
+    [self.locationService startUserLocationService];
+}
+
+// 在地图View将要启动定位时，会调用此函数
+- (void)willStartLocatingUser
+{
+    YHSLogOrange(@"Start Locate");
+}
+
+/**
+ *用户位置更新后，会调用此函数
+ *@param userLocation 新的用户位置
+ */
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
+{
+    YHSLogOrange(@"lat %f,long %f", userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude);
+    
+}
+
+
+
 
 
 

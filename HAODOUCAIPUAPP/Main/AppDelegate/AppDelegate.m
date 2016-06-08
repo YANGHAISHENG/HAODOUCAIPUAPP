@@ -10,9 +10,10 @@
 #import "YHSRootViewController.h"
 #import "YHSNetworkingManager.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <BMKGeneralDelegate>
 {
     BOOL _isFullScreen;
+    BMKMapManager* _mapManager;
 }
 @end
 
@@ -30,6 +31,9 @@
     
     // 设置网络服务
     [self startNetWorkingService];
+    
+    // 启动百度地图功能
+    [self startBaiduMap];
     
     return YES;
 }
@@ -93,6 +97,22 @@
 {
     [YHSNetworkingManager sharedYHSNetworkingManagerInstance];
 }
+
+
+#pragma mark - 启动百度地图
+- (void)startBaiduMap
+{
+    // 要使用百度地图，请先启动BaiduMapManager
+    _mapManager = [[BMKMapManager alloc] init];
+    BOOL result = [_mapManager start:@"IzSKmZgdB3VQ4bkmMNw2DwOdaobGNUri" generalDelegate:self];
+    if (!result) {
+        YHSLogRed(@"BaiduMap Manager start failed!");
+    } else {
+        YHSLogGreen(@"BaiduMap Manager start success!");
+    }
+    
+}
+
 
 @end
 
