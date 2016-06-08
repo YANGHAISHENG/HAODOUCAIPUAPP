@@ -91,7 +91,7 @@
             make.top.equalTo(publicContainerView.mas_top);
             make.left.equalTo(publicContainerView);
             make.right.equalTo(publicContainerView);
-            make.height.mas_equalTo(@(100));
+            make.height.mas_equalTo(@(120));
         }];
         
         imageView;
@@ -143,12 +143,8 @@
     // 待付款-待发货-待收货-待评价-退款
     UIView *buyProgressAreaView = ({
         UIView *view = [[UIView alloc] init];
+        [view setBackgroundColor:[UIColor whiteColor]];
         [publicContainerView addSubview:view];
-        
-        view.backgroundColor = [UIColor colorWithHue:( arc4random() % 256 / 256.0 )
-                                          saturation:( arc4random() % 128 / 256.0 ) + 0.5
-                                          brightness:( arc4random() % 128 / 256.0 ) + 0.5
-                                               alpha:1];
         
         [view mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(myOrderAreaView.mas_bottom).offset(separatorLineHeightB);
@@ -159,12 +155,11 @@
         
         view;
     });
-    {
-        
-    }
+    // 收货过程
+    [self createBuyProgressUI:buyProgressAreaView];
     
     // 我的优惠劵
-    UIView *mycouponsAreaView = [self createRowAreaViewWithTag:1007 iconName:@"ico_user_mycoupons" title:@"我的优惠劵" detailInfo:@"" height:areaViewHeight parentView:publicContainerView previousView:buyProgressAreaView separatorLineHeight:separatorLineHeightB];
+    UIView *mycouponsAreaView = [self createRowAreaViewWithTag:1007 iconName:@"ico_user_mycoupons" title:@"我的优惠劵" detailInfo:@"" height:areaViewHeight parentView:publicContainerView previousView:buyProgressAreaView separatorLineHeight:separatorLineHeightA];
     
     // 收货地址
     UIView *deliveryAddressAreaView = [self createRowAreaViewWithTag:1008 iconName:@"ico_delivery_address" title:@"收货地址" detailInfo:@"" height:areaViewHeight parentView:publicContainerView previousView:mycouponsAreaView separatorLineHeight:separatorLineHeightA];
@@ -297,7 +292,74 @@
     return container;
 }
 
+// 收货过程
+- (void)createBuyProgressUI:(UIView *)buyContainerView
+{
+    CGFloat margin = 10.0;
+    CGFloat iconImageWidth = 26.0;
+    CGFloat iconImageHeight = 22.0;
+    NSArray<NSString *> *titles = @[@"待付款", @"待发货", @"待收货", @"待评价", @"退款"];
+    NSArray<NSString *> *imageNames = @[@"icon_not_pay", @"icon_order_undelivery", @"icon_delivery", @"icon_to_review", @"icon_refund_suc"];
+    NSMutableArray<UIView *> *containerViews = [NSMutableArray array];
+    for (int index = 0; index < imageNames.count; index ++) {
+        
+        // 容器
+        UIView *containerView = ({
+            UIView *view = [UIView new];
+            [view setTag:(index+2000)];
+            [view.layer setMasksToBounds:YES];
+            [buyContainerView addSubview:view];
+            
+            // 点击手势
+            UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pressBuyProgressViewArea:)];
+            tapGesture.numberOfTapsRequired = 1; // 设置点按次数，默认为1
+            tapGesture.numberOfTouchesRequired = 1; // 点按的手指数
+            [view addGestureRecognizer:tapGesture];
+            
+            view;
+        });
+        [containerViews addObject:containerView];
+        
+        // 图标
+        UIImageView *imageView = ({
+            UIImageView *imageView = [UIImageView new];
+            [imageView setImage:[UIImage imageNamed:imageNames[index]]];
+            [imageView.layer setMasksToBounds:YES];
+            [imageView setUserInteractionEnabled:YES];
+            [containerView addSubview:imageView];
+            
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(containerView.mas_top).offset(margin);
+                make.centerX.equalTo(containerView.mas_centerX);
+                make.size.mas_equalTo(CGSizeMake(iconImageWidth, iconImageHeight));
+            }];
+            
+            imageView;
+        });
 
+        // 标题
+        UILabel *titlelabel = [UILabel new];
+        [titlelabel setText:titles[index]];
+        [titlelabel setUserInteractionEnabled:YES];
+        [titlelabel setTextColor:[UIColor blackColor]];
+        [titlelabel setFont:[UIFont systemFontOfSize:12]];
+        [titlelabel setTextAlignment:NSTextAlignmentCenter];
+        [containerView addSubview:titlelabel];
+        
+        [titlelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(imageView.mas_bottom).offset(margin/2.0);
+            make.left.equalTo(containerView.mas_left);
+            make.right.equalTo(containerView.mas_right);
+        }];
+    
+    }
+    [containerViews mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:0.0 leadSpacing:0.0 tailSpacing:0.0];
+    [containerViews mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(buyContainerView.mas_top);
+        make.bottom.equalTo(buyContainerView.mas_bottom);
+    }];
+    
+}
 
 
 #pragma mark - 自定义配置导航栏
@@ -384,6 +446,18 @@
 - (void)pressSuggestionsLabel:(UITapGestureRecognizer *)gesture
 {
     [self alertPromptMessage:@"意见反馈"];
+}
+
+
+// 收货过程
+- (void)pressBuyProgressViewArea:(UITapGestureRecognizer *)gesture
+{
+    UIView *view = (UIView *)gesture.view;
+    NSInteger index = [view tag]-2000;
+    
+    NSArray<NSString *> *titles = @[@"待付款", @"待发货", @"待收货", @"待评价", @"退款"];
+    
+    [self alertPromptMessage:titles[index]];
 }
 
 
