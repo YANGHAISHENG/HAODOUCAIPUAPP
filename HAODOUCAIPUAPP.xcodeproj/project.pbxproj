@@ -178,6 +178,24 @@
 		7D127E271CFC1FE200F98C12 /* YHSCookBookShowProductUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D127E261CFC1FE200F98C12 /* YHSCookBookShowProductUserModel.m */; };
 		7D127E2A1CFC20B600F98C12 /* YHSCookBookShowProductDayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D127E291CFC20B600F98C12 /* YHSCookBookShowProductDayTableViewCell.m */; };
 		7D127E2D1CFC3A2600F98C12 /* YHSCookBookShowProductCateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D127E2C1CFC3A2600F98C12 /* YHSCookBookShowProductCateTableViewCell.m */; };
+		7D13DD5A1D07AB4C0004A059 /* btn_user_photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D13DD4D1D07AB4C0004A059 /* btn_user_photo.png */; };
+		7D13DD5B1D07AB4C0004A059 /* btn_user_recipe.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D13DD4E1D07AB4C0004A059 /* btn_user_recipe.png */; };
+		7D13DD5C1D07AB4C0004A059 /* btn_user_the_draft.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D13DD4F1D07AB4C0004A059 /* btn_user_the_draft.png */; };
+		7D13DD5D1D07AB4C0004A059 /* btn_user_topic.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D13DD501D07AB4C0004A059 /* btn_user_topic.png */; };
+		7D13DD5E1D07AB4C0004A059 /* ico_user_gift_exchange.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D13DD511D07AB4C0004A059 /* ico_user_gift_exchange.png */; };
+		7D13DD5F1D07AB4C0004A059 /* ico_user_haodouxz.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D13DD521D07AB4C0004A059 /* ico_user_haodouxz.png */; };
+		7D13DD601D07AB4C0004A059 /* ico_user_my_dynamic.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D13DD531D07AB4C0004A059 /* ico_user_my_dynamic.png */; };
+		7D13DD611D07AB4C0004A059 /* ico_user_my_message.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D13DD541D07AB4C0004A059 /* ico_user_my_message.png */; };
+		7D13DD621D07AB4C0004A059 /* ico_user_mycoupons.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D13DD551D07AB4C0004A059 /* ico_user_mycoupons.png */; };
+		7D13DD631D07AB4C0004A059 /* ico_user_myorder.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D13DD561D07AB4C0004A059 /* ico_user_myorder.png */; };
+		7D13DD641D07AB4C0004A059 /* ico_user_purchase_list.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D13DD571D07AB4C0004A059 /* ico_user_purchase_list.png */; };
+		7D13DD651D07AB4C0004A059 /* ico_user_sign_in_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D13DD581D07AB4C0004A059 /* ico_user_sign_in_on.png */; };
+		7D13DD661D07AB4C0004A059 /* ico_user_zrwzdb.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D13DD591D07AB4C0004A059 /* ico_user_zrwzdb.png */; };
+		7D13DD691D07AD8C0004A059 /* mine_header_bg_login.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7D13DD671D07AD8C0004A059 /* mine_header_bg_login.jpg */; };
+		7D13DD6A1D07AD8C0004A059 /* mine_header_bg_not_login.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7D13DD681D07AD8C0004A059 /* mine_header_bg_not_login.jpg */; };
+		7D13DD6C1D07BBBA0004A059 /* ico_center_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D13DD6B1D07BBBA0004A059 /* ico_center_camera.png */; };
+		7D13DD6E1D07BE810004A059 /* arrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D13DD6D1D07BE810004A059 /* arrow_right.png */; };
+		7D13DD701D07C3EE0004A059 /* ico_delivery_address.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D13DD6F1D07C3EE0004A059 /* ico_delivery_address.png */; };
 		7D24BD2C1CF97AEA0029F515 /* YHSCookBookDishDetailProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D24BD2B1CF97AEA0029F515 /* YHSCookBookDishDetailProductTableViewCell.m */; };
 		7D38CE0A1CF0571D0041335C /* search_result_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D38CE091CF0571D0041335C /* search_result_empty.png */; };
 		7D3AA42C1D040109009E5165 /* YHSButtonWithIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3AA42B1D040109009E5165 /* YHSButtonWithIcon.m */; };
@@ -613,6 +631,24 @@
 		7D127E291CFC20B600F98C12 /* YHSCookBookShowProductDayTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookShowProductDayTableViewCell.m; sourceTree = "<group>"; };
 		7D127E2B1CFC3A2600F98C12 /* YHSCookBookShowProductCateTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookShowProductCateTableViewCell.h; sourceTree = "<group>"; };
 		7D127E2C1CFC3A2600F98C12 /* YHSCookBookShowProductCateTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookShowProductCateTableViewCell.m; sourceTree = "<group>"; };
+		7D13DD4D1D07AB4C0004A059 /* btn_user_photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_user_photo.png; sourceTree = "<group>"; };
+		7D13DD4E1D07AB4C0004A059 /* btn_user_recipe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_user_recipe.png; sourceTree = "<group>"; };
+		7D13DD4F1D07AB4C0004A059 /* btn_user_the_draft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_user_the_draft.png; sourceTree = "<group>"; };
+		7D13DD501D07AB4C0004A059 /* btn_user_topic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_user_topic.png; sourceTree = "<group>"; };
+		7D13DD511D07AB4C0004A059 /* ico_user_gift_exchange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_user_gift_exchange.png; sourceTree = "<group>"; };
+		7D13DD521D07AB4C0004A059 /* ico_user_haodouxz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_user_haodouxz.png; sourceTree = "<group>"; };
+		7D13DD531D07AB4C0004A059 /* ico_user_my_dynamic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_user_my_dynamic.png; sourceTree = "<group>"; };
+		7D13DD541D07AB4C0004A059 /* ico_user_my_message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_user_my_message.png; sourceTree = "<group>"; };
+		7D13DD551D07AB4C0004A059 /* ico_user_mycoupons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_user_mycoupons.png; sourceTree = "<group>"; };
+		7D13DD561D07AB4C0004A059 /* ico_user_myorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_user_myorder.png; sourceTree = "<group>"; };
+		7D13DD571D07AB4C0004A059 /* ico_user_purchase_list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_user_purchase_list.png; sourceTree = "<group>"; };
+		7D13DD581D07AB4C0004A059 /* ico_user_sign_in_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_user_sign_in_on.png; sourceTree = "<group>"; };
+		7D13DD591D07AB4C0004A059 /* ico_user_zrwzdb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_user_zrwzdb.png; sourceTree = "<group>"; };
+		7D13DD671D07AD8C0004A059 /* mine_header_bg_login.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mine_header_bg_login.jpg; sourceTree = "<group>"; };
+		7D13DD681D07AD8C0004A059 /* mine_header_bg_not_login.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mine_header_bg_not_login.jpg; sourceTree = "<group>"; };
+		7D13DD6B1D07BBBA0004A059 /* ico_center_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_center_camera.png; sourceTree = "<group>"; };
+		7D13DD6D1D07BE810004A059 /* arrow_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_right.png; sourceTree = "<group>"; };
+		7D13DD6F1D07C3EE0004A059 /* ico_delivery_address.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_delivery_address.png; sourceTree = "<group>"; };
 		7D24BD2A1CF97AEA0029F515 /* YHSCookBookDishDetailProductTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookDishDetailProductTableViewCell.h; sourceTree = "<group>"; };
 		7D24BD2B1CF97AEA0029F515 /* YHSCookBookDishDetailProductTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookDishDetailProductTableViewCell.m; sourceTree = "<group>"; };
 		7D38CE091CF0571D0041335C /* search_result_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_result_empty.png; sourceTree = "<group>"; };
@@ -2242,6 +2278,24 @@
 		7DFE1D8F1CE21FDA005A061B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				7D13DD6F1D07C3EE0004A059 /* ico_delivery_address.png */,
+				7D13DD6D1D07BE810004A059 /* arrow_right.png */,
+				7D13DD6B1D07BBBA0004A059 /* ico_center_camera.png */,
+				7D13DD671D07AD8C0004A059 /* mine_header_bg_login.jpg */,
+				7D13DD681D07AD8C0004A059 /* mine_header_bg_not_login.jpg */,
+				7D13DD4D1D07AB4C0004A059 /* btn_user_photo.png */,
+				7D13DD4E1D07AB4C0004A059 /* btn_user_recipe.png */,
+				7D13DD4F1D07AB4C0004A059 /* btn_user_the_draft.png */,
+				7D13DD501D07AB4C0004A059 /* btn_user_topic.png */,
+				7D13DD511D07AB4C0004A059 /* ico_user_gift_exchange.png */,
+				7D13DD521D07AB4C0004A059 /* ico_user_haodouxz.png */,
+				7D13DD531D07AB4C0004A059 /* ico_user_my_dynamic.png */,
+				7D13DD541D07AB4C0004A059 /* ico_user_my_message.png */,
+				7D13DD551D07AB4C0004A059 /* ico_user_mycoupons.png */,
+				7D13DD561D07AB4C0004A059 /* ico_user_myorder.png */,
+				7D13DD571D07AB4C0004A059 /* ico_user_purchase_list.png */,
+				7D13DD581D07AB4C0004A059 /* ico_user_sign_in_on.png */,
+				7D13DD591D07AB4C0004A059 /* ico_user_zrwzdb.png */,
 				7D01338C1D0676B00025E4D3 /* ico_auxiliary_female.png */,
 				7D0F10461D057FBE009017E4 /* ico_weaken_comment.png */,
 				7D0F10471D057FBE009017E4 /* ico_weaken_good.png */,
@@ -2445,6 +2499,7 @@
 				7DA6BF8F1CF1EBC100BF297C /* ico_user_myfav.png in Resources */,
 				7D02EEAB1D0530FF005D319D /* ico_class_topic_gray.png in Resources */,
 				7D02ACD71CF93B22002C43B1 /* stuff_in.png in Resources */,
+				7D13DD691D07AD8C0004A059 /* mine_header_bg_login.jpg in Resources */,
 				7D0F10441D057579009017E4 /* ico_auxiliary_hotspot.png in Resources */,
 				7D08276A1CE5C10B008D77AD /* ico_auxiliary_master.png in Resources */,
 				7DC830501CFD8AF50042A4A5 /* bg_vedio_small.png in Resources */,
@@ -2452,6 +2507,11 @@
 				7D015D191D00651100630B28 /* btn_weaken_arrowdown_orange.png in Resources */,
 				7D02ACDA1CF93E7E002C43B1 /* btn_auxiliary_add.png in Resources */,
 				7D02EEA81D0530FF005D319D /* ico_class_activity_orange.png in Resources */,
+				7D13DD5A1D07AB4C0004A059 /* btn_user_photo.png in Resources */,
+				7D13DD641D07AB4C0004A059 /* ico_user_purchase_list.png in Resources */,
+				7D13DD651D07AB4C0004A059 /* ico_user_sign_in_on.png in Resources */,
+				7D13DD5F1D07AB4C0004A059 /* ico_user_haodouxz.png in Resources */,
+				7D13DD601D07AB4C0004A059 /* ico_user_my_dynamic.png in Resources */,
 				7D02EEA71D0530FF005D319D /* ico_class_activity_gray.png in Resources */,
 				7DFE8E1C1CF8967A00DD09BE /* group_pressed.png in Resources */,
 				7DFE8E0F1CF8967A00DD09BE /* default_big.png in Resources */,
@@ -2460,18 +2520,21 @@
 				7DFE8E101CF8967A00DD09BE /* default_daily_special_goods.png in Resources */,
 				7DF2CDF31D03DF1A00887D76 /* icon_shoping_car.png in Resources */,
 				7DFC47141CED6E0300A29464 /* ico_video.png in Resources */,
+				7D13DD5C1D07AB4C0004A059 /* btn_user_the_draft.png in Resources */,
 				7DA6BF8D1CF1EBC100BF297C /* btn_auxiliary_good.png in Resources */,
 				7DC49A0F1D01A17400FF117C /* ico_favorite_version.png in Resources */,
 				7D0335751CF5FEEC00B273E8 /* video_smallscreen_on.png in Resources */,
 				7DA6BF8E1CF1EBC100BF297C /* ico_user_mydown.png in Resources */,
 				7D08276B1CE5C10B008D77AD /* ico_auxiliary_more_grayc.png in Resources */,
 				7DFE1DB81CE21FDA005A061B /* bar_input_search.png in Resources */,
+				7D13DD631D07AB4C0004A059 /* ico_user_myorder.png in Resources */,
 				7D063F4C1CF085D000152563 /* myhome_followed_pressed.png in Resources */,
 				7DFE8E181CF8967A00DD09BE /* collect_pressed.png in Resources */,
 				7DFDEBF01CEEE84E00CEDBDC /* btn_tag_del.png in Resources */,
 				7D0335731CF5FEEC00B273E8 /* video_seek_on.png in Resources */,
 				7D02ACDB1CF93E7E002C43B1 /* warning.png in Resources */,
 				7DC49A111D01A17400FF117C /* ico_new_product.png in Resources */,
+				7D13DD621D07AB4C0004A059 /* ico_user_mycoupons.png in Resources */,
 				7DFDEBEC1CEEE5DB00CEDBDC /* ico_search_gray.png in Resources */,
 				7DFE1DAF1CE21FDA005A061B /* action_search_gray.png in Resources */,
 				7DFE8E1E1CF8967A00DD09BE /* mine_pressed.png in Resources */,
@@ -2487,7 +2550,9 @@
 				7D063F4A1CF085D000152563 /* myhome_follow_pressed.png in Resources */,
 				7D063F491CF085D000152563 /* myhome_follow_normal.png in Resources */,
 				7D0335781CF5FEEC00B273E8 /* video_step_ico_select.png in Resources */,
+				7D13DD5B1D07AB4C0004A059 /* btn_user_recipe.png in Resources */,
 				7DFE1DAC1CE21FDA005A061B /* abc_ic_ab_back_mtrl_am_alpha.png in Resources */,
+				7D13DD6C1D07BBBA0004A059 /* ico_center_camera.png in Resources */,
 				7D0335761CF5FEEC00B273E8 /* video_smallscreen.png in Resources */,
 				7DFE1CE71CE2063B005A061B /* LaunchScreen.storyboard in Resources */,
 				7D08276D1CE5C10B008D77AD /* ico_hot_classfix.png in Resources */,
@@ -2497,7 +2562,9 @@
 				7D0335791CF5FEEC00B273E8 /* video_step_ico.png in Resources */,
 				7D03356F1CF5FEEC00B273E8 /* video_pause_on.png in Resources */,
 				7DFE1DB61CE21FDA005A061B /* HAODOU87.png in Resources */,
+				7D13DD701D07C3EE0004A059 /* ico_delivery_address.png in Resources */,
 				7D02EEA91D0530FF005D319D /* ico_class_people_gray.png in Resources */,
+				7D13DD611D07AB4C0004A059 /* ico_user_my_message.png in Resources */,
 				7DFE1DB11CE21FDA005A061B /* HAODOU.png in Resources */,
 				7DFC47131CED6E0300A29464 /* ico_video_small.png in Resources */,
 				7DFE8E161CF8967A00DD09BE /* icon_vip.png in Resources */,
@@ -2509,6 +2576,7 @@
 				7DFE8E191CF8967A00DD09BE /* find_normal.png in Resources */,
 				7D0335721CF5FEEC00B273E8 /* video_play.png in Resources */,
 				7DFE8E151CF8967A00DD09BE /* icon_vip_small.png in Resources */,
+				7D13DD5D1D07AB4C0004A059 /* btn_user_topic.png in Resources */,
 				7D0F10491D057FBE009017E4 /* ico_weaken_good.png in Resources */,
 				7D02EEAC1D0530FF005D319D /* ico_class_topic_orange.png in Resources */,
 				7D063F4B1CF085D000152563 /* myhome_followed_normal.png in Resources */,
@@ -2530,6 +2598,7 @@
 				7D070AA21CF7F411003E0920 /* loading_bgView.jpg in Resources */,
 				7D01338D1D0676B00025E4D3 /* ico_auxiliary_female.png in Resources */,
 				7DFE1DBD1CE21FDA005A061B /* logo_daojia.png in Resources */,
+				7D13DD6A1D07AD8C0004A059 /* mine_header_bg_not_login.jpg in Resources */,
 				7DFE1DB91CE21FDA005A061B /* btn_header_back.png in Resources */,
 				7D0335711CF5FEEC00B273E8 /* video_play_on.png in Resources */,
 				7DFE1DB31CE21FDA005A061B /* HAODOU180.png in Resources */,
@@ -2537,6 +2606,8 @@
 				7DFE1DB41CE21FDA005A061B /* HAODOU58.png in Resources */,
 				7D015D131D0034F800630B28 /* ico_user_operate.png in Resources */,
 				7DB84FBB1CF1A67D00633D55 /* btn_header_share_gray_sec.png in Resources */,
+				7D13DD5E1D07AB4C0004A059 /* ico_user_gift_exchange.png in Resources */,
+				7D13DD661D07AB4C0004A059 /* ico_user_zrwzdb.png in Resources */,
 				7DFE8E171CF8967A00DD09BE /* collect_normal.png in Resources */,
 				7D4739E11D016E3C00D022ED /* ico_group_arrow_right.png in Resources */,
 				7DFE8E1D1CF8967A00DD09BE /* mine_normal.png in Resources */,
@@ -2544,6 +2615,7 @@
 				7DFE1DB01CE21FDA005A061B /* action_search_white.png in Resources */,
 				7D0182E31CFE87B600A81857 /* feedback_reply.png in Resources */,
 				7DFE1CE21CE2063B005A061B /* Main.storyboard in Resources */,
+				7D13DD6E1D07BE810004A059 /* arrow_right.png in Resources */,
 				7D015D1A1D00651100630B28 /* btn_weaken_arrowup_orange.png in Resources */,
 				7DFE1DAE1CE21FDA005A061B /* action_search.png in Resources */,
 				7D02EE9D1D05142B005D319D /* btn_auxiliary_filter.png in Resources */,
