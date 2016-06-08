@@ -39,7 +39,6 @@
     
 }
 
-
 - (void)createMainUI
 {
     WEAKSELF(weakSelf);
@@ -96,7 +95,7 @@
         
         imageView;
     });
-    
+    [self createLoginArea:loginAreaView];
     
     // 菜谱-话题-相册-草稿
     UIView *menuTopicPhotoDraftAreaView = ({
@@ -284,6 +283,49 @@
     }];
     
     return container;
+}
+
+// 创建登录区域
+- (void)createLoginArea:(UIImageView *)parentContainerView
+{
+    CGFloat margin = 15.0;
+    CGFloat btnWidth = 90.0;
+    CGFloat btnHeight = 35.0;
+    
+    // 登录
+    {
+        UIButton *loginBtn = [UIButton new];
+        [loginBtn.layer setCornerRadius:5.0];
+        [loginBtn.layer setMasksToBounds:YES];
+        [loginBtn setTitle:@"登陆" forState:UIControlStateNormal];
+        [loginBtn setBackgroundColor:[UIColor colorWithRed:0.95 green:0.63 blue:0.15 alpha:1.00]];
+        [loginBtn addTarget:self action:@selector(pressLogin:) forControlEvents:UIControlEventTouchUpInside];
+        [parentContainerView addSubview:loginBtn];
+        
+        [loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(parentContainerView.mas_centerX).offset(-btnWidth/2.0-margin);
+            make.centerY.equalTo(parentContainerView.mas_centerY);
+            make.size.mas_equalTo(CGSizeMake(btnWidth, btnHeight));
+        }];
+    }
+    
+    // 注册
+    {
+        UIButton *registerBtn = [UIButton new];
+        [registerBtn.layer setCornerRadius:5.0];
+        [registerBtn.layer setMasksToBounds:YES];
+        [registerBtn setTitle:@"注册" forState:UIControlStateNormal];
+        [registerBtn setBackgroundColor:[UIColor colorWithRed:0.95 green:0.63 blue:0.15 alpha:1.00]];
+        [registerBtn addTarget:self action:@selector(pressRegister:) forControlEvents:UIControlEventTouchUpInside];
+        [parentContainerView addSubview:registerBtn];
+        
+        [registerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(parentContainerView.mas_centerX).offset(btnWidth/2.0+margin);
+            make.centerY.equalTo(parentContainerView.mas_centerY);
+            make.size.mas_equalTo(CGSizeMake(btnWidth, btnHeight));
+        }];
+    }
+    
 }
 
 // 菜谱-话题-相册-草稿
@@ -547,6 +589,18 @@
     NSArray<NSString *> *titles = @[@"待付款", @"待发货", @"待收货", @"待评价", @"退款"];
     
     [self alertPromptMessage:titles[index]];
+}
+
+// 登录
+- (void)pressLogin:(UIButton *)sender
+{
+    [self alertPromptMessage:@"登录"];
+}
+
+// 注册
+- (void)pressRegister:(UIButton *)sender
+{
+    [self alertPromptMessage:@"注册"];
 }
 
 
