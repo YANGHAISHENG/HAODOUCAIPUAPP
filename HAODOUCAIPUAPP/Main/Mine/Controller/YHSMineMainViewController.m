@@ -101,12 +101,8 @@
     // 菜谱-话题-相册-草稿
     UIView *menuTopicPhotoDraftAreaView = ({
         UIView *view = [[UIView alloc] init];
+        [view setBackgroundColor:[UIColor whiteColor]];
         [publicContainerView addSubview:view];
-        
-        view.backgroundColor = [UIColor colorWithHue:( arc4random() % 256 / 256.0 )
-                                          saturation:( arc4random() % 128 / 256.0 ) + 0.5
-                                          brightness:( arc4random() % 128 / 256.0 ) + 0.5
-                                               alpha:1];
         
         [view mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(loginAreaView.mas_bottom);
@@ -117,9 +113,7 @@
         
         view;
     });
-    {
-        
-    }
+    [self createMenuTopicPhotoDraftUI:menuTopicPhotoDraftAreaView];
     
     
     // 发布菜谱
@@ -292,11 +286,95 @@
     return container;
 }
 
+// 菜谱-话题-相册-草稿
+- (void)createMenuTopicPhotoDraftUI:(UIView *)parentContainerView
+{
+    CGFloat margin = 10.0;
+    CGFloat iconImageSize = 30.0;
+    NSArray<NSString *> *titles = @[@"菜谱", @"话题", @"相册", @"草稿"];
+    NSArray<NSString *> *nums = @[@"0", @"0", @"0", @"0"];
+    NSArray<NSString *> *imageNames = @[@"btn_user_recipe", @"btn_user_topic", @"btn_user_photo", @"btn_user_the_draft"];
+    NSMutableArray<UIView *> *containerViews = [NSMutableArray array];
+    for (int index = 0; index < imageNames.count; index ++) {
+        
+        // 容器
+        UIView *containerView = ({
+            UIView *view = [UIView new];
+            [view setTag:(index+2000)];
+            [view.layer setMasksToBounds:YES];
+            [parentContainerView addSubview:view];
+            
+            // 点击手势
+            UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pressMenuTopicPhotoDraftViewArea:)];
+            tapGesture.numberOfTapsRequired = 1; // 设置点按次数，默认为1
+            tapGesture.numberOfTouchesRequired = 1; // 点按的手指数
+            [view addGestureRecognizer:tapGesture];
+            
+            view;
+        });
+        [containerViews addObject:containerView];
+        
+        // 图标
+        UIImageView *imageView = ({
+            UIImageView *imageView = [UIImageView new];
+            [imageView setImage:[UIImage imageNamed:imageNames[index]]];
+            [imageView.layer setMasksToBounds:YES];
+            [imageView setUserInteractionEnabled:YES];
+            [containerView addSubview:imageView];
+            
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.center.equalTo(containerView);
+                make.size.mas_equalTo(CGSizeMake(iconImageSize, iconImageSize));
+            }];
+            
+            imageView;
+        });
+        
+        // 标题
+        UILabel *titlelabel = [UILabel new];
+        [titlelabel setText:titles[index]];
+        [titlelabel setUserInteractionEnabled:YES];
+        [titlelabel setTextColor:[UIColor blackColor]];
+        [titlelabel setFont:[UIFont systemFontOfSize:12]];
+        [titlelabel setTextAlignment:NSTextAlignmentCenter];
+        [containerView addSubview:titlelabel];
+        
+        [titlelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(imageView.mas_top).offset(-margin/4.0);
+            make.left.equalTo(containerView.mas_left);
+            make.right.equalTo(containerView.mas_right);
+        }];
+        
+        // 数量
+        UILabel *numlabel = [UILabel new];
+        [numlabel setText:nums[index]];
+        [numlabel setUserInteractionEnabled:YES];
+        [numlabel setTextColor:[UIColor blackColor]];
+        [numlabel setFont:[UIFont systemFontOfSize:12]];
+        [numlabel setTextAlignment:NSTextAlignmentCenter];
+        [containerView addSubview:numlabel];
+        
+        [numlabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(imageView.mas_bottom).offset(margin/4.0);
+            make.left.equalTo(containerView.mas_left);
+            make.right.equalTo(containerView.mas_right);
+        }];
+        
+    }
+    [containerViews mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:0.0 leadSpacing:0.0 tailSpacing:0.0];
+    [containerViews mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(parentContainerView.mas_top);
+        make.bottom.equalTo(parentContainerView.mas_bottom);
+    }];
+    
+}
+
+
 // 收货过程
 - (void)createBuyProgressUI:(UIView *)buyContainerView
 {
     CGFloat margin = 10.0;
-    CGFloat iconImageWidth = 26.0;
+    CGFloat iconImageWidth = 25.0;
     CGFloat iconImageHeight = 22.0;
     NSArray<NSString *> *titles = @[@"待付款", @"待发货", @"待收货", @"待评价", @"退款"];
     NSArray<NSString *> *imageNames = @[@"icon_not_pay", @"icon_order_undelivery", @"icon_delivery", @"icon_to_review", @"icon_refund_suc"];
@@ -306,7 +384,7 @@
         // 容器
         UIView *containerView = ({
             UIView *view = [UIView new];
-            [view setTag:(index+2000)];
+            [view setTag:(index+3000)];
             [view.layer setMasksToBounds:YES];
             [buyContainerView addSubview:view];
             
@@ -448,12 +526,23 @@
     [self alertPromptMessage:@"意见反馈"];
 }
 
+// 菜谱-话题-相册-草稿
+- (void)pressMenuTopicPhotoDraftViewArea:(UITapGestureRecognizer *)gesture
+{
+    UIView *view = (UIView *)gesture.view;
+    NSInteger index = [view tag]-2000;
+    
+    NSArray<NSString *> *titles = @[@"菜谱", @"话题", @"相册", @"草稿"];
+    
+    [self alertPromptMessage:titles[index]];
+}
+
 
 // 收货过程
 - (void)pressBuyProgressViewArea:(UITapGestureRecognizer *)gesture
 {
     UIView *view = (UIView *)gesture.view;
-    NSInteger index = [view tag]-2000;
+    NSInteger index = [view tag]-3000;
     
     NSArray<NSString *> *titles = @[@"待付款", @"待发货", @"待收货", @"待评价", @"退款"];
     
