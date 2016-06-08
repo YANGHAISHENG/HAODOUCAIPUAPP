@@ -97,6 +97,15 @@
 #pragma mark - 请求网络数据
 - (void)loadDataThen:(void (^)(BOOL success))then {
 
+    // 数据是否为空
+    if (!self.infoModel) {
+        
+        // 刷新界面
+        !then ?: then(NO);
+        
+        return;
+    }
+    
     // 1.头部信息
     [self.tableData addObject:@[self.infoModel].mutableCopy];
     
