@@ -53,6 +53,8 @@
     UIScrollView *rootScrollView = ({
         UIScrollView *scrollView = [[UIScrollView alloc] init];
         [scrollView setBounces:NO];
+        [scrollView setShowsVerticalScrollIndicator:NO];
+        [scrollView setShowsHorizontalScrollIndicator:NO];
         [self.view addSubview:scrollView];
         
         [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -190,6 +192,11 @@
         [label setTextAlignment:NSTextAlignmentCenter];
         [publicContainerView addSubview:label];
         
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pressSuggestionsLabel:)];
+        tapGesture.numberOfTapsRequired = 1; // 设置点按次数，默认为1
+        tapGesture.numberOfTouchesRequired = 1; // 点按的手指数
+        [label addGestureRecognizer:tapGesture];
+        
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(haodouxzAreaView.mas_bottom).offset(separatorLineHeightC);
             make.left.equalTo(publicContainerView);
@@ -256,7 +263,7 @@
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(container.mas_centerY);
         make.left.equalTo(leftImageView.mas_right).offset(margin);
-        make.right.equalTo(container.mas_right);
+        //make.right.equalTo(container.mas_right);
     }];
     
     // 右图标
@@ -271,6 +278,20 @@
         make.left.equalTo(container.mas_right).offset(-margin-rightImageWidth);
         make.right.equalTo(container.mas_right).offset(-margin);
         make.size.mas_equalTo(CGSizeMake(rightImageWidth, rightImageHeight));
+    }];
+    
+    // 详情
+    UILabel *detailLabel = [UILabel new];
+    [detailLabel setText:detailInfo];
+    [detailLabel setUserInteractionEnabled:YES];
+    [detailLabel setTextColor:[UIColor lightGrayColor]];
+    [detailLabel setFont:[UIFont systemFontOfSize:14.0]];
+    [detailLabel setTextAlignment:NSTextAlignmentRight];
+    [container addSubview:detailLabel];
+    [detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(container.mas_centerY);
+        make.left.equalTo(titleLabel.mas_right).offset(margin);
+        make.right.equalTo(rightImageView.mas_left);
     }];
     
     return container;
@@ -351,12 +372,19 @@
 - (void)pressContainerViewArea:(UITapGestureRecognizer *)gesture
 {
     UIView *view = (UIView *)gesture.view;
-    NSInteger index = [view tag];
+    NSInteger index = [view tag] - 1001;
     
-    YHSLogBrown(@"%ld", index);
+    NSArray<NSString *> *titles = @[@"发布菜谱", @"我的动态", @"消息", @"做任务赚豆币", @"礼品兑换", @"我的订单", @"我的优惠劵", @"收货地址", @"我的下载", @"我的收藏", @"采购清单", @"好豆小智"];
+    
+    [self alertPromptMessage:titles[index]];
     
 }
 
+// 意见反馈
+- (void)pressSuggestionsLabel:(UITapGestureRecognizer *)gesture
+{
+    [self alertPromptMessage:@"意见反馈"];
+}
 
 
 @end
