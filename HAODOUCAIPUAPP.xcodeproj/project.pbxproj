@@ -265,6 +265,7 @@
 		7DBECC441D083A680079DAAD /* YHSBaiduMapAPI.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DBECC431D083A680079DAAD /* YHSBaiduMapAPI.mm */; };
 		7DBECC461D083CDD0079DAAD /* BaiduMapAPI_Map.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DBECC451D083CDD0079DAAD /* BaiduMapAPI_Map.framework */; };
 		7DBECC491D083D3F0079DAAD /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7DBECC481D083D3F0079DAAD /* mapapi.bundle */; };
+		7DBECC4B1D08455D0079DAAD /* BaiduMapAPI_Search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DBECC4A1D08455D0079DAAD /* BaiduMapAPI_Search.framework */; };
 		7DC49A0F1D01A17400FF117C /* ico_favorite_version.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DC49A0C1D01A17400FF117C /* ico_favorite_version.png */; };
 		7DC49A101D01A17400FF117C /* ico_mybrowse.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DC49A0D1D01A17400FF117C /* ico_mybrowse.png */; };
 		7DC49A111D01A17400FF117C /* ico_new_product.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DC49A0E1D01A17400FF117C /* ico_new_product.png */; };
@@ -778,6 +779,7 @@
 		7DBECC431D083A680079DAAD /* YHSBaiduMapAPI.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = YHSBaiduMapAPI.mm; sourceTree = "<group>"; };
 		7DBECC451D083CDD0079DAAD /* BaiduMapAPI_Map.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Map.framework; sourceTree = "<group>"; };
 		7DBECC481D083D3F0079DAAD /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
+		7DBECC4A1D08455D0079DAAD /* BaiduMapAPI_Search.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Search.framework; sourceTree = "<group>"; };
 		7DC49A0C1D01A17400FF117C /* ico_favorite_version.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_favorite_version.png; sourceTree = "<group>"; };
 		7DC49A0D1D01A17400FF117C /* ico_mybrowse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mybrowse.png; sourceTree = "<group>"; };
 		7DC49A0E1D01A17400FF117C /* ico_new_product.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_new_product.png; sourceTree = "<group>"; };
@@ -918,6 +920,7 @@
 				7DBECC301D0838C40079DAAD /* QuartzCore.framework in Frameworks */,
 				7DBECC2E1D0838B80079DAAD /* CoreLocation.framework in Frameworks */,
 				7DBECC2B1D0838440079DAAD /* BaiduMapAPI_Base.framework in Frameworks */,
+				7DBECC4B1D08455D0079DAAD /* BaiduMapAPI_Search.framework in Frameworks */,
 				7D01D9C31CF69689009AE62F /* MediaPlayer.framework in Frameworks */,
 				4DABC3E57853D63722DE799F /* libPods.a in Frameworks */,
 				7DBECC2C1D0838440079DAAD /* BaiduMapAPI_Location.framework in Frameworks */,
@@ -1998,6 +2001,7 @@
 				7DBECC431D083A680079DAAD /* YHSBaiduMapAPI.mm */,
 				7DBECC291D0838440079DAAD /* BaiduMapAPI_Base.framework */,
 				7DBECC451D083CDD0079DAAD /* BaiduMapAPI_Map.framework */,
+				7DBECC4A1D08455D0079DAAD /* BaiduMapAPI_Search.framework */,
 				7DBECC2A1D0838440079DAAD /* BaiduMapAPI_Location.framework */,
 			);
 			path = BaiduMapLibrary;
