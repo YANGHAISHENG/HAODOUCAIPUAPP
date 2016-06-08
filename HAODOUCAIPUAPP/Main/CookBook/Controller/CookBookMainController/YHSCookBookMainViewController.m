@@ -84,6 +84,10 @@
     [super viewWillAppear:animated];
     
     [self.navBarHairlineImageView setHidden:YES];
+    
+    if (self.tableData.count == 0) {
+        [self viewDidLoadWithNetworkingStatus];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated

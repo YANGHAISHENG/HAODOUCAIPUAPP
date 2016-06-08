@@ -53,6 +53,16 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if (self.tableData.count == 0) {
+        [self viewDidLoadWithNetworkingStatus];
+    }
+    
+}
+
 // 监听网络变化后执行
 - (void)viewDidLoadWithNetworkingStatus
 {
@@ -61,11 +71,11 @@
     // 请求网络数据（如果没有请求过数据，则进行数据加载）
     [self loadDataThen:^(BOOL success, NSUInteger count){
         
+        // 配置TableView界面
+        [weakSelf createUITable];
+        
         // 加载成功
         if (success && count) {
-            
-            // 配置TableView界面
-            [weakSelf createUITable];
             
             // 根据请求到数据小于1页，则隐藏上拉刷新控件
             if (count < _limit ) {
@@ -292,7 +302,7 @@
         manager.responseSerializer = [AFHTTPResponseSerializer serializer]; // 设置返回的数据格式
         
         // 请求网络数据前，先取消之前的请求，再发网络请求
-        //[manager.tasks makeObjectsPerformSelector:@selector(cancel)]; // 取消之前的所有请求
+        [manager.tasks makeObjectsPerformSelector:@selector(cancel)]; // 取消之前的所有请求
         
         // 请求网络数据
         [manager POST:url parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {

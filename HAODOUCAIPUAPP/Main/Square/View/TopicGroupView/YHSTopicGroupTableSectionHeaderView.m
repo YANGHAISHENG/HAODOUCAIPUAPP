@@ -39,8 +39,8 @@
 {
     self = [super init];
     if (self) {
-        _title = title;
-        _imageIconName = imageIconName;
+        _title = (title == nil ? @"" : title);
+        _imageIconName = (imageIconName == nil ? @"" : imageIconName);
         _tableSection = tableSection;
         [self createUI];
         [self setViewAtuoLayout];

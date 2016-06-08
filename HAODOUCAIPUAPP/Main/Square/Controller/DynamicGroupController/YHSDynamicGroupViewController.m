@@ -35,6 +35,12 @@
     [super viewWillAppear:animated];
     
     [self.navBarHairlineImageView setHidden:YES];
+
+    if (self.tableData.count == 0) {
+        
+        [self viewDidLoadWithNetworkingStatus];
+    }
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -255,7 +261,7 @@
         manager.responseSerializer = [AFHTTPResponseSerializer serializer]; // 设置返回的数据格式
         
         // 请求网络数据前，先取消之前的请求，再发网络请求
-        //[manager.tasks makeObjectsPerformSelector:@selector(cancel)]; // 取消之前的所有请求
+        [manager.tasks makeObjectsPerformSelector:@selector(cancel)]; // 取消之前的所有请求
         
         // 请求网络数据
         [manager POST:url parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
