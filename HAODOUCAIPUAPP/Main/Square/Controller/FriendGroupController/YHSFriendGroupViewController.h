@@ -6,9 +6,9 @@
 //  Copyright © 2016年 YANGHAISHENG. All rights reserved.
 //
 
-#import "YHSBasicNetworkReachabilityViewController.h"
+#import "YHSSquareBasicViewController.h"
 
-@interface YHSFriendGroupViewController : YHSBasicNetworkReachabilityViewController
+@interface YHSFriendGroupViewController : YHSSquareBasicViewController
 
 @property (nonatomic, strong) NSString *position;
 @property (nonatomic, strong) NSString *uid;

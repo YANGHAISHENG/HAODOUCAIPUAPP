@@ -6,7 +6,7 @@
 //  Copyright © 2016年 YANGHAISHENG. All rights reserved.
 //
 
-#import "YHSBasicNetworkReachabilityViewController.h"
+#import "YHSSquareBasicViewController.h"
 
 typedef NS_ENUM(NSInteger, YHSTopicGroupTableSection) {
     YHSTopicGroupTableSectionAD, // 广告横幅
@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, YHSTopicGroupTableSection) {
 };
 
 
-@interface YHSTopicGroupViewController : YHSBasicNetworkReachabilityViewController
+@interface YHSTopicGroupViewController : YHSSquareBasicViewController
 
 @property (nonatomic, assign) NSUInteger limit; // 数量限制
 @property (nonatomic, assign) NSUInteger offset; // 数据偏移量

@@ -35,12 +35,7 @@
     [super viewWillAppear:animated];
     
     [self.navBarHairlineImageView setHidden:YES];
-
-    if (self.tableData.count == 0) {
-        
-        [self viewDidLoadWithNetworkingStatus];
-    }
-    
+ 
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -50,9 +45,14 @@
     [self.navBarHairlineImageView setHidden:NO];
 }
 
-// 监听网络变化后执行
-- (void)viewDidLoadWithNetworkingStatus
+// 当显示的时候加载网络数据
+- (void)viewWillApperDidLoadWithNetworkingStatus
 {
+    // 已经请求过数据则返回
+    if (self.tableData.count > 0) {
+        return;
+    }
+    
     WEAKSELF(weakSelf);
     
     // 请求网络数据（如果没有请求过数据，则进行数据加载）

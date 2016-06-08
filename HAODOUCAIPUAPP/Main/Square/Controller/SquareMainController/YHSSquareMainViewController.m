@@ -10,6 +10,8 @@
 #import "YHSCookBookSearchViewController.h"
 #import "YHSScrollAnimationTitleBar.h"
 #import "UIView+Frame.h"
+
+#import "YHSSquareBasicViewController.h"
 #import "YHSTopicGroupViewController.h"
 #import "YHSFriendGroupViewController.h"
 #import "YHSDynamicGroupViewController.h"
@@ -25,6 +27,7 @@ static CGFloat SQUARE_SCROLL_TITLE_BAR_HEIGHT = 35.0;
 @property (nonatomic, strong) YHSScrollAnimationTitleBar *scrollTitleBar;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableArray<UIView *> *scrollChildViews;
+@property (nonatomic, strong) NSMutableArray<YHSSquareBasicViewController *> *scrollChildViewControllers;
 @property (nonatomic, assign) NSInteger currentScrollIndex;
 
 
@@ -103,6 +106,10 @@ static CGFloat SQUARE_SCROLL_TITLE_BAR_HEIGHT = 35.0;
     [self.scrollChildViews addObject:viewController2.view];
     [self.scrollChildViews addObject:viewController3.view];
     
+    // 将这几个视图控制器添加到数组中
+    [self.scrollChildViewControllers addObject:viewController1];
+    [self.scrollChildViewControllers addObject:viewController2];
+    [self.scrollChildViewControllers addObject:viewController3];
     
     // 添加滚动视图
     UIScrollView *scrollView = [[UIScrollView alloc] init];
@@ -173,6 +180,15 @@ static CGFloat SQUARE_SCROLL_TITLE_BAR_HEIGHT = 35.0;
     return _scrollChildViews;
 }
 
+#pragma mark - 滚动视图中装载的控制器
+- (NSMutableArray<YHSSquareBasicViewController *> *)scrollChildViewControllers
+{
+    if(!_scrollChildViewControllers) {
+        _scrollChildViewControllers = [NSMutableArray array];
+    }
+    return _scrollChildViewControllers;
+}
+
 #pragma mark 添加SJBPicTitleScrollerView的代理方法
 - (void)scrollTitleBar:(YHSScrollAnimationTitleBar *)scrollTitleBar scrollToIndex:(NSInteger)tagIndex title:(NSString *)title
 {
@@ -185,6 +201,10 @@ static CGFloat SQUARE_SCROLL_TITLE_BAR_HEIGHT = 35.0;
     // 显示第N个ViewController
     [self.scrollView scrollRectToVisible:CGRectMake(self.view.width*tagIndex, 0, self.view.width, self.view.height)
                                 animated:YES];
+    
+    // 请求加载数据
+    [self.scrollChildViewControllers[_currentScrollIndex] viewWillApperDidLoadWithNetworkingStatus];
+    
 }
 
 

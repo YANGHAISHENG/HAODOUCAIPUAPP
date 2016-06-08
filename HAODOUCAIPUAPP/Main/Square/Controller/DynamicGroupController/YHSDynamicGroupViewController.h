@@ -6,9 +6,9 @@
 //  Copyright © 2016年 YANGHAISHENG. All rights reserved.
 //
 
-#import "YHSBasicNetworkReachabilityViewController.h"
+#import "YHSSquareBasicViewController.h"
 
-@interface YHSDynamicGroupViewController : YHSBasicNetworkReachabilityViewController
+@interface YHSDynamicGroupViewController : YHSSquareBasicViewController
 
 @property (nonatomic, assign) NSUInteger limit; // 数量限制
 @property (nonatomic, assign) NSUInteger offset; // 数据偏移量
