@@ -56,10 +56,6 @@
     
     [self.navBarHairlineImageView setHidden:NO];
     
-    if (self.tableData.count == 0) {
-        [self viewDidLoadWithNetworkingStatus];
-    }
-    
 }
 
 // 监听网络变化后执行

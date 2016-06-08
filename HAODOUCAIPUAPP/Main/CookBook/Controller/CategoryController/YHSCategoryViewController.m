@@ -56,10 +56,7 @@ static CGFloat CATEGORY_TAB_VIEW_WIDTH = 85.0; // 分类标签视图宽度
     [super viewWillAppear:animated];
     
     [self.navBarHairlineImageView setHidden:NO];
-    
-    if (self.categoryModels.count == 0) {
-        [self viewDidLoadWithNetworkingStatus];
-    }
+
 }
 
 // 监听网络变化后执行
