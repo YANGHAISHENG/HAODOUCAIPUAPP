@@ -22,9 +22,10 @@
 #import "YHSBackHomeGoodsModel.h"
 
 
-@interface YHSBackHomeMainViewController () <UITableViewDelegate, UITableViewDataSource, BMKLocationServiceDelegate, YHSBackHomeTableSectionHeaderViewDelegate, YHSBackHomeADTableViewCellDelegate, YHSBackHomeFoodieFavoriteGoodsTableViewCellDelegate, YHSBackHomeGoodTableViewCellDelegate>
+@interface YHSBackHomeMainViewController () <UITableViewDelegate, UITableViewDataSource, BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate, YHSBackHomeTableSectionHeaderViewDelegate, YHSBackHomeADTableViewCellDelegate, YHSBackHomeFoodieFavoriteGoodsTableViewCellDelegate, YHSBackHomeGoodTableViewCellDelegate>
 
 @property (nonatomic, strong) BMKLocationService *locationService; // 地图定位功能
+@property (nonatomic, strong) BMKGeoCodeSearch * geocodesearch; // 反向地理编码检索
 
 @property (nonatomic, strong) UIView *searchAreaView; // 导航条搜索按钮区域
 @property (nonatomic, strong) UIImageView *searchIconImageView; // 导航条搜索图标
@@ -67,6 +68,9 @@
     if (self.tableData.count == 0) {
         [self viewDidLoadWithNetworkingStatus];
     }
+    
+    self.locationService.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
+    self.geocodesearch.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -74,7 +78,11 @@
     [super viewWillDisappear:animated];
     
     [self.navBarHairlineImageView setHidden:NO];
+    
+    self.locationService.delegate = nil; // 不用时，置nil
+    self.geocodesearch.delegate = nil; // 不用时，置nil
 }
+
 
 // 监听网络变化后执行
 - (void)viewDidLoadWithNetworkingStatus
@@ -664,7 +672,7 @@
         CGFloat locationWidth = 35.0;
         UILabel *loactionNavItem = ({
             UILabel *label = [[UILabel alloc] init];
-            [label setText:@"[武汉]"];
+            [label setText:@"[北京]"];
             [label setFont:[UIFont systemFontOfSize:12.0]];
             [label setTextColor:COLOR_NAVIGATION_BAR_TITLE_LIGHTGRAY];
             [label setUserInteractionEnabled:YES];
@@ -1056,13 +1064,13 @@
 
 #pragma mark - BMKLocationServiceDelegate
 
-
 // 自定开启定位功能函数
 - (void)startLocaionMapService
 {
     // 初始化BMKLocationService
     self.locationService = [[BMKLocationService alloc] init];
     self.locationService.delegate = self;
+    
     // 启动LocationService
     [self.locationService startUserLocationService];
 }
@@ -1073,18 +1081,63 @@
     YHSLogOrange(@"Start Locate");
 }
 
-/**
- *用户位置更新后，会调用此函数
- *@param userLocation 新的用户位置
- */
+// 在停止定位后，会调用此函数
+- (void)didStopLocatingUser
+{
+    YHSLogOrange(@"Stop Locate Service Success.");
+}
+
+// 处理位置坐标更新
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
-    YHSLogOrange(@"lat %f,long %f", userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude);
+    // 后台打印经纬度
+    YHSLogOrange(@"纬度 %f,经度 %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+    
+    // 反向地理编码
+    [self startGeoCodeSearchServiceWithLatitude:userLocation.location.coordinate.latitude andLongitude:userLocation.location.coordinate.longitude];
     
 }
 
 
+# pragma mark - 自定义开启反向地理编码
+- (void)startGeoCodeSearchServiceWithLatitude:(float)latitude andLongitude:(float)longitude
+{
+    // 初始化检索对象
+    self.geocodesearch = [[BMKGeoCodeSearch alloc] init];
+    self.geocodesearch.delegate = self;
+    // 发起反向地理编码检索
+    CLLocationCoordinate2D pointLocation = (CLLocationCoordinate2D){latitude, longitude};
+    BMKReverseGeoCodeOption *reverseGeoCodeSearchOption = [[BMKReverseGeoCodeOption alloc] init];
+    reverseGeoCodeSearchOption.reverseGeoPoint = pointLocation;
+    BOOL flag = [self.geocodesearch reverseGeoCode:reverseGeoCodeSearchOption];
+    if(flag) {
+      YHSLogOrange(@"反geo检索发送成功");
+    } else {
+      YHSLogOrange(@"反geo检索发送失败");
+    }
+}
 
+
+//实现Deleage处理回调结果
+//接收反向地理编码结果
+-(void) onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
+{
+  if (error == BMK_SEARCH_NO_ERROR) {
+      // 在此处理正常结果
+      NSString *addressDetail = [NSString stringWithFormat:@"%@%@%@%@%@", result.addressDetail.province, result.addressDetail.city, result.addressDetail.district, result.addressDetail.streetName, result.addressDetail.streetNumber ];
+      YHSLogRed(@"\n%@\n%@\n%@", result.address, addressDetail, result.businessCircle);
+
+      // 赋值
+      [self.loactionNavItem setText:[NSString stringWithFormat:@"[%@]", [result.addressDetail.city stringByReplacingOccurrencesOfString:@"市" withString:@""]]];
+      
+      // 停止定位服务
+      [self.locationService  stopUserLocationService];
+      
+  } else {
+      YHSLogRed(@"抱歉，未找到结果");
+  }
+    
+}
 
 
 
