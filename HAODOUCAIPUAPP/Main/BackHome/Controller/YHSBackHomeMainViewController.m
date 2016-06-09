@@ -1111,9 +1111,16 @@
     reverseGeoCodeSearchOption.reverseGeoPoint = pointLocation;
     BOOL flag = [self.geocodesearch reverseGeoCode:reverseGeoCodeSearchOption];
     if(flag) {
-      YHSLogOrange(@"反geo检索发送成功");
+        // 停止反地理编码服务
+        self.geocodesearch = nil;
+        self.geocodesearch.delegate = nil;
+        // 停止定位服务
+        self.locationService = nil;
+        self.locationService.delegate = nil;
+        [self.locationService  stopUserLocationService];
+        YHSLogOrange(@"反geo检索发送成功");
     } else {
-      YHSLogOrange(@"反geo检索发送失败");
+        YHSLogOrange(@"反geo检索发送失败");
     }
 }
 
@@ -1129,9 +1136,6 @@
 
       // 赋值
       [self.loactionNavItem setText:[NSString stringWithFormat:@"[%@]", [result.addressDetail.city stringByReplacingOccurrencesOfString:@"市" withString:@""]]];
-      
-      // 停止定位服务
-      [self.locationService  stopUserLocationService];
       
   } else {
       YHSLogRed(@"抱歉，未找到结果");
