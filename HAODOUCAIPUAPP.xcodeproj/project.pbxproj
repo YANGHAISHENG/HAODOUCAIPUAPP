@@ -122,7 +122,6 @@
 		7D0651EA1CE2BB77003D9BEC /* YHSBasicNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0651E91CE2BB77003D9BEC /* YHSBasicNavigationController.m */; };
 		7D0651ED1CE2BB91003D9BEC /* YHSBasicTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0651EC1CE2BB91003D9BEC /* YHSBasicTabBarController.m */; };
 		7D0651F01CE2BC1E003D9BEC /* YHSRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0651EF1CE2BC1E003D9BEC /* YHSRootViewController.m */; };
-		7D0652071CE2BDA7003D9BEC /* YHSBackHomeMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0652061CE2BDA7003D9BEC /* YHSBackHomeMainViewController.m */; };
 		7D06521E1CE2C45B003D9BEC /* YHSUtilsMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D06521B1CE2C45B003D9BEC /* YHSUtilsMacro.m */; };
 		7D06521F1CE2C45B003D9BEC /* YHSVenderMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D06521D1CE2C45B003D9BEC /* YHSVenderMacro.m */; };
 		7D0652221CE2C47D003D9BEC /* YHSSysConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0652211CE2C47D003D9BEC /* YHSSysConst.m */; };
@@ -135,6 +134,7 @@
 		7D070AA01CF7EB27003E0920 /* ZFPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D070A9A1CF7EB27003E0920 /* ZFPlayerView.m */; };
 		7D070AA21CF7F411003E0920 /* loading_bgView.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7D070AA11CF7F411003E0920 /* loading_bgView.jpg */; };
 		7D070AA61CF82C89003E0920 /* YHSCookBookDishDetailHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D070AA51CF82C89003E0920 /* YHSCookBookDishDetailHeadTableViewCell.m */; };
+		7D072BFA1D0D388A008DF8DF /* YHSBackHomeCateDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D072BF91D0D388A008DF8DF /* YHSBackHomeCateDetailViewController.m */; };
 		7D0744BD1CFF28A200A994C2 /* WXTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0744BC1CFF28A200A994C2 /* WXTabBarController.m */; };
 		7D0744C01CFF29F500A994C2 /* YHSBasicScrollTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0744BF1CFF29F500A994C2 /* YHSBasicScrollTabBarViewController.m */; };
 		7D0744C31CFF2E8800A994C2 /* YHSScrollRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0744C21CFF2E8800A994C2 /* YHSScrollRootViewController.m */; };
@@ -197,6 +197,7 @@
 		7D13DD6E1D07BE810004A059 /* arrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D13DD6D1D07BE810004A059 /* arrow_right.png */; };
 		7D13DD701D07C3EE0004A059 /* ico_delivery_address.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D13DD6F1D07C3EE0004A059 /* ico_delivery_address.png */; };
 		7D24BD2C1CF97AEA0029F515 /* YHSCookBookDishDetailProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D24BD2B1CF97AEA0029F515 /* YHSCookBookDishDetailProductTableViewCell.m */; };
+		7D33D4B41D0D097B00C7D230 /* YHSBackHomeMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D33D4B31D0D097B00C7D230 /* YHSBackHomeMainViewController.m */; };
 		7D38CE0A1CF0571D0041335C /* search_result_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D38CE091CF0571D0041335C /* search_result_empty.png */; };
 		7D3AA42C1D040109009E5165 /* YHSButtonWithIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3AA42B1D040109009E5165 /* YHSButtonWithIcon.m */; };
 		7D4739DF1D015F1B00D022ED /* YHSBackHomeCateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4739DE1D015F1B00D022ED /* YHSBackHomeCateModel.m */; };
@@ -549,8 +550,6 @@
 		7D0651EC1CE2BB91003D9BEC /* YHSBasicTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSBasicTabBarController.m; sourceTree = "<group>"; };
 		7D0651EE1CE2BC1E003D9BEC /* YHSRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSRootViewController.h; sourceTree = "<group>"; };
 		7D0651EF1CE2BC1E003D9BEC /* YHSRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSRootViewController.m; sourceTree = "<group>"; };
-		7D0652051CE2BDA7003D9BEC /* YHSBackHomeMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSBackHomeMainViewController.h; sourceTree = "<group>"; };
-		7D0652061CE2BDA7003D9BEC /* YHSBackHomeMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSBackHomeMainViewController.m; sourceTree = "<group>"; };
 		7D06521A1CE2C45B003D9BEC /* YHSUtilsMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSUtilsMacro.h; sourceTree = "<group>"; };
 		7D06521B1CE2C45B003D9BEC /* YHSUtilsMacro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSUtilsMacro.m; sourceTree = "<group>"; };
 		7D06521C1CE2C45B003D9BEC /* YHSVenderMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSVenderMacro.h; sourceTree = "<group>"; };
@@ -575,6 +574,8 @@
 		7D070AA31CF82694003E0920 /* HAODOUCAIPUAPPHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HAODOUCAIPUAPPHeader.pch; sourceTree = "<group>"; };
 		7D070AA41CF82C89003E0920 /* YHSCookBookDishDetailHeadTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookDishDetailHeadTableViewCell.h; sourceTree = "<group>"; };
 		7D070AA51CF82C89003E0920 /* YHSCookBookDishDetailHeadTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookDishDetailHeadTableViewCell.m; sourceTree = "<group>"; };
+		7D072BF81D0D388A008DF8DF /* YHSBackHomeCateDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSBackHomeCateDetailViewController.h; sourceTree = "<group>"; };
+		7D072BF91D0D388A008DF8DF /* YHSBackHomeCateDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSBackHomeCateDetailViewController.m; sourceTree = "<group>"; };
 		7D0744BB1CFF28A200A994C2 /* WXTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXTabBarController.h; sourceTree = "<group>"; };
 		7D0744BC1CFF28A200A994C2 /* WXTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXTabBarController.m; sourceTree = "<group>"; };
 		7D0744BE1CFF29F500A994C2 /* YHSBasicScrollTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSBasicScrollTabBarViewController.h; sourceTree = "<group>"; };
@@ -675,6 +676,8 @@
 		7D13DD6F1D07C3EE0004A059 /* ico_delivery_address.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_delivery_address.png; sourceTree = "<group>"; };
 		7D24BD2A1CF97AEA0029F515 /* YHSCookBookDishDetailProductTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSCookBookDishDetailProductTableViewCell.h; sourceTree = "<group>"; };
 		7D24BD2B1CF97AEA0029F515 /* YHSCookBookDishDetailProductTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSCookBookDishDetailProductTableViewCell.m; sourceTree = "<group>"; };
+		7D33D4B21D0D097B00C7D230 /* YHSBackHomeMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSBackHomeMainViewController.h; sourceTree = "<group>"; };
+		7D33D4B31D0D097B00C7D230 /* YHSBackHomeMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSBackHomeMainViewController.m; sourceTree = "<group>"; };
 		7D38CE091CF0571D0041335C /* search_result_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_result_empty.png; sourceTree = "<group>"; };
 		7D3AA42A1D040109009E5165 /* YHSButtonWithIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSButtonWithIcon.h; sourceTree = "<group>"; };
 		7D3AA42B1D040109009E5165 /* YHSButtonWithIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSButtonWithIcon.m; sourceTree = "<group>"; };
@@ -1767,6 +1770,24 @@
 			path = CookBookShowProductModel;
 			sourceTree = "<group>";
 		};
+		7D33D4B01D0D097400C7D230 /* BackHomeCateDetail */ = {
+			isa = PBXGroup;
+			children = (
+				7D072BF81D0D388A008DF8DF /* YHSBackHomeCateDetailViewController.h */,
+				7D072BF91D0D388A008DF8DF /* YHSBackHomeCateDetailViewController.m */,
+			);
+			path = BackHomeCateDetail;
+			sourceTree = "<group>";
+		};
+		7D33D4B11D0D097B00C7D230 /* BackHomwMain */ = {
+			isa = PBXGroup;
+			children = (
+				7D33D4B21D0D097B00C7D230 /* YHSBackHomeMainViewController.h */,
+				7D33D4B31D0D097B00C7D230 /* YHSBackHomeMainViewController.m */,
+			);
+			path = BackHomwMain;
+			sourceTree = "<group>";
+		};
 		7D4739DA1D015EF000D022ED /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -2230,8 +2251,8 @@
 		7DFE1D701CE219B8005A061B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7D0652051CE2BDA7003D9BEC /* YHSBackHomeMainViewController.h */,
-				7D0652061CE2BDA7003D9BEC /* YHSBackHomeMainViewController.m */,
+				7D33D4B11D0D097B00C7D230 /* BackHomwMain */,
+				7D33D4B01D0D097400C7D230 /* BackHomeCateDetail */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2796,6 +2817,7 @@
 				7D01ABCA1CFFDFF90016E0AF /* YHSBasicNetworkReachabilityViewController.m in Sources */,
 				7D01ABB81CFFDEF50016E0AF /* DismissingAnimator.m in Sources */,
 				7DAA89981CF310860046CCC0 /* YHSCategorySearchDishVideoViewController.m in Sources */,
+				7D072BFA1D0D388A008DF8DF /* YHSBackHomeCateDetailViewController.m in Sources */,
 				7D070A9F1CF7EB27003E0920 /* ZFSessionModel.m in Sources */,
 				7D01ABB51CFFDECA0016E0AF /* PresentingAnimator.m in Sources */,
 				7DFC47101CED50DD00A29464 /* YHSCategorySearchResultViewController.m in Sources */,
@@ -2876,6 +2898,7 @@
 				7DF893821CFAC84D003BB2FC /* YHSCookBookDishPictureDetailCoverPhotoTableViewCell.m in Sources */,
 				7DB84FC11CF1AD5200633D55 /* YHSCookBookHotsAlbumMoreModel.m in Sources */,
 				7D127E271CFC1FE200F98C12 /* YHSCookBookShowProductUserModel.m in Sources */,
+				7D33D4B41D0D097B00C7D230 /* YHSBackHomeMainViewController.m in Sources */,
 				7D070A9D1CF7EB27003E0920 /* ZFPlayerControlView.m in Sources */,
 				7DC830441CFD70200042A4A5 /* YHSCookBookShowVideoViewController.m in Sources */,
 				7D0F10291D0563C7009017E4 /* YHSTopicGroupADModel.m in Sources */,
@@ -2904,7 +2927,6 @@
 				7D8975211CEAF892002CF981 /* YHSCookBookHotsActivityTableViewCell.m in Sources */,
 				7D01ABCC1CFFDFF90016E0AF /* YHSBasicViewController+EmptyDataSet.m in Sources */,
 				7D02EE7F1D050F79005D319D /* YHSSquareMainViewController.m in Sources */,
-				7D0652071CE2BDA7003D9BEC /* YHSBackHomeMainViewController.m in Sources */,
 				7DD3ADDC1CE38A0E00F9D3F1 /* UIView+MasonryAutoLayout.m in Sources */,
 				7D03355F1CF5F71200B273E8 /* YHSCookBookDishModel.m in Sources */,
 				7D24BD2C1CF97AEA0029F515 /* YHSCookBookDishDetailProductTableViewCell.m in Sources */,
@@ -3110,7 +3132,7 @@
 				INFOPLIST_FILE = HAODOUCAIPUAPP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = YANGHAISHENGID.HAODOUCAIPUAPP;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hwt.haishengcaipuapp.haishengcaipuapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = "-Wno-deprecated-declarations";
 			};
@@ -3131,7 +3153,7 @@
 				INFOPLIST_FILE = HAODOUCAIPUAPP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = YANGHAISHENGID.HAODOUCAIPUAPP;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hwt.haishengcaipuapp.haishengcaipuapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = "-Wno-deprecated-declarations";
 			};

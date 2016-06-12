@@ -90,7 +90,7 @@
             make.top.equalTo(publicContainerView.mas_top);
             make.left.equalTo(publicContainerView);
             make.right.equalTo(publicContainerView);
-            make.height.mas_equalTo(@(120));
+            make.height.mas_equalTo(@(0));
         }];
         
         imageView;

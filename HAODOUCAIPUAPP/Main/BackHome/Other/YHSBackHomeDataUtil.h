@@ -18,4 +18,12 @@
 
 
 
+#pragma mark - N002.到家分类详情请求数据
++ (NSString *)getBackHomeCateDetailRequestURLString;
+#pragma mark - N002.到家分类详情请求数据
++ (NSMutableDictionary *)getBackHomeCateDetailRequestParams;
+
+
+
+
 @end
