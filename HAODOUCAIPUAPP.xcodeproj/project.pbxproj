@@ -3122,7 +3122,7 @@
 			baseConfigurationReference = 2FA9C7DDB41AEE627F87AE11 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: JunJie Cai (2E8U858YT5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yanghaisheng88xy@163.com (S6L8HQHF4K)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3134,9 +3134,9 @@
 				INFOPLIST_FILE = HAODOUCAIPUAPP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hwt.haishengcaipuapp.haishengcaipuapp;
+				PRODUCT_BUNDLE_IDENTIFIER = YANGHAISHENGID.HAODOUCAIPUAPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2a7ce5c4-ff75-42e7-b556-4f5e20816a0b";
+				PROVISIONING_PROFILE = "749736e8-b927-4d18-b851-e232ad1e9c8b";
 				WARNING_CFLAGS = "-Wno-deprecated-declarations";
 			};
 			name = Debug;
@@ -3146,7 +3146,7 @@
 			baseConfigurationReference = 3EAA7D74C4026D95A572CDC9 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: JunJie Cai (2E8U858YT5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yanghaisheng88xy@163.com (S6L8HQHF4K)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3158,9 +3158,9 @@
 				INFOPLIST_FILE = HAODOUCAIPUAPP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hwt.haishengcaipuapp.haishengcaipuapp;
+				PRODUCT_BUNDLE_IDENTIFIER = YANGHAISHENGID.HAODOUCAIPUAPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2a7ce5c4-ff75-42e7-b556-4f5e20816a0b";
+				PROVISIONING_PROFILE = "749736e8-b927-4d18-b851-e232ad1e9c8b";
 				WARNING_CFLAGS = "-Wno-deprecated-declarations";
 			};
 			name = Release;
