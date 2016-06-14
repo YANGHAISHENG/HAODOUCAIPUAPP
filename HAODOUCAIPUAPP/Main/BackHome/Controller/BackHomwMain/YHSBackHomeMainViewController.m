@@ -811,7 +811,7 @@
             if (0 == _RecommendType) {
                 indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
             }
-            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
         }
         
     }];
