@@ -359,10 +359,12 @@
             weakSelf.todayStarTitle = data[@"todayStarTitle"];
             
             // 设置数据源
+            self.tableData  = nil;
             [self.tableData addObject:@[weakSelf.adModels]];
             [self.tableData addObject:weakSelf.hotTitleModels];
             [self.tableData addObject:weakSelf.groupTitleModels];
             [self.tableData addObject:@[weakSelf.todayStarModels]];
+
             
             // 请求数据成功
             isSuccess = YES;
