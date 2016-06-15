@@ -81,7 +81,7 @@
     // 判断程序是否为第一次启动
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     BOOL isShowedIntroduction = [userDefaults boolForKey:YHSIntroductionKey];
-    if (isShowedIntroduction) {
+    if (!isShowedIntroduction) {
         // 添加键值对-将数据添加到单例对象中
         [userDefaults setBool:YES forKey:YHSIntroductionKey];
         // 将数据同步到本地
