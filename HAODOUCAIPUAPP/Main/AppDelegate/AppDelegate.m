@@ -9,12 +9,15 @@
 #import "AppDelegate.h"
 #import "YHSRootViewController.h"
 #import "YHSNetworkingManager.h"
+#import "YHSIntroViewController.h"
+
 
 @interface AppDelegate () <BMKGeneralDelegate>
 {
     BOOL _isFullScreen;
     BMKMapManager* _mapManager;
 }
+@property (nonatomic, strong) YHSIntroViewController *introductionViewController; // 引导页面控制器
 @end
 
 @implementation AppDelegate
@@ -70,7 +73,37 @@
     
     [[self window] makeKeyAndVisible];
     
-    [[self window] setRootViewController:[[YHSRootViewController alloc] init]];
+    [self setIntroViewController];
+}
+
+#pragma mark 是否显示引导页面
+- (void)setIntroViewController {
+    // 判断程序是否为第一次启动
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    BOOL isShowedIntroduction = [userDefaults boolForKey:YHSIntroductionKey];
+    if (isShowedIntroduction) {
+        // 添加键值对-将数据添加到单例对象中
+        [userDefaults setBool:YES forKey:YHSIntroductionKey];
+        // 将数据同步到本地
+        [userDefaults synchronize];
+        
+        // 显示引导页面
+        _introductionViewController = [[YHSIntroViewController alloc] init];
+        [[self window] setRootViewController:_introductionViewController];
+        
+        // 进入主页面
+        __weak __typeof(&*self)weakSelf = self;
+        [[self introductionViewController] setDidSelectedLastPage:^() {
+            // 引导页面显示完成后，删除引导页面
+            [[[weakSelf introductionViewController] view] removeFromSuperview];
+            [weakSelf setIntroductionViewController:nil];
+            
+            // 进入主界面
+            [[self window] setRootViewController:[[YHSRootViewController alloc] init]];
+        }];
+    } else {
+        [[self window] setRootViewController:[[YHSRootViewController alloc] init]];
+    }
 }
 
 

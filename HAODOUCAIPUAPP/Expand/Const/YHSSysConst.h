@@ -26,6 +26,9 @@ UIKIT_EXTERN CGFloat const FONT_SIZE_TABBAR;
 #pragma mark 占位图片
 UIKIT_EXTERN NSString * const PICTURE_PLACEHOLDER;
 
+#pragma mark 是否显示引导页面
+UIKIT_EXTERN NSString * const YHSIntroductionKey;
+
 #pragma mark 网络状态监听的广播频段
 UIKIT_EXTERN NSString * const NOTIFICATION_NETWORKING_STATUS_FREQUENCY;
 

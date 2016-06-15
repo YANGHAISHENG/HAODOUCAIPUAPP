@@ -23,6 +23,10 @@ CGFloat const FONT_SIZE_NAVIGATION_20 = 20.0;
 #pragma mark 标签栏按钮字体大小
 CGFloat const FONT_SIZE_TABBAR = 12.0;
 
+
+#pragma mark 是否显示引导页面
+NSString * const YHSIntroductionKey = @"YHSAppIntroduction";
+
 #pragma mark 占位图片
 NSString * const PICTURE_PLACEHOLDER = @"default_big.png";
 
