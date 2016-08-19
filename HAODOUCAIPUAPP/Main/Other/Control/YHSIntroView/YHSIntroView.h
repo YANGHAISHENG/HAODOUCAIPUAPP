@@ -26,7 +26,7 @@ typedef NS_ENUM(NSUInteger, EAViewAlignment) {
 
 @class YHSIntroView;
 
-@protocol YHSIntroDelegate<NSObject>
+@protocol YHSIntroViewDelegate<NSObject>
 @optional
 - (void)introDidFinish:(YHSIntroView *)introView;
 - (void)intro:(YHSIntroView *)introView pageAppeared:(YHSIntroPage *)page withIndex:(NSUInteger)pageIndex;
@@ -37,7 +37,7 @@ typedef NS_ENUM(NSUInteger, EAViewAlignment) {
 
 @interface YHSIntroView : UIView  <UIScrollViewDelegate>
 
-@property (nonatomic, weak) id<YHSIntroDelegate> delegate;
+@property (nonatomic, weak) id<YHSIntroViewDelegate> delegate;
 
 @property (nonatomic, assign) BOOL swipeToExit;
 @property (nonatomic, assign) BOOL tapToNext;

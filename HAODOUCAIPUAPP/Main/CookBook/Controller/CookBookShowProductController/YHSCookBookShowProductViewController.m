@@ -157,15 +157,6 @@
         // 下拉刷新
         self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
         
-        // 上拉加载
-        MJRefreshAutoNormalFooter *autoNormalFooter = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
-        [autoNormalFooter setTitle:YHSRefreshAutoFooterIdleText forState:MJRefreshStateIdle];
-        [autoNormalFooter setTitle:YHSRefreshAutoFooterRefreshingText forState:MJRefreshStateRefreshing];
-        [autoNormalFooter setTitle:YHSRefreshAutoFooterNoMoreDataText forState:MJRefreshStateNoMoreData];
-        [autoNormalFooter.stateLabel setFont:[UIFont boldSystemFontOfSize:YHSRefreshAutoFooterFontSize]];
-        [autoNormalFooter.stateLabel setTextColor:YHSRefreshAutoFooterTextColor];
-        [self.tableView setMj_footer:autoNormalFooter];
-        
         // 必须被注册到 UITableView 中
         [self.tableView registerClass:[YHSCookBookShowProductDayTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_COOKBOOK_SHOW_PRODUCT_DAY];
         [self.tableView registerClass:[YHSCookBookShowProductCateTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_COOKBOOK_SHOW_PRODUCT_CATE];
@@ -235,7 +226,7 @@
                 [weakSelf.tableView.mj_header endRefreshing];
                 
                 // 上拉刷新控件，结束刷新状态
-                [self.tableView.mj_footer endRefreshing];
+                [weakSelf.tableView.mj_footer endRefreshing];
                 
             }
             

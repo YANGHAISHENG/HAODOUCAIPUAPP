@@ -584,7 +584,7 @@ NSString * const CELL_IDENTIFIER_FRIEND_GROUP = @"YHSFriendGroupTableViewCellID"
     // 下部
     {
         // 评论按钮
-        if (_model.SameFeature.length > 0) {
+        if (_model.SameFeature.length > 0 && _model.CommonInfo.Img.length > 0) {
             [self.sameFeatureLabel setText:[NSString stringWithFormat:@"%@   >", _model.SameFeature]];
         } else {
             [self.sameFeatureLabel setText:@""];

@@ -9,7 +9,7 @@
 #import "YHSIntroViewController.h"
 #import "YHSIntroView.h"
 
-@interface YHSIntroViewController () <YHSIntroDelegate>
+@interface YHSIntroViewController () <YHSIntroViewDelegate>
 {
     UIView *rootView;
 }
@@ -45,15 +45,16 @@
     image4.frame = rootView.bounds;
     YHSIntroPage *page4 = [YHSIntroPage pageWithCustomView:image4];
     
+    UIImageView *image5 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"guide_5_bg.jpg"]];
+    image5.frame = rootView.bounds;
+    image5.userInteractionEnabled = YES;
+    YHSIntroPage *page5 = [YHSIntroPage pageWithCustomView:image5];
+    
     CGFloat w = CGRectGetWidth(self.view.bounds);
     UIButton *lastguidebtn = [[UIButton alloc] initWithFrame:CGRectMake((w - 100)/2, rootView.bounds.size.height - 100, 100, 29)];
     [lastguidebtn setImage:[UIImage imageNamed:@"lastguidebtn.png"] forState:UIControlStateNormal];
     [lastguidebtn addTarget:self action:@selector(gotoMain:) forControlEvents:UIControlEventTouchUpInside];
-    UIImageView *image5 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"guide_5_bg.jpg"]];
-    image5.frame = rootView.bounds;
-    image5.userInteractionEnabled = YES;
     [image5 addSubview:lastguidebtn];
-    YHSIntroPage *page5 = [YHSIntroPage pageWithCustomView:image5];
     
     self.intro = [[YHSIntroView alloc] initWithFrame:rootView.bounds andPages:@[page1, page2, page3, page4, page5]];
     [self.intro.skipButton setTitle:@"跳过" forState:UIControlStateNormal];
@@ -64,7 +65,7 @@
 - (void)gotoMain:(UIButton *)btn
 {
     [self.intro hideWithFadeOutDuration:0.3];
-    YHSLogLight(@"引导结束");
+    YHSLogLight(@"引导结束->%s", __FUNCTION__);
     if (self.didSelectedLastPage) {
         self.didSelectedLastPage();
     }
@@ -72,7 +73,7 @@
 
 - (void)introDidFinish:(YHSIntroView *)introView
 {
-    YHSLogLight(@"引导结束");
+    YHSLogLight(@"引导结束->%s", __FUNCTION__);
     if (self.didSelectedLastPage) {
         self.didSelectedLastPage();
     }

@@ -17,7 +17,6 @@
 #import "YHSDynamicGroupViewController.h"
 
 
-
 static CGFloat SQUARE_SCROLL_TITLE_BAR_HEIGHT = 35.0;
 
 
@@ -29,7 +28,6 @@ static CGFloat SQUARE_SCROLL_TITLE_BAR_HEIGHT = 35.0;
 @property (nonatomic, strong) NSMutableArray<UIView *> *scrollChildViews;
 @property (nonatomic, strong) NSMutableArray<YHSSquareBasicViewController *> *scrollChildViewControllers;
 @property (nonatomic, assign) NSInteger currentScrollIndex;
-
 
 @end
 
@@ -255,7 +253,7 @@ static CGFloat SQUARE_SCROLL_TITLE_BAR_HEIGHT = 35.0;
             }
         }
 
-        // 2.到家
+        // 2.广场
         CGFloat iconWidth = 50.0f;
         CGFloat iconHeight = 22.0f;
         UIImageView *leftIcon = [[UIImageView alloc] initWithFrame:CGRectMake(margin, ((HEIGHT_NAVIGATION_BAR-iconHeight)/2.0), iconWidth, iconHeight)];
@@ -263,7 +261,7 @@ static CGFloat SQUARE_SCROLL_TITLE_BAR_HEIGHT = 35.0;
         [leftIcon.layer setMasksToBounds:YES];
         [self.navBarCustomView addSubview:leftIcon];
         
-        // 3.全部
+        // 3.右边第一个按钮
         CGFloat rightOneWidth = 35.0; // 最大值为44
         CGFloat rightOneHeight = 35.0;
         UIButton *rightOneItem = ({
@@ -292,7 +290,7 @@ static CGFloat SQUARE_SCROLL_TITLE_BAR_HEIGHT = 35.0;
         });
         self.rightOneItem  = rightOneItem;
     
-        // 4.添加好友
+        // 4.添加好友按钮
         CGFloat rightTwoWidth = 30.0; // 最大值为44
         CGFloat rightTwoHeight = 30.0;
         UIButton *rightTwoItem = ({
