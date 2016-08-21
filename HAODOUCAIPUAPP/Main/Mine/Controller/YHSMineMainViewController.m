@@ -7,6 +7,7 @@
 //
 
 #import "YHSMineMainViewController.h"
+#import "YHSMineSettingViewController.h"
 
 @interface YHSMineMainViewController ()
 
@@ -545,7 +546,9 @@
 #pragma mark - 触发设置按钮事件
 - (void)naviSettingBarButtonItemClicked:(UIButton *)button
 {
-    [self alertPromptMessage:@""];
+    YHSMineSettingViewController *settingViewController = [YHSMineSettingViewController new];
+    [settingViewController setTitle:@"设置"];
+    [self.navigationController pushViewController:settingViewController animated:YES];
 }
 
 
