@@ -18,6 +18,6 @@
 
 @property (nonatomic, strong) id<YHSCookBookTableSectionHeaderViewDelegate> delegate;
 
-- (instancetype)initWithFrame:(CGRect)frame title:(NSString *)title imageIcon:(NSString *)imageIconName tableSecion:(NSInteger)tableSection;
+- (instancetype)initWithFrame:(CGRect)frame title:(NSString *)title iconImageName:(NSString *)iconImageName headerViewHeight:(CGFloat)headerViewHeight showMoreButton:(BOOL)isShowMoreButton tableSecion:(NSInteger)tableSection;
 
 @end

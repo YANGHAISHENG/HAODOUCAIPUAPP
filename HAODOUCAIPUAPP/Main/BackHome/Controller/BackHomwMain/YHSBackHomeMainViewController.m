@@ -983,12 +983,12 @@
             return nil;
         }
         case YHSBackHomeTableSectionFoodieFavoriteGoods: { // 吃货最爱
-            YHSBackHomeTableSectionHeaderView *sectionHeaderView = [[YHSBackHomeTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:@"吃货最爱" imageIcon:@"ico_favorite_version" tableSecion:YHSBackHomeTableSectionFoodieFavoriteGoods];
+            YHSBackHomeTableSectionHeaderView *sectionHeaderView = [[YHSBackHomeTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:@"吃货最爱" iconImageName:@"ico_favorite_version" headerViewHeight:height showMoreButton:YES tableSecion:YHSBackHomeTableSectionFoodieFavoriteGoods];
             sectionHeaderView.delegate = self;
             return sectionHeaderView;
         }
         case YHSBackHomeTableSectionGoodList: { // 逛逛商品
-            YHSBackHomeTableSectionHeaderView *sectionHeaderView = [[YHSBackHomeTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:@"逛逛" imageIcon:@"ico_mybrowse" tableSecion:YHSBackHomeTableSectionFoodieFavoriteGoods];
+            YHSBackHomeTableSectionHeaderView *sectionHeaderView = [[YHSBackHomeTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:@"逛逛商品" iconImageName:@"ico_mybrowse" headerViewHeight:height showMoreButton:YES tableSecion:YHSBackHomeTableSectionGoodList];
             sectionHeaderView.delegate = self;
             return sectionHeaderView;
         }

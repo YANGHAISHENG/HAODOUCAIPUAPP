@@ -1240,14 +1240,14 @@
         // 热门专辑
         case YHSCookBookTableSectionHotsAlbum: {
             YHSCookBookHotsAlbumModel *model = self.tableData[section][0];
-            YHSCookBookTableSectionHeaderView *sectionHeaderView = [[YHSCookBookTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:@"热门专辑" imageIcon:model.icon tableSecion:YHSCookBookTableSectionHotsAlbum];
+            YHSCookBookTableSectionHeaderView *sectionHeaderView = [[YHSCookBookTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:@"热门专辑" iconImageName:model.icon headerViewHeight:height showMoreButton:YES tableSecion:YHSCookBookTableSectionHotsAlbum];
             sectionHeaderView.delegate = self;
             return sectionHeaderView;
         }
         // 猜你喜欢
         case YHSCookBookTableSectionYourLove: {
             YHSCookBookYourLoveModel *model = self.tableData[section][0];
-            YHSCookBookTableSectionHeaderView *sectionHeaderView = [[YHSCookBookTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:@"猜你喜欢" imageIcon:model.icon tableSecion:YHSCookBookTableSectionYourLove];
+            YHSCookBookTableSectionHeaderView *sectionHeaderView = [[YHSCookBookTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:@"猜你喜欢" iconImageName:model.icon headerViewHeight:height showMoreButton:YES tableSecion:YHSCookBookTableSectionYourLove];
             sectionHeaderView.delegate = self;
             return sectionHeaderView;
         }
@@ -1264,21 +1264,21 @@
         // 精品阅读
         case YHSCookBookTableSectionQualityRead: {
             YHSCookBookQualityReadModel *model = self.tableData[section][0];
-            YHSCookBookTableSectionHeaderView *sectionHeaderView = [[YHSCookBookTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:@"精品阅读" imageIcon:model.icon tableSecion:YHSCookBookTableSectionQualityRead];
+            YHSCookBookTableSectionHeaderView *sectionHeaderView = [[YHSCookBookTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:@"精品阅读" iconImageName:model.icon headerViewHeight:height showMoreButton:YES tableSecion:YHSCookBookTableSectionQualityRead];
             sectionHeaderView.delegate = self;
             return sectionHeaderView;
         }
         // 热门活动
         case YHSCookBookTableSectionHotsActivity: {
             YHSCookBookHotsActivityModel *model = self.tableData[section][0];
-            YHSCookBookTableSectionHeaderView *sectionHeaderView = [[YHSCookBookTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:@"热门活动" imageIcon:model.icon tableSecion:YHSCookBookTableSectionHotsActivity];
+            YHSCookBookTableSectionHeaderView *sectionHeaderView = [[YHSCookBookTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:@"热门活动" iconImageName:model.icon headerViewHeight:height showMoreButton:YES tableSecion:YHSCookBookTableSectionHotsActivity];
             sectionHeaderView.delegate = self;
             return sectionHeaderView;
         }
         // 好豆达人
         case YHSCookBookTableSectionHaoDouVIP: {
             YHSCookBookHaoDouVIPModel *model = self.tableData[section][0];
-            YHSCookBookTableSectionHeaderView *sectionHeaderView = [[YHSCookBookTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:@"好豆达人" imageIcon:model.icon tableSecion:YHSCookBookTableSectionHaoDouVIP];
+            YHSCookBookTableSectionHeaderView *sectionHeaderView = [[YHSCookBookTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:@"好豆达人" iconImageName:model.icon headerViewHeight:height showMoreButton:YES tableSecion:YHSCookBookTableSectionHaoDouVIP];
             sectionHeaderView.delegate = self;
             return sectionHeaderView;
         }

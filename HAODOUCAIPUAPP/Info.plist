@@ -29,8 +29,31 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+    <key>NSAppleMusicUsageDescription</key>
+    <string>“千邻生活”获得您的媒体资料库权限后，您才可以进行后续操作。</string>
+    <key>NSBluetoothPeripheralUsageDescription</key>
+    <string>“千邻生活”获得您的蓝牙权限后，您才可以进行后续操作。</string>
+    <key>NSCalendarsUsageDescription</key>
+    <string>“千邻生活”获得您的日历权限后，您才可以进行后续操作。</string>
+    <key>NSCameraUsageDescription</key>
+    <string>“千邻生活”获得您的相机权限后，您才可以进行后续操作。</string>
+    <key>NSHealthShareUsageDescription</key>
+    <string>“千邻生活”获得您的健康分享权限后，您才可以进行后续操作。</string>
+    <key>NSHealthUpdateUsageDescription</key>
+    <string>“千邻生活”获得您的健康更新 权限后，您才可以进行后续操作。</string>
+    <key>NSLocationUsageDescription</key>
+    <string>“千邻生活”将根据您的位置为您查找附近适合的服务信息。</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>“千邻生活”将根据您的位置为您查找附近适合的服务信息。</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>“千邻生活”获得您的麦克风权限后，您才可以进行后续操作。</string>
+    <key>NSMotionUsageDescription</key>
+    <string>“千邻生活”获得您的运动与健身权限后，您才可以进行后续操作。</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>“千邻生活”获得您的相册权限后，您才可以进行后续操作。</string>
+    <key>NSRemindersUsageDescription</key>
+    <string>“千邻生活”获得您的提醒事项权限后，您才可以进行后续操作。</string>
+
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

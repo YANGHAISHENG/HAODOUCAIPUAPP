@@ -133,13 +133,6 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     return self;
 }
 
-/**
- *  storyboard、xib加载playerView会调用此方法
- */
-- (void)awakeFromNib
-{
-    [self initializeThePlayer];
-}
 
 /**
  *  初始化player

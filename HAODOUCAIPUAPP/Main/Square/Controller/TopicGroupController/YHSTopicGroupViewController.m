@@ -551,17 +551,17 @@
             return nil;
         }
         case YHSTopicGroupTableSectionHotTitle: { // 实时热点
-            YHSTopicGroupTableSectionHeaderView *sectionHeaderView = [[YHSTopicGroupTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:_hotTitle imageIcon:@"ico_auxiliary_hotspot" tableSecion:YHSTopicGroupTableSectionHotTitle];
+            YHSTopicGroupTableSectionHeaderView *sectionHeaderView = [[YHSTopicGroupTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:@"实时热点" iconImageName:@"ico_auxiliary_hotspot" headerViewHeight:height showMoreButton:NO tableSecion:YHSTopicGroupTableSectionHotTitle];
             sectionHeaderView.delegate = self;
             return sectionHeaderView;
         }
         case YHSTopicGroupTableSectionGroupTitle: { // 话题小组
-            YHSTopicGroupTableSectionHeaderView *sectionHeaderView = [[YHSTopicGroupTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:_groupTitle imageIcon:@"ico_auxiliary_topic" tableSecion:YHSTopicGroupTableSectionHotTitle];
+            YHSTopicGroupTableSectionHeaderView *sectionHeaderView = [[YHSTopicGroupTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:@"话题小组" iconImageName:@"ico_auxiliary_topic" headerViewHeight:height showMoreButton:NO tableSecion:YHSTopicGroupTableSectionGroupTitle];
             sectionHeaderView.delegate = self;
             return sectionHeaderView;
         }
         case YHSTopicGroupTableSectionTodayStar: { // 活跃豆亲
-            YHSTopicGroupTableSectionHeaderView *sectionHeaderView = [[YHSTopicGroupTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:_todayStarTitle imageIcon:@"ico_auxiliary_master" tableSecion:YHSTopicGroupTableSectionHotTitle];
+            YHSTopicGroupTableSectionHeaderView *sectionHeaderView = [[YHSTopicGroupTableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, height) title:@"活跃豆亲" iconImageName:@"ico_auxiliary_master" headerViewHeight:height showMoreButton:NO tableSecion:YHSTopicGroupTableSectionHotTitle];
             sectionHeaderView.delegate = self;
             return sectionHeaderView;
         }
