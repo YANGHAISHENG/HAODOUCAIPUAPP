@@ -191,7 +191,7 @@
             [container addSubview:view];
 
             // 标签标题宽度
-            CGFloat cateItemWidth = 10.0;
+            CGFloat cateItemWidth = 15.0;
             NSDictionary *attributes = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:14.0]};
             CGSize size = [cateName boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
                                                  options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
@@ -695,7 +695,7 @@
         self.loactionNavItem  = loactionNavItem;
         
         // 3.全部
-        CGFloat allWidth = 50.0; // 最大值为44
+        CGFloat allWidth = 55.0;
         CGFloat allHeight = 25.0;
         UIButton *allItem = ({
             YHSAllButton *button = [[YHSAllButton alloc] initWithFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width-margin/2.0-allWidth, ((HEIGHT_NAVIGATION_BAR-allHeight)/2.0), allWidth, allHeight)];
